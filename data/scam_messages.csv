@@ -1,0 +1,101 @@
+id,message,is_scam,scam_type,difficulty,language,note
+1,"Dear customer, your refund of Rs 4,999 is pending. Accept the collect request on your UPI app and enter your UPI PIN to receive the money.",1,fake_refund_or_upi,easy,en,Entering a PIN never receives money
+2,"You have received a payment request of Rs 1. Approve it to verify your account and get Rs 2,000 cashback instantly.",1,fake_refund_or_upi,easy,en,Fake verification collect request
+3,"Hello sir, I am buyer for your sofa listed online. I am army person, sending advance via QR code, just scan and enter PIN to receive.",1,fake_refund_or_upi,easy,en,Marketplace QR scam
+4,"Bhai galti se aapke account me 5000 transfer ho gaya, please wapas bhej do. Screenshot bhej raha hoon.",1,fake_refund_or_upi,tricky,hinglish,Fake 'wrong transfer' with doctored screenshot
+5,Your electricity cashback of Rs 750 is ready. Click upi-cashback-claim.example and approve the request to credit.,1,fake_refund_or_upi,easy,en,
+6,"Your food order refund failed. Our support executive will call you, please share the code you receive to process refund.",1,fake_refund_or_upi,tricky,en,"Calm tone, asks for OTP later"
+7,"GST refund of Rs 12,430 approved. To receive, scan the attached QR and authorise with PIN within 24 hours.",1,fake_refund_or_upi,easy,en,
+8,Dear user your bank account will be BLOCKED today due to incomplete KYC. Update PAN immediately: kyc-update-now.example,1,kyc_or_account_block,easy,en,
+9,URGENT: Your debit card is suspended. Call our KYC officer at +91 9XXXX X4521 to reactivate before 6 PM.,1,kyc_or_account_block,easy,en,
+10,Aapka SIM card 24 ghante me band ho jayega. KYC update ke liye is number par call karein: 7XXXX X9910,1,kyc_or_account_block,easy,hinglish,
+11,Your net banking access has been limited for your security. Kindly verify your details here to restore access: secure-verify.example/login,1,kyc_or_account_block,tricky,en,"Polite, security-flavoured wording"
+12,"Dear customer, your PAN is not linked. Rs 10,000 penalty will be charged. Link now to avoid penalty: pan-link-portal.example",1,kyc_or_account_block,easy,en,
+13,Your wallet KYC expired. Download the QuickSupport app and share the 9-digit code with our agent to complete video KYC.,1,kyc_or_account_block,easy,en,Remote-access app
+14,"Hi, this is from your bank's head office. We noticed unusual login. Please confirm the OTP sent to you so we can block the fraudster.",1,kyc_or_account_block,tricky,en,'Helpful' framing
+15,Part time job! Earn Rs 3000-8000 daily just by liking videos. No experience needed. WhatsApp HR: wa-hr-jobs.example,1,job_or_task,easy,en,
+16,"Congratulations! You are shortlisted for work from home data entry. Pay Rs 1,499 registration fee to get your joining kit.",1,job_or_task,easy,en,Upfront fee
+17,"Hello, I am Priya from a recruitment agency. We saw your profile. Simple task: rate hotels online, Rs 150 per task. Interested?",1,job_or_task,tricky,en,"Friendly, no link yet"
+18,"Task 3 completed! To withdraw your Rs 9,600 commission, deposit Rs 5,000 as merchant task first. Amount will be returned with bonus.",1,job_or_task,easy,en,Classic task-scam escalation
+19,"Offer letter from a top MNC: Package 12 LPA. Complete background verification by paying Rs 2,500 to the HR account below.",1,job_or_task,easy,en,
+20,"Ghar baithe kamao! Sirf 2 ghante roz, Rs 25,000 mahina. Join telegram group: tg-earn-daily.example",1,job_or_task,easy,hinglish,
+21,"Dear student, you are selected for a paid internship. Please buy the training course (Rs 3,999) to confirm your slot.",1,job_or_task,tricky,en,Targets students
+22,"Congratulations!! Your number won Rs 25,00,000 in the lucky draw. Pay Rs 8,500 processing fee to claim your prize.",1,prize_or_lottery,easy,en,
+23,You have won an iPhone in our anniversary contest! Claim within 2 hours: prize-claim.example,1,prize_or_lottery,easy,en,
+24,KBC style lottery: aapka number select hua hai Rs 35 lakh ke liye. Manager se baat karne ke liye WhatsApp karein.,1,prize_or_lottery,easy,hinglish,Mentions a TV show without naming a brand
+25,Your mobile number has been selected for a free scooty under a government scheme. Register with Aadhaar and pay Rs 499 delivery.,1,prize_or_lottery,easy,en,Fake govt scheme
+26,Spin the wheel and win! You got 3 free spins. Enter card details to verify you are human.,1,prize_or_lottery,easy,en,
+27,"Dear customer, you have 4,850 reward points expiring today. Redeem now for cash at points-redeem.example",1,prize_or_lottery,tricky,en,Mimics real reward-points SMS
+28,"Your email was chosen in an international online draw. GBP 750,000 awarded. Send your full name, address and bank details.",1,prize_or_lottery,easy,en,
+29,This is from customs. A parcel in your name contains illegal items. Your Aadhaar is linked to money laundering. Call the officer now or face arrest.,1,police_or_parcel_threat,easy,en,'Digital arrest' pattern
+30,Your courier is on hold due to incomplete address. Pay Rs 25 redelivery fee: parcel-redeliver.example,1,police_or_parcel_threat,tricky,en,"Tiny fee, very common"
+31,"Cyber crime department notice: obscene content was viewed from your number. Pay fine of Rs 15,000 within 1 hour to avoid FIR.",1,police_or_parcel_threat,easy,en,
+32,Press 9 to speak to an executive. Your number will be disconnected in 2 hours due to illegal activity.,1,police_or_parcel_threat,easy,en,Robocall transcript
+33,"Aapke naam par ek parcel pakda gaya hai jisme drugs hain. Video call par police officer se baat karein, kisi ko batana mat.",1,police_or_parcel_threat,easy,hinglish,Isolation tactic
+34,We are from the narcotics bureau. Stay on the video call and do not disconnect. Transfer your savings to an RBI safe account for verification.,1,police_or_parcel_threat,easy,en,'Safe account' does not exist
+35,Your package could not be delivered because the customs duty of Rs 49 is unpaid. Update payment within 12 hours.,1,police_or_parcel_threat,tricky,en,
+36,"Dear consumer, your electricity power will be disconnected tonight at 9:30 PM because previous month bill was not updated. Call officer 9XXXX X7788 immediately.",1,bill_disconnection,easy,en,Most common Indian SMS scam
+37,Aapka bijli connection aaj raat kaat diya jayega. Turant is number par sampark karein: 8XXXX X1203,1,bill_disconnection,easy,hinglish,
+38,Gas connection alert: your LPG subsidy is stopped. Update your details at lpg-subsidy.example within 24 hrs.,1,bill_disconnection,easy,en,
+39,Your broadband will be deactivated today due to pending payment. Pay via this link only: bb-pay.example/quick,1,bill_disconnection,tricky,en,
+40,Water bill overdue. Your connection will be cut tomorrow. Download our app from water-bill-app.example (APK) to pay.,1,bill_disconnection,easy,en,Malicious APK
+41,FASTag KYC pending. Your tag will be blacklisted at midnight. Recharge and verify: fastag-verify.example,1,bill_disconnection,easy,en,
+42,Final notice: your mobile postpaid bill is unpaid and service stops in 3 hours. Pay only via the secure link bill-clear.example to avoid legal action.,1,bill_disconnection,tricky,en,Legal threat + deadline
+43,"Hi Mom, this is my new number, my phone fell in water. Can you send Rs 8,000 urgently? I will explain later.",1,fake_family_or_boss,easy,en,
+44,"Papa main hospital me hoon, dost ke phone se msg kar raha hoon. Jaldi 15,000 is UPI par bhejo, call mat karna abhi.",1,fake_family_or_boss,easy,hinglish,
+45,"Hey, it's your manager. I'm in a meeting, can't talk. Need you to buy 5 gift cards for a client and send me the codes.",1,fake_family_or_boss,easy,en,Boss impersonation
+46,"Hello uncle, I am your nephew's friend. He met with an accident, need money for hospital deposit. Please send to this account fast.",1,fake_family_or_boss,easy,en,
+47,"This is your principal. Please transfer the event fee of Rs 2,000 to my personal UPI today, the school account is not working.",1,fake_family_or_boss,tricky,en,
+48,"Hi dear, I sent a code to your number by mistake, can you please forward it to me? It's urgent.",1,fake_family_or_boss,tricky,en,WhatsApp account takeover
+49,Your cousin is stuck at the airport abroad and lost his wallet. He asked me to message you. Please send $300 via this link.,1,fake_family_or_boss,easy,en,
+50,"Join our VIP stock tips group. 300% returns guaranteed in 30 days. Limited seats! Invest from just Rs 10,000.",1,investment_or_loan,easy,en,
+51,"Instant loan of Rs 50,000 approved without documents! Download app and pay Rs 999 processing fee.",1,investment_or_loan,easy,en,
+52,"Double your money in 7 days with our crypto trading bot. Minimum deposit Rs 5,000. Withdraw anytime.",1,investment_or_loan,easy,en,
+53,Welcome to the IPO allotment group. Our analyst will guide you. Transfer funds to the institutional account to get guaranteed allotment.,1,investment_or_loan,tricky,en,Fake institutional account
+54,Aapka personal loan Rs 3 lakh pre-approved hai. Sirf 2 minute me paisa account me. Apply: easy-loan-now.example,1,investment_or_loan,easy,hinglish,
+55,"Your loan app EMI is overdue. We will send your photos to all your contacts unless you pay Rs 4,000 today.",1,investment_or_loan,easy,en,Loan-app harassment
+56,"Hi, I'm a financial advisor. I made 40% last month in forex. I can teach you for free, just open an account with my platform.",1,investment_or_loan,tricky,en,Soft sell
+57,Your bank statement for September is attached. Please open the file statement_sep.apk to view.,1,kyc_or_account_block,tricky,en,APK disguised as statement
+58,We noticed you paid twice for your order. Reply with your card number and CVV so we can refund the extra amount.,1,fake_refund_or_upi,tricky,en,
+59,"Hi, is this the owner of the red car parked outside? Please call me urgently, someone hit your car. Also can you receive a small UPI request to verify?",1,fake_refund_or_upi,tricky,en,Starts plausible
+60,Congrats on your recent purchase! Rate us 5 stars and get Rs 500 back. Just share your UPI ID and the OTP you receive.,1,prize_or_lottery,tricky,en,
+61,123456 is your OTP for login. Do not share it with anyone. Bank staff will never ask for your OTP.,0,not_scam,tricky,en,"Legit OTP, mentions 'bank'"
+62,"Rs 1,250.00 debited from A/c XX4521 on 28-Sep for UPI txn to Chai Point. Not you? Call the number on the back of your card.",0,not_scam,tricky,en,Legit debit alert
+63,"Your electricity bill of Rs 1,842 for Aug is generated. Due date: 10-Oct. Pay via your usual app or at the office.",0,not_scam,tricky,en,"Legit bill, no threat"
+64,Your order has been shipped and will arrive by Thursday. Track it in the app.,0,not_scam,tricky,en,Legit delivery
+65,"Hi, class is cancelled tomorrow. Assignment deadline extended to Monday. - CS Dept",0,not_scam,easy,en,
+66,"Bro match dekhne aa raha hai aaj? 7 baje tak aa jaana, pizza order kar rahe hain",0,not_scam,easy,hinglish,
+67,Reminder: your dental appointment is on 3 Oct at 11:00 AM. Reply C to confirm or R to reschedule.,0,not_scam,easy,en,
+68,Happy birthday beta! Blessings from all of us. Call when you are free.,0,not_scam,easy,en,
+69,"Your password was changed successfully. If this wasn't you, reset it from the official app settings.",0,not_scam,tricky,en,Legit security notice
+70,Festive sale starts Friday! Up to 40% off on electronics. Visit our store or app. T&C apply.,0,not_scam,tricky,en,Legit promo
+71,"Mom: dinner is ready, come down. Also bring the milk packets from the fridge.",0,not_scam,easy,en,
+72,Your cylinder booking is confirmed. Booking ref 88213. Delivery expected in 2-3 days.,0,not_scam,tricky,en,Legit LPG message
+73,Placement cell: Company X pre-placement talk tomorrow 10 AM in Seminar Hall. Attendance mandatory for registered students.,0,not_scam,easy,en,
+74,"Meeting moved to 4 PM, same link as before. Please update the slides.",0,not_scam,easy,en,
+75,"Your salary of Rs 45,000 has been credited to A/c XX9910 on 30-Sep.",0,not_scam,tricky,en,
+76,"Arre yaar, notes bhej de na kal ke lecture ke, main miss kar diya",0,not_scam,easy,hinglish,
+77,Your library book 'Operating Systems' is due on 5 Oct. Return or renew online to avoid a fine of Rs 5/day.,0,not_scam,tricky,en,"Mentions fine, legit"
+78,Your recharge of Rs 299 is successful. Validity: 28 days.,0,not_scam,easy,en,
+79,Hi! Your cab driver Ramesh is arriving in 3 mins. OTP to start the ride: 4821.,0,not_scam,tricky,en,OTP meant to be shared with driver
+80,Thanks for your payment of Rs 650 for broadband. Your next bill date is 1 Nov.,0,not_scam,easy,en,
+81,"Didi, I reached hostel safely. Will call you tomorrow.",0,not_scam,easy,en,
+82,Your exam hall ticket is available on the university portal. Download it before 8 Oct.,0,not_scam,tricky,en,"Legit, no link"
+83,Your vehicle insurance expires on 15 Oct. Renew from your insurer's official app to stay covered.,0,not_scam,tricky,en,
+84,Chal kal subah 6 baje gym? Late mat karna iss baar,0,not_scam,easy,hinglish,
+85,Your blood test report is ready. Collect it from the lab reception or view it in the lab app.,0,not_scam,easy,en,
+86,Society notice: water supply will be off on Sunday 10 AM - 2 PM for tank cleaning.,0,not_scam,tricky,en,"Service interruption, legit"
+87,"Hey, I paid you back the Rs 500 for lunch. Check your account.",0,not_scam,tricky,en,"Money mention, legit"
+88,Your parcel was delivered to the security desk at 2:14 PM.,0,not_scam,easy,en,
+89,Train 12627 is running 45 minutes late. Expected arrival at 18:40.,0,not_scam,easy,en,
+90,Welcome to the hackathon! Check-in opens at 9 AM. Bring your college ID.,0,not_scam,easy,en,
+91,"Your credit card statement is generated. Total due Rs 7,210, minimum due Rs 360, due by 12 Oct.",0,not_scam,tricky,en,
+92,"Uncle ji, papa ne bola aapko bata du ki shaadi ka card kal courier kar diya hai.",0,not_scam,easy,hinglish,"Mentions courier, legit"
+93,Your food is out for delivery. Delivery partner will call on arrival.,0,not_scam,easy,en,
+94,"New login to your account from Chrome on Windows. If this was you, ignore this message.",0,not_scam,tricky,en,
+95,Assignment 2 marks are published. Re-evaluation requests open till Friday.,0,not_scam,easy,en,
+96,Hey! Long time. Are you coming for the reunion on the 12th?,0,not_scam,easy,en,
+97,Your complaint #45521 about the street light has been resolved. Thank you.,0,not_scam,easy,en,
+98,"Price drop alert: the headphones on your wishlist are now Rs 1,999 in the app.",0,not_scam,tricky,en,
+99,"Beta, bank jaake passbook update kara lena, main kal chala gaya tha par lunch time tha.",0,not_scam,easy,hinglish,"Mentions bank, legit"
+100,Your gym membership renews on 1 Oct. You can cancel anytime from the front desk.,0,not_scam,easy,en,
