@@ -1,19 +1,18 @@
 # Session: Jev Scam Message Detector
 
-**Hook:** *"This AI can't write a single word, yet it finished 100 messages before a chatbot finished one… and it has one dangerous flaw."*
+**Jev "Can't Hallucinate". So We Tried to Make It Lie.** A ~20 min face + screen YouTube investigation of Jev, TypeSafe AI's decision model. Its makers claim it **can't hallucinate** and its **answers are free**, and we test both claims on scam SMS: a chatbot's JSON breaks → the 2-line swap to Jev → "try to make it lie" → a race on 100 labelled messages → Jev's confident mistakes → a 3-line confidence-slider fix → Laya, the open-source rival → the verdict.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Kiran-B23/jev-scam-detector/blob/main/notebook/jev_scam_detector.ipynb)
-**Project:** Build a scam SMS/WhatsApp detector on Jev (TypeSafe AI's "System One" decision model), race it against a regular LLM on 100 labelled messages, find the confidently wrong answers, and ship it as a Gradio web app. Everything runs in Google Colab with one OpenRouter API key.
 
 | File | What it is |
 |---|---|
-| [01-session-script.md](01-session-script.md) | Full script with timings, hook, analogies, `[SCREEN]` / `[SAY]` / `[DO]` cues and chapter list |
-| [02-slide-outline.md](02-slide-outline.md) | 15 slides, B-roll, thumbnail and title options |
-| [03-TR-doc.md](03-TR-doc.md) | **Trainer Reference doc** in the house TR format: the teaching flow from hook → problem → concept → 13 continuous build steps → twist → payoff → decision framework, with code matching the notebook step for step |
+| [01-session-script.md](01-session-script.md) | Face + screen script, 11 chapters, with `[FACE]` / `[SCREEN]` / `[SPLIT]` / `[TEXT]` / `[B-ROLL]` / `[SFX]` cues and re-hooks |
+| [02-slide-outline.md](02-slide-outline.md) | Per-chapter graphics and B-roll, titles, thumbnails, description template |
+| [03-TR-doc.md](03-TR-doc.md) | **Trainer Reference doc** in the house TR format: the investigation flow chapter by chapter: content, sourced facts, the taught code, re-hooks and "So far" recaps |
 | [05-presenter-runbook.md](05-presenter-runbook.md) | Presenter/reviewer ops: learning outcomes, section runbook with expected outputs, troubleshooting, API-failure backup plan, fact-checks, reviewer sign-off |
 | [06-TR-doc-guideline-check.md](06-TR-doc-guideline-check.md) | Rule-by-rule audit of the TR doc against `reference_projects/session_teaching_guidelines.md`, with the fixes applied |
 | [04-recording-checklist.md](04-recording-checklist.md) | Pre-production, privacy and blur list, filming-day checks, editing, description template |
-| [notebook/jev_scam_detector.ipynb](notebook/jev_scam_detector.ipynb) | The Colab notebook: Steps 0–8, 🧑‍🏫 Teach cells (the Jev swap, about 35 lines) and ▶️ Just-run cells |
+| [notebook/jev_scam_detector.ipynb](notebook/jev_scam_detector.ipynb) | The Colab notebook, organised by chapter: about 15 🧑‍🏫 Teach lines (old way, the swap, "try to make it lie", the slider); everything else ▶️ Just run |
 | [jev_helpers.py](jev_helpers.py) | Behind-the-scenes plumbing the notebook downloads: key loading, the fair race, scoring, charts, the Gradio app |
 | [data/scam_messages.csv](data/scam_messages.csv) | 100 made-up labelled messages: 60 scams (8 types), 40 genuine, 36 tricky, 13 Hinglish; fake links and numbers only |
 

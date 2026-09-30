@@ -1,193 +1,224 @@
-# Session Script: "This AI Can't Write a Single Word, and That's Why It's So Fast"
+# Script: Jev "Can't Hallucinate". So We Tried to Make It Lie.
 
-**Format:** standalone NxtWave project session · **Target length:** 22–25 min · **Audience:** students and early-career developers; no ML background needed
-**Project:** A scam-message detector built by **swapping a chatbot for Jev** (TypeSafe AI's decision model), raced on 100 messages, its flaw found and fixed, shipped as a web app.
-**Teaching flow:** `03-TR-doc.md` (this script is its on-camera version) · **Notebook:** `notebook/jev_scam_detector.ipynb` · **Slides:** `02-slide-outline.md`
+**Format:** face + screen · **~20 min** · standalone · students and early-career developers
+**Story:** an investigation. Two claims ("can't hallucinate", "answers are free"), one open loop ("one of these claims doesn't survive"), and one verdict.
+**Teaching flow and facts:** `03-TR-doc.md` · **Notebook:** `notebook/jev_scam_detector.ipynb` · **Graphics and thumbnail:** `02-slide-outline.md`
 
-> **How to read this script**
-> - **[SCREEN]** what viewers see · **[SAY]** what the host says (a guide, not a teleprompter) · **[DO]** the on-screen action
-> - `⟦…⟧` = a number from **your real run**. Fill in after the dry run, and never use a placeholder or a vendor number.
-> - 🧑‍🏫 cells get **read line by line**. ▶️ cells get **run, not read**: run them and talk only about the result.
+> **Cues:** **[FACE]** host to camera · **[SCREEN]** full-screen capture · **[SPLIT]** host in a corner bubble over the screen · **[TEXT]** on-screen text overlay · **[B-ROLL]** cutaway · **[SFX]** sound effect · **[SAY]** a guide to what the host says, in their own words · **[DO]** action on screen
+> `⟦…⟧` = a number from **your real dry run**. Never use a vendor number in its place.
+> **Delivery:** first person ("I tested", "it fooled me"), energetic but not shouty. One idea per sentence. A cut or visual change every 5–10 seconds.
 
----
-
-## Chapter list
+## Chapters (for the description)
 ```
-0:00 This AI can't write a single word
-0:45 What we're building
-1:30 The problem: asking a chatbot for a yes/no
-4:00 Meet Jev: the model that only decides
-7:00 The swap: 2 lines that replace the chatbot
-10:30 3 questions, 1 call
-12:30 Turning a probability into a decision
-14:30 The race: Jev vs chatbot on 100 messages
-17:30 The flaw: confident and wrong
-20:00 The fix: Jev decides, the chatbot explains
-21:30 Ship it as an app
-22:30 Recap
+0:00 "It can't hallucinate." Really?
+1:00 Why the internet lost its mind
+2:30 It's not a chatbot. At all.
+5:00 So… is ChatGPT dead?
+6:00 Claim #1: let's try to make it lie
+10:00 Claim #2: are the answers really free?
+13:00 We caught it lying
+15:30 The fix (it's 3 lines)
+17:00 Where you'd actually use this
+18:00 The free rival nobody's talking about
+19:30 The verdict
 ```
 
 ---
 
-## 1. Cold open (0:00–0:45): the hook
+## 0:00 — "It can't hallucinate." Really?
 
-> **Hook formula:** paradox → proof → stakes → a secret we promise to reveal. Every number must come from the real run.
+**[SCREEN]** First frame matches the thumbnail: a phone with a scam SMS and the card **"✓ VALID · SAFE 97%"**, plus a red "?".
+**[SAY]** (voice over the frame) "This is **Jev**, the most talked-about AI launch of the month. Its makers say it **can't hallucinate**. Ever."
 
-**[SCREEN]** Black screen. White text, one line at a time, synced to the voice.
+**[SCREEN]** Zoom into TypeSafe's pricing line: *output: FREE*. **[TEXT]** "Source: TypeSafe"
+**[SAY]** "And its answers are **free**. Not cheap. *Free*."
 
-**[SAY]** "This AI **can't write a single word**."
-**[SCREEN]** *can't chat* · *can't explain* · *can't even say hello*
-**[SAY]** "It can't chat. It can't explain itself. It can't even say hello."
+**[FACE]** Close shot.
+**[SAY]** "Every AI you've ever used can hallucinate, and none of them work for free. So these are two huge claims. And I'll tell you now: **one of them doesn't survive this video.**"
 
-**[SCREEN]** Hard cut to a split screen. Left: a chatbot with "typing…" dots. Right: **Jev**, with a counter flying **0 → 100 ✓**.
-**[SAY]** "But we gave it 100 messages to judge… and it finished **all 100** in ⟦X⟧ seconds. The chatbot, on the same 100? ⟦Y⟧."
-**[SCREEN]** The counters freeze. Big text: **⟦N⟧x faster · ⟦M⟧x cheaper**
+**[SPLIT]** A scam SMS flies into the notebook and Jev's output starts appearing. Freeze before the number. **[SFX]** record scratch.
+**[SAY]** "We're going to test both, with the trickiest messages we can find: real-looking scam SMS, polite scams, Hinglish. We'll try to make an AI that 'can't lie'… lie."
 
-**[SCREEN]** A phone buzzes: the electricity-disconnection SMS. Jev's verdict slams on top: **🚨 Likely scam**.
-**[SAY]** "And these weren't just any messages. They were **scam SMS**, the kind that empty people's bank accounts."
+**[FACE]**
+**[SAY]** "I'm ⟦Host⟧. Honestly, I skip most AI launches. There's a new model every week, and most don't matter. This one made the cut for one reason: **it doesn't talk at all. It only decides.** So no boring explainer. We put it to work and find out if the hype is real."
+**[TEXT]** "2 claims · 1 investigation · 1 verdict"
 
-**[SCREEN]** Glitch effect. One verdict flips red: **✅ Looks normal (0.04)** on a message that was really a scam.
-**[SAY]** "So why isn't everyone using it? Because it has **one dangerous flaw**. And today we're going to find it ourselves."
-
-**[SCREEN]** Title card: **"This AI Can't Write a Single Word"** + music sting.
-
-> **If the run has no confident-wrong case,** replace the glitch shot with the weakest real result ("…but on tricky messages it dropped to ⟦X⟧%"). Never stage a fake failure.
+> **Hook rules:** the topic (Jev) is in the first sentence, the open loop is set by 0:25, and there's no greeting before 0:30.
 
 ---
 
-## 2. What we're building (0:45–1:30)
+## 1:00 — Why the internet lost its mind
 
-**[SAY]** "Hi everyone, I'm ⟦Host⟧. In the next 20 minutes, in a free Colab notebook, we'll:
-1. ask a normal chatbot to catch a scam, and watch it struggle,
-2. **swap** it for this new model, called **Jev**. The swap is literally two lines,
-3. race them on 100 messages,
-4. find Jev's flaw, fix it, and ship it as an app you can send to your family.
-And here's the good part: you'll only need to understand about **35 lines of code**. Everything else we've prepared for you. You just press run."
+**[B-ROLL]** A fast montage, 1–2 seconds per shot, with punchy music:
+- the Hacker News thread with its points counter rolling up to **~2,000**
+- the logos of Vercel, LangChain, OpenRouter, DigitalOcean and Pydantic AI popping in one by one
+- **[TEXT]** "Signups opened Sep 20 → paused Sep 22"
+- **[TEXT]** "$40M seed"
 
-**[SCREEN]** The notebook legend: 🧑‍🏫 **Teach** = we read it · ▶️ **Just run** = we run it and look at the result.
+**[SAY]** (over the montage) "Within a week, every big AI platform added it. Signups opened, and two days later they had to *pause* them. And the founder? One of the researchers behind the work that made **ChatGPT** follow instructions."
 
----
+**[FACE]**
+**[SAY]** "So why is everyone going after it? Think about any app you use. It's full of tiny decisions: *is this spam, which team gets this complaint, is this message safe.* Today, apps ask a chatbot every single one of those. That means waiting seconds and paying for a whole paragraph just to get a yes or no."
+**[TEXT]** "≈ $0.04 per 1,000 decisions" (JevBench)
+**[SAY]** "Jev answers them in under a second, for about **four cents per thousand decisions**. TypeSafe calls it '**smart if-statements**'."
 
-## 3. The problem: asking a chatbot for a yes/no (1:30–4:00)
-
-**[SAY]** "Three quick terms so everyone's on the same page. An **LLM** is the AI behind chatbots like ChatGPT: it reads text and writes text. **JSON** is a way to write data so code can read it, like this." **[SCREEN]** `{"is_scam": true}` **[SAY]** "And an **API key** is a password your code sends so the AI service knows who's calling."
-
-**[SCREEN]** The "three hopeful lines":
-```python
-reply = ask_llm('Is this SMS a scam? Reply in JSON like {"is_scam": true}.' + sms)
-result = json.loads(reply)          # hope it is valid JSON
-if result["is_scam"] == True:       # hope the key exists, and is a real true/false
-    warn_user()
-```
-**[SAY]** "This is how most people would build a scam check today. Ask a chatbot, ask for JSON, read the answer. But look at the comments: every line is a **hope**. The chatbot doesn't give you a decision. It gives you **text**, and your code has to hope that text is in the right shape."
-
-**[DO]** ▶️ Step 0 is already run (setup cut in the edit). 🧑‍🏫 Run **Step 1**. Zoom in on `repr(reply)`, then on the `json.loads` cell.
-**[SAY]** "Let's actually try it. ⟦React to the real output: "Code fences around it, so `json.loads` crashes" / "A whole paragraph" / "It worked this time. Let's run it again… and again"⟧. It's like hiring an essay writer to tick a box. It works, but it's slow, it costs money for every word, and sometimes it ticks the wrong box in beautiful handwriting."
+**[FACE]** Lean in. **[SAY]** "But hold on. What even *is* a model that can't talk?"
 
 ---
 
-## 4. Meet Jev (4:00–7:00)
+## 2:30 — It's not a chatbot. At all.
 
-**[SCREEN]** Slide: *Chatbot = essay answer · Jev = OMR sheet*
-**[SAY]** "Now meet **Jev**, from a company called TypeSafe AI, released September 15, 2026. Jev is a **decision model**. If a chatbot writes you an essay answer, Jev fills in an **OMR sheet**. The bubbles are fixed, so the answer always fits. It literally can't reply 'maybe, it depends, here are five paragraphs'."
+**[SCREEN]** Animated split screen: on the left, a robot scribbling a messy essay, labelled "Chatbot". On the right, a robot filling three OMR bubbles instantly, labelled "Jev".
+**[SAY]** "Here's the easiest way to get it. A chatbot writes you an **essay answer**. Jev fills in an **OMR sheet**. The bubbles are fixed, so the answer always fits. It literally *can't* reply 'maybe, it depends, here are five paragraphs'."
 
-**[SCREEN]** Slide: the three question types with scam examples.
-**[SAY]** "You give Jev the thing to judge, called the **state**, and some questions. There are only three kinds:
-- **Noul**: yes or no. *Is this a scam?* You get back the probability of yes, like 0.97.
-- **Choice**: pick one. *What kind of scam?* You get the answer plus a probability for every option.
-- **Score**: how much. *How much pressure does it put on you?* You get a number on your own scale.
-And you can ask all of them in **one** call."
+**[FACE]**
+**[SAY]** "The company calls it a **System One** model. Psychologists say we think in two ways. System Two is slow, careful thinking, like solving a JEE maths problem. System One is your gut glancing at an SMS and going *'scam.'* Chatbots are System Two. Jev is pure System One."
 
-**[SCREEN]** Slide: *the claims and the fine print*
-**[SAY]** "TypeSafe says it's about 190 times faster and 440 times cheaper. But they also say, and I respect this, that those tests were made by their own team, so 'some bias could exist'. So we won't trust anyone's numbers. We'll measure our own."
+**[SCREEN]** Three cards slide in one at a time.
+- **Noul:** yes or no? → 0.97
+- **Choice:** which one? → "bill disconnection"
+- **Score:** how much? → 2.6 / 3
 
----
+**[SAY]** "You give it the thing to judge, called the *state*, and ask it questions. There are only three kinds: **yes-or-no**, **pick one**, and **how much**. Every answer comes back as a **number**. And you can ask all three at once."
 
-## 5. The swap (7:00–10:30): the heart of the session
+**[SCREEN]** The comparison table from the TR doc, with the rows highlighting one at a time.
+**[SAY]** "Chatbot: writes text, takes seconds, costs more, and can give you the wrong format. Jev: only your options, under a second, a fraction of the price, and it tells you how sure it is."
 
-**[DO]** 🧑‍🏫 Show **Step 2**. Go line by line and highlight each one as you speak.
-**[SAY]** "Here it is, the swap.
-- Line one connects to Jev. We **pin** the version, `jev-1.13`, so our results don't change when they release a new one.
-- Then `system_one`: the **state** is our SMS, and the question is one Noul: 'Is this SMS a scam?'
-- And the answer…"
-**[DO]** Run it.
-**[SCREEN]** Output: `⟦0.97⟧`, zoomed and circled.
-**[SAY]** "…is just a **number**. 97% sure it's a scam. No JSON, no parsing, no hoping."
-
-**[SCREEN]** Side-by-side table: Step 1 chatbot vs Step 2 Jev (text vs number · can break vs can't · no confidence vs the number *is* the confidence).
-**[SAY]** "Same SMS, same question. On the left, text we have to hope about. On the right, a number our code can use directly. That's the whole idea of today's session."
+**[FACE]** **[SAY]** "Okay. So if it's faster *and* cheaper… is ChatGPT finished?"
 
 ---
 
-## 6. Three questions, one call (10:30–12:30)
+## 5:00 — So… is ChatGPT dead?
 
-**[DO]** 🧑‍🏫 Scroll through **Step 3** slowly. Don't read every scam type, just point at the list.
-**[SAY]** "Now let's ask more. These scam types are just **plain English descriptions**: refund scams, KYC scams, job scams, 'digital arrest' threats. This is where *you* put your knowledge in.
-And look at this one line." **[SCREEN]** Highlight *"…even if it mentions OTPs, money or deadlines"*. **[SAY]** "Real bank messages say 'OTP'. Real bills have due dates. This line tells Jev not to panic just because it sees scary words."
-**[DO]** Run it.
-**[SAY]** "One call, three answers: scam ⟦0.97⟧, type ⟦bill_disconnection⟧, pressure ⟦2.x⟧ out of 3. With a chatbot, adding two questions means a longer prompt and more parsing. With Jev, it's two more lines in a dictionary."
+**[FACE]** Beat. **[TEXT]** "NO."
+**[SAY]** "No. And that's the whole point. Jev can't write a sentence. It can't explain itself. It can't think through a problem step by step. Even TypeSafe says it's *not* a replacement for a chatbot."
 
----
+**[SCREEN]** The "team" animation: many messages pour through a fast Jev gate into green and red bins, and a few amber ones go on to a slower chatbot.
+**[SAY]** "They're a team. Jev makes the thousands of quick calls, and the chatbot handles the rare hard ones. LangChain calls it '*cheap by default, frontier on exception*'."
 
-## 7. Turning a probability into a decision (12:30–14:30)
-
-**[SCREEN]** DRS replay graphic: the ball clipping the stumps, with the text **UMPIRE'S CALL**.
-**[SAY]** "But 0.97 isn't an action. Who decides what 0.97 means? Cricket already solved this. In DRS, if the ball is clearly hitting the stumps, the decision is overturned. If it's just clipping them, it's **umpire's call**: too close to overrule. We do the same thing. Above 0.90, scam. Below 0.10, looks normal. In between is Jev's umpire's call: *not sure, double-check*."
-**[DO]** 🧑‍🏫 Walk through the `check` function in **Step 4** (the `if/elif/else` only). Run the three test messages.
-**[SAY]** "The electricity scam: ⟦verdict⟧. A **genuine** OTP message: ⟦verdict⟧. And this sneaky one, 'I sent a code to your number by mistake', which is exactly how WhatsApp accounts get stolen: ⟦verdict⟧." ⟦If any lands in ⚠️: "See that? It *knows* it doesn't know. That's a feature."⟧
+**[FACE]** **[SAY]** "But fast and cheap means nothing if it's *wrong*. So let's test claim number one."
 
 ---
 
-## 8. The race (14:30–17:30)
+## 6:00 — Claim #1: let's try to make it lie
 
-**[SAY]** "Three messages prove nothing. So we wrote 100 messages in the style of real Indian SMS and WhatsApp forwards. 60 are scams, 40 are genuine, and a third are **tricky on purpose**. The numbers and links are all fake, so don't call them!
-Both models get the same questions and the same rules: 10 at a time, like two runners on the same track. We've prepared the race code for you. We just press run."
-**[DO]** ▶️ Run **Step 5**. Keep a **real-time timer overlay** even if the footage is sped up.
-**[SCREEN]** Scoreboard. Animate each row in.
-**[SAY]** "Jev: ⟦X⟧ seconds. The chatbot: ⟦Y⟧. **⟦N⟧x faster, ⟦M⟧x cheaper**. Broken answers: Jev, zero, guaranteed. The chatbot, ⟦…⟧.
-But speed isn't the real question. Is it **right**?"
-**[DO]** ▶️ Run `scoreboard(results)`.
-**[SAY]** "Scams caught: Jev ⟦…⟧ out of 60. False alarms: ⟦…⟧ out of 40. The chatbot: ⟦…⟧." ⟦If the chatbot was more accurate: "The chatbot was more accurate here. So the real trade-off is ⟦N⟧x faster and ⟦M⟧x cheaper, for ⟦K⟧ points of accuracy. Which matters more depends on your app."⟧
+**[SPLIT]** Colab. The ▶️ setup cell has already run (cut the wait).
+**[SAY]** "Everything's in a free Colab notebook. The link's in the description. One account, OpenRouter, gets us both Jev *and* a normal chatbot."
 
----
+**[SCREEN]** Run **"First, the old way"**. Zoom into `repr(reply)`, then the `json.loads` line.
+**[SAY]** "First, the way most people would do it: ask a chatbot, 'is this a scam? reply in JSON.' And look what comes back." ⟦React to the real output: "code fences, so it crashes" / "a whole paragraph" / "it worked this time… let's run it again"⟧ "We asked for a yes or no, and got an essay we have to *hope* is in the right shape."
 
-## 9. The flaw (17:30–20:00)
+**[SCREEN]** Run **"The swap: two lines"**. Highlight each line as you speak. **[TEXT]** "THE SWAP"
+**[SAY]** "Now the swap. Two lines. Connect to Jev, and ask one yes-or-no question about the same SMS…" **[DO]** Run it. Zoom and circle the output **⟦0.97⟧**. **[SFX]** ding.
+**[SAY]** "…a number. Ninety-seven percent sure it's a scam. Nothing to parse, nothing to break. And *this* is what 'can't hallucinate' actually means: the **format** is guaranteed. Whether the *answer* is right is what we're here to find out."
 
-**[SAY]** "Remember the dangerous flaw from the start? Here it is."
-**[DO]** ▶️ Run `confident_mistakes(results)`. Read 2–3 rows aloud.
-**[SAY]** "Jev **can't** give a broken answer, but it **can** give a wrong one and be sure about it. Look: ⟦message⟧, and it said ⟦0.0x⟧. ⟦Explain which pattern: a polite scam with no link yet, a genuine message full of scary words, a tiny ₹25 fee, Hinglish⟧. These are exactly the mistakes a *human* makes at a glance. Fast gut calls get fooled the same way."
-**[DO]** ▶️ Run `threshold_table(results)`.
-**[SAY]** "We can't make it perfect, but we can choose how strict to be. At 0.90, Jev decides ⟦…⟧ messages alone with ⟦…⟧ mistakes. At 0.99, fewer mistakes, but more messages need a second check. For scams, missing one is the expensive mistake, so we lean strict."
+**[SCREEN]** Run the ▶️ "Ask more" cell and show only the output line.
+**[SAY]** "Same call, three answers: scam, what kind, and how much pressure."
 
----
+**[FACE]** Hands up. **[TEXT]** "PAUSE & GUESS: SCAM OR GENUINE?"
+**[SAY]** "Now let's try to fool it. Five messages built to trick a quick glance. Pause the video and guess each one."
+**[SCREEN]** Show the five messages one at a time for about 2 seconds each. Then run **"Try to make it lie"** and reveal each probability with a **[SFX]** tick.
+**[SAY]** "A polite 'recruiter', a real bank OTP, a ₹25 parcel fee, a Hinglish 'wrong transfer', and a cab OTP you're *supposed* to share. The answers: scam, genuine, scam, scam, genuine. Jev said ⟦read results⟧." ⟦React honestly. If one lands mid-range: "See that? It's *not sure*. Remember that."⟧
 
-## 10. The fix (20:00–21:30)
-
-**[DO]** 🧑‍🏫 Show **Step 7**. Highlight the `if … "⚠️"` line.
-**[SAY]** "So here's the fix. Jev checks **every** message, fast and cheap. Only when it says *not sure* do we call the slower chatbot, for the one thing Jev can't do: explain in plain words. And see this instruction? 'Never tell the reader to click links or call numbers in it.' A helpful chatbot could easily say 'call the number to confirm'. We don't want that.
-Out of 100 messages, only ⟦N⟧ needed the chatbot. Fast for most, careful for the tricky few."
+**[FACE]** **[SAY]** "But five messages is a magic trick, not a test. Let's do a hundred, and put the bill on screen."
 
 ---
 
-## 11. Ship it (21:30–22:30)
+## 10:00 — Claim #2: are the answers really free?
 
-**[DO]** ▶️ Run **Step 8**. Open the public link, click the examples, then paste a fresh message live.
-**[SAY]** "One line, and it's a web app with a link you can share for 72 hours. Send it to your family group."
-**[SCREEN]** Lower third: *Learning project, not a safety guarantee. Scammed? Call 1930 or visit cybercrime.gov.in*
-**[SAY]** "Just remember: this is a learning project, not a guarantee. If a message worries you, contact the company through its **official** app or number, never the one in the message."
+**[FACE]** **[SAY]** "I wrote a hundred messages in the style of real Indian SMS and WhatsApp forwards. Sixty scams, forty genuine, a third of them tricky on purpose. Every number and link in them is fake, so don't call them! Both models get the same questions and the same rules."
+
+**[SCREEN]** Run the ▶️ race. Split the screen into two lanes with a **real-time timer** and a **bill counter ticking up in ₹/$** for each model (edit overlay). Speed up the footage but keep the timer real.
+**[SAY]** "Jev… done in ⟦X⟧ seconds. The chatbot… ⟦Y⟧."
+
+**[SCREEN]** The speed table animates in row by row. The cost row gets a highlight and a **[SFX]** cash register.
+**[SAY]** "**⟦M⟧ times cheaper.** So claim number two: the answers really are free. Jev only charges for what you *send* it. It's not zero, and TypeSafe admits it can't prove the price isn't subsidised. But that's a real, huge difference."
+
+**[SCREEN]** Run `scoreboard(results)`.
+**[SAY]** "But I don't care how cheap it is if it's wrong. Scams caught: Jev ⟦…⟧ out of 60. The chatbot ⟦…⟧. False alarms ⟦…⟧." ⟦If the chatbot won on accuracy: "The chatbot was more accurate. So the real trade-off is ⟦N⟧x faster and ⟦M⟧x cheaper for ⟦K⟧ points of accuracy."⟧
+
+**[FACE]** Serious. **[SAY]** "Remember I said one of these claims doesn't survive? Here's where it breaks."
 
 ---
 
-## 12. Recap and CTA (22:30–end)
+## 13:00 — We caught it lying
 
-**[SCREEN]** The swap, before vs after:
-```python
-# Before: a chatbot
-result = json.loads(ask_llm(prompt))          # hope
-# After: Jev
-p = jev.system_one(state=sms, questions=QUESTIONS).nouls["is_scam"].noul   # a number, always
-```
-**[SAY]** "So that's the swap. Chatbots **write**, Jev **decides**. Two lines replaced all our parsing and hoping. But the swap alone wasn't what made it trustworthy. That was the **threshold**, the **test set**, and the **backup**, and those work with any model you use next.
-And the flaw? Valid isn't the same as correct. Now you know how to catch it.
-Your challenge: add five tricky messages from your own phone to the test set (remove personal details first) and see if Jev gets fooled. Tell us in the comments what fooled it.
-If this helped, like, subscribe and hit the bell, and tell us what we should build next. See you in the next one!"
+**[SCREEN]** Dim the lights (colour grade), low music. Run the ▶️ `confident_mistakes(results)`.
+**[TEXT]** "WRONG. AND SURE OF IT."
+**[SAY]** "Out of a hundred, Jev got ⟦…⟧ wrong, and on ⟦…⟧ of those it was *completely sure*. Look at this one." **[DO]** Zoom into one row. ⟦Read the message and Jev's probability⟧.
+
+**[FACE]**
+**[SAY]** "So 'can't hallucinate'? True about the **format**, false about the **answer**. It never broke my code. It just handed me a perfectly valid, perfectly confident… *wrong* answer."
+
+**[SCREEN]** A "fine print" reveal: three quotes from TypeSafe slide in, each with its source.
+- *"Our number is not empirical."*
+- *"It's also possible to be confidently wrong."* (the CEO, on Hacker News)
+- *English is the primary language · "not a calculator"*
+
+**[SAY]** "And to be fair, TypeSafe *says* this in the fine print. Even the CEO admits it can be confidently wrong."
+
+**[SCREEN]** A bar chart from the fake-job-posting benchmark: Jev's F1 on fraud 31.2% vs a simple classic classifier 70.0%. **[TEXT]** "Independent test · fake job posts"
+**[SAY]** "Scam messages are *designed* to fool quick judgements. In one independent test on fake job postings, a simple old-school classifier scored more than twice as well as Jev at catching the frauds. Fast gut calls get fooled, just like ours do."
+
+**[FACE]** **[SAY]** "So is it useless for this? No. It just needs three lines I should've written from the start."
+
+---
+
+## 15:30 — The fix (it's 3 lines)
+
+**[FACE]** **[SAY]** "Cricket already solved this. In DRS, if the ball's clearly hitting the stumps, the decision gets overturned. If it's *just* clipping them, it's **umpire's call**."
+**[B-ROLL]** A DRS-style "UMPIRE'S CALL" graphic.
+
+**[SCREEN]** The 🧑‍🏫 slider cell. Highlight the three `if` lines.
+**[SAY]** "Same idea. If Jev's really sure it's a scam, block it. If it's really sure it's safe, let it through. Anything in between is Jev's umpire's call: *get a second opinion.*"
+**[DO]** Run it and show the band table. Then **drag the slider** from 0.90 to 0.99, re-run, and let the numbers change. **[SFX]** whoosh.
+**[SAY]** "Watch. Make it stricter, and the confident mistakes drop. More messages land in 'not sure'. And those few go to the chatbot to explain in plain words, the one thing Jev *can't* do."
+**[TEXT]** "Fast model for every message · slow model only when unsure"
+
+**[SCREEN]** Quickly run the ▶️ bonus cell and show the web app with the three examples (10 seconds).
+**[SAY]** "Bonus: the notebook turns it into a little app you can share with your family."
+**[TEXT]** "Learning project, not a safety guarantee · Scammed? 1930 / cybercrime.gov.in"
+
+**[FACE]** **[SAY]** "Scams were the *hardest* test I could find. Here's where Jev is genuinely brilliant."
+
+---
+
+## 17:00 — Where you'd actually use this
+
+**[SCREEN]** Rapid fire: five mini-mockup cards, about 10 seconds each, each with one number.
+1. **Placement-email sorter:** interview invite, rejection or spam?
+2. **College group-chat moderator:** is this abusive?
+3. **Resume screener:** does this match the role? (**[TEXT]** "test before trusting")
+4. **Search for your notes:** which result answers the question? (Hindsight: top result right 80% → 95%)
+5. **AI-agent safety check:** is this command about to delete something?
+
+**[SAY]** "Anywhere your app makes the same small decision again and again, Jev is fast and cheap, and the confidence score tells you which ones to double-check."
+
+**[FACE]** **[SAY]** "One problem, though. Jev is closed. It runs on *their* servers. Unless…"
+
+---
+
+## 18:00 — The free rival nobody's talking about
+
+**[SCREEN]** The Laya Hugging Face page, then a terminal running it locally (B-roll).
+**[SAY]** "Three days after Jev launched, this appeared: **Laya**. Free, open source, same three question types, and it runs on your laptop."
+
+**[SCREEN]** A 3-row comparison: open vs closed · runs locally · out-of-the-box accuracy (Jev #4 vs Laya #43 on JevBench).
+**[SAY]** "But straight out of the box it's much less accurate. Its big wins come from training it on your own data. So: Jev is more accurate out of the box. Laya is free, private, and learns from you. And there are more coming. Open models are already edging past Jev on the leaderboards."
+
+**[FACE]** **[SAY]** "So… was it worth the hype?"
+
+---
+
+## 19:30 — The verdict
+
+**[SCREEN]** A scoreboard animation, one row at a time, with a stamp per row:
+- "Can't hallucinate" → **⚠️ HALF TRUE**: the format is guaranteed, the answer isn't
+- "Answers are free" → **✅ TRUE**, with fine print: ⟦$ per 1,000⟧
+- Worth the hype? → **✅ FOR THE RIGHT JOB**
+
+**[FACE]**
+**[SAY]** "Jev is the real deal for fast, high-volume yes-or-no decisions, as long as you add a threshold and a backup. It won't replace your chatbot, and it isn't something to trust blindly on scams. A fast model gives you answers. A threshold, a test and a backup give you *trust*."
+
+**[SAY]** "Now your turn. Drop the trickiest scam message you've ever received in the comments, with personal details removed, and I'll run it through Jev in the next video. The notebook's in the description. Like, subscribe, and I'll see you in the next one."
+**[SCREEN]** End card: notebook link and next video.

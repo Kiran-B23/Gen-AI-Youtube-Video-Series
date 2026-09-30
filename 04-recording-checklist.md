@@ -15,11 +15,13 @@
 ## 2. Filming-day fact checks (≈10 min)
 - [ ] OpenRouter Jev page: model ID still `typesafe/jev-1.13`? Price still $0.042/M input, output free?
 - [ ] Price of `LLM_MODEL` on its OpenRouter page. Update the `PRICE` dict if it changed.
-- [ ] TypeSafe direct signups: still paused? Adjust the line in script §5a.
+- [ ] TypeSafe direct signups: still paused? Adjust the hype chapter's "signups paused" line if they reopened.
 - [ ] `pip show typesafe-sdk` version, to show on screen.
 - [ ] Put the filming date in the notebook's first cell and on screen.
 
-## 3. Screen and privacy setup
+## 3. Camera, screen and privacy setup
+- [ ] **Face cam:** eye level, soft front light, a quiet room, a lav or USB mic; record face and screen as separate tracks so the edit can switch between full face, full screen and split.
+- [ ] Record the hook and the verdict to camera **after** the dry run, so the real numbers are in them.
 - [ ] Browser: a clean profile with no bookmarks, no other tabs, notifications off.
 - [ ] Colab: font size ≥ 16, a light or dark theme that matches the slides; clear all outputs before recording.
 - [ ] The API key is **only** in Colab Secrets and never pasted into a cell.
@@ -28,10 +30,10 @@
 - [ ] Close the OpenRouter dashboard before recording, or blur the key and billing sections in the edit.
 
 ## 4. Recording order (easiest to edit)
-1. Cold-open B-roll: phone notification, app demo, race animation (after the dry run, so the numbers are real).
-2. Talking-head / slides segments: sections 2, 3, 4, 9.
-3. Hands-on screen recording: sections 5–8 in one take per section. Pause the recording while waiting on long cells.
-4. Pick-ups: any lines with numbers that changed between the dry run and the final run.
+1. The full notebook run on screen, one take per chapter (6:00–15:30), pausing the recording during long cells.
+2. Face-cam chapters: hook, hype, not-a-chatbot, ChatGPT-dead, use cases, Laya, verdict (after the run, so the numbers are real).
+3. B-roll and inserts (see `02-slide-outline.md`): montage, OMR animation, race lanes, the fine-print reveal, DRS graphic, verdict scoreboard.
+4. Pick-ups: any line whose number changed.
 
 ## 5. Post-production
 - [ ] Cut to the demo within 20 s; the "confidently wrong" twist lands before 1:00.

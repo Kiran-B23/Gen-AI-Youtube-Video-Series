@@ -13,7 +13,8 @@ import time
 import pandas as pd
 
 __all__ = ["get_api_key", "ask_llm", "load_messages", "race", "scoreboard", "confident_mistakes",
-           "threshold_table", "reliability_plot", "launch_app", "load_saved_results"]
+           "threshold_table", "reliability_plot", "launch_app", "load_saved_results",
+           "band_report", "make_checker"]
 
 OPENROUTER_BASE = "https://openrouter.ai/api"
 JEV_MODEL = "jev-1.13"                  # pinned; "jev-latest" can change without warning
@@ -225,6 +226,38 @@ def reliability_plot(results: pd.DataFrame):
     ax.set_ylabel("What was really true (fraction that were scams)")
     ax.legend()
     plt.show()
+
+
+# ---------- the fix: confidence bands ----------
+def band_report(results: pd.DataFrame, verdict) -> None:
+    """Apply your verdict(p) function to all 100 race results and show what lands in each band."""
+    bands = results.p_scam_jev.map(verdict).rename("Jev's band")
+    truth = results.is_scam.map({1: "scam", 0: "genuine"}).rename("really")
+    table = pd.crosstab(bands, truth).reindex(columns=["scam", "genuine"], fill_value=0)
+    table["total"] = table.sum(axis=1)
+    _show(table)
+    wrong_scam = ((bands.str.startswith("✅")) & (truth == "scam")).sum()
+    wrong_safe = ((bands.str.startswith("🚨")) & (truth == "genuine")).sum()
+    unsure = bands.str.startswith("⚠️").sum()
+    print(f"Scams waved through as normal: {wrong_scam}   ·   genuine messages flagged: {wrong_safe}   ·   "
+          f"sent for a second opinion: {unsure}")
+
+
+def make_checker(jev, questions, verdict):
+    """Everything together: Jev decides, your verdict() picks the band, the chatbot explains only when unsure."""
+    def check(message):
+        a = jev.system_one(state=message, questions=questions)
+        p = a.nouls["is_scam"].noul
+        result = {"verdict": verdict(p), "p_scam": p,
+                  "type_probs": dict(a.choices["scam_type"].probabilities)}
+        if "pressure" in questions:
+            result["pressure"] = a.scores["pressure"].score
+        if result["verdict"].startswith("⚠️"):
+            result["explanation"] = ask_llm(
+                "In 2 short sentences of simple English, say whether this SMS looks like a scam and what to do "
+                "next. Never tell the reader to click links or call numbers in it.\n\nSMS: " + message)
+        return result
+    return check
 
 
 # ---------- the app ----------

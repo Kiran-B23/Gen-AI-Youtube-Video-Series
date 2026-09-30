@@ -1,243 +1,168 @@
-# This AI Can't Write a Single Word: Build a Scam Detector With Jev - V2
+# Jev "Can't Hallucinate". So We Tried to Make It Lie. - V3
 
 **Series:** NxtWave YouTube — AI Build Sessions (standalone session)
 
-**Topic:** Decision Models — swapping a chatbot for Jev by TypeSafe AI
+**Topic:** Jev by TypeSafe AI — is it worth the hype?
 
-**Recorded:** ⟦date⟧ · `jev-1.13` · `typesafe-sdk` 0.7.2 · comparison LLM `google/gemini-3.8-flash`
+**Format:** face + screen · ~20 min · **Recorded:** ⟦date⟧ · `jev-1.13` · `typesafe-sdk` 0.7.2 · comparison chatbot `google/gemini-3.8-flash`
 
 ---
 
 **Key Takeaways:**
 
-- **The Problem: Asking an Essay Writer to Tick a Box**
-- **What Is Jev**
-    - **Three Question Types**
-    - **What Jev Cannot Do**
-- **What We Are Building**
-- **Building It**
-    - **Step 0: Setup**
-    - **Step 1: The Old Way — Asking a Chatbot**
-    - **Step 2: The Swap — Asking Jev Instead**
-    - **Step 3: Three Questions, One Call**
-    - **Step 4: Turning a Probability Into a Decision**
-    - **Step 5: The Race**
-    - **Step 6: Finding the Flaw**
-    - **Step 7: The Fix — Jev Decides, the Chatbot Explains**
-    - **Step 8: Ship It**
-- **What Changed: The Swap**
-- **When Should We Use a Decision Model?**
-- **Session Recap**
-- **Your Turn**
+- **"It Can't Hallucinate." Really?**
+- **Why the Internet Lost Its Mind**
+- **It's Not a Chatbot. At All.**
+- **So… Is ChatGPT Dead?**
+- **Claim #1: Let's Try to Make It Lie**
+- **Claim #2: Are the Answers Really Free?**
+- **We Caught It Lying**
+- **The Fix (It's 3 Lines)**
+- **Where You'd Actually Use This**
+- **The Free Rival Nobody's Talking About**
+- **The Verdict**
 
 ---
 
 <MultiLineNote>
 
-**For the author — before this doc is used.** Every value written as `⟦…⟧` comes from **your own run** of `notebook/jev_scam_detector.ipynb`. Replace them after the dry run, and never substitute TypeSafe's published numbers. Code in this doc is copied from the notebook; step numbers match it one-to-one.
+**How this session is told.** This is an *investigation*, not a lecture. Jev's makers make two claims — **it can't hallucinate**, and **its answers are free** — and the whole session tests them. Three storytelling devices hold it together:
+
+1. **One open loop.** The hook promises *"one of these claims doesn't survive."* It is paid off in **We Caught It Lying**. Never resolve it early.
+2. **A re-hook at the end of every chapter** — a question or tease that makes the next chapter necessary. They are written out at the end of each section below.
+3. **Show, don't lecture.** Concepts appear as one visual each (the OMR sheet, a race timer, a slider). Code appears only at four moments, about 15 lines in total; everything else is ▶️ *Just run*.
+
+Every `⟦…⟧` value comes from **your own dry run** of `notebook/jev_scam_detector.ipynb`. If the run produces no confident mistake, rename *We Caught It Lying* to *Where It Slipped* and adjust the verdict — never stage a failure.
 
 </MultiLineNote>
 
-## Introduction
+## "It Can't Hallucinate." Really?
 
-This AI **cannot write a single word**.
+*(0:00–1:00)*
 
-It cannot chat. It cannot explain itself. It cannot even say hello.
+This is **Jev**, the most talked-about AI launch of September 2026. Its makers, **TypeSafe AI**, say it **can't hallucinate**.
 
-And yet, given 100 messages to judge, it finished all of them in **⟦X⟧ seconds** — while a regular AI chatbot, given the same 100, took **⟦Y⟧**. It did it for **⟦M⟧x less money**. And every single answer came back in exactly the shape we asked for.
+And its answers are **free**. Not cheap — free. You only pay for what you send it.
 
-So why isn't everyone using it?
+Every AI we have used can hallucinate, and none of them work for free. So these are two huge claims — and **one of them doesn't survive this video.**
 
-Because it has **one dangerous flaw** — and by the end of this session we will have found it ourselves, measured it, and built around it.
+We are going to test both, with the trickiest messages we can find: real-looking scam SMS, polite scams, Hinglish. We will try to make an AI that "can't lie"… lie.
 
-Here is what we will point it at. It is 7:40 in the evening, and a phone buzzes:
+Most AI launches are not worth our time — there is a new model every week. Jev earned a look for one reason: **it doesn't talk at all. It only decides.** So this is not another explainer. We are putting it to work, and checking whether the hype is real.
 
-> *"Dear consumer, your electricity power will be disconnected tonight at 9:30 PM because previous month bill was not updated. Call officer 9XXXX X7788 immediately."*
-
-A deadline, a threat and a phone number. Messages like this trick people every day, and the person reading one has seconds to decide. By the end of this session, pasting that SMS into an app **we build** will give back:
-
-```
-Verdict:     🚨 Likely scam
-Kind:        bill_disconnection  ▇▇▇▇▇▇▇▇▇  ⟦0.9x⟧
-Pressure:    ⟦2.x⟧ / 3
-```
-
-— and for the messages it is *not* sure about, it will say so honestly and ask for a second opinion.
-
-> **What if a model could only decide — and told us exactly how sure it was?**
-
-### Three Terms We Will Use
-
-This session is self-contained. Three terms appear from the first step, so here they are:
-
-| Term | In one line |
-| --- | --- |
-| **LLM** (large language model) | The kind of AI behind chatbots like ChatGPT and Gemini — it reads text and *writes* text |
-| **JSON** | A text format for structured data, like `{"is_scam": true}`, that code can read with Python's `json.loads` |
-| **API key** | A secret string sent with each request, so the AI service knows who is calling and can bill for it |
-
-No machine-learning background is needed. If you can run a cell in Google Colab, you can build everything here.
-
----
-
-## The Problem: Asking an Essay Writer to Tick a Box
-
-The usual way to build a scam check is to ask a chatbot, ask for JSON, and read the answer:
-
-```python
-reply = ask_llm('Is this SMS a scam? Reply in JSON like {"is_scam": true}.' + sms)
-result = json.loads(reply)          # hope it is valid JSON
-if result["is_scam"] == True:       # hope the key exists, and is a real true/false
-    warn_user()
-```
-
-Every line after the first is a **hope**. A chatbot does not return a decision. It returns **text**, and our code has to turn that text into a decision. The text can come back in many shapes:
-
-| What the chatbot sends back | What `json.loads` does |
-| --- | --- |
-| `{"is_scam": true}` | Works |
-| ` ```json {"is_scam": true} ``` ` | Crashes — the code fences are not JSON |
-| `Yes, this is clearly a scam because…` | Crashes — that is a paragraph |
-| `{"is_scam": "probably"}` | Runs, and `== True` is silently `False` |
-
-And every reply costs **words**. LLMs read and write in small pieces called **tokens** — roughly a word each — and are paid for per token. We pay for a whole sentence and keep one true/false.
-
-> **A chatbot is an essay writer. A scam check is a tick box.** Hiring an essay writer to tick a box works — slowly, expensively, and now and then in beautiful handwriting in the wrong box.
-
-In Step 1 we will not just describe this — we will watch it happen.
-
-### Where a Decision Model Fits
-
-| Kind of model | Its job | Example |
-| --- | --- | --- |
-| **Chat model (LLM)** | *Writes* | Drafting a reply |
-| **Agent** | *Acts* — an LLM that uses tools | Booking a calendar slot |
-| **Decision model** | *Decides* — returns an answer our code can branch on | **Today: is this SMS a scam?** |
-
-So what would a model built *only* for deciding look like?
-
----
-
-## What Is Jev
-
-**Jev** is a model from **TypeSafe AI**, released in early access on **September 15, 2026**. It does not generate text at all.
-
-Think of an exam:
-
-> **A chatbot writes an essay answer. Jev fills in an OMR sheet.** The bubbles are fixed in advance, so the answer always fits — it cannot reply "maybe, it depends, here are five paragraphs".
-
-TypeSafe calls it a **System One** model, after a well-known idea in psychology: *System Two* is slow, careful thinking (solving a JEE maths problem); *System One* is the fast gut call (*"that SMS is a scam"*). Chatbots work like System Two. Jev is built for System One.
-
-We give Jev two things, and get one back:
-
-- **`state`** — the thing to judge. Our SMS.
-- **`questions`** — typed questions, each with a name we choose.
-- **answers** — one per question, as **numbers**, in the shape we asked for.
-
-The formal version:
-
-> **A decision model takes a state and typed questions, and returns one typed answer per question — with probabilities — instead of generated text.**
+> **Two claims. One investigation. One verdict.**
 
 **Image Block:**
-**Title**: Chatbot vs Jev
-**Prompt**: "Split illustration. Left: a robot writing a long messy paragraph on paper, labelled 'Chatbot — writes an essay', with a question mark over the text. Right: a robot quickly filling bubbles on an OMR sheet, labelled 'Jev — fills the bubbles', with three filled bubbles 'scam: 0.97', 'type: bill', 'pressure: 2.6'. Clean flat style, dark background, red-amber-green accents."
+**Title**: Thumbnail / first frame
+**Prompt**: "Phone screen showing a scam SMS 'Your electricity will be disconnected tonight… call 9XXXX X7788'. Over it, a clean output card reading '✓ VALID · SAFE 97%'. A large red question mark to the right. Bold text 'CAN'T HALLUCINATE?'. High contrast, dark background."
 
-### Three Question Types
+**Re-hook →** *But why is everyone suddenly talking about a model that can't even say hello?*
 
-| Type | Asks | Returns | Our example |
+---
+
+## Why the Internet Lost Its Mind
+
+*(1:00–2:30)*
+
+The short version: for a certain kind of job, Jev is absurdly fast and absurdly cheap — and it arrived with credentials.
+
+| What happened | When | Source |
+| --- | --- | --- |
+| TypeSafe AI launches Jev in early access; $40M seed round led by DCVC | Sep 15 | TypeSafe launch post |
+| The founder, Diogo Almeida, co-authored **InstructGPT** — the research that taught language models to follow instructions, which became the basis of ChatGPT | — | TypeSafe launch post; Firecrawl |
+| The Hacker News launch thread passes **~2,000 points** | Sep 15–30 | news.ycombinator.com/item?id=49717558 |
+| Vercel, LangChain, OpenRouter, DigitalOcean and Pydantic AI all add support | within ~a week (Sep 16–23) | each platform's changelog / docs |
+| Signups open to everyone — then **pause two days later**, citing demand | Sep 20 → Sep 22 | Firecrawl; Flavio Copes |
+
+Why would every platform rush to support one model? Because every app is full of **small decisions** — *is this spam, which team should get this ticket, is this agent about to do something dangerous* — and today each of those means calling a chatbot, waiting seconds, and paying for words that get thrown away.
+
+Jev answers those small questions in under a second, for roughly **$0.04 per 1,000 decisions** (JevBench), and always in exactly the shape the code expects. TypeSafe's own name for it: **"smart if-statements."**
+
+> **Jev makes AI cheap enough to put behind every if-statement.**
+
+**Re-hook →** *So what is this thing, if it isn't a chatbot?*
+
+---
+
+## It's Not a Chatbot. At All.
+
+*(2:30–5:00)*
+
+A chatbot — an **LLM** (large language model) like the ones behind ChatGPT or Gemini — reads text and **writes** text. Jev reads text and **decides**.
+
+The easiest way to see the difference is an exam:
+
+> **A chatbot writes an essay answer. Jev fills in an OMR sheet.** The bubbles are fixed in advance, so the answer always fits. It cannot reply "maybe, it depends, here are five paragraphs."
+
+**Image Block:**
+**Title**: Essay vs OMR sheet
+**Prompt**: "Split screen. Left: a robot writing a long, messy essay, labelled 'Chatbot — writes'. Right: a robot filling three bubbles on an OMR sheet in a split second, labelled 'Jev — decides'. Flat illustration, dark background, amber and green accents."
+
+TypeSafe calls Jev a **System One** model. Psychology describes two ways of thinking: *System Two* is slow and careful, like solving a JEE maths problem; *System One* is the instant gut call, like glancing at an SMS and thinking *"scam."* Chatbots work like System Two. Jev is built for System One.
+
+We give Jev two things:
+
+- a **state** — the thing to judge, such as an SMS
+- **questions** — each one typed, with a name we choose
+
+and it returns **numbers**. There are only three question types:
+
+| Type | Asks | Returns | Example |
 | --- | --- | --- | --- |
-| **Noul** | yes or no? | the **probability of yes**, 0 to 1 | *Is this a scam?* → `0.97` |
-| **Choice** | which one? | the best option **and a probability for every option** | *What kind of scam?* → `bill_disconnection` |
-| **Score** | how much? | a position on **our** scale — can land between levels | *How much pressure?* → `2.6` of 3 |
+| **Noul** | yes or no? | the probability of *yes* | *Is this a scam?* → 0.97 |
+| **Choice** | which one? | the best option + a probability for each | *What kind of scam?* → bill disconnection |
+| **Score** | how much? | a position on your scale | *How much pressure?* → 2.6 of 3 |
 
-(Noul is TypeSafe's name; read it as "yes or no". The example values are illustrative.) All the questions we ask are answered **together, in one call**.
+(Noul is TypeSafe's name; read it as "yes or no". The values here are illustrative.)
 
-<MultiLineNote>
+| | Chatbot (LLM) | Jev |
+| --- | --- | --- |
+| Output | Free text, word by word | Only the options you defined |
+| Speed | Seconds | Under a second |
+| Price | $0.20–$10 per million input tokens, output ~5x more (TypeSafe's comparison) | $0.042 per million input tokens, **output free** |
+| Wrong format? | Possible | Impossible |
+| Tells you how sure it is? | Not reliably | Yes, on every answer |
+| Good at | Writing, code, explaining, reasoning | Classifying, routing, scoring, checking |
 
-**A Noul answer is its own confidence.** `0.97` means "very likely yes", `0.03` "very likely no", and `0.5` means **"I'm not sure"**. Hold on to that last one — it becomes the most useful number in this session.
-
-</MultiLineNote>
-
-### What Jev Cannot Do
-
-- **It cannot write** — no replies, no summaries.
-- **It cannot explain itself** — it returns probabilities, not reasons.
-- **It can be wrong.** The *format* is guaranteed. The *answer* is not.
-
-> **A format guarantee is not a truth guarantee.**
-
-TypeSafe's own launch numbers are bold — 70–500 ms per answer, $0.042 per million input tokens with free output, and "about 193x faster, 444x cheaper" on its **own** tests. It also says, to its credit, that *"some bias could exist"* in those tests and that it *"can't prove"* the price is not subsidised. So we will test it ourselves.
+**Tokens**, for anyone new to them, are the small pieces — roughly a word each — that AI services count and charge for.
 
 ### So Far
 
-- A chatbot gives **text**; our code has to hope it is in the right shape.
-- Jev is a **decision model**: state + typed questions in, typed answers with probabilities out.
-- Three types — **Noul, Choice, Score** — answered in one call.
-- The format is guaranteed; **correctness is not**.
+- A chatbot **writes**; Jev **decides**, like filling bubbles on an OMR sheet.
+- Three question types — **Noul, Choice, Score** — all answered in one call.
+- It is fast and cheap because it never writes a word.
+
+**Re-hook →** *If it's that fast and that cheap… is ChatGPT finished?*
 
 ---
 
-## What We Are Building
+## So… Is ChatGPT Dead?
 
-A scam detector that reads a message and returns a **verdict** (🚨 / ⚠️ / ✅), the **kind** of scam and **how much pressure** it applies — then a race against a chatbot on 100 messages, a hunt for Jev's flaw, a fix, and a web app.
+*(5:00–6:00)*
 
-### Two Kinds of Cells
+**No. And that's the point.**
 
-We do not need to learn a lot of code for this. The session is about **one idea: the swap** — the few lines where Jev replaces a chatbot. So the notebook has two kinds of cells:
+Jev cannot write a sentence, explain its answer, or reason through a problem step by step. TypeSafe's own docs say it is **not a drop-in replacement** for a chatbot, and LangChain says the same.
 
-| Mark | Meaning | Cells |
-| --- | --- | --- |
-| 🧑‍🏫 **Teach** | The code that carries the idea. We read every line | Steps 1, 2, 3, 4, 7 |
-| ▶️ **Just run** | Plumbing prepared for us in `jev_helpers.py` — timing, scoring, charts, the app. We run it and read the **results** | Steps 0, 5, 6, 8 |
+What it replaces is the *small, repetitive* decisions inside apps — the ones people were overpaying a chatbot to make. The two work as a team: **Jev makes the thousands of quick calls; the chatbot handles the rare hard, open-ended ones.** LangChain's phrase for it: **"cheap by default, frontier on exception."**
 
-In total we read about **35 lines** of code.
+**Image Block:**
+**Title**: The team
+**Prompt**: "Simple flow: many small message icons pour into a fast 'Jev' gate that sorts them instantly into green and red bins; a few amber ones are passed to a slower 'Chatbot' box labelled 'the hard ones'. Minimal, dark background."
 
-### How We Get There
-
-| The question | Answered by |
-| --- | --- |
-| What goes wrong when we ask a chatbot? | Step 1 |
-| What does the swap to Jev look like? | Steps 2–3 |
-| How does a probability become an action? | Step 4 |
-| Is it actually better — and at what? | Step 5 — the race |
-| Where is the dangerous flaw? | Step 6 |
-| How do we build around it? | Step 7 |
-| How does anyone else use it? | Step 8 — the payoff |
+**Re-hook →** *But fast and cheap means nothing if it's wrong. Time to test claim number one.*
 
 ---
 
-## Building It
+## Claim #1: Let's Try to Make It Lie
 
-### Step 0: Setup ▶️
+*(6:00–10:00)*
 
-We need one account: **OpenRouter**, a service where one API key reaches many AI models — both Jev and a regular chatbot. Jev has no free tier there, so add $2–5 of credit; this notebook uses well under $1 of it. Save the key in Colab's 🔑 **Secrets** panel as `OPENROUTER_API_KEY`, with notebook access switched on.
+We open a free Google Colab notebook. Setup is one ▶️ cell: install, download our helper file and 100 test messages, and read the **API key** (a secret password that tells the AI service who is calling). We use one account — **OpenRouter** — which reaches both Jev and a regular chatbot; Jev has no free tier there, so a couple of dollars of credit covers the whole notebook.
 
-**Notebook — Step 0**
+### First, the Old Way 🧑‍🏫
 
-```python
-!pip install -q typesafe-sdk openai gradio pandas matplotlib
-!wget -q -nc https://raw.githubusercontent.com/Kiran-B23/jev-scam-detector/main/jev_helpers.py
-!mkdir -p data && wget -q -nc -P data https://raw.githubusercontent.com/Kiran-B23/jev-scam-detector/main/data/scam_messages.csv
-
-from jev_helpers import *
-KEY = get_api_key()
-```
-
-```
-✅ Key loaded
-```
-
-This installs the libraries, downloads our helper file and the 100 test messages, and reads the key.
-
-**If it fails:** `❌ No key found` means the secret is missing or its notebook-access toggle is off.
-
----
-
-### Step 1: The Old Way — Asking a Chatbot 🧑‍🏫
-
-Before meeting Jev, we ask a chatbot exactly the way the Problem section described, and look at **precisely** what comes back.
-
-**Notebook — Step 1**
+**Notebook — "First, the old way"**
 
 ```python
 sms = ("Dear consumer, your electricity power will be disconnected tonight at 9:30 PM "
@@ -245,52 +170,30 @@ sms = ("Dear consumer, your electricity power will be disconnected tonight at 9:
 
 reply = ask_llm('Is this SMS a scam? Reply in JSON like {"is_scam": true}.\n\n' + sms)
 print(repr(reply))
-```
 
-```
-⟦the chatbot's raw reply⟧
-```
-
-- **`ask_llm`** — a small helper that sends one prompt to a regular chatbot and returns its text.
-- **`repr(reply)`** — prints the reply *exactly*, including code fences and line breaks that `print` would hide.
-
-Now try to use it the way our code would:
-
-**Notebook — Step 1, continued**
-
-```python
 import json
 try:
-    print("Parsed:", json.loads(reply))   # 🤞 hope it's clean JSON, with the right key, and a real true/false
+    print("Parsed:", json.loads(reply))
 except json.JSONDecodeError as e:
     print("💥 json.loads crashed:", e)
 ```
 
 ```
+⟦the chatbot's raw reply⟧
 ⟦Parsed: … / 💥 json.loads crashed: …⟧
 ```
 
-Whatever comes back on the day is the lesson. If it crashed, we have seen why. If it worked, run the cell three more times and watch whether the format stays the same — our app would be betting on it every time.
+We asked for a yes/no and got **text** — maybe clean JSON, maybe wrapped in code fences, maybe a paragraph. **JSON** is a structured text format code can read; `json.loads` is the line that reads it, and it only works if the chatbot cooperated. If it worked this time, run it again — our app would be betting on it every time.
 
-We got **text**. What we wanted was a **decision**.
+### The Swap 🧑‍🏫
 
----
-
-### Step 2: The Swap — Asking Jev Instead 🧑‍🏫
-
-Same SMS, same question. This time we ask Jev.
-
-**Notebook — Step 2**
+**Notebook — "The swap: two lines"**
 
 ```python
 from typesafe_sdk import TypeSafeClient, Noul, Choice, Score
-
 jev = TypeSafeClient(api_key=KEY, base_url="https://openrouter.ai/api", model="jev-1.13")
 
-answer = jev.system_one(
-    state=sms,
-    questions={"is_scam": Noul(instructions="Is this SMS a scam?")},
-)
+answer = jev.system_one(state=sms, questions={"is_scam": Noul(instructions="Is this SMS a scam?")})
 answer.nouls["is_scam"].noul
 ```
 
@@ -298,183 +201,113 @@ answer.nouls["is_scam"].noul
 ⟦0.97⟧
 ```
 
-Four things to read, one per line:
+- **Line 1–2** connect to Jev through OpenRouter. `jev-1.13` is **pinned**, so results don't change when a new version ships.
+- **Line 3** asks one yes/no question about the SMS.
+- **Line 4** reads the answer: a **number between 0 and 1**.
 
-- **`TypeSafeClient(...)`** — connects to Jev through OpenRouter. `model="jev-1.13"` is **pinned**, so our results do not change when a new version ships.
-- **`state=sms`** — the thing to judge.
-- **`Noul(instructions="Is this SMS a scam?")`** — a yes/no question, named `"is_scam"` by us.
-- **`answer.nouls["is_scam"].noul`** — the answer: a **number between 0 and 1**.
+No parsing. No crash. It cannot come back in the wrong shape — and **that is what "can't hallucinate" actually means: the *format* is guaranteed.** Whether the *answer* is right is a different question, and that's the one we're testing.
 
-Put the two steps side by side:
+<MultiLineNote>
 
-| | Step 1 — chatbot | Step 2 — Jev |
-| --- | --- | --- |
-| What came back | Text we have to parse | A number |
-| Can it come back in the wrong shape? | Yes | No |
-| Does it say how sure it is? | No | Yes — the number *is* the confidence |
+**The number is its own confidence.** `0.97` = very likely a scam, `0.03` = very likely genuine, `0.5` = *"I'm not sure."* That last one becomes important in *The Fix*.
 
-**If it fails:** a 401 error means the key is wrong; 402 means the account needs credit. Errors on a first call are normal — read the error name, fix one thing, run again.
+</MultiLineNote>
 
-One question works. A worried parent would want to know more than "scam or not" — *what kind* of trick is this, and *why does it feel so urgent?*
+### Ask More, in the Same Call ▶️
 
----
+One ▶️ cell adds a Choice (*what kind of scam?* from nine plain-English options) and a Score (*how much pressure, 0–3?*) — all three answered in **one** call. We don't read it line by line; the point is visible in the output: three answers, one request. The one line worth pointing at is in the yes/no criteria — *"a genuine message, even if it mentions OTPs, money or deadlines"* — because real bank messages say "OTP" too.
 
-### Step 3: Three Questions, One Call 🧑‍🏫
+### Try to Make It Lie 🧑‍🏫
 
-We ask one question of each type. The choices and levels are just **plain-English descriptions** — this is where we put our own knowledge in.
+Five messages built to fool a quick glance. **The viewer guesses first**, then we run:
 
-**Notebook — Step 3**
+**Notebook — "Try to make it lie"**
 
 ```python
-SCAM_TYPES = {
-    "fake_refund_or_upi": "Fake refund, cashback or 'scan QR / enter PIN to receive money'",
-    "kyc_or_account_block": "KYC, PAN, SIM or bank account 'will be blocked'",
-    "job_or_task": "Part-time job or task that needs a fee or deposit",
-    "prize_or_lottery": "Lottery, lucky draw, prize or reward points",
-    "police_or_parcel_threat": "Courier, customs, police or 'digital arrest' threats",
-    "bill_disconnection": "Electricity, gas, broadband or mobile 'will be cut' today",
-    "fake_family_or_boss": "Pretends to be family, a friend or a boss and asks for money or codes",
-    "investment_or_loan": "Guaranteed returns, stock tips, crypto or instant loans",
-    "not_scam": "A normal, genuine message",
-}
+TRICKY = [
+    "Hello, I am Priya from a recruitment agency. We saw your profile. Simple task: rate hotels online, Rs 150 per task. Interested?",
+    "123456 is your OTP for login. Do not share it with anyone. Bank staff will never ask for your OTP.",
+    "Your courier is on hold due to incomplete address. Pay Rs 25 redelivery fee: parcel-redeliver.example",
+    "Bhai galti se aapke account me 5000 transfer ho gaya, please wapas bhej do. Screenshot bhej raha hoon.",
+    "Hi! Your cab driver Ramesh is arriving in 3 mins. OTP to start the ride: 4821.",
+]
 
-QUESTIONS = {
-    "is_scam": Noul(
-        instructions="Is this message a scam or fraud attempt?",
-        criteria={"true": "Tries to trick the reader into paying, sharing a code, clicking or calling",
-                  "false": "A genuine message, even if it mentions OTPs, money or deadlines"},
-    ),
-    "scam_type": Choice(instructions="What kind of message is this?", criteria=SCAM_TYPES),
-    "pressure": Score(instructions="How much pressure does it put on the reader?",
-                      criteria=["None", "Mild deadline", "Strong urgency", "Threats"]),
-}
-
-answer = jev.system_one(state=sms, questions=QUESTIONS)
-print("Scam?    ", answer.nouls["is_scam"].noul)
-print("Type:    ", answer.choices["scam_type"].choice)
-print("Pressure:", answer.scores["pressure"].score, "out of 3")
+for msg in TRICKY:
+    p = jev.system_one(state=msg, questions=QUESTIONS).nouls["is_scam"].noul
+    print(f"{p:.2f}  {msg[:70]}...")
 ```
 
 ```
-Scam?     ⟦0.97⟧
-Type:     ⟦bill_disconnection⟧
-Pressure: ⟦2.x⟧ out of 3
+⟦…⟧  Hello, I am Priya from a recruitment agency…
+⟦…⟧  123456 is your OTP for login…
+⟦…⟧  Your courier is on hold…
+⟦…⟧  Bhai galti se aapke account me 5000…
+⟦…⟧  Hi! Your cab driver Ramesh is arriving…
 ```
 
-- **`SCAM_TYPES`** — the bubbles for the Choice question: each option has a short description, and Jev reads the descriptions, not just the names.
-- **`criteria` on the Noul** — what *yes* and *no* mean. Look at the `false` line: *"…even if it mentions OTPs, money or deadlines."* A genuine bank OTP message contains the word "OTP"; a real bill has a due date. That one clause stops scam-like **words** from dragging genuine messages towards "yes".
-- **The Score levels** — in order, lowest first. The answer can land between them, like `2.4`.
-- **One `system_one` call** answers all three.
+The true answers: **scam · genuine · scam · scam · genuine.** Each one attacks a different weak spot — a polite scam with no link yet, a genuine message full of scary words, a tiny believable amount, Hinglish, and an OTP you *should* share.
 
-With a chatbot, adding two more questions means a longer prompt and more parsing. With Jev, it means **two more lines in a dictionary**.
-
-We now have numbers. But `0.97` is not an action — something has to decide what `0.97` *means*.
+**Re-hook →** *Five messages is a magic trick, not a test. Let's do a hundred — and put the bill on screen.*
 
 ---
 
-### Step 4: Turning a Probability Into a Decision 🧑‍🏫
+## Claim #2: Are the Answers Really Free?
 
-Cricket already solved this. In a **DRS** review, when ball-tracking shows the ball clearly hitting the stumps, the decision is overturned; when it is only clipping them by a whisker, the replay says **"umpire's call"** — too close to overrule. We do the same with Jev's probability:
+*(10:00–13:00)*
 
-| `p_scam` | Verdict |
-| --- | --- |
-| **≥ 0.90** | 🚨 Likely scam |
-| **≤ 0.10** | ✅ Looks normal |
-| **in between** | ⚠️ Not sure — Jev's "umpire's call" |
+Our test set is **100 made-up messages** in the style of real Indian SMS and WhatsApp forwards: 60 scams, 40 genuine, a third deliberately tricky. Every one is **labelled** — we know the right answer — which is what lets us grade. All links and numbers in it are fake.
 
-**Notebook — Step 4**
+Both runners get the **same questions and the same rules**: 10 messages at a time each.
 
-```python
-def check(message):
-    a = jev.system_one(state=message, questions=QUESTIONS)
-    p = a.nouls["is_scam"].noul
-    if p >= 0.90:
-        verdict = "🚨 Likely scam"
-    elif p <= 0.10:
-        verdict = "✅ Looks normal"
-    else:
-        verdict = "⚠️ Not sure. Double-check"
-    return {"verdict": verdict, "p_scam": p, "scam_type": a.choices["scam_type"].choice,
-            "type_probs": dict(a.choices["scam_type"].probabilities), "pressure": a.scores["pressure"].score}
-
-for msg in [sms,
-            "123456 is your OTP for login. Do not share it with anyone. Bank staff will never ask for your OTP.",
-            "Hi dear, I sent a code to your number by mistake, can you please forward it to me? It's urgent."]:
-    r = check(msg)
-    print(f"{r['verdict']:<28} p={r['p_scam']:.2f}  {r['scam_type']:<24} | {msg[:60]}...")
-```
-
-```
-⟦🚨 Likely scam⟧   p=⟦0.97⟧  ⟦bill_disconnection⟧ | Dear consumer, your electricity power…
-⟦…⟧                p=⟦…⟧     ⟦…⟧                 | 123456 is your OTP for login…
-⟦…⟧                p=⟦…⟧     ⟦…⟧                 | Hi dear, I sent a code to your number…
-```
-
-- **`check`** is our whole detector: ask Jev → compare the probability with two lines → return a verdict and the details.
-- The **two numbers, 0.90 and 0.10, are our decision**, not Jev's. Stricter lines mean fewer mistakes but more "not sure".
-
-The three test messages are chosen on purpose: the obvious scam; a **genuine** OTP message full of "OTP" and "bank"; and *"I sent a code to your number by mistake"* — no link, no threat, polite, and exactly how WhatsApp accounts get stolen. If Jev puts one of them in the middle, that is not a failure — it is the model admitting it does not know, and our code listening.
-
-### So Far
-
-- **The swap** is two lines: a client, and `system_one(state, questions)`.
-- **Three question types in one call**; the descriptions are where our knowledge goes.
-- **Two thresholds** turn a probability into a decision, with an honest "not sure" zone.
-
-Three messages prove nothing, though. Is this actually better than the chatbot?
-
----
-
-### Step 5: The Race ▶️
-
-Our test set is 100 **made-up** messages written in the style of real Indian SMS and WhatsApp forwards: 60 scams and 40 genuine, about a third **deliberately tricky** (real OTP alerts, a cab-driver OTP you *should* share, polite scams). Each one is **labelled** — we know the right answer — which is what lets us grade the models. All links and numbers in it are fake.
-
-The race gives both models the **same questions** and the **same rules** — 10 messages at a time — like two runners on the same track. The race code is prepared for us; we just run it.
-
-**Notebook — Step 5**
+**Notebook — "The race" ▶️**
 
 ```python
 df = load_messages()
 results = await race(df, QUESTIONS, SCAM_TYPES)
 ```
 
-| | Jev | Regular LLM | Jev advantage |
+| | Jev | Chatbot | Jev advantage |
 | --- | --- | --- | --- |
 | time for 100 messages | ⟦…⟧ | ⟦…⟧ | ⟦…⟧x faster |
 | typical time per message | ⟦…⟧ | ⟦…⟧ | ⟦…⟧x faster |
-| cost per 1,000 messages | ⟦…⟧ | ⟦…⟧ | ⟦…⟧x cheaper |
-| broken / invalid answers | 0 | ⟦…⟧ | |
+| **cost per 1,000 messages** | ⟦…⟧ | ⟦…⟧ | ⟦…⟧x cheaper |
+| broken / invalid answers | **0** | ⟦…⟧ | |
 
-Speed was never the real question. **Is it right?**
+**Claim #2, checked:** the answers really are free — Jev only charges for what we send it, which is why its bill is ⟦M⟧x smaller. It is not *zero*: the input still costs money. TypeSafe itself says it "can't prove" the price isn't subsidised, so today's price may not last.
 
-**Notebook — Step 5, continued**
+Speed and price were never the real test, though.
+
+**Notebook — "The race", continued ▶️**
 
 ```python
 scoreboard(results)
 ```
 
-| | Jev | Regular LLM |
+| | Jev | Chatbot |
 | --- | --- | --- |
-| accuracy | ⟦…⟧ | ⟦…⟧ |
 | scams caught | ⟦…⟧ / 60 | ⟦…⟧ |
 | false alarms on genuine messages | ⟦…⟧ / 40 | ⟦…⟧ |
-| scam type correct | ⟦…⟧ | ⟦…⟧ |
+| accuracy | ⟦…⟧ | ⟦…⟧ |
 
-How to read it:
+Read it as it is. If the chatbot is more accurate, that is the honest trade-off — *⟦N⟧x faster and ⟦M⟧x cheaper, for ⟦K⟧ points of accuracy*. A small independent test by Every found the same shape: Jev caught 6 of 7 planted mistakes where a bigger model caught all 7.
 
-- **Scams caught** matters most. A missed scam can cost someone money; a false alarm only costs a second look.
-- The chatbot is graded only on answers we could parse. The broken ones never reached the scoreboard — in a real app, they would have been crashes.
-- **If the chatbot is more accurate, say so.** The honest trade-off is then *⟦N⟧x faster and ⟦M⟧x cheaper, for ⟦K⟧ points of accuracy*. A small independent test by Every found the same shape: Jev caught 6 of 7 planted mistakes where a bigger model caught all 7.
+### So Far
 
-The scoreboard gives averages. Averages hide the mistakes that matter most.
+- **Format:** Jev never gave a broken answer; the chatbot gave ⟦…⟧.
+- **Price:** ⟦M⟧x cheaper per 1,000 messages — the "free answers" claim holds up, with fine print.
+- **Accuracy:** ⟦…⟧ — close, but averages hide the mistakes that matter.
+
+**Re-hook →** *Remember "one of these claims doesn't survive"? Here's where it breaks.*
 
 ---
 
-### Step 6: Finding the Flaw ▶️
+## We Caught It Lying
 
-Here is the flaw promised at the start. Jev **cannot** give a broken answer. But it can give a **wrong** one — and be sure about it.
+*(13:00–15:30)*
 
-**Notebook — Step 6**
+A mistake at `0.55` is harmless — Jev is admitting it doesn't know. The dangerous mistakes are the ones where it was **wrong and sure**.
+
+**Notebook — "Wrong, and sure of it" ▶️**
 
 ```python
 confident_mistakes(results)
@@ -484,236 +317,152 @@ confident_mistakes(results)
 Jev was wrong on ⟦…⟧ of 100 messages, and SURE of itself on ⟦…⟧ of those.
 ```
 
-A mistake at `0.55` is harmless — our verdict already says "not sure". The dangerous ones are **past our thresholds**: wrong, and confident. When they show up, they tend to follow the same patterns people fall for:
+This is claim #1 cracking. **"Can't hallucinate" was true about the format and false about the answer.** Jev never broke our code — it handed us a perfectly valid, perfectly confident, *wrong* verdict.
 
-| Pattern | Example from the test set |
+And TypeSafe knew. The fine print, in their own words:
+
+| Claim | TypeSafe's fine print |
 | --- | --- |
-| A scam with no red-flag words yet | *"Hello, I am Priya from a recruitment agency…"* |
-| A genuine message full of scam words | *"123456 is your OTP… Bank staff will never ask…"* |
-| A tiny, believable amount | *"Pay Rs 25 redelivery fee"* |
-| Hinglish | *"Bhai galti se aapke account me 5000 transfer ho gaya…"* |
+| 0% hallucination | *"Our number is not empirical."* Only the schema match is guaranteed |
+| Can't be wrong? | The CEO on Hacker News: *"it's also possible to be confidently wrong"* |
+| Works on everything? | Docs: English is the primary language; Jev *"is not a calculator"*; adversarial text *"can move the answer"* |
 
-These are **System One** mistakes — a fast gut call, fooled the same way ours is.
+Scam messages are adversarial by design — they are written to fool a quick judgement. One independent test on fake job postings found Jev caught only **22.6%** of the frauds, while a simple, old-school text classifier trained on the same data scored **more than twice as well** on the fraud cases (F1 70.0% vs 31.2%; geckguy's job-posting benchmark, Jev run via classifier.dev on an old Kaggle dataset).
 
-We cannot make Jev never wrong. We **can** choose how strict our lines are:
+These are **System One** mistakes: a fast gut call, fooled the same way ours is.
 
-**Notebook — Step 6, continued**
+> **A format guarantee is not a truth guarantee.**
 
-```python
-threshold_table(results)      # stricter threshold = fewer mistakes, more "second checks"
-# reliability_plot(results)   # optional: when Jev says 80%, are ~80% really scams?
-```
-
-| threshold | Jev decides alone | mistakes among those | sent for a second check |
-| --- | --- | --- | --- |
-| 0.70 | ⟦…⟧ | ⟦…⟧ | ⟦…⟧ |
-| 0.90 | ⟦…⟧ | ⟦…⟧ | ⟦…⟧ |
-| 0.99 | ⟦…⟧ | ⟦…⟧ | ⟦…⟧ |
-
-Stricter lines → Jev decides fewer messages alone, and makes fewer mistakes on the ones it does. For scams, where a miss is the expensive mistake, we lean strict.
-
-The optional reliability plot answers one question — *can we trust the probabilities themselves?* Think of a weather forecast: if it says "70% chance of rain" on 100 days, it should rain on about 70 of them. With only 100 messages the plot is rough, so treat it as a sanity check.
-
-### So Far
-
-- On our 100 messages, Jev was **⟦N⟧x faster** and **⟦M⟧x cheaper**, with **zero** broken answers.
-- It **can be confidently wrong** — on the same kinds of messages that fool people.
-- **Stricter thresholds** buy fewer mistakes with more "not sure" messages.
-
-So what do we do with the "not sure" ones?
+**Re-hook →** *So is it useless for this? No — it just needs three lines we should have written from the start.*
 
 ---
 
-### Step 7: The Fix — Jev Decides, the Chatbot Explains 🧑‍🏫
+## The Fix (It's 3 Lines)
 
-Jev handles **every** message — fast and cheap. Only when it says ⚠️ do we call the slower chatbot, for the one thing Jev cannot do: **explain in plain words**.
+*(15:30–17:00)*
 
-**Image Block:**
-**Title**: Jev Decides, the Chatbot Explains
-**Prompt**: "Flow diagram. 'Every message' enters a box 'Jev (fast, cheap)'. Arrow splits: green path 'sure (≥0.90 or ≤0.10)' goes to 'Show verdict', labelled 'most messages'; amber path 'not sure' goes to 'Chatbot explains in plain words' then 'Verdict + explanation', labelled 'the tricky few'. Flat, minimal."
+Jev tells us how sure it is. So **we** decide when to trust it — like DRS in cricket, where a clear hit overturns the decision but a ball just clipping the stumps stays **"umpire's call."**
 
-**Notebook — Step 7**
+**Notebook — "Confidence bands, with a slider" 🧑‍🏫**
 
 ```python
-def check_with_backup(message):
-    result = check(message)
-    if result["verdict"].startswith("⚠️"):
-        result["explanation"] = ask_llm(
-            "In 2 short sentences of simple English, say whether this SMS looks like a scam and what to do next. "
-            "Never tell the reader to click links or call numbers in it.\n\nSMS: " + message)
-    return result
+threshold = 0.9  #@param {type:"slider", min:0.5, max:0.99, step:0.01}
 
-unsure = results[(results.p_scam_jev < 0.90) & (results.p_scam_jev > 0.10)]
-print(len(unsure), "of 100 messages would get a second opinion.")
-if len(unsure):
-    check_with_backup(unsure.message.iloc[0])
+def verdict(p):
+    if p >= threshold:      return "🚨 Scam"
+    if p <= 1 - threshold:  return "✅ Looks normal"
+    return "⚠️ Not sure: get a second opinion"
+
+band_report(results, verdict)
 ```
 
-```
-⟦N⟧ of 100 messages would get a second opinion.
-```
+| Jev's band | really scam | really genuine |
+| --- | --- | --- |
+| 🚨 Scam | ⟦…⟧ | ⟦…⟧ |
+| ⚠️ Not sure | ⟦…⟧ | ⟦…⟧ |
+| ✅ Looks normal | ⟦…⟧ | ⟦…⟧ |
 
-- **`check(message)`** — our Step 4 detector, unchanged.
-- **`if … "⚠️"`** — the chatbot is called **only** in the not-sure zone.
-- **"Never tell the reader to click links or call numbers in it"** — a helpful-sounding chatbot is perfectly capable of saying *"call the number to confirm"*. This line stops it repeating the scammer's instruction.
+- **`threshold`** is a slider in Colab — drag it, re-run, and watch messages move between bands.
+- **Three lines** decide: very sure → act; very sure the other way → let it through; anything else → ⚠️.
+- **Stricter slider** → fewer confident mistakes, more ⚠️ messages.
 
-Most messages take Jev's fast, cheap path. Only ⟦N⟧ in 100 pay the chatbot's price — exactly the ones where a careful second look is worth it.
+The ⚠️ messages go to the chatbot for a second opinion in plain words — the one thing Jev can't do. So Jev handles **every** message fast and cheap, and the slow chatbot only sees the ⟦N⟧ tricky ones.
 
-> **Use the fast model for every decision. Use the slow model only where the fast one says it is unsure.**
+> **Use the fast model for every decision. Use the slow one only where the fast one says it's unsure.**
 
----
+A bonus ▶️ cell wraps all of this into a small web app with a shareable link.
 
-### Step 8: Ship It ▶️
+<MultiLineWarning text="A learning project, not a safety product">
 
-One helper wraps `check_with_backup` in a web page with a shareable link.
-
-**Notebook — Step 8**
-
-```python
-launch_app(check_with_backup, examples=[
-    [sms],
-    ["Hi Mom, this is my new number, my phone fell in water. Can you send Rs 8,000 urgently?"],
-    ["Your order has been shipped and will arrive by Thursday. Track it in the app."],
-])
-```
-
-The app shows the verdict, the top three scam kinds as bars — the Choice probabilities from Step 3 — the pressure score, and the chatbot's explanation when Jev was unsure. The public link works for 72 hours.
-
-Now test it where it matters: paste in a **real** suspicious message from your own phone, with names, numbers and links removed first. The examples prove the code runs; a message it has never seen proves the detector works.
-
-<MultiLineWarning text="This is a learning project, not a safety product">
-
-A model that is confidently wrong on a few messages in a hundred will be confidently wrong for someone, eventually. Never present this app as proof a message is safe. The advice that is always right: **contact the organisation through its official app or number, never the one in the message.** In India, cyber fraud can be reported on **1930** or at **cybercrime.gov.in**.
+Never present a model's answer as proof a message is safe. If a message worries you, contact the organisation through its **official** app or number — never the one in the message. In India, cyber fraud can be reported on **1930** or at **cybercrime.gov.in**.
 
 </MultiLineWarning>
 
+**Re-hook →** *Scam detection was the hardest test we could find. Here's where Jev is genuinely brilliant.*
+
 ---
 
-## What Changed: The Swap
+## Where You'd Actually Use This
 
-The whole session comes down to replacing one kind of call with another.
+*(17:00–18:00)*
 
-**Before — asking a chatbot**
+Jev shines wherever an app makes the **same small judgement again and again**, and a confidence score can route the unclear cases:
 
-```python
-reply = ask_llm('Is this SMS a scam? Reply in JSON like {"is_scam": true}.' + sms)
-result = json.loads(reply)          # hope it is valid JSON
-if result["is_scam"] == True:       # hope the key exists, and is a real true/false
-    warn_user()
-```
-
-**After — asking Jev**
-
-```python
-answer = jev.system_one(state=sms, questions=QUESTIONS)
-if answer.nouls["is_scam"].noul >= 0.90:     # a number, always — and we chose the line
-    warn_user()
-```
-
-| | Before | After |
+| Idea | The question Jev answers | A real number someone measured |
 | --- | --- | --- |
-| What comes back | Text we parse and hope about | Typed numbers, always in shape |
-| How sure it is | Unknown — every reply sounds confident | A probability we act on |
-| When it is unsure | We never find out | ⚠️ — and a second opinion |
-| More questions | A longer prompt, more parsing | One more line in `QUESTIONS` |
-| Speed and cost, per message | ⟦chatbot⟧ | ⟦Jev⟧ |
+| Placement-email sorter | *Is this an interview invite, a rejection or spam?* | OpenRouter's triage demo: 95 messages × 5 questions in 1.2 s (vendor demo) |
+| College group-chat moderator | *Is this message abusive?* | TypeSafe's moderation cookbook: 114 ms per check (vendor) |
+| Resume screener | *Does this resume match the role?* | Self-reported only — test before trusting |
+| Search ranking for your notes | *Which result answers the question?* | Hindsight: top-result accuracy 0.80 → 0.95 (independent) |
+| AI-agent safety check | *Is this command about to delete something?* | Browserbase: agent step time 1.97 s → 0.46 s (via LangChain) |
 
-The swap itself was two lines. What made it **trustworthy** were three things around it: **a threshold, a test set and a backup** — and those work the same way with any model we use next.
+**Re-hook →** *One problem: Jev is closed and runs on someone else's servers. Unless…*
 
-> **A fast model gives answers. Thresholds, tests and a backup give trust.**
+---
+
+## The Free Rival Nobody's Talking About
+
+*(18:00–19:30)*
+
+Three days after Jev launched, **Laya** appeared: a free, open-source decision model from **Convai Innovations** (Apache-2.0 licence). It asks the same three question types, even speaks Jev's API format, and runs on an ordinary laptop.
+
+| | Jev | Laya |
+| --- | --- | --- |
+| Open? | Closed, API only | Open weights, free |
+| Runs on your laptop? | No | Yes |
+| Cost per call | Tiny, but not zero | Zero (your own hardware) |
+| Out-of-the-box accuracy (JevBench v1.4.2.2) | #4 — 63.3 | #43 — 30.3 |
+| Superpower | Accurate straight away | Private, and you can train it on your own data |
+
+Laya's own model card is candid: its headline wins come from a version **trained on the test itself**; the base model is close to guessing until you fine-tune it. And Laya isn't alone — open 4-billion-parameter models such as Imajev-4B, Plumb-4B and decider-4b now edge past Jev on the same leaderboard.
+
+> **Jev is more accurate out of the box. Laya is free, runs locally, and learns from your data.**
+
+(There is a public dispute about which idea came first. It doesn't change either model; we stay out of it.)
+
+**Re-hook →** *So — was it worth the hype?*
+
+---
+
+## The Verdict
+
+*(19:30–20:30)*
+
+| The claim | Verdict |
+| --- | --- |
+| **"It can't hallucinate"** | ⚠️ **Half true.** The format is guaranteed. The answer can still be wrong — and confident. |
+| **"Its answers are free"** | ✅ **True, with fine print.** Output is free; input costs ⟦$ per 1,000⟧; the price may be subsidised. |
+| **Worth the hype?** | ✅ **For the right job** — fast, high-volume yes/no and pick-one decisions, with a threshold and a fallback. ❌ Not as a chatbot replacement, and not something to trust blindly on fraud. |
+
+> **A fast model gives answers. A threshold, a test and a fallback give trust.**
+
+**Close:** *"Drop the trickiest scam message you've ever received in the comments — with personal details removed — and we'll run it through Jev in the next video."*
 
 <details>
-<summary><b>Final Code — every 🧑‍🏫 Teach cell</b></summary>
+<summary><b>Final Code — every 🧑‍🏫 Teach moment</b></summary>
 
 ```python
 from jev_helpers import *
 from typesafe_sdk import TypeSafeClient, Noul, Choice, Score
 
 KEY = get_api_key()
+
+# The old way: ask a chatbot for JSON, and hope
+reply = ask_llm('Is this SMS a scam? Reply in JSON like {"is_scam": true}.\n\n' + sms)
+
+# The swap: two lines
 jev = TypeSafeClient(api_key=KEY, base_url="https://openrouter.ai/api", model="jev-1.13")
+answer = jev.system_one(state=sms, questions={"is_scam": Noul(instructions="Is this SMS a scam?")})
+p = answer.nouls["is_scam"].noul
 
-SCAM_TYPES = {
-    "fake_refund_or_upi": "Fake refund, cashback or 'scan QR / enter PIN to receive money'",
-    "kyc_or_account_block": "KYC, PAN, SIM or bank account 'will be blocked'",
-    "job_or_task": "Part-time job or task that needs a fee or deposit",
-    "prize_or_lottery": "Lottery, lucky draw, prize or reward points",
-    "police_or_parcel_threat": "Courier, customs, police or 'digital arrest' threats",
-    "bill_disconnection": "Electricity, gas, broadband or mobile 'will be cut' today",
-    "fake_family_or_boss": "Pretends to be family, a friend or a boss and asks for money or codes",
-    "investment_or_loan": "Guaranteed returns, stock tips, crypto or instant loans",
-    "not_scam": "A normal, genuine message",
-}
-
-QUESTIONS = {
-    "is_scam": Noul(
-        instructions="Is this message a scam or fraud attempt?",
-        criteria={"true": "Tries to trick the reader into paying, sharing a code, clicking or calling",
-                  "false": "A genuine message, even if it mentions OTPs, money or deadlines"},
-    ),
-    "scam_type": Choice(instructions="What kind of message is this?", criteria=SCAM_TYPES),
-    "pressure": Score(instructions="How much pressure does it put on the reader?",
-                      criteria=["None", "Mild deadline", "Strong urgency", "Threats"]),
-}
-
-def check(message):
-    a = jev.system_one(state=message, questions=QUESTIONS)
-    p = a.nouls["is_scam"].noul
-    if p >= 0.90:
-        verdict = "🚨 Likely scam"
-    elif p <= 0.10:
-        verdict = "✅ Looks normal"
-    else:
-        verdict = "⚠️ Not sure. Double-check"
-    return {"verdict": verdict, "p_scam": p, "scam_type": a.choices["scam_type"].choice,
-            "type_probs": dict(a.choices["scam_type"].probabilities), "pressure": a.scores["pressure"].score}
-
-def check_with_backup(message):
-    result = check(message)
-    if result["verdict"].startswith("⚠️"):
-        result["explanation"] = ask_llm(
-            "In 2 short sentences of simple English, say whether this SMS looks like a scam and what to do next. "
-            "Never tell the reader to click links or call numbers in it.\n\nSMS: " + message)
-    return result
+# The fix: confidence bands
+threshold = 0.9
+def verdict(p):
+    if p >= threshold:      return "🚨 Scam"
+    if p <= 1 - threshold:  return "✅ Looks normal"
+    return "⚠️ Not sure: get a second opinion"
 ```
 
-The race, grading and app live in `jev_helpers.py`, which is short and commented for anyone curious.
+The three-question call, the race, the scoring, the bands table and the app are in the notebook and `jev_helpers.py`.
 
 </details>
-
----
-
-## When Should We Use a Decision Model?
-
-| Option | Reach for it when | What it costs |
-| --- | --- | --- |
-| **Plain `if` / rules** | The rule is exact — *"message contains `.apk`"* | Breaks on anything the rule did not foresee |
-| **Decision model (Jev)** | A narrow judgement — yes/no, pick one, rate it — on every item, fast | Cannot explain; can be confidently wrong |
-| **Chatbot (LLM)** | The output must be words, or the judgement needs step-by-step reasoning | Slower, costlier, output must be parsed |
-| **Human** | High stakes and the model is unsure | Time |
-
-1. **Can a plain rule do it exactly?** → Write the rule.
-2. **Is it a narrow judgement our code acts on?** → A decision model, with a threshold.
-3. **Does the output need to be words?** → A chatbot.
-4. **Unsure and high stakes?** → Escalate — to a chatbot, then a person.
-
-> Let the fast model decide. Let the threshold decide when to trust it.
-
----
-
-## Session Recap
-
-1. **Chatbots write; decision models decide.** Jev returns typed answers our code can act on directly.
-2. **The swap is two lines** — a client and `system_one(state, questions)` — and it removes all the parsing.
-3. **Noul, Choice, Score** in one call; their descriptions are where our knowledge goes.
-4. **Thresholds** turn probabilities into actions, with an honest "not sure" zone.
-5. **The race** on 100 labelled messages showed what no launch post can: speed, cost and accuracy on *our* data.
-6. **The flaw: valid is not correct.** Jev can be wrong and sure of it.
-7. **The fix: Jev decides, the chatbot explains** — fast for most, careful for the tricky few.
-
-## Your Turn
-
-- Add **five tricky messages** of your own to `data/scam_messages.csv` (remove personal details first) and rerun Steps 5–6. Did the confident-mistake count change?
-- Change **one description** in `QUESTIONS` and rerun the race. Did accuracy move?
-- Swap Jev into something you already built with a chatbot: any place your code asks an LLM a yes/no question and parses the reply.
-
-Share what fooled it.

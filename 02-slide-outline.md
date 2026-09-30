@@ -1,43 +1,50 @@
-# Slide & Visual Outline: Jev Scam Detector Session
+# Graphics, B-roll & Packaging Plan: Jev "Can't Hallucinate"
 
-15 slides plus B-roll. Slide numbers match the `[SCREEN] Slide N` cues in `01-session-script.md`.
-**Style:** one idea per slide, big text, a dark background with a red/amber/green accent (matching the 🚨 ⚠️ ✅ verdicts). Every number marked ⟦…⟧ comes from the real run.
+Face + screen video, ~20 min. There are no lecture slides. Every graphic below is a **full-screen insert, an overlay or an animation** cut between the face cam and the screen capture. The chapter times match `01-session-script.md`. Every `⟦…⟧` value comes from the real dry run.
 
-| # | Section | Title on slide | Content / visual | Notes for the designer |
-|---|---|---|---|---|
-| 1 | Cold open | **This AI can't write a single word** | Black screen; the line types in word by word, then *can't chat · can't explain · can't even say hello* | Kinetic text synced to the voice; no logo yet |
-| 2 | Cold open | **…but it finished 100 before the chatbot** | Split screen: chatbot "typing…" dots vs Jev counter 0 → 100 ✓; freeze on ⟦N⟧x faster · ⟦M⟧x cheaper; then the scam SMS gets 🚨; then a glitch flips one verdict to a wrong ✅ with the text "one dangerous flaw" | Numbers from the real race table only |
-| 3 | Intro | **Today's build** | Roadmap: ① Why LLMs are overkill ② What is Jev ③ Build the checker ④ The race ⑤ Where it fails ⑥ Ship the app | Six icons in a row, highlighted one at a time as each chapter starts |
-| 4 | Problem | **Most AI in apps = small decisions** | Four cards: Spam? · Which team? · Positive or negative? · Suspicious payment? | Each card shows a yes/no, pick-one or rating icon |
-| 5 | Problem | **The old way** | Pipeline: Prompt → LLM writes text → Parse JSON → Validate → ❌ Retry → Decision | Show a broken JSON snippet with a red squiggle at the "Parse" step |
-| 6 | Problem | **Words cost time and money** | 3 stats: Slow ⟦LLM p50 s⟧ · Costly ⟦$ per 1,000⟧ · Fragile ⟦invalid / 100⟧ | Fill in after the dry run |
-| 7 | Jev | **System Two vs System One** | Left: 🐢 "slow, careful, writes it out" (LLM). Right: ⚡ "fast, instinctive, just decides" (Jev) | Credit the idea to psychology's "thinking fast and slow", in your own words; no book imagery |
-| 8 | Jev | **Essay answer vs OMR sheet** | Left: a messy handwritten essay. Right: a clean OMR sheet with filled bubbles | This is the key analogy, so make it visual |
-| 9 | Jev | **How Jev works** | `state` (the SMS) + `questions` → **Jev** → typed answers (numbers) | Diagram with the actual electricity SMS as the state |
-| 10 | Jev | **Three question types** | Table: Noul (yes/no → 0.97) · Choice (pick one → "bill_disconnection" + probability bars) · Score (rate → 2.4 of 3) | Use the scam examples from the script |
-| 11 | Jev | **The claims (and the fine print)** | Big: "70–500 ms · $0.042 / 1M input tokens · output free". Below in amber: "Vendor's own tests · 'some bias could exist' · pricing may be subsidised" | Put the source (TypeSafe launch post, Sept 15, 2026) in small print |
-| 12 | Build | **When do we trust it?** | Horizontal probability bar 0 → 1: ✅ ≤ 0.10 · ⚠️ 0.10–0.90 · 🚨 ≥ 0.90 | Colour zones green / amber / red |
-| 13 | Race | **The scoreboard** | Rows: total time · p50 / p95 latency · $ per 1,000 · invalid outputs · scams caught /60 · false alarms /40 · type correct %. Columns: Jev · LLM | Copy directly from Steps 7 and 8. Bold the winner in each row, **including rows the LLM wins** |
-| 14 | Fix | **Jev decides, the LLM explains** | Flow: every message → Jev → confident? → act · not sure (⟦N⟧/100) → LLM explains → human | Label the fast path "most messages" and the careful path "tricky ones" |
-| 15 | Recap | **4 things to remember** | ① LLMs write, Jev decides ② Valid ≠ correct ③ Thresholds + fallback ④ Test the headline numbers yourself | End card follows: notebook link + next episode |
+**Style:** dark background · accent colours red (🚨), amber (⚠️) and green (✅) · big, short on-screen text (≤ 6 words) · a visual change every 5–10 s · sources in small text on any claim or number.
 
-## B-roll and overlays
-- **Timer overlay** during the race (real speed, even when the footage is sped up).
-- **Zoom-ins** on JSON outputs: `p_scam`, `type_probs`, the confident-wrong table.
-- **Lower-third captions** the first time each term appears: *Jev*, *TypeSafe AI*, *System One model*, *Noul*, *OpenRouter*.
-- **Fake-number disclaimer** in small text whenever a dataset message is on screen: "Example message · fake number/link".
-- **Public-service end slate:** "Scammed? Call 1930 or visit cybercrime.gov.in" (check it's current before publishing).
+## Per-chapter graphics
 
-## Thumbnail options
-0. A robot with its mouth taped shut, holding a phone that shows **🚨 SCAM**, with the text **"It can't talk. It's ⟦N⟧x faster."** (recommended: matches the hook)
-1. Phone showing the scam SMS stamped with a red **"SCAM · 0.3s"**, plus text **"AI caught it… or did it?"**
-2. Split face: 🐢 "ChatGPT ⟦Y⟧s" vs ⚡ "Jev ⟦X⟧s", with the text **"Not an LLM"**
-3. OMR sheet vs essay, with the text **"This AI can't write. That's the point."**
+| Chapter | Graphic / insert | Notes |
+|---|---|---|
+| **0:00 Hook** | ① Thumbnail-matched first frame: phone with the scam SMS plus the card "✓ VALID · SAFE 97%", with a red "?" ② Zoom on TypeSafe's "can't hallucinate" claim and "output: FREE" (from their site, with the source shown) ③ Freeze-frame on Jev's output with a record-scratch SFX ④ Text: "2 claims · 1 investigation · 1 verdict" | The first shot must look like the thumbnail |
+| **1:00 Hype** | Montage (1–2 s each): the HN points counter rolling up to ~2,000 · platform logos popping in (Vercel, LangChain, OpenRouter, DigitalOcean, Pydantic AI) · "Signups opened Sep 20 → paused Sep 22" · "$40M seed" · "≈ $0.04 / 1,000 decisions" | Screenshots only from public pages; date every one |
+| **2:30 Not a chatbot** | ① Essay-robot vs OMR-robot split animation ② System 1 / System 2 icons (🐢 vs ⚡) ③ Three question-type cards (Noul · Choice · Score) sliding in ④ The comparison table, highlighted row by row | The OMR visual is the key image of the video |
+| **5:00 ChatGPT dead?** | Big "NO." text, then the "team" flow: messages pour through a fast Jev gate into green and red bins, and the amber ones go on to the chatbot | Keep under 60 s |
+| **6:00 Claim #1** | ① Zoom on `repr(reply)` and the 💥 crash ② "THE SWAP" title with the 2 code lines highlighted one by one ③ A circle and ding on the output number ④ "PAUSE & GUESS" card, with each tricky message shown for ~2 s ⑤ A reveal tick per probability | Code font ≥ 20 pt, dark editor theme |
+| **10:00 Claim #2** | A two-lane race: real-time timer plus a **bill counter** per model ticking up · the speed table animating row by row · a cash-register SFX on the cost row | Speed up the footage, keep the timer real |
+| **13:00 Caught lying** | Colour-grade darker, low music · "WRONG. AND SURE OF IT." · zoom on one confident-mistake row · "fine print" reveal of 3 TypeSafe quotes with sources · bar chart of the fake-job benchmark (Jev 31.2% vs classic 70.0% F1, labelled "independent test") | The emotional peak of the video |
+| **15:30 The fix** | DRS "UMPIRE'S CALL" style graphic · the 3 `if` lines highlighted · live slider drag (screen) with the band table updating · "Fast model for every message · slow model only when unsure" · the app in a 10 s demo | Disclaimer lower third: "Learning project, not a safety guarantee · Scammed? 1930 / cybercrime.gov.in" |
+| **17:00 Use cases** | Five mini-mockup cards (placement-email sorter, group-chat moderator, resume screener, notes search, agent safety check), ~10 s each, one number or caveat per card | Label vendor numbers as "vendor demo" |
+| **18:00 Laya** | Laya's Hugging Face page, a terminal running it locally, and a 3-row comparison card (open/closed · runs locally · JevBench rank #4 vs #43) | Neutral wording on the dispute over who came first |
+| **19:30 Verdict** | Scoreboard with a stamp per row: "Can't hallucinate" ⚠️ HALF TRUE · "Answers are free" ✅ TRUE* · "Worth the hype?" ✅ FOR THE RIGHT JOB, then the end card | *Fine print: input still costs ⟦$⟧ |
 
-Pick the one whose numbers from the real run are most striking. Never put vendor numbers (193x / 444x) on the thumbnail as if they were your results.
+## Titles (pick one)
+1. **Jev "Can't Hallucinate". So We Tried to Make It Lie.** ← recommended (it matches the hook)
+2. We Tested Jev's Two Biggest Claims. One Didn't Survive.
+3. Is Jev Worth the Hype? I Tried to Make It Lie.
 
-## Title options
-1. This AI Can't Write a Single Word (And That's Why It's ⟦N⟧x Faster)
-0. (alt) I Replaced ChatGPT With an AI That Can't Talk. Here's What Happened.
-2. I Raced Jev vs an LLM on 100 Scam Messages. The Results Surprised Me.
-3. Jev Isn't an LLM. I Built a Scam Detector to Test It. (Free Colab Project)
+## Thumbnails (pick one)
+1. **Recommended:** a phone showing a scam SMS, stamped with Jev's card **"✓ VALID · SAFE 97%"**, with the host's face looking sceptical and a big red **"?"**. Text: **"CAN'T LIE?"**
+2. Split: TypeSafe's claim **"CAN'T HALLUCINATE"** crossed with a red line, with the host pointing at it. Text: **"WE TESTED IT"**
+3. A scoreboard: "Claim #1 ❌ · Claim #2 ✅", with the Jev wordmark and the host's face
+
+**Rules:** never put vendor numbers (193x / 444x) on the thumbnail. The "SAFE 97%" number must be a real result from the dry run, or replaced by one.
+
+## Description template
+```
+Jev's makers say it can't hallucinate, and its answers are free. We tested both claims on 100 scam and genuine messages. One didn't survive.
+
+▶ Colab notebook: https://colab.research.google.com/github/Kiran-B23/jev-scam-detector/blob/main/notebook/jev_scam_detector.ipynb
+▶ Code + dataset: https://github.com/Kiran-B23/jev-scam-detector
+
+Our results (⟦date⟧, jev-1.13 vs ⟦chatbot⟧, one run): ⟦N⟧x faster · ⟦M⟧x cheaper · ⟦accuracy⟧
+Vendor claims come from TypeSafe's own evals.
+
+Sources: typesafe.ai launch post · docs.typesafe.ai · JevBench (github.com/fstandhartinger/jevbench) · geckguy.github.io/job-posting-triage · huggingface.co/convaiinnovations/laya
+
+⚠️ A learning project, not a safety product. Scammed? Call 1930 or visit cybercrime.gov.in.
+
+⟦Chapters⟧
+```

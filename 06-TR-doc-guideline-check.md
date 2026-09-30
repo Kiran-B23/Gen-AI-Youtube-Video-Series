@@ -100,3 +100,14 @@ Every section was checked for whether it moves toward this outcome. Nothing drif
 |---|---|---|
 | "The hook is not catchy as expected" | **H7**: paradox → proof → stakes → secret | New hook: *"This AI can't write a single word… yet it finished 100 messages before the chatbot… one dangerous flaw."* It runs through the TR doc Introduction, script §1, slides 1–2, title and thumbnail. The flaw is revealed in Step 6 |
 | "The code part is very difficult… teach only where we use Jev instead of a regular LLM" | **P11**: teach only the idea-carrying code | The plumbing moved to `jev_helpers.py`. The notebook went from 13 steps to 8 (Steps 0–8), with cells marked 🧑‍🏫 / ▶️. Taught code is about 35 lines: the old chatbot call (Step 1), **the swap** (Step 2), questions (Step 3), threshold (Step 4) and backup (Step 7). The TR doc's "What Changed" is now the swap, before vs after. Session length went from 32–35 to 22–25 min |
+
+## V3 revision: YouTube investigation format (Sept 30, 2026)
+The research behind it covered hook patterns, how top coding videos present code, 30+ existing Jev videos and their chapter structures, sourced Jev facts, and Laya.
+
+| Decision | Why (evidence) | Change |
+|---|---|---|
+| Lead the hook with **Jev**, not the project | User direction. The big Jev videos all lead with Jev | Hook = TypeSafe's two claims ("can't hallucinate", "answers are free") + "one doesn't survive" + "I usually skip AI launches" |
+| Drop "can't write a single word" | Already used by Devsplainers (42K); "LLMs generate, Jev decides" by TestMu | Removed |
+| Structure: hype → why → different → replace? → demo → use cases → catch → Laya → verdict | Every top video defines Jev before the "replace?" question; demo-led winners start demos at 16–30%; nearly all have a catch and a verdict; Laya goes near the end (Fireship, CampusX) | 11 YouTube-style chapters, demo from 30% |
+| YouTube style, not a lecture | User direction; hook research (Kallaway, Aprilynne Alter, Paddy Galloway, MrBeast guide) | Chapter titles as questions or teases, a re-hook at every chapter end, one open loop, face + screen, first person |
+| Code: ~15 taught lines | Code research (Real Python, Dave Ebbelaar, codebasics): one swap + 3 bands | 4 taught moments: old way, the swap, "try to make it lie", the slider. The 3-question cell became ▶️; the fallback folded into the ⚠️ band |
