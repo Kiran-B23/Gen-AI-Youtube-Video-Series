@@ -36,8 +36,8 @@ Face + screen video, ~20 min. There are no lecture slides. Every graphic below i
 ```
 Jev's makers say it can't hallucinate, and its answers are free. We tested both claims on 100 scam and genuine messages. One didn't survive.
 
-▶ Colab notebook: https://colab.research.google.com/github/Kiran-B23/jev-scam-detector/blob/main/notebook/jev_scam_detector.ipynb
-▶ Code + dataset: https://github.com/Kiran-B23/jev-scam-detector
+▶ Colab notebook: https://colab.research.google.com/github/Kiran-B23/Gen-AI-Youtube-Video-Series/blob/main/sessions/01-jev/option-B-scam-sms-test/notebook/jev_scam_detector.ipynb
+▶ Code + dataset: https://github.com/Kiran-B23/Gen-AI-Youtube-Video-Series
 
 Our results (⟦date⟧, jev-1.13 vs ⟦chatbot⟧, one run): ⟦N⟧x faster · ⟦M⟧x cheaper · ⟦accuracy⟧
 Vendor claims come from TypeSafe's own evals.

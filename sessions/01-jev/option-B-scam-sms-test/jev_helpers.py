@@ -24,7 +24,7 @@ SCAM_AT, SAFE_AT = 0.90, 0.10           # default thresholds (the session sets i
 # Only used if a response has no usage.cost field. USD per 1M tokens; recheck on OpenRouter.
 PRICE = {JEV_MODEL: {"in": 0.042, "out": 0.0}, LLM_MODEL: {"in": 0.75, "out": 3.75}}
 
-CSV_URL = "https://raw.githubusercontent.com/Kiran-B23/jev-scam-detector/main/data/scam_messages.csv"
+CSV_URL = "https://raw.githubusercontent.com/Kiran-B23/Gen-AI-Youtube-Video-Series/main/sessions/01-jev/option-B-scam-sms-test/data/scam_messages.csv"
 
 
 # ---------- setup ----------

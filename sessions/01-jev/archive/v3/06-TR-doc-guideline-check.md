@@ -1,6 +1,6 @@
 # TR Doc Check: `03-TR-doc.md` against the Session Teaching Guidelines
 
-**Checked against:** `reference_projects/session_teaching_guidelines.md` (rules derived from the RAG, MCP and n8n videos and from the house TR docs).
+**Checked against:** `../../../../guidelines/session-teaching-guidelines.md` (rules derived from the RAG, MCP and n8n videos and from the house TR docs).
 **Date:** Sept 29, 2026 · **Result before fixes (Part B, 33 rules):** 18 met, 8 partial, 7 missing · **After fixes:** all applicable rules met (see the "Fix applied" column).
 
 Rules that apply only to the on-camera script (E11 check-ins, X3 CTA, C2, C4, C6, C7) are checked against `01-session-script.md` / `04-recording-checklist.md`, and are listed at the end.

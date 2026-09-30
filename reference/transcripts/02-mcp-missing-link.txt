@@ -1,0 +1,550 @@
+[00:00] MCP
+[00:02] is it a framework, a plan, a plot twist,
+[00:05] whatever it is, we are about to break it
+[00:07] down like you are decoding any secret
+[00:09] mission but with code. But chill, it's
+[00:11] not that deep. Well, actually, it's kind
+[00:14] of deep, but we are going to make it
+[00:16] simple and definitely fun. And yeah, we
+[00:19] are not here to throw fancy words. We
+[00:21] are going to build stuff and see how
+[00:24] this works in action, piece by piece. So
+[00:26] stick around because this is hands-on,
+[00:29] practical, and just right amount of
+[00:31] nerdy. All right, let's get into it.
+[00:37] [Music]
+[00:43] I am Mano Mari. We are talking about
+[00:45] something called MCP, model context
+[00:47] protocol. And I know sounds a bit like
+[00:50] Marvel villain or some top secret CI
+[00:52] project. But don't worry, this won't try
+[00:54] to take over the world. Instead, it's
+[00:57] going to help us build AI agents that
+[00:59] can actually do things, not just chat
+[01:01] with us or just gives us answers like a
+[01:03] Google search. Now, before we jump into
+[01:06] what MCP is, we got to first understand
+[01:09] what problem it solves, let me ask you
+[01:12] something. Have you ever used chart GPT
+[01:14] and try to get into like actually do
+[01:17] something? Not just write a poem or
+[01:19] answer a question. I mean, tell it,
+[01:22] "Hey, Chad GPT, can you send a text to
+[01:24] my friend and ask if you're meeting at
+[01:26] 5?" And it's like, "Sorry, I'm just a
+[01:29] language model. I can't do that." Super
+[01:31] smart, but also kind of useless
+[01:33] sometimes, right? It's like having a
+[01:36] friend who is books smart but totally
+[01:38] clueless in real life. They will tell
+[01:39] you the entire history of pizza, but
+[01:42] can't make one. That's basically LLMs,
+[01:45] large language models like GPT or Claude
+[01:49] or Gemini. They're great at
+[01:51] understanding and generating text. If
+[01:53] you want them to actually open your
+[01:54] calendar or read your email or update
+[01:56] your Google sheet, no, that's not
+[01:58] possible. So, here is the real truth.
+[02:01] LLMs on their own can't take any action.
+[02:04] They just predict that. They literally
+[02:06] guess what word comes next. Let's say I
+[02:09] say the big fat Indian
+[02:12] what comes next? The model might say
+[02:15] wedding because it has seen that phrase
+[02:18] a zillion times on the internet. But ask
+[02:21] it check my inbox and tell me if Manus
+[02:23] replied and it panics. Sorry I can't do
+[02:26] that. Why? Because it has zero clue on
+[02:30] how to interact with real world tools
+[02:32] like Gmail, notion, Slack. It doesn't
+[02:35] know how these things work. So what did
+[02:38] developers do? We started glowing tools
+[02:40] to these LLMs. We were like, "Okay,
+[02:43] cool. You can't talk to Gmail? Fine.
+[02:46] I'll build something that connects you
+[02:48] to Gmail. You can't update a database?
+[02:50] No problem. I'll connect it for you."
+[02:53] And little by little, LLM started doing
+[02:55] more like using search or updating
+[02:58] spreadsheets or pulling live data. You
+[03:01] have seen this with perplexity, right?
+[03:03] Or some GPTs with browsing enabled. But
+[03:05] here is the thing. All this gluing, it's
+[03:08] super messy. It's like building robot
+[03:10] from leftover Lego pieces and duct tape.
+[03:13] But try to get it to read an email,
+[03:15] summarize it, send that summary to
+[03:16] Slack, and update a notion page, and
+[03:19] halfway through something breaks. And if
+[03:22] one service changes its roots, like
+[03:24] Slack updates its API or Gmail adds new
+[03:26] security, boom, your whole system breaks
+[03:29] and you have to rewrite things,
+[03:31] reconnect them, rebuild flows. And that
+[03:34] is why even though we talk about AI
+[03:36] assistants like Jarvis from Iron Man, we
+[03:39] don't actually have one because building
+[03:41] a multi-skll AI assistant today is super
+[03:44] painful. Too many tools, too many
+[03:46] formats, no common way of talking. Now
+[03:49] imagine this if every tool you use
+[03:51] speaks a different language. How would
+[03:53] you feel? Like Slack speaks French,
+[03:56] Gmail speaks German, Notion speaks
+[03:58] Japanese, and your AI speaks English.
+[04:01] And now you as a developer are stuck in
+[04:03] the middle frantically googling and
+[04:06] translating and trying to keep everyone
+[04:07] talking. Exhausting, right? Now enter
+[04:11] MCP, the hero of today's session. Model
+[04:14] context protocol. And what does MCP do?
+[04:17] It says, "Hey, enough of this chaos.
+[04:20] Let's create a standard, a shared
+[04:21] language everyone can use." It's like
+[04:24] someone inventing a magical translator
+[04:26] that lets all your tools and your AI
+[04:28] talk fluently without you having to do
+[04:31] the work every single time. MCP is like
+[04:34] USBC of AI integrations. You don't need
+[04:38] different ports, different chargers,
+[04:40] different adapters. You just plug in and
+[04:42] it works. Want your AI to talk to a
+[04:44] calendar? MCP. Want it to send a message
+[04:47] on Slack? MCP. Want it to update a
+[04:50] database? Yep. MCP. Cool, right? Let's
+[04:53] get a bit deeper. How does it work? You
+[04:56] have got four main things happening when
+[04:58] you use MCP. First, the MCP client.
+[05:01] That's your AI agent like a chatbot or
+[05:04] some app using AI. And the second one,
+[05:07] the MCP server. That's the tool or the
+[05:10] service you want to connect to like
+[05:11] notion or Gmail. And third, the MCP
+[05:15] protocol. That is the agreed upon
+[05:17] language or handshake they would use to
+[05:20] talk. And the final one, the service,
+[05:23] the actual job being done, like sending
+[05:25] an email, updating the task. Now, I know
+[05:28] it still sounds a bit abstract. Don't
+[05:30] let these tech terms scare you or
+[05:32] confuse you. For now, keep this in the
+[05:35] corner of your mind and let's walk
+[05:36] through a real story. Let's say your
+[05:38] friend messages you, hey, are we still
+[05:40] on for the movie tonight at 6:00? And
+[05:42] instead of opening WhatsApp, checking
+[05:45] your calendar, and manually replying,
+[05:47] you want your AI agent to handle it.
+[05:49] Here's what would happen. The AI reads
+[05:52] your message. Cool. It could do that. It
+[05:55] checks your calendar to see if you're
+[05:56] free. This is where it normally fails.
+[05:59] But with MCP, it knows how to talk to
+[06:02] Google calendar. Then it sends a reply
+[06:04] on WhatsApp thanks to an another MCP
+[06:07] connection. Finally, it adds a reminder
+[06:09] in notion and sends you a summary. All
+[06:12] this through one common language. MCP
+[06:15] makes all of this possible. And here's
+[06:17] something really cool. The
+[06:19] responsibility of making a tool work
+[06:21] with MCP doesn't fall on OpenAI or
+[06:24] Anthropic. It's the job of the service
+[06:26] providers, the companies or developers
+[06:29] who own the tool. So let's say you're
+[06:32] building a new to-do list app. If you
+[06:34] want AI agents to interact with your
+[06:36] tool like reading tasks, creating
+[06:39] reminders, or updating status, you
+[06:41] become the service provider here. That
+[06:43] means it's your job to build and expose
+[06:46] an MCP server for your app. Once that
+[06:48] server is ready, any AI that understands
+[06:51] MCP can talk to your tool out of the
+[06:54] box. Then any AI that speaks MCP can use
+[06:57] it. Boom. Integration done. No extra
+[07:00] glue code, no mess, no custom setup. And
+[07:03] the more companies adopt this, the more
+[07:05] plugandplay the AI world becomes. Like a
+[07:08] real world app store, but for AI
+[07:10] capabilities. Imagine you're building an
+[07:12] agent and you just say, "hm, I want the
+[07:16] agent to do Google calendaruling, Slack
+[07:18] messaging, updating database, weather
+[07:21] checking, and instead of building all
+[07:23] that, you just plug in those MCP modules
+[07:26] and your agents are ready to roll. That
+[07:29] is why people are excited. It's early.
+[07:32] Yes, MCP setups are still a bit clunky.
+[07:35] You need to download stuff, move files
+[07:37] around, copy paste tokens, all that
+[07:39] mess. But it's getting better and soon
+[07:42] you will have no code ways of doing
+[07:44] this. Platforms where you click install
+[07:47] MCP server, boom, done. And that's where
+[07:51] things are getting really exciting
+[07:53] because now AI just don't talk. It does.
+[07:57] You will go from charge GPT, write me a
+[08:00] reply to charge GPT, read this, reply to
+[08:04] them and update my status. All
+[08:06] automated, all real, all using MCP. So
+[08:10] if you are someone who wants to build
+[08:12] smart AI tools or just use them for
+[08:15] better, start watching MCP closely. It's
+[08:18] the missing piece that's going to make
+[08:21] AI useful in your day-to-day life. And
+[08:23] that's what this session is about. not
+[08:26] just understanding what these fancy
+[08:27] things are but learn how to use them.
+[08:31] And now we are going to actually use MCP
+[08:34] to plug into a service. We will take a
+[08:36] chatbot and make it do something real.
+[08:38] Maybe check a database or replay a
+[08:40] message. So stick around because this is
+[08:42] hands-on practical and just right amount
+[08:45] of ni. Let's go. Great. We're into the
+[08:48] hands-on. We understood that MCP is a
+[08:52] bridge that lets you to connect with
+[08:54] APIs, databases, email systems, and
+[08:57] more, unlocking a whole new level of
+[08:59] automation and intelligence.
+[09:02] But now, how do you use MCP in everyday
+[09:04] coding? That's where Kurser AI comes.
+[09:08] Cursor AI
+[09:11] is an IDE, an intelligent coding
+[09:13] assistant built right into your IDE and
+[09:16] it's designed to easily integrate with
+[09:18] MCP servers. This means cursor AI
+[09:23] instantly connect with any MCP enabled
+[09:25] service without complex setup or
+[09:27] switching apps all while you code.
+[09:30] In short, cursor AI is a gateway to
+[09:34] effortlessly
+[09:35] connect with MCP powered automation
+[09:37] inside your development workflow.
+[09:41] So let's first download Cursor AI into
+[09:45] your systems. Hit the download button
+[09:47] and you'll see the download starts.
+[09:51] Let it download and let us install to
+[09:53] set up the cursor AI.
+[09:55] Yeah, the download is done. Go to your
+[09:57] downloads folder and let us install with
+[10:00] the steps that are intended for your
+[10:01] operating system. Here in Mac, I'm just
+[10:04] installing the way it is supposed to.
+[10:07] You can use an exe file if you are a
+[10:08] Windows or an app image if you are an
+[10:10] Ubuntu person.
+[10:22] Yeah, here takes about 5 seconds of time
+[10:25] to get it installed.
+[10:31] Yeah, the step is complete. Let's go
+[10:32] into cursor AI, open it and let's
+[10:35] configure few things. Here is the cursor
+[10:37] icon.
+[10:38] Yeah, we are opening it.
+[10:41] So this is the setup the first homepage
+[10:45] that you'll find out in cursor. If at
+[10:47] all you are doing it for the first time,
+[10:48] it will ask you to sign up with one of
+[10:51] your Gmail or any other mails or GitHub
+[10:53] to get this started. Otherwise you'll
+[10:56] land on to this page and you can open a
+[10:58] project. So we are opening a new
+[11:00] project. I'll create a new folder
+[11:04] MCP connection
+[11:08] and let's open it. So this is the most
+[11:13] powerful way of development today.
+[11:17] Earlier if you have worked with ids they
+[11:19] are just a terminal and the file
+[11:21] structure where you just code. But if
+[11:24] you see on the right side you have a
+[11:26] chat window where you can directly
+[11:27] connect with LLMs and you can get the
+[11:30] tasks done and this is where you can
+[11:32] leverage the power of MCPS as well. So
+[11:34] we'll understand how we can connect the
+[11:36] MCPS to this cursor AI and then come on
+[11:39] to the actual
+[11:41] workflow that we want to implement today
+[11:43] the use case of today. So get ready. So
+[11:46] for today's hands-on session, we are
+[11:49] building a simple but powerful tool that
+[11:51] fetches fresh information from internet
+[11:53] automatically and processes, formats
+[11:56] that information and sends it out as an
+[11:58] email. All triggered from Kurser AI via
+[12:00] MCP servers. That's a great example of
+[12:03] how MCP extends AI capabilities and how
+[12:06] Kurser AI makes it easy to put that
+[12:08] power to work. So let's get started and
+[12:10] let's go on building it. The first thing
+[12:13] you would need is to install node. There
+[12:16] are few instructions that will be
+[12:18] provided in the description section like
+[12:21] the document as here. First check if the
+[12:24] node is installed. The command for
+[12:26] checking the node is node space-en v and
+[12:31] you'll find the version. If not, you can
+[12:33] install the node now and the
+[12:35] instructions will be provided in the
+[12:36] document as per your operating system.
+[12:39] Once node is there then we'll continue
+[12:41] with the next steps. Once the node is
+[12:43] set up you're all set to go to find the
+[12:45] MCP servers integrate them with cursor
+[12:48] AI. So the first MCP server for the day
+[12:50] is to get the data real time from the
+[12:54] internet and that is firecrawl.
+[12:57] Firecrawl is one of the best
+[13:00] fire crawler of the internet. So you'll
+[13:03] get the information by scraping the web
+[13:05] pages. So if you search fire crawl in
+[13:09] the internet you will be leading to this
+[13:12] page.
+[13:14] If you are a first-time person you can
+[13:16] just loging in with your Gmail or you
+[13:19] can just sign up with GitHub or any of
+[13:21] the services that are available. So let
+[13:23] me login for you. I am using Google. You
+[13:26] can use GitHub either.
+[13:29] So this is the developer console for
+[13:32] which you can uh you can get an API key.
+[13:34] You can see the stats of your usage and
+[13:37] there are different integrations that
+[13:38] firecrawl allows to connect. So there
+[13:41] are different frameworks with with which
+[13:43] you can use MCP right. So we are using
+[13:45] cursor AI today but there are other
+[13:47] options as well. For now we are getting
+[13:49] the API key from fire crawl. Now that
+[13:52] you understand what is firecrawl and how
+[13:54] is it useful. Let's get the API key from
+[13:57] the fire firecrawl console. The API key
+[14:00] is available directly from the firecrawl
+[14:03] console. You find a API key here. You
+[14:06] can just copy and save it for
+[14:08] integrating it with the cursor AI. You
+[14:10] would need this key to integrate the MCP
+[14:12] code into the cursor AI IDE. So the
+[14:15] steps to integrate are given in this
+[14:17] document that is provided in the
+[14:19] description. So these steps this
+[14:22] particular JSON object that is given to
+[14:25] you. Copy it and go to cursor ID.
+[14:31] Open the settings that are available in
+[14:35] the right corner of cursor ID. In the
+[14:37] settings, you would find a tab called
+[14:39] MCP which is directly available to you.
+[14:42] Here you will find a button add new
+[14:43] global MCP server. This global MCP
+[14:47] server is where you are connecting the
+[14:48] MCP with the cursor ID. So if you check
+[14:51] there is firecrawl API key which is
+[14:54] asking for your API key. That's where
+[14:56] you need to replace your API key from
+[14:58] fire crawl. copy it and paste it into
+[15:01] this.
+[15:07] Once that is there, hit on Ctrl S. Save
+[15:10] it. And now you can see this MCP server
+[15:13] is seamlessly integrated into cursor ID.
+[15:16] Now let's move to the next step of
+[15:18] connecting Gmail.
+[15:21] So let's get get back into the hands-on.
+[15:24] This is Composio. As we discussed,
+[15:26] Composio is the platform that is
+[15:27] providing the MCP server. There are
+[15:29] different platforms like MCP.So, Smither
+[15:32] and you can find any number of platforms
+[15:34] which are providing different MCP
+[15:37] servers. Today we are concentrating on
+[15:38] this MCP server of Gmail provided by
+[15:42] Composio. So the thing that you need to
+[15:44] do is to generate an MCP URL that you
+[15:46] are finding in the link that is provided
+[15:48] in the description document.
+[15:50] as you generate you'll find an important
+[15:54] information the command that you need to
+[15:56] run in the cursor ID. Now let's get back
+[15:58] to the cursor ID. Let's open a terminal
+[16:02] which is already here and just paste
+[16:04] that command and run it.
+[16:07] So it says all done. Please restart the
+[16:10] cursor for the changes to get effect.
+[16:12] Let's once quit the server uh cursor
+[16:14] here and just reopen it.
+[16:23] And let's go to the settings to check
+[16:25] whether everything is set or not. Yes,
+[16:28] there is an other MCP server partner
+[16:31] composio which is giving you the tools
+[16:34] of Gmail fetch emails get contacts etc
+[16:37] that are there are different tools that
+[16:39] MCP server is offering and the same way
+[16:41] this fire crawl MCP is available for
+[16:44] firecrawl scrape firecrawl check crawl
+[16:47] status firecrawl extract etc. So there
+[16:49] are the different tools that are
+[16:50] available with these MCP servers with
+[16:52] which we want to build a tool that is
+[16:56] directly fetching the data from internet
+[16:59] and sending you a summarized email.
+[17:01] Isn't it interesting? Let's get on to
+[17:03] it. All right, let's close this settings
+[17:07] and let's jump into the demo where I'll
+[17:09] show you how to send a prompt to Kurser
+[17:11] AI that triggers MCP servers to fetch
+[17:13] info and send an email automatically.
+[17:15] Get ready to unlock true power of MCP
+[17:17] with Kurser AI. As you find the chat box
+[17:21] here, let me enter a command that is run
+[17:25] and get an email Gmail connection
+[17:30] and see what does it say.
+[17:33] We are trying to connect our Gmail with
+[17:36] kursi.
+[17:38] So it's checking whether if you have an
+[17:39] active Gmail connection and it is asking
+[17:41] to check by running this tool. So it is
+[17:44] throwing me the tool to perform an
+[17:46] action to check whether if the
+[17:48] connection is active. So it says it is
+[17:51] active and we have all the options. If
+[17:54] not
+[17:56] what happens is it will put you an link
+[18:00] for authorization of the Gmail. Let me
+[18:03] just enter a command saying that connect
+[18:06] to Gmail first
+[18:10] and output an O link
+[18:16] and see what it what does it do.
+[18:22] So it is telling to get parameters and I
+[18:25] have accepted the tool.
+[18:29] It is still generating if you observe.
+[18:31] So it is initiating a connection and I
+[18:33] have given permission for that as well
+[18:35] by clicking on run tool
+[18:40] and we are waiting for the next action.
+[18:46] Ideally it should provide me a link
+[18:49] that allows me to authorize to my Gmail
+[18:51] account. So this is the link that is it
+[18:53] is asking me to authorize. I will enter
+[18:56] in the chrome and you'll find a general
+[19:00] authorization of Google for the tools
+[19:03] that we use daily and I'm clicking on
+[19:05] continue and continue again.
+[19:08] So it says authentication successful
+[19:11] as it is asking after you complete it is
+[19:14] asking whether I'm done or not. I'm just
+[19:16] informing I am done with authentication.
+[19:27] It's checking whether the connection has
+[19:28] been established correctly or not
+[19:37] and I'm running tool to check active
+[19:39] connection.
+[19:41] So that is the power of MCP. You are
+[19:43] able to perform actions. See
+[19:47] yes. So it is saying that I can send
+[19:49] them email, check your inbox, manage
+[19:51] drafts and work with contacts. So we
+[19:53] have successfully established connection
+[19:55] with Gmail and we have also done the
+[19:57] setup with firecrawl. scrape the data
+[20:02] about the latest news on Leonel Messi
+[20:09] from the news pages
+[20:13] and then summarize
+[20:15] and send a mail
+[20:18] to the mail id
+[20:20] [personal email address redacted]
+[20:23] [redacted]
+[20:28] Yeah,
+[20:32] let's see whether the fire crawl is
+[20:33] being called to search the internet and
+[20:36] then it is summarizing and sending it
+[20:38] through composio MCP server Gmail.
+[20:42] So see it is using MCP tool firecrawl
+[20:45] deep stretch and it is asking for our
+[20:47] permission. I am clicking on run tool.
+[20:49] That's where MCP is connecting for its
+[20:52] capabilities of deep search using fire
+[20:54] crawl deep search in internet
+[21:00] and let's wait for the results.
+[21:03] So it is saying there is an error and it
+[21:05] is asking for fire crawl search. Let's
+[21:08] allow by running the tool.
+[21:16] It's still generating.
+[21:18] It's trying to fetch information from
+[21:20] different pages.
+[21:28] Yeah, it's continuing.
+[21:33] It's saying that it has gathered
+[21:35] information and based on the results, it
+[21:38] is going to send an email with latest
+[21:39] news. So now the next MCP tool of
+[21:42] composio Gmail send email is being
+[21:44] called and I have accepted to run the
+[21:46] tool and let's see what does it do.
+[21:51] So it is saying that it has sent an
+[21:53] email to the said email. Let's check
+[21:56] whether it's done or not.
+[21:59] Let's just refresh this. And voila. See,
+[22:03] we have the latest information about
+[22:05] Leonel Messi. And the summary is sent to
+[22:07] my mail with just two lines of
+[22:09] prompting. That's the power of MCP and
+[22:12] cursor AI today. And MCPS are a readym
+[22:16] made available tools that you can use
+[22:18] with any frameworks, any LLM frameworks
+[22:21] like lang chain, langraph or any other
+[22:24] tools like crewi. Today we have
+[22:26] unleashed the power of MCP using kurs
+[22:28] AI. So it's just few lines of code
+[22:31] integrate integrating code. It's just
+[22:33] few lines of prompting that it took for
+[22:35] searching the data for summarizing it
+[22:38] and for sending it as Gmail and there
+[22:40] are endless possibilities. You may ask
+[22:42] for link in jobs that are available for
+[22:44] a certain role and you can summarize and
+[22:46] get it into an email. And otherwise you
+[22:48] can just ask to find out the latest
+[22:51] happenings around me and send it into an
+[22:53] email or you can send it to your Slack
+[22:55] or you can there are different MCP
+[22:57] servers you can play around with. So
+[22:59] that's it for today in terms of this
+[23:02] hands-on and that's a wrap guys. You
+[23:05] didn't just sit through a theory class
+[23:06] today. You understood what MCP is and
+[23:09] you actually used it to build something
+[23:11] real. I mean, come on. We literally went
+[23:13] from wait, what a model context protocol
+[23:16] to here is my AI agent doing stuff
+[23:20] because of MCP. That's massive. You just
+[23:23] build a foundation of how modern AI
+[23:26] agents would work. Not just smart
+[23:28] talkers, but actual doers. And yeah,
+[23:31] maybe there are couple of moments where
+[23:33] your things did not work on first try or
+[23:35] some conflict made you question your
+[23:36] life choices. But that's how real devs
+[23:39] roll. Debug, learn, try again. Debug,
+[23:43] learn, try again. You did great. Now,
+[23:46] here is the exciting part. This is just
+[23:48] the start. MCP is still early, still
+[23:51] evolving, and which means you are ahead
+[23:53] of the curve. The agents you build today
+[23:55] could be the base for something way
+[23:57] bigger tomorrow. So, take a second to be
+[24:00] proud. You just did not learn a buzz
+[24:02] word. You made it work. We'll see you
+[24:04] next time with something more advanced
+[24:06] and something more fun. Until then, keep
+[24:08] learning. Keep experimenting. Break
+[24:10] stuff, fix it, build it again. You're
+[24:13] not just watching AI happen, you're part
+[24:15] of it and your future of it. All the
+[24:18] best everyone. See you in the next
+[24:19] episode. And don't forget to like,
+[24:21] share, and subscribe. What are you
+[24:23] excited to learn about next? Drop it in
+[24:26] the comments and we will ensure you to
+[24:27] bring it to you real soon. Don't forget
+[24:30] to hit the bell icon to get notified
+[24:32] every time we drop such amazing content.
+[24:36] [Music]

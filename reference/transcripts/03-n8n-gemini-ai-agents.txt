@@ -1,0 +1,1118 @@
+[00:00] You can build your own AI agents. Yes,
+[00:03] you can. And it's far simpler than you
+[00:06] imagine. In this video, I'll walk you
+[00:08] through the entire process step by step.
+[00:11] So that by the end of it, not only you
+[00:14] will understand what AI agents are, but
+[00:16] you will actually build one yourself. So
+[00:19] let's get started.
+[00:25] [Music]
+[00:30] You've heard about AI agent, right?
+[00:33] There's a lot of buzz surrounding them.
+[00:35] With everyone talking about it, a lot of
+[00:38] jargon gets thrown around. And the aim
+[00:40] of this video is to simplify all of that
+[00:42] and break the concept of AI agent to it
+[00:45] bare bones. Ultimately, by the end of
+[00:48] this video, it is to enable you to build
+[00:50] an AI agent of your own. Let's first
+[00:52] understand what AI agents exactly are.
+[00:55] So this is what we will be covering in
+[00:57] this session to make that happen. First
+[01:00] we'll break down what are AI agents.
+[01:02] Then we'll move on to exploring existing
+[01:04] AI agents so you can see some real world
+[01:07] examples that are already out there.
+[01:09] After that we'll dive deep into the core
+[01:11] components of AI agents and we'll also
+[01:14] spend some time understanding AI
+[01:15] workflows which are closely related but
+[01:18] have some key differences. And then
+[01:20] comes the super exciting part where we
+[01:23] would be building our own AI agent which
+[01:25] would act as a Google calendar
+[01:27] assistant. Finally, we'll wrap up by
+[01:29] comparing AI workflows versus AI agent
+[01:32] which would help you decide what's the
+[01:34] best approach for different tasks. The
+[01:36] field of AI agent is relatively new and
+[01:40] it's not yet definitively defined with
+[01:42] many vague interpretation and variation.
+[01:45] However, the definition I like the most
+[01:47] is the Google one. They state an AI
+[01:50] agent is a system that once given a task
+[01:52] or a goal achieves the outcome of that
+[01:54] task completely autonomously without any
+[01:57] human involvement. This is a pretty
+[01:59] broad definition. So let's unpack it a
+[02:02] bit. First start with an example. Let's
+[02:04] say you have to book a travel vacation
+[02:06] to Bali. As a human, how would you go
+[02:09] about it? You would start by opening
+[02:11] your preferred booking app. You would
+[02:13] search for flights. You would search for
+[02:15] hotels. Then one by one you would figure
+[02:17] out which options fit your budget. And
+[02:20] finally you would lock in in your
+[02:21] choices and start booking them. This
+[02:23] whole process would take a lot of time.
+[02:26] Now what if instead you had a human
+[02:28] assistant with you? You would tell them
+[02:30] your budget and the kind of places you
+[02:32] want to see. They would handle
+[02:34] everything for you and provide the final
+[02:37] bookings. So this is what AI agents can
+[02:39] do. And this is what we mean when we say
+[02:42] they achieve their goal autonomously.
+[02:44] You take an AI agent, give it a goal,
+[02:47] and it would autonomously take all the
+[02:49] necessary steps until your vacation
+[02:51] bookings are done. Booking travel is
+[02:53] just one example. An AI agent could, for
+[02:56] instance, build an entire website for
+[02:58] the business. You would simply tell what
+[03:01] your business does and what features you
+[03:04] need on the website and it would start
+[03:06] from scratch and in the end, you would
+[03:08] have a website ready to share with your
+[03:10] customers and your potential clients. So
+[03:12] there are numerous AI agents that
+[03:14] already exist and there might be new
+[03:16] type of AI agents emerging in future as
+[03:18] well. The promise of all these AI agents
+[03:21] is really is that any task that can be
+[03:24] done end to end on a digital computer
+[03:27] can be achieved through an AI agent. The
+[03:29] impact of this is immense. Consider how
+[03:32] many task in the current economy that
+[03:35] can be done end to end on your computer.
+[03:38] For example, a majority of software
+[03:41] engineering task can be done end to end
+[03:43] on a computer. Also, video editing can
+[03:46] be done end to end on a computer. Task
+[03:48] related to accounting and many more task
+[03:51] can be done end to end on a computer.
+[03:54] So, let's say if you were to able to
+[03:56] create an agent for all these aspects
+[03:59] capable of performing task autonomously
+[04:01] given a goal, it would reduce human
+[04:04] effort to a great extent. Now we'll take
+[04:07] a look at where we are currently. First
+[04:10] let's start with coding agents. So
+[04:13] coding agents are type of agents that
+[04:16] would autonomously build a website for
+[04:18] you. For example, we have lovable. So
+[04:22] you give it a prompt and it would build
+[04:24] you endtoend website that you can share
+[04:26] with your potential customers and
+[04:28] clients. So let's take a look at it. So
+[04:31] here you can visit this URL and you can
+[04:34] type in a prompt and it would create a
+[04:36] website something like this and that you
+[04:39] can share with your customers and
+[04:41] clients. Now let's take a look at
+[04:43] different type of agent. This one is
+[04:45] called browser use. So what it does is
+[04:48] it gives the agent control of your
+[04:50] computer and the agent has all the means
+[04:53] to act on your behalf. So let's say you
+[04:56] give it a task let's say to find jobs
+[04:58] that are relevant to you within two
+[05:00] years of experience and that are of data
+[05:03] analysis. So the agent would open all
+[05:05] the relevant website gather all the job
+[05:07] links and in the end would give you a
+[05:10] comprehensive list of the jobs that you
+[05:12] can apply to. Now let's take a look at
+[05:14] how browser use works practically. So
+[05:17] here I have the GitHub link. It's an
+[05:20] open-source agent and as you can see you
+[05:23] can install it on your own and you would
+[05:25] be able to use this agent on your own
+[05:27] computer. Let's take a look at example
+[05:29] here. So the example is the task that
+[05:33] you have given here is to add grocery
+[05:35] items to your particular shopping cart.
+[05:38] And what the agent do is doing here is
+[05:41] one by one it's picking up the items and
+[05:43] it's adding to the cart until all the
+[05:46] grocery items are added.
+[05:48] So this is how browser use is working
+[05:51] for this particular task and the concept
+[05:53] is the same. You give it a goal and it
+[05:56] would act on your behalf on your
+[05:58] computer and it would do that till the
+[06:00] goal is achieved. So these are two kind
+[06:03] of agents and we have many more
+[06:05] currently. So before we start building
+[06:08] agents let's quickly understand what an
+[06:10] LLM is. So, LMS are nothing but large
+[06:14] language model and a large language
+[06:16] model is essentially a program that you
+[06:18] give text as a input and you get a text
+[06:21] as a output. And the text that you give
+[06:24] as a input, it processes it and it gives
+[06:27] you the output text. And the way these
+[06:30] large language model processes the text
+[06:32] is based on how they are trained. And
+[06:35] essentially all these models are trained
+[06:38] on enormous amount of data almost the
+[06:41] entire web. When you train them on so
+[06:43] much data they start to learn patterns
+[06:46] and because of their this ability they
+[06:49] develop so many capabilities that are
+[06:51] useful to us. For example, if you have a
+[06:54] math problem you're stuck on and it's
+[06:57] not too tough, you can give it to an LLM
+[06:59] as a text and you would get the solution
+[07:01] to that problem as the output text. Or
+[07:04] let's say you have a very big article
+[07:07] two three pages long and you want the
+[07:09] summary of that article. So you would
+[07:11] give that article to an LLM as the input
+[07:14] text and ask it to summarize it and you
+[07:17] would get the summary or TLDDR of that
+[07:19] article as the output text from the LLM.
+[07:21] So these are just two capabilities that
+[07:23] we discussed. There are literally any
+[07:25] number of capabilities that these LMS
+[07:27] develop. The overall aim is to
+[07:30] understand how these LMS work and how
+[07:33] they fit into overall agentic system. So
+[07:36] let's quickly try out an existing LM.
+[07:38] Most probably you have heard of it. It's
+[07:43] charg such that we try to understand
+[07:45] what exactly is happening under the
+[07:47] hood. Okay. So I've given it a prompt.
+[07:50] It's how many different walls are there
+[07:52] in
+[07:53] strawberry. So I gave it this input text
+[07:56] and got I got out the output text. Now
+[08:00] this is what chargd has done based on
+[08:02] how it's trained on. Right? The output
+[08:05] in this case is correct but we'll take a
+[08:08] look at it in the future sections. What
+[08:10] are the limitations and how we can
+[08:12] address them. So let's take a look at
+[08:13] another example a bit more complex this
+[08:16] time. So let's say we give it a J mains
+[08:19] question. as a input text and let's see
+[08:21] if it's able to answer it
+[08:24] correctly. So let's try to find out a
+[08:27] recent question and we'll pass that to
+[08:38] charged and let's see if we are able to
+[08:40] get the correct
+[08:45] answer. So we can see GPD has started
+[08:49] answering it is first defining the
+[08:51] variables of the question and then it's
+[08:54] breaking out the problem in small small
+[08:56] step and trying to solve those step one
+[08:59] by one. So we got the first step we got
+[09:02] the second step and eventually it's
+[09:05] giving us the final answer that's 15 by
+[09:08] 32 which is incorrect. That actual
+[09:12] answer is 13x 32. Let's do one thing.
+[09:15] Let's try it one more time. This try to
+[09:17] give the same question again and see if
+[09:19] this time it's able to answer it
+[09:21] correctly or not. So again it follows
+[09:23] the same
+[09:24] process. It first defines the variable
+[09:27] of the question. It breaks down the
+[09:29] problem in multiple steps and one by one
+[09:32] it's trying to solve the individual
+[09:33] steps. So you got the step one, we got
+[09:36] the step two, we got the step three and
+[09:39] eventually we'll get the answer in this
+[09:41] step most probably.
+[09:48] Yeah. So we still got 15 by 32 which is
+[09:51] an incorrect answer. So you can see this
+[09:54] question is bit tough for GPD. Let's try
+[09:57] one more question and see if you're able
+[09:59] to get the correct answer for that
+[10:00] particular
+[10:01] case. So we'll pick
+[10:05] this. We'll give this input text
+[10:09] again. Again the same process. It first
+[10:13] defines the question
+[10:14] variables. It tries to break down the
+[10:16] problem if that's possible. And then
+[10:19] step by step it tries to arrive at the
+[10:22] final
+[10:23] solution. Yeah. So we got the answer as
+[10:26] 0.25 that is not matching with the
+[10:29] answer of four. So what we can see here
+[10:32] is that it's actually the inverse of
+[10:35] that. So let's do one thing. Let's try
+[10:37] to pass in the options as well so that
+[10:40] it has the full context of the question
+[10:43] and then let's see if it's able to
+[10:44] arrive at the correct
+[10:48] solution. Yeah. So we got the answer is
+[10:50] four and as we can see the correct
+[10:53] answer is four as well. So what we saw
+[10:56] just now is we gave it one question that
+[10:59] it was not able to solve and then we
+[11:01] gave it another question that was that
+[11:03] it was able to solve. So we know it's
+[11:06] not up to the level of solving every
+[11:08] question but it's already at the level
+[11:10] of solving some of the question of the
+[11:12] most recent J main paper. One thing I
+[11:14] need to mention that is it's not just
+[11:16] related to text. Now the current LMS can
+[11:20] take image and even audio as input and
+[11:23] can output text image or audio as
+[11:26] output. So this is a very recent
+[11:28] development. So some of the older LMS
+[11:30] might not be able to do this but most of
+[11:33] the current LLMs that are coming out can
+[11:36] take text image or audio as input and
+[11:39] can output text image and audio as
+[11:41] output. So now that we have understood
+[11:43] what LLMs are let's quickly take a look
+[11:46] at what their limitations are. So I've
+[11:48] given it a prompt what is greater 10.11
+[11:52] or
+[11:53] 10.9. So the output that it has given me
+[11:55] is 10.11 is greater than 10.9 and it has
+[11:59] also given me a false explanation for
+[12:01] that. So this particular limitation is
+[12:04] called hallucinations where we just saw
+[12:07] that this particular LLM was able to
+[12:09] solve a J mains question but it failed
+[12:12] at this second or third level algebra
+[12:15] question. Now hallucinations are a very
+[12:20] long-term problem with LLMs. We don't
+[12:22] have immediate solution for them but
+[12:24] there are certain strategies that we can
+[12:26] have that helps us in controlling and
+[12:29] limiting this particular limitation. So
+[12:31] one is hallucination. What's next?
+[12:34] Another is knowledge cutff. So LMS are
+[12:37] trained up to a certain point in time on
+[12:39] the data that was produced up to that
+[12:42] particular point. So let's say if I ask
+[12:44] charge GPT who won yesterday's IPL
+[12:46] match, it won't be able to answer that.
+[12:49] So let's quickly check that
+[12:52] out. So I have given this a prompt who
+[12:54] won yesterday's IPL match and the output
+[12:57] that I have got is I don't have access
+[12:59] to real-time information. So this is the
+[13:02] limitation of knowledge cutff. It does
+[13:04] not know what has happened after the
+[13:07] date till it was trained on. So any
+[13:10] query that is based on the knowledge of
+[13:12] the data that is created after its
+[13:14] training date, it does not know how to
+[13:16] answer that. So one limitation is
+[13:19] hallucination. Another one is knowledge
+[13:21] cutff. What's the third one? So if you
+[13:23] see these systems, they are text in and
+[13:26] text out systems. While they are very
+[13:28] powerful, their utility becomes very
+[13:31] constrained because of their inability
+[13:33] to act in real world. They can't take
+[13:35] actions on their behalf. So if I wanted
+[13:38] a real assistant, I could have asked
+[13:40] that particular assistant, let's say my
+[13:42] task is to plan my next day and update
+[13:45] my calendar. So that human assistant how
+[13:48] would it go about it? So it would look
+[13:51] to my Google calendar. It would update
+[13:53] the relevant details and it would say
+[13:55] back to me that the task is done. But
+[13:58] this particular thing LMS can't do
+[14:00] because they can't connect with the
+[14:02] external systems. So we have a text in
+[14:05] and we have it the text out but this
+[14:07] text out does not do anything. They
+[14:09] can't act in the external world. So this
+[14:12] is the third limitation of LLM. So these
+[14:14] are the current three limitations of
+[14:16] state-of-the-art LLMs. So there are no
+[14:19] direct solutions for them. But we'll see
+[14:21] how agents addresses some of them. So
+[14:24] just to summarize what we have learned
+[14:26] till now is we understood what AI agents
+[14:29] are, what is the definition and then we
+[14:31] looked at few practical AI agents like
+[14:33] lovable and browser use. Once we
+[14:36] understood that we took a slide D2 and
+[14:38] we understood what LMS are and what is
+[14:41] happening under the hood and then we
+[14:44] understood what are their capabilities
+[14:45] and limitations. So let's quickly check
+[14:48] out one other thing that is called
+[14:50] prompting. Most probably you have heard
+[14:52] of this as well. So what prompting is is
+[14:55] it just the input text that we give to
+[14:57] LLM. So whatever is the input text that
+[15:01] counts as the prompt and whatever is the
+[15:03] output text that's a response from the
+[15:05] LM. Now we have another term called
+[15:07] prompt engineering. So the concept of
+[15:10] prompt engineering is pretty simple. So
+[15:12] we just saw that LM failed on a very
+[15:14] simple problem and excelled on a very
+[15:16] hard problem. So how do you tackle that?
+[15:19] So you engineer at prompt level. So you
+[15:22] make sure that the prompt you write is
+[15:24] in such a way that the chances of
+[15:26] success become very high. So what we
+[15:29] wrote was what is greater 10.11 or 10.9.
+[15:33] So let's change it a bit and let's see
+[15:35] if you are able to get to the correct
+[15:40] solution. So what we have here is the
+[15:43] same prompt as earlier. What is greater
+[15:45] than 10.1 or
+[15:47] 10.9? What we have done is we have added
+[15:50] one more phrase to it that is let's
+[15:53] think step by step. And the output of
+[15:55] that is now it's one by one breaking the
+[15:58] problem down and eventually it's able to
+[16:00] give us the right solution. So it won't
+[16:03] work every time but this particular
+[16:05] thing helps us in getting the right
+[16:08] answer more number of times. So this is
+[16:11] one example of prompt engineering and
+[16:13] this particular thing is called chain of
+[16:15] thought prompting. We won't go into
+[16:16] details of how many different types of
+[16:18] prompting are there but if you want
+[16:20] there's this really cool website that
+[16:22] you can refer to. It's called prompting
+[16:24] guide. So here you can see we have
+[16:27] different types of prompting. We have
+[16:29] zeroshot, we have few shortshot and a
+[16:31] chain of thought that we just took a
+[16:32] look at. So zeros is nothing but where
+[16:35] you just give the objective of the
+[16:36] prompt without any examples. And in few
+[16:39] short you give the objective along with
+[16:42] few examples so that there's a better
+[16:44] chance of getting to the correct
+[16:45] solution. So if you want to explore more
+[16:47] such prompting techniques, you can take
+[16:49] a look at this particular website and
+[16:51] you can do that on your own time. We
+[16:53] won't go into the detail for now but
+[16:55] just so that you know how many different
+[16:57] types of prompting techniques are there
+[16:59] you can refer this. This concludes our
+[17:01] LLM section. So up to this part I think
+[17:04] we have developed a good understanding
+[17:06] of what LMS are and how to work with
+[17:08] them. Now in the next section we'll be
+[17:11] majorly looking at how we address one
+[17:13] major limitation of LMS and then we'll
+[17:16] arrive at what are agents. So let's
+[17:19] address this one particular limitation
+[17:21] that is that LMS can't act in the real
+[17:24] world. So how do we make sure that these
+[17:27] LMS have the capability of interacting
+[17:29] with already existing softwares. So
+[17:32] before that let's first try to
+[17:34] understand how existing software
+[17:36] communicate with each other. So they do
+[17:38] so through a thing called APIs. APIs are
+[17:42] application programming interfaces. So
+[17:44] if one softwares want to communicate
+[17:46] with another software, they would do
+[17:49] through APIs. So let's say if I wanted
+[17:51] to communicate with Google, what would I
+[17:53] do? I would ask Google this is what I
+[17:56] want to search. Google would execute
+[17:58] that request from me and share the
+[18:00] results back to me. So in the API world,
+[18:03] how would that happen? So my software
+[18:06] would send a request to the Google
+[18:08] server. It would ask, can you please
+[18:10] execute this? Google would complete that
+[18:12] request and share the response back to
+[18:14] me. So this is how the flow goes. You
+[18:17] have the request, you send it to the
+[18:19] external server. The external server
+[18:21] processes it and shares the response
+[18:23] back to you. So this is how briefly how
+[18:26] APIs work. So we won't go into details
+[18:29] of how many different types of APIs are
+[18:31] there as our primary goal is to
+[18:33] understand how to connect LMS with
+[18:35] external system. So they do so by the
+[18:38] means of tools. So tools are the means
+[18:42] where LMS connect with external systems.
+[18:44] As of now they are different kind of
+[18:47] tools. All of these tools you can assume
+[18:50] as a program in your computer. They take
+[18:52] a very fixed kind of input. They
+[18:55] processes them and then they give back
+[18:57] the output to you. So these tools are
+[19:00] integrated with LLMs and that gives them
+[19:02] the ability to interact with particular
+[19:04] external systems. So how this tool call
+[19:07] would go is the LM would raise a
+[19:09] requirement. Let's say if it wants to
+[19:11] search Google. So you would send a
+[19:14] search query to Google. That search
+[19:16] query would be executed by Google
+[19:18] server. The Google server would give
+[19:20] back the output to you and then the LM
+[19:23] would process that output and then
+[19:25] eventually it would give the result back
+[19:27] to you. So this is the tool call for
+[19:30] Google tool. Let's say now there are any
+[19:32] number of tools that are available that
+[19:34] you can integrate with LLMs and that
+[19:36] gives them different different
+[19:37] capabilities to interact with different
+[19:39] different kind of external systems. Now
+[19:41] let's quickly take a look at what other
+[19:43] components of an AI agents are. What we
+[19:46] have learned till now is what are LLMs
+[19:48] and what are tools. Now let's take a
+[19:51] look at the third component that is
+[19:53] called agentic loops. So the core value
+[19:56] prop of agentic loop is that how do you
+[19:59] go about reasoning about the task and go
+[20:02] in a loop till the goal is achieved. So
+[20:04] what you do is you look at the
+[20:06] environment check the state take in a
+[20:08] particular action the environment
+[20:10] updates then you give the feedback you
+[20:14] take the action again you get the
+[20:16] feedback you take the action again and
+[20:18] you go in this particular loop till you
+[20:20] feel like the goal is achieved. So this
+[20:22] is what agentic loop is. The last
+[20:24] component is memory. So we know LM is
+[20:26] the brain, right? But the LM does not
+[20:29] remember anything on its own. You send
+[20:31] in some text, you get out some text. But
+[20:34] now the next time when you send in some
+[20:36] text, it does not know about the text
+[20:39] that you sent in the first time. So in
+[20:41] this particular case, we have to make
+[20:43] sure that it knows what has happened in
+[20:46] the past and that component is handled
+[20:48] by memory. In ideal scenarios, memory is
+[20:51] nothing but the previous chunk of text
+[20:54] that was sent in along with the
+[20:56] responses of LM for those particular
+[20:57] text. So you stuff in all those things
+[21:00] that has happened in the past and then
+[21:02] you give it the new objective, the new
+[21:05] prompt. So this is the role of memory.
+[21:08] So let's quickly take a look back at all
+[21:11] the different components of AI agent
+[21:13] that we have learned till now. So first
+[21:16] is LMS, second is tools, third is
+[21:20] agentic loop and fourth is memory. The
+[21:23] most critical one out of all of these is
+[21:26] the LM. But in practical scenario when
+[21:29] we are creating these AI agents, all the
+[21:32] rest of the component become equally
+[21:34] important and we'll come back to it
+[21:36] later at how and what things we need to
+[21:39] keep in mind while integrating or
+[21:41] working with each of the component. This
+[21:43] completes the components of AI agent
+[21:45] section. Now quickly we'll take a look
+[21:48] at another term called AI workflows. We
+[21:51] looked at AI agents, right? We also know
+[21:54] another limitation of LLM that is
+[21:56] hallucination. So we know LMS are not
+[21:59] perfect and if you were to give the task
+[22:01] of taking decisions to LM, it is
+[22:04] errorprone. If we have a certain error
+[22:06] percentage in a particular task, then
+[22:08] reliability of that task goes down. So
+[22:11] in those particular scenario we have
+[22:13] another AI system that we can use that
+[22:15] is called AI workflow. In a workflow you
+[22:18] predefine the path the task has to take.
+[22:21] So you strip away the complexity of LM
+[22:24] deciding what to do next. Instead of
+[22:26] that you define the path that should
+[22:29] happen and one by one each of the step
+[22:32] is executed. So in this particular
+[22:34] scenario you are increasing the
+[22:37] reliability of the task and at the same
+[22:40] time you are decreasing the complexity.
+[22:41] So AI workflows can handle task much
+[22:45] more reliably as the task is already
+[22:47] broken down into multiple subtask
+[22:50] compared to AI agents where you don't
+[22:52] break the task into multiple subtask.
+[22:55] Instead you give the appropriate tools
+[22:56] to the agent and let the agent decide
+[22:59] what to do next. But at least as of now,
+[23:02] AI agents are not that reliable and they
+[23:06] can sometimes go wrong in executing your
+[23:08] particular task. So it's always better
+[23:10] to stick to AI workflows where you are
+[23:13] predominantly concerned about
+[23:16] reliability and you have a way to break
+[23:19] that problem down into multiple subtask.
+[23:21] Let's get started with building our own
+[23:23] AI agent for Google calendar assistance
+[23:26] using N10. Just so you know, there are
+[23:28] other platform you could explore as well
+[23:30] like m.com, Zapio and Ward. Here's how
+[23:34] we are going to go about it. We'll begin
+[23:36] by creating an account on Nin and
+[23:38] obtaining an API key for Gemini. Then
+[23:40] we'll start by building the agent
+[23:42] without connecting any tools. Once
+[23:44] that's in place, we'll bring in Google
+[23:46] calendar tools so that agent can start
+[23:49] performing actions on your calendar on
+[23:51] your behalf. Go to this particular
+[23:53] website.
+[23:55] you need to login. Okay. So you
+[24:00] given your credentials. Okay. So your
+[24:04] full name
+[24:27] Once you're done with this, you can just
+[24:30] quickly fill out this survey and you
+[24:34] would be redirected to any dashboard.
+[24:36] Okay.
+[24:44] Meanwhile, this is happening, we'll
+[24:48] quickly get a API key. So, we understood
+[24:53] what a API is. But API key in general is
+[24:57] simply let's say I wanted to contact
+[25:00] Google server. Okay? Now, uh Google
+[25:03] would be doing uh processing on my
+[25:06] behalf, right? For me, so they won't do
+[25:08] it for free and they they don't want to
+[25:11] do it for everyone without verifying
+[25:13] them. So to do that they add a API key
+[25:18] layer where you have to give the key
+[25:20] along with your request so that firstly
+[25:23] they know who is making that request and
+[25:26] secondly uh they also know uh that do
+[25:30] you have enough uh balance in your
+[25:32] account to process that particular
+[25:34] request. Okay. So we need an API key for
+[25:40] our uh LM. So all these
+[25:43] LLMs when you're using on their website
+[25:46] uh most of them have a pretty lenient
+[25:49] free trial but when you are using them
+[25:51] programmatically you need an API key for
+[25:54] them.
+[25:55] So for now we will be using Gemini
+[25:59] because it has a pretty decent free tire
+[26:03] on API as well. So you can just open AI
+[26:11] studio and you can click on get API key.
+[26:23] Select any of the
+[26:29] project and you can just copy and keep a
+[26:33] track of it
+[26:42] somewhere. Okay. So, yeah. So, we got
+[26:45] the API key for RLM. Now let's go back
+[26:51] to
+[26:54] Nin. So we signed up on Nin. We got our
+[26:58] workspace
+[27:00] link and this is our Nin dashboard.
+[27:05] Okay. Now once you are here you would
+[27:08] see projects. Okay. So we we would go
+[27:11] with the default project and we would
+[27:13] click on create workflow. So make sure
+[27:16] that you know this is for both agents
+[27:18] and workflows. When you're clicking on
+[27:20] create workflow, you can actually create
+[27:23] an agent as well as an uh workflow.
+[27:26] Okay. Now once you're here,
+[27:30] so if you click
+[27:32] here, first we need the trigger point.
+[27:36] So when should our agent be triggered?
+[27:38] So let's uh for now let's create a chat
+[27:41] agent. So whenever user sends a message
+[27:44] that's when the agent should be
+[27:45] triggered.
+[27:47] Okay.
+[27:59] Right. So on chat message we would
+[28:05] select and we don't need to change
+[28:08] anything in options.
+[28:11] Go back to
+[28:12] canvas. So you are done. Chat
+[28:15] message.
+[28:17] Now we'll select
+[28:20] here. We'll select the AI
+[28:29] agent and for now we won't make any
+[28:33] changes. We'll come back to
+[28:36] it. Let's select the model. So chart
+[28:40] model is simply which LLM we want our
+[28:41] agent to use. Okay. So as we got the API
+[28:46] key for Gemini, we'll select
+[28:49] Gemini. We'll click on credentials and
+[28:52] we'll paste in the API key that we have
+[28:55] got.
+[29:10] Yeah.
+[29:13] So, and we'll also select the model. So,
+[29:17] for now, we'll select the latest model
+[29:21] that is Gemini 2.5
+[29:23] Pro, the May
+[29:27] version. And now our agent is
+[29:31] configured. Now in terms of memory, so
+[29:35] we want a very simple memory. Just so
+[29:37] you know, there are one way to store
+[29:40] memories. Just send in all the past
+[29:43] interactions back to LLM at every
+[29:45] iteration. Okay. Another uh me uh way of
+[29:50] adding memories. That is a long-term
+[29:52] memory. So you keep a list of all the
+[29:56] things that you have have happened in
+[29:58] past. Okay? And instead of sending
+[30:00] everything, you send the most recent
+[30:03] ones along with all the things that are
+[30:06] relevant from the not recent ones. So
+[30:09] this is another way. This is a bit
+[30:10] complex. We won't go into that for now.
+[30:12] We will use the most simple memory.
+[30:18] Okay. And we can select how many
+[30:21] previous iterations should be sent back
+[30:24] at every
+[30:25] uh iteration as a memory. So we can
+[30:28] select 15 here.
+[30:32] Okay.
+[30:34] Now once we have got to this point, we
+[30:38] haven't added any tools. We'll just
+[30:40] quickly test out how is it working.
+[30:41] Okay. So we'll open the chat here. We'll
+[30:45] type in some
+[30:54] message. Okay. So what would this do is
+[30:58] this message would be first stored in
+[31:01] memory and then based on uh based on the
+[31:04] current state of the memory it would be
+[31:06] sent to the
+[31:07] model. So this is the
+[31:12] memory and you would get a reply from
+[31:17] the agent
+[31:21] zone. Okay, let's do one thing. Uh, as
+[31:25] we using this
+[31:26] model, this is taking a bit of
+[31:29] time. We'll quickly change the model
+[31:41] instead. Instead of using this, let's
+[31:44] use a
+[31:45] simpler, less complex and faster model.
+[31:50] Okay. So, we'll
+[32:01] use Okay, let's use
+[32:08] this. Let's come
+[32:12] back. Let's
+[32:21] Yeah. So let's look back what we have
+[32:24] done. We simply changed the model to a
+[32:28] less complex one so that we get the
+[32:30] results faster as we are still in the
+[32:33] development mode. Okay. So we connected
+[32:36] our LM we connected the memory. We have
+[32:39] the agentic loop set up. What is next?
+[32:41] Tools. So for this particular LM for
+[32:45] this particular agent what we really
+[32:47] want to build is an agent that helps us
+[32:51] in managing our Google calendar. Okay.
+[32:54] So the tools we would be needing would
+[32:56] should also be of Google calendar. We
+[32:59] would be uh adding tools
+[33:03] now and we have tested that everything
+[33:05] else is working fine till now. Okay. So
+[33:08] in the next section we would add the
+[33:10] tools and then we'll see if our overall
+[33:13] uh agent is working out fine. Okay. So
+[33:16] we have looked at how to add the chat
+[33:19] model and the simple memory tail. Now
+[33:22] let's start adding the tool for Google
+[33:24] calendar as well. Okay. So you can go
+[33:28] here click on plus just a
+[33:33] sec. Move it a bit down. We can click on
+[33:37] plus here and then we can search for
+[33:40] calendar tool. Okay. So we see this
+[33:42] Google calendar
+[33:43] tool. What we want is we want a tool
+[33:47] description. So uh when to use which
+[33:50] tool and what that tool does. You can
+[33:53] either write it yourself like using sack
+[33:56] manually or you can uh get it directly
+[34:00] whatever is the default one or you can
+[34:01] ask the LM to do it. Okay.
+[34:04] Uh here we would choose set
+[34:07] automatically. We will use event. We
+[34:11] would be majorly dealing with events for
+[34:13] now. And let's create tool for creating
+[34:17] an uh event in calendar. Okay. I'll
+[34:22] choose my email
+[34:24] id start time end time of the event.
+[34:27] Let's get as input from model.
+[34:31] We'll add fields
+[34:35] for
+[34:37] summary. Summary is nothing but the
+[34:39] title of the
+[34:42] event and the description of the event.
+[34:50] Okay.
+[34:53] Yeah. So once we have configured our
+[34:57] event here just one more point that I
+[35:00] have missed.
+[35:01] that when you're creating you need to
+[35:03] connect to the Google calendar account.
+[35:06] So in my case it was connected by
+[35:07] default but uh in some cases you need to
+[35:10] just allow permission of Google calendar
+[35:13] from your Gmail account. Okay. So once
+[35:17] we have done this let's move back to
+[35:22] chat and let's ask it to create
+[35:32] and for
+[35:39] lunch
+[35:40] at 1 22
+[35:44] p.m. on 9th May.
+[35:50] Okay.
+[35:53] Now I think okay we have got a reply the
+[35:58] reply is
+[36:00] that it's asking for
+[36:12] description and it's also asking if this
+[36:14] date time is correct which is correct.
+[36:34] Okay. So, it's saying, okay, I've
+[36:36] created the event. Let's quickly check
+[36:39] it. So, for tomorrow, we have got a
+[36:42] event for
+[36:43] lunch. Yeah. 1 to 2 p.m. Not tomorrow.
+[36:47] Uh on 9th May.
+[36:49] Yeah. So this worked out fine. Right
+[36:54] now let's do
+[36:59] a bigger task.
+[37:02] So I generated
+[37:10] my Yeah. So I have given my schedule
+[37:14] here. And I'm asked it to update this in
+[37:16] my calendar for 9th May
+[37:19] 2025 one by one.
+[37:21] Okay, let's
+[37:41] see. Okay, so we see the error now. It's
+[37:44] trying to make all the tool calls
+[37:47] simultaneously and that's not working
+[37:49] out.
+[37:50] So let's do one
+[37:54] thing. Let's create a new chat.
+[38:19] Okay. So you can see here so it's using
+[38:22] one one create two letter time
+[38:24] now. So
+[38:27] first it's answering back one tool call
+[38:31] answering back one tool call and so on.
+[38:34] Let's see
+[38:35] for yes. So this is also getting
+[38:38] updated.
+[38:43] Yeah, right. Now ideally the thing that
+[38:48] we have added here that uh can you
+[38:51] update this in my calendar and then we
+[38:53] need to add this use one create two at a
+[38:55] time right it's not a task like this
+[38:58] thing specific instruction right this is
+[39:00] a in general instruction to the agent so
+[39:04] this we write in the agent prompt itself
+[39:07] so that it is being sent in every call
+[39:10] to the lm okay so we can configure our
+[39:15] agent
+[39:23] here.
+[39:34] And we can add the prompt here.
+[39:58] right now. Let's go
+[40:02] back. Before that, let's also add one
+[40:06] more tool, which is to delete
+[40:13] events.
+[40:16] Okay. So if we go here, we already have
+[40:19] a create. We'll add the
+[40:20] delete. We'll choose my calendar
+[40:33] itself. Okay. So we have
+[40:36] added lead event.
+[40:39] Now for delete event to work properly it
+[40:43] should also use uh it should also know
+[40:45] which events are there right so for that
+[40:48] we'll also
+[40:51] add
+[40:53] a get event tool like which events are
+[40:56] already
+[41:10] there.
+[41:12] Okay,
+[41:14] cool. Okay, it's showing some error.
+[41:17] Let's
+[41:18] see. Yeah, we forgot to select a
+[41:22] calendar. Yep, we have configured it
+[41:25] now. So we have three tools now. One is
+[41:28] uh getting which events we have. One is
+[41:32] to create the events and one is to
+[41:34] delete the events. Now let's
+[41:37] check a session. First thing let's do
+[41:40] one thing. Let's ask what all events I
+[41:47] have
+[41:49] for 9th May 2025.
+[42:07] Okay. So, it's asking start and end date
+[42:09] time. Yeah. So, we can it's just
+[42:12] confirming should we consider beginning
+[42:14] and end of the day? Yeah.
+[42:28] Let's see
+[42:30] now. So it made one tool call which is
+[42:34] Google island calendar to two that
+[42:37] is nothing but get all
+[42:41] event and this is
+[42:46] our the exact image that we have right
+[42:50] yeah so we have looked at uh how can we
+[42:55] create a calendar tool and then we
+[42:57] created three tools Google calendar for
+[43:01] deleting an event, creating and uh
+[43:04] getting all the events. Okay.
+[43:07] Now once we've done that, so what we
+[43:11] want to do now is we
+[43:14] have all these events here, right? So we
+[43:17] want to delete all of them.
+[43:21] Now to do that
+[43:25] uh what we can do we
+[43:29] can
+[43:31] simply make a request
+[43:34] here. Delete all the
+[43:38] events for
+[43:41] 9th May 2025. Okay.
+[43:46] And ideally it should first check what
+[43:50] events are there on 9th May
+[43:54] 2025. Okay, there's some
+[43:57] issue. Let's try
+[44:05] again. Yep.
+[44:22] Yeah. So ideally first it should be
+[44:26] checking which events are there on 9th
+[44:30] May
+[44:31] 2025 and once it gets to know that then
+[44:34] one by one it should start deleting
+[44:36] those events. Right.
+[44:46] So ideally first it should be checking
+[44:49] which events are there on 9th May
+[44:53] 2025 and once it gets to know that then
+[44:57] one by one it should start deleting
+[44:59] those events right so okay this is a
+[45:03] weaker model so it asks me can you show
+[45:06] me the event ids uh ideally we can Mask
+[45:11] it
+[45:12] back to get it on its own.
+[45:54] Yep.
+[45:59] So it deleted the event and let's
+[46:03] see they are gone. Yeah.
+[46:07] So basically it first listed down the
+[46:10] event okay and then one by one it
+[46:14] deleted all of them. So one tool call
+[46:19] for getting events before uh on
+[46:24] basically uh 9th May and once it got
+[46:28] that then it deleted all based on their
+[46:31] event ids. Okay.
+[46:34] So this was pretty straightforward now
+[46:39] why one change that we did earlier right
+[46:41] that uh we ask it to like we added an
+[46:45] instruction call one tool at a time
+[46:48] instead of calling all the tools uh in a
+[46:52] single iteration. So let's see now do we
+[46:56] need to add that here and if that is not
+[46:59] needed that means that instruction is
+[47:01] working
+[47:13] fine. Okay. So it made one one tool
+[47:18] call and let's see if it's done. It's
+[47:22] done, right? So, we have essentially
+[47:26] created this agent that can
+[47:30] uh do all the Google calendar stuff for
+[47:32] us. Okay. Like uh if I ask it to can you
+[47:37] check if I have let's create a new chat
+[47:41] and let's
+[47:43] see anything
+[47:46] on 9th May 2025.
+[47:55] check and hold
+[48:00] day. Okay. So it correctly shows me that
+[48:05] first is work and second is lunch. Okay.
+[48:09] So if I ask it to
+[48:11] please
+[48:13] delete, please
+[48:17] change work from first
+[48:22] from two to three
+[48:26] to okay instead of that let's ask it
+[48:30] to please delete
+[48:33] work instead
+[48:38] Start
+[48:40] 3
+[48:43] 4 play.
+[48:50] Okay. Okay. Again one common
+[48:53] instruction.
+[49:24] Okay, it incorrectly says that there's
+[49:26] no event. Let's ask it
+[49:33] again. Yes.
+[49:35] So, I deleted that. Let's quickly check
+[49:37] it. It's gone. And now it shows us, do
+[49:43] you want me to add deploy
+[49:46] event?
+[49:49] Yes. And yeah, it has created
+[49:54] that. And we got the play event, right?
+[49:57] So we have created this agent that
+[50:00] essentially controls all the calendar
+[50:03] for us. Here you have uh creating an
+[50:07] event, deleting and getting which events
+[50:10] you have today. All those things you can
+[50:12] do it through this particular agent.
+[50:14] Right? So now till now basically what we
+[50:19] have done here is that we have looked at
+[50:22] how to create the agent. Okay. Using a
+[50:25] no code tool. how to configure tools in
+[50:27] it, how to add memory to it, how to add
+[50:31] instructions and when are instructions
+[50:33] needed and what kind of instructions are
+[50:35] needed. So just like we saw here,
+[50:39] instructions are all the common things
+[50:42] that uh we need for the agent, we can
+[50:45] add it here. So one more instruction
+[50:47] that we maybe we can add here is that uh
+[50:50] you don't need to ask for event ids. You
+[50:54] can search for it using the get tool.
+[50:56] Right? That particular instruction would
+[51:00] help us in reducing a bit more of human
+[51:03] involvement. Okay. So
+[51:07] here this concludes our agent creation
+[51:10] using an in section. Now we'll quickly
+[51:13] look back and see what are the things
+[51:16] that practically we need to keep in mind
+[51:18] when we are creating these agents. Okay.
+[51:20] So first thing is reliability. We just
+[51:24] saw that few times it makes the claims
+[51:28] that are not actually true like when I
+[51:31] asked it that uh please delete work.
+[51:35] Okay, it said there's no event like
+[51:37] work. But that is not true, right? And
+[51:41] if I didn't cross check with my
+[51:43] calendar, I would have assumed okay,
+[51:46] maybe there is no such event and I would
+[51:47] have uh carry forward with that. But for
+[51:52] the tasks that are very critical this
+[51:55] can't uh work right for those particular
+[51:58] task we need to add guard rails so that
+[52:02] either we capture reliab uh this
+[52:05] reliability issue right or basically
+[52:10] we make sure that
+[52:12] uh in those particular tasks we have a
+[52:17] slightly more
+[52:19] uh reliable able approach gen than just
+[52:23] simply using agents. So what that more
+[52:25] reliable approach would look like? So
+[52:27] that would look like a combination of
+[52:30] both workflows and the agents. So in
+[52:34] ideal world you need agents where you
+[52:37] can't have workflows and if you have
+[52:39] workflows just simply use workflows
+[52:41] because workflows in general would be
+[52:44] more reliable to achieve any task at
+[52:46] least as of now with the current state
+[52:48] of models that we have. And if you can't
+[52:51] do it with workflow, change only the
+[52:54] parts that uh are really needed to
+[52:59] agents and keep rest still as workflow.
+[53:02] So in this particular task let's say so
+[53:05] if uh I would have been using it to
+[53:07] simply plan my day and upload it to uh
+[53:11] Google calendar then I could have kept
+[53:14] uh that is a simple workflow of adding
+[53:17] uh sharing my uh basically my schedule
+[53:22] to the LLM and then that schedule is
+[53:24] converted to an uh tool call and then
+[53:28] that tool call uploads my LM my uh
+[53:31] schedule to the calendar. So that
+[53:34] workflow uh could have been created for
+[53:37] one simple task. But let's say for this
+[53:40] particular use case where I don't have a
+[53:43] very specific task, it's all kind of
+[53:44] task that involve Google calendar. Then
+[53:46] I need an agent. So it's a trade-off
+[53:49] between the complexity of the task and
+[53:51] the reliability of the task. So if you
+[53:53] reduce the
+[53:55] complexity and you uh kind of are trying
+[53:59] to come at a task that is a bit less
+[54:02] complex then you can make it work with
+[54:05] workflow directly. But if you maintain
+[54:08] the complexity then you would be needing
+[54:10] to use agent but as of now agents are
+[54:14] less reliable. So the more would be
+[54:17] complexity the lesser would be the
+[54:19] reliability.
+[54:21] So this is one point. The first point is
+[54:25] make sure that reliability is uh like at
+[54:30] least try out your model multiple times
+[54:32] to make ensure that it's highly reliable
+[54:35] and try to add as much guardrails as as
+[54:39] much
+[54:40] uh scaffolding to it so that uh whenever
+[54:43] it's not reliable you catch it or do
+[54:47] enough experimentation to know what all
+[54:49] failure modes are there right
+[54:52] so first is reliab liability. Second is
+[54:57] uh choosing between workflow and the
+[55:00] agents and third is uh observation and
+[55:04] then iteration. So right now here we saw
+[55:07] that first time it was making multiple
+[55:09] tool calls at the single iterations that
+[55:11] is incorrect. So we quickly fixed that
+[55:14] by adding a common instruction to the
+[55:16] agent itself. Now if we do that uh that
+[55:20] is one failure that we have prevented in
+[55:23] the future cases. If we add more uh if
+[55:26] we do more iterations we would come up
+[55:28] with more failure modes and we can
+[55:31] reduce those failure modes either by
+[55:34] updating the agent description or by
+[55:37] make adding a detailed description of
+[55:39] every tool or by simply upgrading to a
+[55:43] model that is smarter. So right now we
+[55:46] are using Gemini flash model 2.0 window
+[55:48] flash that is not that smart compared to
+[55:53] uh the recent models that we have but
+[55:55] it's faster right so if we were to use a
+[56:00] better model our agent would have been
+[56:03] slow but our overall accuracy and the
+[56:06] reliability of the task would have been
+[56:08] higher right
+[56:10] so that is one thing and finally uh the
+[56:15] tools that you are choosing right now we
+[56:18] haven't given any manual description to
+[56:20] tools but when you are using this into
+[56:23] some production systems or uh inside
+[56:26] your company these agents. So make sure
+[56:28] to write detailed description of your
+[56:29] tools on your own so that you cover all
+[56:32] the things that are required for that
+[56:33] particular tool. Okay. Like why that
+[56:36] particular tool is uh used, when to use
+[56:38] that tool and all those stuff. These are
+[56:42] some general best practices that we
+[56:44] should be following while creating the
+[56:46] agent. And apart from
+[56:50] this always try to see like the go-to
+[56:55] method for you in uh such situation
+[56:58] should be observe and iterate simply
+[57:00] because uh all these systems are
+[57:04] inherently empirical like there is no
+[57:07] general solutions that fits. So always
+[57:11] try to make sure and observe what kind
+[57:14] of failures are happening and then see
+[57:17] how you can eliminate those failures by
+[57:19] changing what part of your system. Okay.
+[57:22] Now to conclude in this particular
+[57:26] session we have learned what are AI
+[57:29] agents. We have learned for a particular
+[57:32] AI agent what are the components and
+[57:35] then we have learned about what all
+[57:37] components are there. What are LLMs?
+[57:40] what are tools, what is memory, what is
+[57:43] agentic loop and then we move forward to
+[57:47] s first compare the difference between
+[57:49] AI workflows and AI agents and then we
+[57:53] built a agent for Google calendar using
+[57:56] NM and then we looked at what are the
+[57:58] best practices for creating AI agents.
+[58:01] Hope you have picked something valuable
+[58:02] today and are excited about building
+[58:05] your own AI agents. The best way to
+[58:07] truly learn is by doing. So get your
+[58:10] hands dirty, pick a use case, and start
+[58:13] building. If you have found this video
+[58:15] helpful, make sure to subscribe and
+[58:17] click the bell icon so you don't miss
+[58:19] out on more such deep dive content. We
+[58:21] have lot more coming your way. See you
+[58:23] in the next one.
+[58:26] [Music]

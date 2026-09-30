@@ -1,0 +1,274 @@
+## Source: NxtWave, "A2A Explained with Hands-On Demo" (https://www.youtube.com/watch?v=OZHVYDY6m0o), 11:13, English auto-generated captions, taken from the YouTube transcript panel on 2026-09-30. The final sign-off (10:57 onward) is truncated.
+## Introduction
+[00:00] Imagine
+[00:12] [Music]
+[00:14] this. You wake up one morning. You reach
+[00:16] for your phone and somehow everything is
+[00:18] already taken care of. Your calendar is
+[00:20] updated. Your class notes neatly
+[00:22] organized. Your favorite morning chill
+[00:24] playlist playing in the background. And
+[00:26] you're like, "Wait, how did this
+[00:28] happen?" Well, it definitely wasn't your
+[00:30] sneaky roommate. It was your apps, or
+[00:32] more siscllically, the AA agents inside
+[00:35] them quietly working together in the
+[00:37] background, talking to each other,
+[00:38] sharing what they know, figuring out
+[00:40] what you need, and getting it done.
+[00:42] Sounds futuristic, right? Yeah. But not
+[00:45] anymore.
+[00:51] [Music]
+[00:56] Hi everyone, I'm Prashant and today
+[00:59] we're going to discuss something that's
+[01:01] quietly changing the way your apps work
+[01:03] and how they work together. It's called
+[01:05] agent agent protocol or A2A. A new
+[01:08] development from Google that's making
+[01:10] your apps smarter, more helpful, and
+[01:12] more connected than ever before. Okay,
+[01:15] ready? Let's build some magic. Now let's
+## Hands-on
+[01:17] open the official GitHub repo for Google
+[01:20] A2A.
+[01:22] Open Chrome and type Google A2A.
+[01:26] You can find the GitHub repo here.
+[01:29] This repo contains all the information
+[01:31] for you to get started. Now click on the
+[01:33] samples folder.
+[01:35] You can pick any language you are
+[01:37] comfortable in. Click on the Python
+[01:39] folder. Now click on the agents. If you
+[01:43] scroll it down, you can find examples
+[01:45] for different agents. You can also start
+[01:47] from scratch using Google ADK. However,
+[01:51] for this demo, we will be focusing more
+[01:53] on how the protocol itself behaves. For
+[01:55] that, we will use another package which
+[01:57] is built on top of A2A protocol. It's
+[02:00] called Python A2A. Now, let's open
+[02:03] Chrome and type Python A2A.
+[02:08] Here you can find the GitHub repo.
+[02:11] What makes this package interesting is
+[02:13] it comes with a user-friendly UI. You
+[02:16] can easily install this with pip install
+[02:18] Python A2A. You can scroll the repo and
+[02:20] you can find the command here. Copy this
+[02:23] command.
+[02:26] Once that is done, open the ID. Paste
+[02:29] the copied command and click enter. Now
+[02:31] you can see that the package is
+[02:33] installed. I am using PyCharm has the
+[02:35] ID. You can use any ID that you are
+[02:38] comfortable with. Open GitHub repo.
+[02:40] Scroll it down and copy the first
+[02:42] example you find. Now let's create a
+[02:45] file named agent card.
+[02:50] Create Python file. Name it as agent
+[02:53] card.
+[02:56] Now paste the code. You can keep any
+[03:00] port number that works in your system.
+[03:03] Now run it. Python space name of the
+[03:07] file agent card.py. Pi.
+[03:12] Now you can see that it is running on a
+[03:15] server. Now let's enter it in the
+[03:16] browser.
+[03:19] Enter local host is to 5,000. So this is
+[03:22] exactly how the agent card looks like.
+[03:24] But we discussed that client agent looks
+[03:26] into JSON format. Right? Let's see how
+[03:28] that is. Here we can see the name of the
+[03:30] agent. What are its capabilities and
+[03:33] what are its input and output modes as
+[03:35] well. Now that we have seen how agent
+[03:37] card looks like, now let's see how
+[03:40] agents communicate with each other. Now
+[03:42] let's stop this server. We discussed
+[03:44] that this package has a UA component,
+[03:45] right? Now let's get on with it. Open
+[03:48] the same GitHub repo. Scroll it down.
+[03:50] You can see that there are a lot of
+[03:52] examples. You can try it out. Okay, here
+[03:54] is the command to run the UI. Copy this
+[03:57] and paste it in the ID.
+[04:01] You can see that it is running on the
+[04:02] AT80 port and you can see the UI as
+[04:05] well. Now let's build a use case for
+[04:07] interview preparation where one research
+[04:09] agent prepares the concepts for the
+[04:11] topic you want to learn and other
+[04:13] prepares the questions for those
+[04:15] concepts.
+[04:17] Now for us to give input let's add input
+[04:19] node.
+[04:22] Then let's drag a agent for research
+[04:25] agent. Let's name it as research agent.
+[04:30] You can enter it in the input name
+[04:32] research
+[04:35] agent. Yeah. Now that we have given the
+[04:37] name as research agent, let's paste the
+[04:39] API key. So let's keep the GPT forum
+[04:42] model as it is. In the system message,
+[04:44] we have to give the prompt on what the
+[04:46] agent has to do. Now in the use case we
+[04:48] have discussed that this is a research
+[04:50] agent, right? So let's write a prompt
+[04:52] for that. I have already prepared the
+[04:54] prompt for it. Now remove the pre-prompt
+[04:57] and paste the prompt you have.
+[05:00] Okay. And click on apply.
+[05:04] See the agent configuration is done. Now
+[05:06] that we have done with the research
+[05:07] agent, let's add one more agent
+[05:11] which prepares the questions for us.
+[05:13] Let's name it as question agent.
+[05:18] Now let's copy the API key again. Paste
+[05:21] it here.
+[05:23] Let's keep the model as GPD4. Now again
+[05:25] we have to update the system message
+[05:27] with the prompt. we have to prepare the
+[05:29] questions. Now click on apply. So now
+[05:32] that both agents are done, we have to
+[05:34] see the output. Right? Now let's add an
+[05:35] output node here. Yeah, let's just name
+[05:38] it as output. Now that these agents are
+[05:41] configured but they are independent,
+[05:42] right? So let's link them. Let's link
+[05:44] the input node to research agent. Now
+[05:48] let's link the output from the research
+[05:49] agent to input as question agent.
+[05:54] Let's link the output of the question
+[05:55] agent to the output node.
+[06:01] That's it. The agent is done. Now you
+[06:03] can run this network by clicking on this
+[06:05] play button. Let's say I can give like I
+[06:08] want to learn JavaScript
+[06:11] and click on run network button. You can
+[06:13] see that the agents are interacting with
+[06:15] each other.
+[06:18] See here you can see that it generated a
+[06:20] question for each concept as per the
+[06:22] prompt we give. You can click on this
+[06:24] multiple times with different topics so
+[06:26] that you can see how it is working.
+[06:29] That's it. This is a basic setup that
+## Explanation of concepts
+[06:31] show how A2A works. Of course, these are
+[06:33] just simple prompts. You can make them
+[06:35] far more detailed as per your use case.
+[06:38] The future of tech isn't just apps doing
+[06:40] things for you. It's apps plotting
+[06:42] behind your back for your own good. No
+[06:45] more juggling between five apps just to
+[06:47] make the weekend plans. No more
+[06:49] forgetting directions, double booking
+[06:51] meetings, or copying stuff from one
+[06:53] screen to another like it's still 2012.
+[06:55] With A2A, your apps become a squad
+[06:58] undercover agents running missions just
+[07:00] to make your day smoother. So firstly,
+[07:02] what is an agent? We're not talking
+[07:04] about James Bond here. An agent is like
+[07:07] a tiny super smart assistant living
+[07:09] inside your app. It's just not sitting
+[07:11] around waiting for you to tap a button.
+[07:13] It's trying to do things. it understands
+[07:15] and figures out how to solve them and
+[07:17] just gets on with it. Let's say your
+[07:19] friend texts you, hey, want to come for
+[07:22] a movie tonight at 6:00? Now, instead of
+[07:24] you opening your calendar, checking if
+[07:26] you are free, responding to your friend,
+[07:28] you just tell your agent, hey, check if
+[07:30] I'm free at 6, and reply to her. And
+[07:32] boom, it check your calendar, sees that
+[07:35] you are free, and replies, yep, I'm in.
+[07:37] Now, that's one agent helping you. But
+[07:40] wait, let's say after that it also books
+[07:42] an Uber to the theater, shares your L
+[07:44] location with your friend and maybe even
+[07:46] pre-orders a popcorn. Now, here's the
+[07:48] thing. No single agent can do all of
+[07:50] that. Each of those things, Uber, chart,
+[07:53] food order, they all belong to different
+[07:55] apps, right? So, how does this happen?
+[07:58] That's where the cool stuff kicks in.
+[08:00] Agent to agent protocol. So, what
+[08:02] exactly is A2A? Think of it as a rule
+[08:04] book, a way of saying, "Hey, agents,
+[08:07] here's how you guys can talk to each
+[08:08] other. Be nice. Use these words. Share
+[08:11] updates. Work together. Without this rug
+[08:14] book, it's like people from 10 different
+[08:16] countries in one room, each speaking a
+[08:19] different language. No clue what the
+[08:20] other is saying. With A2A, it's like
+[08:23] giving them one common language. Now
+[08:25] they can team up and make stuff happen
+[08:27] for you. Imagine say you are going on a
+[08:29] weekend trip with friends. One friend
+[08:31] creates a plan and emails you the
+[08:33] itinary. Now you tell your A, hey, read
+[08:35] that email and block off my calendar.
+[08:37] also book my train ticket and tell mom
+[08:40] I'll be out this weekend. That's a lot
+[08:42] to ask, right? But if your email agent
+[08:44] talks to your calendar agent and also
+[08:46] with your booking agent, which finally
+[08:48] messages your WhatsApp agent and it's
+[08:50] done. And that's exactly what A2A
+[08:53] enables. Agents reading email, agents
+[08:55] talking to each other, agents taking
+[08:57] action across apps. You don't do it,
+[09:00] they do. Wait, isn't this basically what
+[09:03] apps are already doing? Sort of, but not
+[09:05] really. Earlier they all did their own
+[09:08] thing. No teamwork, no coordination. But
+[09:11] now with A2A they are in group chart
+[09:13] mode. So is A2A like MCP the model
+[09:16] context protocol we talked about in our
+[09:18] earlier video? Well, not exactly. MCP is
+[09:22] like teaching one app how to use a new
+[09:24] tool. Say helping your calendar agent
+[09:26] understand how to book a ticket. A2A is
+[09:29] one level up. Instead of the
+[09:30] communication between agent and the
+[09:32] tools, it is a communication between an
+[09:34] agent to agent. Let's take a moment to
+[09:37] understand a few important concepts
+[09:39] behind A2A. The first key concept is a
+[09:42] task. Everything you ask an agent to do
+[09:44] is considered a task. For example, if
+[09:47] you ask your agent to order popcorn for
+[09:49] you, that's a task. If you ask it to
+[09:51] book a movie ticket, again, that's a
+[09:53] task. Now, let's discuss the roles of
+[09:56] different agents in this protocol. We
+[09:58] primarily deal with two types of agents.
+[10:00] The client agent and the remote agent.
+[10:02] The client agent is the one that's
+[10:04] entirely responsible for final delivery
+[10:07] of your task. The remote agent on the
+[10:09] other hand is the one that receives the
+[10:11] task and acts upon it. The next key
+[10:13] concept is agent card. It is basically a
+[10:16] digital business card for an agent. It's
+[10:19] a JSON document that provides all
+[10:21] information about the agent such as its
+[10:23] name and its capabilities. In the past,
+[10:26] you told each app what to do. With A2A,
+[10:29] they speak to each other. Plan ahead and
+[10:32] act like a team. So when your day feels
+[10:34] smooth, your tools feel sharp and
+[10:36] everything just works. That's not a
+[10:38] coincidence. That's agent to agent. The
+[10:40] protocol making everyday magic actually
+[10:43] makes sense. And this it is just the
+[10:45] trailer. The real show is yet to come.
+## End - Wrap Up
+[10:48] Thanks for watching. If you found this
+[10:50] helpful, give it a like, share it with
+[10:51] your friends, and don't forget to
+[10:53] subscribe for more such content. Got
+[10:55] something you curious about? Drop your
+[10:57] ideas in the comments. [sign-off continues; truncated]

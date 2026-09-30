@@ -1,0 +1,815 @@
+[00:13] got an assignment or a report to work
+[00:15] on? What's the first thing you do? Open
+[00:17] your laptop, start googling, and within
+[00:19] minutes, you're drowning in tabs,
+[00:21] skimming through article after article,
+[00:23] and still wondering, "What's the actual
+[00:25] answer here?" Yeah, we all been there.
+[00:27] That's because today's tools either dump
+[00:29] a bunch of info on you or give you vague
+[00:31] summaries that don't really help you
+[00:33] finish the job. But imagine this
+[00:35] instead. An AI that understands your
+[00:37] goals, plans the research for you and
+[00:39] gives you exactly what you need in the
+[00:41] format you need it. That's where agentic
+[00:43] rack comes in. Not just smart search.
+[00:45] This is AI that collaborates. It
+[00:47] reasons, decides, and helps you finish
+[00:50] your work faster, better, and with way
+[00:52] less stress.
+[00:57] [Music]
+[01:03] Hi everyone, I am Krishna Mami. Today we
+[01:06] are diving into the world of agentic
+[01:07] rag, a major leap in how AI works with
+[01:09] information. In this episode, we'll
+[01:12] start by understanding what rag is and
+[01:14] why it's such a gamechanger in making AI
+[01:16] smarter and accurate. I'll walk you
+[01:18] through the three key steps of rag.
+[01:20] retrieve, augment, and generate, and
+[01:22] explain how it helps AI give you
+[01:24] up-to-date and relevant answers by
+[01:26] pulling in real-time data. Next, we'll
+[01:27] explore how rag works under the hood
+[01:29] from how it organizes and processes data
+[01:32] to how it generates answers for your
+[01:33] questions. We'll also look at the common
+[01:35] challenges rack faces like handling way
+[01:37] queries, blending information well, and
+[01:40] personalizing responses. That leads us
+[01:42] to the start of the show, agent. We'll
+[01:44] understand how agentic takes things a
+[01:46] step further by adding smart reasoning,
+[01:49] planning, and decision-making agents
+[01:51] that collaborate to deliver exactly what
+[01:53] you need in the format you want.
+[01:54] Finally, we'll break down the workflow
+[01:56] and components of agentic rag in detail
+[01:58] and discuss why having these specialized
+[02:00] agents matters so much. And it's not
+[02:02] just theory. We'll also do a hands-on
+[02:04] session so you can see agentic rack in
+[02:06] action and get practical experience
+[02:08] working with it. If you are curious
+[02:10] about how AI can go from just answering
+[02:12] questions to actually solving problems
+[02:13] with you, you're in the right place.
+[02:15] Let's break it down. But before we jump
+[02:17] into agent rag, let's take a moment to
+[02:19] understand what regular rag actually is.
+[02:22] Because once you get how it works, the
+[02:24] next part will make a lot more sense. So
+[02:26] what does rag do? Let's say you want to
+[02:28] know about the latest updates in IPL
+[02:30] 2025. You open chart GPT and type in the
+[02:33] question. But how does it know what to
+[02:34] say? That's where rack comes in. Rack
+[02:37] stands for retrieval augmented
+[02:38] generation and it works in three steps.
+[02:40] Retrieve, augment, generate. Now let's
+[02:44] understand the steps one by one. Step
+[02:46] one, retrieval. First, the AI searches
+[02:48] through external sources like articles,
+[02:51] research papers, or trusted databases to
+[02:53] pull up relevant and accurate
+[02:55] information about your topic. Think of
+[02:57] it like asking a smart librarian to
+[02:59] bring you the most useful pages for your
+[03:01] topic. Step two, augmentation. Next, the
+[03:03] AI adds that information to your
+[03:05] original question. It's like sticking
+[03:07] all those useful facts right into its
+[03:09] own notebook, so it has more context
+[03:12] when thinking about your question. So
+[03:14] now, the AI not only has your prompt, it
+[03:16] also has fresh focused knowledge from
+[03:18] outside sources. Step three, generation.
+[03:20] Finally, it uses that rich context to
+[03:23] generate a response, a well-informed
+[03:24] explanation or paragraph that actually
+[03:27] answers your question, not just guesses.
+[03:29] So instead of vague or outdated answers,
+[03:32] you get something that's actually
+[03:33] grounded in real information. That's the
+[03:35] magic of rag. It helps AI go beyond just
+[03:37] pre-trend knowledge and gives real-time
+[03:39] awareness by pulling in current and
+[03:41] relevant data. So now we've seen what
+[03:43] rag means. Retrieve, augment, and
+[03:45] generate. But before we jump into
+[03:47] agentic rag, let's first understand why
+[03:49] rag itself is such a big deal. To do
+[03:51] that, let's compare what AI can do with
+[03:54] rag and without rag. When you use normal
+[03:56] AI, it mainly depends on what it has
+[03:58] already learned during training. So if
+[04:00] you ask about something new or very
+[04:02] specific, it might just guess an answer
+[04:04] or give a generic reply, that doesn't
+[04:06] really help. Unfortunately, LLM can
+[04:09] sometimes be a bit unpredictable in how
+[04:10] they respond. One big reason for that is
+[04:13] the way they are trained on a fixed set
+[04:14] of data, which means they only know
+[04:17] things up to a certain point in time.
+[04:18] Some common challenges with LLMs include
+[04:20] making up information when they don't
+[04:22] actually know the answer, giving
+[04:24] outdated or overly general responses
+[04:26] when you are really looking for
+[04:28] something current and specific. But with
+[04:30] RAG, the AI goes and searches for real
+[04:32] information from trusted sources while
+[04:35] answering your question. Let's say you
+[04:36] ask which four teams have qualified to
+[04:38] the IPL 2025 playoffs. without rag AI
+[04:42] might just say based on IPL history
+[04:44] teams like CSK, MI, KKR and SRH have
+[04:47] qualified for the playoffs most
+[04:49] frequently. So it's likely they have
+[04:51] made it this time as well with RAG. It
+[04:53] actually could say according to recent
+[04:55] reports Punjab Kings, RCB, Gujarat
+[04:58] Titans and Mumbai Indians have qualified
+[05:00] to the IPL 2025 playoffs with standout
+[05:03] performances from key players. See the
+[05:05] difference? One is vague and the other
+[05:07] is clear and based on rail info. That
+[05:09] means you're getting answers that are
+[05:11] more accurate and up-to-date. Another
+[05:13] big plus is custom answers. Normal AI
+[05:15] can't use your notes, files, or private
+[05:17] data. So, answers may feel generic. But
+[05:20] with rag, you can add your own material
+[05:22] and the AI will include that in its
+[05:24] response. So, the answer feels more
+[05:26] personal and useful for you. Here's a
+[05:27] simple summary. Without RAG, answers
+[05:30] might be old, general, or even wrong
+[05:32] sometimes. With Rag, answers are based
+[05:34] on real sources, more accurate, and fit
+[05:37] your exact question better. So let's
+[05:39] have a quick recap of what RAG is.
+[05:41] Retrieval augmented generation is a
+[05:43] technique for enhancing the accuracy and
+[05:45] reliability of generative AI models with
+[05:48] information from specific and relevant
+[05:50] data sources. So yeah, rag makes AI way
+[05:52] smart matter. So far we have seen why
+[05:54] rag is such a gamecher. It gives us more
+[05:57] accurate, relevant and trustworthy
+[05:59] answers unlike traditional AI that just
+[06:01] makes guesses from what it already
+[06:03] knows. But now let's go one step deeper
+[06:06] and understand how does actually rag
+[06:08] work under the hood. What happens from
+[06:10] the moment you ask a question to the
+[06:12] point you get a smart well-informed
+[06:14] answer. Let's break it down step by
+[06:16] step. Don't worry, we'll keep it simple
+[06:18] behind the scenes. How rack prepares the
+[06:20] data. Before Rack can answer questions,
+[06:22] it needs a solid foundation. Kind of
+[06:24] like organizing your study material
+[06:26] before exam time. Here's how it works.
+[06:29] Step one, load. Rack starts by
+[06:32] collecting information from many places,
+[06:34] PDFs, websites, documents, etc. It's
+[06:37] like gathering all your notes,
+[06:39] textbooks, and screenshots into one
+[06:41] single place. Step two, split. Next, it
+[06:44] breaks all the data into smaller
+[06:46] readable parts. Think of it like cutting
+[06:48] a big pizza into slices so it's easier
+[06:51] to eat. This way, rack can fetch only
+[06:53] the piece you need instead of serving
+[06:55] you the whole pizza every time. Step
+[06:57] three, embed. Now comes the cool tech
+[06:59] part. Each chunk is turned into a
+[07:01] special mathematical format called a
+[07:03] vector. This helps the system understand
+[07:06] the meaning of the text. So it doesn't
+[07:08] just look for exact words but the actual
+[07:10] idea behind them. Step four, store. All
+[07:13] these vectors are saved in something
+[07:14] called a vector database. This is like a
+[07:17] smart filing cabinet where everything is
+[07:19] arranged so rack can quickly find the
+[07:21] most relevant info later. So now the
+[07:24] data is ready. Next, let's see what
+[07:26] happens when you actually ask a
+[07:28] question. Let's say you ask which four
+[07:30] teams have qualified to the IPL 2025
+[07:32] playoffs. Here's what rack does. Step
+[07:34] one, question input. Rack looks at your
+[07:37] question carefully. It tries to
+[07:38] understand exactly what you are asking
+[07:41] like a good tutor would. Step two,
+[07:43] retrieve. Then it searches for the most
+[07:45] relevant pieces of information like
+[07:47] articles, facts, or explanations related
+[07:50] to your question. Step three, prompt
+[07:52] creation. Rack builds a custom prompt
+[07:54] that includes your question plus all the
+[07:56] helpful info you just found. This is
+[07:58] like giving the AI a full context sheet
+[08:00] before asking it to answer. Step four,
+[08:03] LLM, large language model. Now the LLM
+[08:05] steps in using both your question and
+[08:07] the retrieved content. It creates a
+[08:09] detailed and meaningful answer. And
+[08:11] finally, you got the response, one that
+[08:13] isn't just pulled out of thin air, but
+[08:15] built using verified info plus smart
+[08:17] generation. Pretty neat, right? Now that
+[08:20] we've understood what RAG is and how it
+[08:22] works, we'll see how all of this comes
+[08:23] together in action. Let's go. In this
+[08:26] hands-on session, we are going to
+[08:27] develop three different rag
+[08:29] applications. The first one is a rag
+[08:31] assistant that takes a file as an input
+[08:33] and gives relevant answers. The second
+[08:34] one is another rag application that
+[08:37] explains the code in a GitHub
+[08:38] repository. The third one is a multi-
+[08:40] aentic rag application that uses tools
+[08:43] like URL search, Google search and
+[08:46] answers relevant questions. To build
+[08:47] these rag applications, we'll use a tool
+[08:49] called Langflow. Langflow is a low code
+[08:51] platform that helps us develop and
+[08:53] deploy very powerful AI agents and
+[08:55] workflows.
+[08:57] So let's open Langflow. If you click on
+[09:01] new flow, we'll see three different
+[09:02] options. Basic prompting, vector store
+[09:04] rag and simple agent. So to build this,
+[09:07] we'll first start with vector store rag.
+[09:10] Once you have opened or created a new
+[09:12] basic vector store rag assistant, it
+[09:15] will already give you the required
+[09:16] default template. If you see this, there
+[09:18] are so many different components which
+[09:20] are just connected with the help of
+[09:22] flows. So this is one flow and this is
+[09:25] the other flow. All of these are
+[09:27] different components which don't even
+[09:30] require for you to write any code to
+[09:31] develop these agents. So as discussed
+[09:33] earlier for a rag assistant you have two
+[09:35] different flows. First one is data
+[09:37] loading flow or data injection flow.
+[09:39] Second one is a retriever flow. Let's
+[09:41] first look at the load data flow. It has
+[09:43] four different components. The first one
+[09:45] is a file component which accepts a file
+[09:47] as an input. The second one is a split
+[09:49] text component which splits or breaks
+[09:52] your file into small pieces called
+[09:53] chunks. The third one is open embeddings
+[09:56] component which uses these chunks and
+[09:58] uploads them to a vector database in
+[10:00] terms of embeddings. The last one is an
+[10:03] Astrad component. It is a database or
+[10:06] the vector database in which your file
+[10:08] will be stored as vectors. Now I'll
+[10:11] explain how you can add a file and
+[10:13] finally store that file as chunks in
+[10:15] this vector database. Now let's upload
+[10:17] our file into this file component. So as
+[10:19] discussed in the previous example, we'll
+[10:21] use the IPL schedule as the database for
+[10:24] it so that we can ask questions about
+[10:25] the fixtures and different other
+[10:29] facts about the IPL schedule of this
+[10:31] year. Okay. So now this file is loaded
+[10:34] into this component. We can use we can
+[10:36] leave this as it is. We don't need to
+[10:38] change anything in the split text
+[10:39] component. Now in the open embeddings
+[10:41] component you can you can paste your
+[10:43] open API key. So I have stored it
+[10:45] already in my global variables as open a
+[10:47] API key. So I'm just using it here. Now
+[10:50] in the Astrad you have to select the
+[10:52] database. So if you click on this option
+[10:54] you will see the list of available
+[10:55] databases which are already created. If
+[10:57] you don't have any you can click on new
+[10:59] database. You can write you can give a
+[11:01] name for this database. Uh let's use
+[11:03] something like rag
+[11:07] assistant
+[11:11] database.
+[11:13] I'll use a cloud provider as Amazon web
+[11:15] services and I'll select US East2 as the
+[11:18] region and I'll click on create.
+[11:21] So as I've clicked on create this
+[11:24] database which I have created just now
+[11:27] is available in this options. So I'll
+[11:30] click on this.
+[11:33] So what it is telling is there's an
+[11:35] unexpected error. So it means this
+[11:37] component or uh it means this database
+[11:39] is not yet ready. So to check the status
+[11:42] of this database creation you can click
+[11:44] on this dropdown and click on Astrod.
+[11:49] So here if you see my rag assistant
+[11:52] database is still in the state of
+[11:54] initializing. So we'll have to wait some
+[11:55] time for this database to get created
+[11:57] and for us to use.
+[12:00] So once the database is created, we can
+[12:02] create multiple collections inside it.
+[12:04] Collection is nothing but a group of
+[12:06] data that we can create inside a
+[12:08] database. So for each of our use case,
+[12:10] we'll create a different collection so
+[12:12] that we can differentiate between
+[12:14] different collections of data. So I'll
+[12:16] try to create a collection and I'll name
+[12:18] it as personal research
+[12:22] assistant
+[12:27] collection.
+[12:29] So I'm not changing any of these fields
+[12:32] and I'm clicking on create collection.
+[12:34] So
+[12:36] it will take a few seconds for the
+[12:38] collection to create.
+[12:42] Right, the collection got created. So
+[12:44] you don't need to load any data manually
+[12:46] here.
+[12:48] Now let's go back to lang flow. So this
+[12:50] is what we have created earlier. So
+[12:52] we'll name it something to differentiate
+[12:53] it among all the other flows or agents
+[12:56] which we have already created. So I'll
+[12:59] name it as personal
+[13:01] research
+[13:04] rag assistant.
+[13:09] Right?
+[13:11] So as now we are dealing with this load
+[13:13] data flow. So in this file component we
+[13:15] have already loaded the file here. Make
+[13:17] sure this file is of less size maybe
+[13:19] less than an MB so that you'll not get
+[13:21] any unexpected size limitation errors if
+[13:23] you are specifically on a free trial.
+[13:27] Here I have added this open API key and
+[13:29] here I have to select the database as it
+[13:32] takes some time for the database that we
+[13:33] have created to get reflected in this.
+[13:35] We'll select an existing database which
+[13:38] I've already created and using
+[13:39] previously. So I'll click on this test
+[13:41] rag flow which
+[13:44] is already created by me and uh I'll
+[13:46] select a collection which I've created.
+[13:49] If you see there are no records yet. So
+[13:51] I'll load the records now. This is the
+[13:54] file and everything is set. Now I simply
+[13:56] have to run this flow.
+[13:59] So if you see this flow is running. It's
+[14:01] built successfully. If you go and check
+[14:09] this test rag flow in the IPL schedule
+[14:11] collection now all of this data is just
+[14:15] loaded
+[14:18] simply let's go to the retriever flow in
+[14:21] the retriever flow this is a chat input
+[14:24] component where user can ask a question
+[14:26] here a sample question which is given as
+[14:28] what is the document about next open a
+[14:31] embeddings component So it can create
+[14:34] embeddings as usual at you as you
+[14:36] already know it's this is astrod
+[14:39] component and here the embedding model
+[14:41] is chosen as this open embeddings
+[14:44] component. The embeddings which are
+[14:46] created in this component will be given
+[14:48] as input for this astrod. Now these
+[14:51] results will go into a parser. This
+[14:53] parser will pass the data frame or data
+[14:55] and finally outputs the parsed text. Now
+[14:58] here it's a prompt. This prompt usually
+[15:01] has different options. There is a
+[15:03] template context question. So, so in
+[15:05] this template option, you can use any of
+[15:07] the prompt which you want to give to
+[15:09] this entire flow. Next, the output of
+[15:12] this prompt component will go to the
+[15:13] open AI component. Now, this is open AI
+[15:16] component which is the actual LLM which
+[15:18] takes in all of this as an input and
+[15:20] finally results in well ststructured
+[15:22] well-informed output.
+[15:25] We again have to select the same
+[15:27] database and same collection here. So
+[15:29] test RG flow
+[15:33] and the collection is IPL schedule
+[15:35] collection
+[15:37] and in this prompt
+[15:40] so we'll edit this prompt. That's it.
+[15:43] We'll update this prompt.
+[15:47] Now what we shall do is we shall simply
+[15:54] edit this.
+[15:57] What do you know about IPL
+[16:02] schedule
+[16:05] 2025?
+[16:10] Now let's run this retriever flow.
+[16:14] I'm clicking on this and running this.
+[16:21] So here the problem is there is no
+[16:23] connection between this stage and the
+[16:26] rest of this. So what we have to do is
+[16:30] this prompt component needs a question.
+[16:32] So we can just
+[16:35] connect these two and this context we
+[16:40] shall get from the output of this
+[16:43] database. So we'll connect this and this
+[16:46] context. Now let's run this chat
+[16:49] component again.
+[16:51] If you see every component from the
+[16:53] starting is running in the sequence
+[16:59] now open air is running and it is
+[17:01] transferring the response to the chat
+[17:02] output component. If you see if you want
+[17:04] to see the response of each stages you
+[17:07] can check this bottom right corner of
+[17:09] each stage so that you can see the
+[17:12] response which is transferred to the
+[17:13] next stage.
+[17:16] If you say this open AI component, this
+[17:18] is the response which it has given. The
+[17:20] IPL 2025 schedule includes matches
+[17:23] starting from March 22nd and features
+[17:24] varying features various teams such as
+[17:27] RCB etc etc and all. This is all pulled
+[17:29] out from the information which we have
+[17:31] loaded in the vector database.
+[17:34] Let's create one more vector store rack.
+[17:37] Before that we'll go to the data stacks
+[17:41] and uh create a new collection. This is
+[17:44] for GitHub
+[17:47] code explainer.
+[17:51] So I have selected and created this
+[17:54] collection. Right?
+[17:58] Let's go here.
+[18:00] If you see you have a file component
+[18:02] here. So instead of a file component for
+[18:05] this use case, we'll search for git in
+[18:09] the components and we got a git bundle.
+[18:11] So we can add this
+[18:14] delete this file component and use this
+[18:17] git component in term in the place of
+[18:19] that file component. So here
+[18:24] you can give the output from here as an
+[18:27] input for the split text component.
+[18:30] This component expects a repo URL.
+[18:35] So
+[18:37] we'll get a repo URL.
+[18:42] It's a remote repo. And uh this
+[18:46] is the clone URL.
+[18:49] And I set the default branch as main.
+[18:52] Now I have to select my database. I have
+[18:56] selected
+[18:58] test rag flow again.
+[19:02] And here I select GitHub code explainer
+[19:05] as my collection
+[19:08] right now
+[19:11] if I run this entire flow.
+[19:18] So nice this flow has completed. If we
+[19:22] go to this GitHub code explainer and
+[19:24] just try to reload this,
+[19:31] this collection got some data added to
+[19:34] it. Now that we have loaded the entire
+[19:36] data, let's simply
+[19:39] select the same database from here
+[19:46] testing ragflow
+[19:50] and github code explainer collection
+[19:55] and uh in this context let's change
+[19:57] something
+[19:58] let's save this the repository which I
+[20:01] have given
+[20:04] is about a small project
+[20:08] which is react pixel matching. It kind
+[20:11] of takes two different images and
+[20:13] matches them in terms of pixel matching
+[20:15] and gives the results finally.
+[20:18] Now let's run this flow.
+[20:21] Let's see the output.
+[20:23] Our question is what is this repository
+[20:25] about? It responded with this repository
+[20:27] titled react pixel matching appears to
+[20:29] be a react application designed for
+[20:30] pixel matching. So it has explained
+[20:32] everything which it knows about the
+[20:34] repository. Let's ask one more question.
+[20:38] What does app do.js
+[20:41] contain? Let's see the output.
+[20:44] In this output, it explains what this
+[20:46] app do.js file contains. It has imports.
+[20:49] It's it it has React imports like use
+[20:52] state, use effect, pixel match library,
+[20:54] state management. It it is also
+[20:56] explaining the logic inside the
+[20:58] component, promise handling, etc., etc.
+[21:01] So great. So this is how you can create
+[21:04] your own code explainer agent with the
+[21:06] help of Langflow's vector store rag
+[21:09] assistant.
+[21:11] Let's rename this as GitHub code
+[21:14] explainer.
+[21:19] Right? So until now we have built two
+[21:21] different rag assistants. So far we have
+[21:24] seen how rag system works from preparing
+[21:26] data to generating meaningful answers.
+[21:28] But just like any smart tool, Rag has
+[21:30] its own set of challenges, especially
+[21:33] when used in real world scenarios. While
+[21:35] Rag is great at fetching and using
+[21:37] external data, it can sometimes miss the
+[21:39] deeper meaning of a question, especially
+[21:41] if the query is vague. It doesn't always
+[21:43] get the full context, which can lead to
+[21:45] less helpful answers. Plus, relevance
+[21:48] and accuracy are never guaranteed. If
+[21:50] the system pulls in lowquality or
+[21:52] slightly off-topic data, it affects the
+[21:54] final answer. These challenges show us
+[21:57] one thing clearly. Rack systems need
+[21:59] more than just retrieval and generation.
+[22:01] They require smarter ways to understand
+[22:03] context, make sense of information,
+[22:06] think, plan, and respond like a real
+[22:08] teammate. That's exactly where agent
+[22:10] comes to the rescue. It's built to take
+[22:12] on these tricky areas by adding
+[22:14] reasoning, planning, and even decision-m
+[22:16] into the mix. Let's now dive into
+[22:19] agentic. Agent is an intelligent system
+[22:22] that includes an agent, a smart decision
+[22:24] maker. It not only pulls information but
+[22:27] also understand the structure of your
+[22:29] question, choose the best database or
+[22:31] resource, decides what kind of output is
+[22:33] needed like text, chart, list, timeline,
+[22:36] etc. Plans how to deliver the final
+[22:39] response in the most useful way. Let's
+[22:41] use our IPL example again. You ask which
+[22:44] four teams have qualified to the IPL
+[22:45] 2025 playoffs and what are the fixtures
+[22:48] for the playoffs. Here's how agentic rag
+[22:50] handles it. User input and initial
+[22:52] assessment. The system analyzes your
+[22:55] question and realizes this is a two-part
+[22:57] query. You need the current standings
+[22:59] and a structured timeline of key
+[23:01] matches. Vector database selection. The
+[23:04] agent analyzes the query type and
+[23:06] chooses appropriate retrieval
+[23:07] strategies. Vector search for semantic
+[23:10] understanding of qualified structured
+[23:12] data queries for timeline information,
+[23:14] potentially web search for the most
+[23:16] recent updates. If the query does not
+[23:18] match any database, the process routes
+[23:20] to a failsafe mechanism. Content
+[23:22] retrieval. It retrieves detailed
+[23:24] standings from DB1. A clear timeline of
+[23:26] key matches from DB2. Response type
+[23:29] selection. It figures out the best way
+[23:30] to present the answer. A short paragraph
+[23:33] explaining the current standings. A
+[23:34] bullet timeline listing key matches.
+[23:37] That's it. You get a well organized
+[23:38] response. Here it is. The top four teams
+[23:41] that have qualified for the IPL 2025
+[23:43] playoffs are Punjab Kings, RCB, Gujarat
+[23:46] Titans, and Mumbai Indians. And if for
+[23:48] some reason the system doesn't find
+[23:50] relevant info in any of the databases,
+[23:52] it won't hallucinate. It'll just say,
+[23:54] "Sorry, I don't have any information
+[23:56] you're looking for." That's the beauty
+[23:58] of agentic rag. It's not just reactive.
+[24:01] It's proactive. It makes smart choices
+[24:03] behind the scenes so you get exactly
+[24:05] what you need in the right format
+[24:07] without any fluff. Now, let's dive into
+[24:09] the components and workflow of agent.
+[24:11] For a question like, "Explain the key
+[24:12] moments in IPL 2024. Here's how the
+[24:15] system breaks it down and works step by
+[24:17] step. Step one, user input. You ask the
+[24:20] system, explain the key moments in IPL
+[24:22] 2024. Step two, LLM planner. The AI
+[24:26] breaks this big question into smaller
+[24:27] tasks arranged in order like task one,
+[24:30] highlight the opening match details.
+[24:32] Task two, describe the standout player
+[24:34] performances. Task three, summarize the
+[24:37] playoff matches. Task four, explain the
+[24:39] final match outcome. and task five put
+[24:42] all key moments together to give a
+[24:43] complete overview. Some tasks can happen
+[24:46] at the same time if they don't depend on
+[24:47] each other, but task five waits for all
+[24:50] the details to be ready. Step three,
+[24:52] task fetching unit. This part figures
+[24:54] out which tasks can start. It kicks off
+[24:56] tasks one to four simultaneously since
+[24:58] these are independent. After these are
+[25:01] done, task five starts assembling the
+[25:03] full answer. Step four, executor. This
+[25:05] unit runs the tasks using its tools.
+[25:07] Search tool fetches accurate match info
+[25:09] and player stats for each key moment.
+[25:12] Synthesis tool combines these pieces
+[25:14] into one smooth, easy to understand
+[25:15] overview. Once all tasks are complete,
+[25:18] you get a clear, full explanation of key
+[25:20] moments in IPL 2024. With a clear
+[25:22] understanding of how the different
+[25:23] agents work together in executing tasks,
+[25:26] it's important to recognize why having
+[25:27] these specialized agents matters so
+[25:29] much. Each plays a crucial role in
+[25:31] making the whole system efficient and
+[25:33] reliable. Why do these agents matter? By
+[25:36] employing specialized agents with
+[25:37] distinct functions, the rack pipeline
+[25:39] ensures accuracy, scalability,
+[25:41] flexibility, and efficiency. Together,
+[25:44] these agents empower rack systems to
+[25:46] deliver highquality, contextually
+[25:48] accurate, and timely responses, no
+[25:50] matter how complex the user's question
+[25:51] might be. So, now that we have seen why
+[25:53] these agents matter, let's quickly
+[25:55] compare traditional rack systems with
+[25:57] agentic rag. They are quite different.
+[25:59] Traditional rack usually uses just one
+[26:01] tool, a vector database to fetch
+[26:03] information. It works fine for simple
+[26:05] lookups but is limited to static
+[26:07] documents. Agentic rack is way more
+[26:10] flexible. It can use many tools at once
+[26:13] like doing math, writing emails,
+[26:15] analyzing data or making decisions based
+[26:17] on the situations. This makes it much
+[26:19] smarter and capable. Plus, agentic rack
+[26:22] is great at handling complex
+[26:23] step-by-step problems because it knows
+[26:25] which tool to use and when. It's also
+[26:28] designed for teamwork with multiple AI
+[26:30] agents working together to get better
+[26:32] results. That's why agentic rack is a
+[26:34] powerful choice for real world
+[26:36] everchanging tasks. Now let's go and
+[26:38] build a multi- aentic flow with the help
+[26:39] of simple agent.
+[26:44] So here
+[26:48] let's delete this. So here there are two
+[26:50] different components. One is URL
+[26:53] and the other is agent.
+[26:56] Agent is a component which connects with
+[26:58] different tools like URL
+[27:01] search Google search etc and uh responds
+[27:05] accordingly to the question asked. So
+[27:07] here by default an URL is uh added. So
+[27:11] let's just
+[27:13] delete this for now and uh let's ask a
+[27:16] question to this agent.
+[27:18] So in this instructions you can we can
+[27:20] specify something. So by default it
+[27:23] already has your helpful assistant that
+[27:25] can use tools to answer questions and
+[27:26] perform tasks.
+[27:28] Okay, it already has open a as a model
+[27:31] provider. Let's ask some question.
+[27:36] Who won
+[27:38] the IPL
+[27:40] 2025
+[27:42] match between
+[27:46] GT and CSK
+[27:49] in the league matches?
+[27:58] It gave something like I currently do
+[28:00] not have access to real-time data or
+[28:01] future events including IPL 2025 match
+[28:03] results.
+[28:05] Right? We'll ask one more question.
+[28:10] who qualified
+[28:14] in who qualified for IPL 2025
+[28:18] playoff or
+[28:21] which four teams have qualified for IPL
+[28:24] 2025 playoffs.
+[28:28] So the result is same it doesn't have
+[28:32] access to real-time data or future
+[28:34] events. So let's do something
+[28:37] here. we'll add a URL component.
+[28:44] So what this URL component is, it helps
+[28:47] this agent to understand
+[28:50] the URLs which are given and uh read
+[28:52] that URLs, fetch the information from
+[28:54] the URL and give the response based on
+[28:56] the information it got from the URL. So
+[28:59] let's let's ask the same question here.
+[29:03] Which four teams have
+[29:07] qualified
+[29:09] for IPL 2025 playoffs?
+[29:15] You can take reference
+[29:18] from this URL. I'll just pull up Cricbus
+[29:23] URL so that it contains some information
+[29:25] about that points table.
+[29:36] Right now we got the result. So the four
+[29:38] teams that have qualified for IPL 2025
+[29:40] playoffs are Punjab Kings, RCB, Gujarat
+[29:43] Titans and Mumbai Indians. We can see
+[29:45] the execution
+[29:48] of this agentic flow. So initially we
+[29:50] have given the input and uh it has
+[29:53] executed the URL fetch content because
+[29:55] we have given this URL here. So it got
+[29:57] this URL fetched and it got a response
+[30:01] some something like this. So from it it
+[30:03] has understood the response and gave the
+[30:05] output. So now we have given this URL
+[30:07] understanding support or URL
+[30:10] understanding power to this agentic
+[30:12] flow. Now let's do something. Now let's
+[30:14] ask a different question which both the
+[30:16] LLM and the URL which we are going to
+[30:18] give doesn't know about.
+[30:21] How much did Schubmanil score in
+[30:28] GT versus CSK match in IPL 2025?
+[30:37] So
+[30:39] the agent doesn't have the information.
+[30:40] It has pulled
+[30:43] it has fetched this URL and in the URL
+[30:45] also it it didn't have any information
+[30:47] about this specific aspect. So what it
+[30:49] responded is with I couldn't find the
+[30:52] specific score of Shukmanil in this
+[30:54] match from the available sources. You
+[30:56] might want to check the latest updates
+[30:58] on cricket specific websites like etc
+[31:00] etc. Now let's add one more powerful
+[31:04] feature for this multi-agent flow. Let's
+[31:08] search for
+[31:10] search API in the components.
+[31:14] Let's bring it here.
+[31:18] So you need to add a a search API key.
+[31:20] So I already have search API key in this
+[31:22] global variable. So it got automatically
+[31:24] added.
+[31:27] Now I'll enable the tool mode and attach
+[31:31] this output
+[31:34] to this agents tools. Now you have added
+[31:37] the search API for power also to this
+[31:40] agent. Now let's ask the same question
+[31:42] to this agent. Now, how much did
+[31:45] Schubmanil score in GT versus CSK match
+[31:48] in IPL 2025,
+[31:56] right? So,
+[31:58] it has first executed this search
+[32:01] component fetch content. Now, based on
+[32:03] this search, it got some results and
+[32:04] responded with the accurate information.
+[32:06] In IPL 2025 match between GT and CSK,
+[32:09] Superangle scored 13 runs of nine balls
+[32:12] including 1 14 and 1 six.
+[32:15] Cool. So this is how you can create a
+[32:17] multi- aent RA assistant with the help
+[32:19] of Langflow. So you can play with
+[32:20] different components, different flows,
+[32:22] mix up RA and agent capabilities and
+[32:24] create your own assistance with the help
+[32:26] of Langflow. So you can also click on
+[32:28] this publish button and click on API
+[32:31] access to use these APIs in your
+[32:33] applications or click on this embed into
+[32:36] site option to embed this into your own
+[32:39] applications. And that's a wrap on the
+[32:41] wonderful world of agentic rack. Pretty
+[32:43] cool, right? It's like giving AI a
+[32:45] toolbox, a brain, and a little bit of
+[32:47] street smart attitude. From searching
+[32:49] info to solving complex problems with
+[32:51] multiple agents working together, it's
+[32:53] teamwork at a whole new level. This is
+[32:55] just the tip of the iceberg. when it
+[32:57] comes to what's possible with AI today.
+[32:59] And trust me, it's only getting crazier
+[33:01] from here. So, if your brain's doing a
+[33:03] happy dance right now and you're curious
+[33:05] for more, hit that like button, drop a
+[33:07] comment, smash that subscribe, and don't
+[33:09] forget to ring that bell icon so you
+[33:11] never miss the next geeky but awesome
+[33:12] deep dive. Before you go, please let us
+[33:15] know in the comments what you would like
+[33:16] us to explore next. We'll pick your idea
+[33:18] for the next episode. Catch you in the
+[33:20] next one.
+[33:23] [Music]
