@@ -13,7 +13,7 @@
 - **0:00 You've probably received this message**
 - **0:45 Why the internet lost its mind**
 - **2:00 It's not a chatbot. At all.**
-- **4:00 So… is ChatGPT dead?**
+- **4:00 Jev vs LLMs: rivals or teammates?**
 - **4:45 Claim #1: can we fool it?**
 - **8:15 Claim #2: are the answers really free?**
 - **10:45 Wrong, and sure of it**
@@ -62,11 +62,11 @@ The hook shows the result in the first 5 seconds and states the open loop by 0:2
 | 0:05–0:12 | Jev's output card appears instantly, with a number | *"This AI answered in under a second. Its makers say it can't hallucinate."* |
 | 0:12–0:20 | Split: "Can't hallucinate" / "Answers are free" | *"Two huge claims. We tested both. One of them doesn't survive this video."* |
 | 0:20–0:35 | Quick cuts: a Hinglish scam, a fake OTP message, the 100-message race timer | *"Polite scams, Hinglish, fake OTPs, a hundred messages, and a stopwatch."* |
-| 0:35–0:45 | Face cam | *"It's called Jev, and it doesn't talk at all. It only decides. Let's see if the hype is real."* |
+| 0:35–0:45 | Face cam | *"It's called Jev: a new AI model that doesn't generate text. It makes decisions. Let's see if the hype is real."* |
 
 The V3 line "most AI launches aren't worth our time" has been **removed** from the hook, as the review asked.
 
-**Re-hook →** *But why is everyone suddenly talking about a model that can't even say hello?*
+**Re-hook →** *But why is everyone suddenly talking about a model that doesn't generate text?*
 
 ---
 
@@ -131,11 +131,11 @@ You give Jev a **state** (the thing to judge) and typed **questions**. It return
 
 ---
 
-## So… Is ChatGPT Dead?
+## Jev vs LLMs: Rivals or Teammates?
 
 *(4:00–4:45)*
 
-**No. And that's the point.** Jev can't write, explain itself, or reason step by step. TypeSafe's docs say it's **not a drop-in replacement** for a chatbot. It replaces the *small, repetitive* decisions inside apps. The two work as a team: **"cheap by default, frontier on exception"** (LangChain).
+**Teammates, not rivals.** Jev can't write, explain itself, or reason step by step. TypeSafe's docs say it's **not a drop-in replacement** for a chatbot. It replaces the *small, repetitive* decisions inside apps. The two work as a team: **"cheap by default, frontier on exception"** (LangChain).
 
 **Re-hook →** *But fast and cheap means nothing if it's wrong. Can we fool it?*
 

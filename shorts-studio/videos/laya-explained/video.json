@@ -1,0 +1,362 @@
+{
+  "slug": "laya-explained",
+  "title": "The free Jev rival nobody's talking about",
+  "theme": "editorial",
+  "music": "music/soft-pad.mp3",
+  "voiceNote": "Gemini TTS (temporary); replace with your recordings in voice/",
+  "keywords": [
+    "Laya,",
+    "Laya",
+    "free",
+    "laptop!",
+    "human.",
+    "Confident.",
+    "absolutely!"
+  ],
+  "names": [
+    "Laya",
+    "Jev",
+    "Kev",
+    "Nimble"
+  ],
+  "parts": {
+    "full": [
+      "s01",
+      "s02",
+      "s03",
+      "s04",
+      "s05",
+      "s06",
+      "s07",
+      "s08"
+    ]
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "title-hook",
+      "page": "ink",
+      "props": {
+        "lines": [
+          "THE FREE",
+          "JEV RIVAL",
+          "NOBODY TALKS",
+          "ABOUT"
+        ],
+        "highlight": "FREE",
+        "backdrop": "token-rain",
+        "chips": [
+          "LAYA",
+          "RUNS ON YOUR LAPTOP"
+        ]
+      },
+      "beats": [
+        {
+          "word": "laya,",
+          "action": "show",
+          "target": "chips.0"
+        },
+        {
+          "word": "laptop",
+          "action": "show",
+          "target": "chips.1"
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "type": "running-example",
+      "page": "royal",
+      "props": {
+        "eyebrow": "SAME TICKET, FREE MODEL",
+        "ticket": {
+          "id": "#4821",
+          "from": "Riya",
+          "plan": "Pro plan",
+          "text": "I was charged twice. Refund me, or I cancel."
+        },
+        "questions": [
+          "Which team?",
+          "Urgent?",
+          "About to leave?"
+        ]
+      },
+      "beats": [
+        {
+          "word": "ticket",
+          "action": "show",
+          "target": "ticket"
+        },
+        {
+          "word": "free",
+          "action": "show",
+          "target": "questions"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "big-counter",
+      "page": "sunflower",
+      "kicker": "WHAT LAYA IS",
+      "props": {
+        "items": [
+          {
+            "value": 421,
+            "suffix": "M",
+            "label": "parameters (tiny!)",
+            "source": "Convai's claim"
+          },
+          {
+            "value": 33,
+            "prefix": "~",
+            "suffix": " ms",
+            "label": "per decision",
+            "source": "Convai's claim"
+          },
+          {
+            "value": 100,
+            "suffix": "+",
+            "label": "languages",
+            "source": "Convai's claim"
+          },
+          {
+            "value": "FREE",
+            "label": "open-source license",
+            "source": "Laya on PyPI"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "421",
+          "action": "count-up",
+          "target": "items.0"
+        },
+        {
+          "word": "33",
+          "action": "count-up",
+          "target": "items.1"
+        },
+        {
+          "word": "hundred",
+          "action": "count-up",
+          "target": "items.2"
+        },
+        {
+          "word": "free",
+          "action": "show",
+          "target": "items.3"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "side-by-side-variants",
+      "page": "paper",
+      "kicker": "IT'S NOT ALONE",
+      "props": {
+        "rows": [
+          {
+            "label": "Jev",
+            "tokens": [
+              "closed",
+              "cloud"
+            ]
+          },
+          {
+            "label": "Kev",
+            "tokens": [
+              "open"
+            ],
+            "note": "yes, named after Jev 😂"
+          },
+          {
+            "label": "Laya",
+            "tokens": [
+              "open",
+              "tiny",
+              "local"
+            ]
+          },
+          {
+            "label": "Nimble",
+            "tokens": [
+              "decisions for",
+              "any open LLM"
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "jev",
+          "action": "show",
+          "target": "rows.0"
+        },
+        {
+          "word": "kev",
+          "action": "show",
+          "target": "rows.1"
+        },
+        {
+          "word": "named",
+          "action": "highlight",
+          "target": "rows.1"
+        },
+        {
+          "word": "nimble",
+          "action": "show",
+          "target": "rows.3"
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "type": "checklist",
+      "page": "ink",
+      "kicker": "WHY THE SILENCE?",
+      "props": {
+        "items": [
+          {
+            "text": "No $40M funding",
+            "kind": "no"
+          },
+          {
+            "text": "No famous founder",
+            "kind": "no"
+          },
+          {
+            "text": "No viral launch",
+            "kind": "no"
+          },
+          {
+            "text": "~36% accuracy out of the box",
+            "kind": "warn",
+            "source": "Laya model card"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "no",
+          "nth": 0,
+          "action": "show",
+          "target": "items.0"
+        },
+        {
+          "word": "no",
+          "nth": 1,
+          "action": "show",
+          "target": "items.1"
+        },
+        {
+          "word": "no",
+          "nth": 2,
+          "action": "show",
+          "target": "items.2"
+        },
+        {
+          "word": "36",
+          "action": "show",
+          "target": "items.3"
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "type": "mechanism-step",
+      "page": "paper",
+      "kicker": "WE RAN IT",
+      "props": {
+        "mode": "gate",
+        "threshold": 0.85,
+        "rows": [
+          {
+            "q": "team",
+            "a": "billing",
+            "c": 0.88
+          },
+          {
+            "q": "churn",
+            "a": "yes",
+            "c": 0.86
+          },
+          {
+            "q": "urgency",
+            "a": "critical",
+            "c": 0.23
+          }
+        ],
+        "source": "Real output · laya 0.3.22, CPU"
+      },
+      "beats": [
+        {
+          "word": "ran",
+          "action": "show",
+          "target": "rows"
+        },
+        {
+          "word": "confident",
+          "action": "show",
+          "target": "pass"
+        },
+        {
+          "word": "human.",
+          "action": "show",
+          "target": "fail"
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "checklist",
+      "page": "sunflower",
+      "kicker": "DOES IT MAKE SENSE?",
+      "props": {
+        "items": [
+          {
+            "text": "Your data must stay private",
+            "kind": "ok"
+          },
+          {
+            "text": "You want plug-and-play",
+            "kind": "no"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "private,",
+          "action": "show",
+          "target": "items.0"
+        },
+        {
+          "word": "plug-and-play,",
+          "action": "show",
+          "target": "items.1"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "recap-card",
+      "page": "ink",
+      "props": {
+        "title": "LAYA",
+        "subtitle": "free, tiny, honest about its limits",
+        "steps": [],
+        "question": "Would you trust a free model with your tickets? 👇",
+        "loopTo": "first"
+      },
+      "beats": [
+        {
+          "word": "trust",
+          "action": "show",
+          "target": "question"
+        }
+      ]
+    }
+  ],
+  "voiceProvider": "gemini"
+}

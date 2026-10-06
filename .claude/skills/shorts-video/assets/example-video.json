@@ -1,0 +1,175 @@
+{
+  "slug": "openai-dots",
+  "title": "OpenAI Dots: the AI that works while you sleep",
+  "theme": "dayToNight",
+  "music": "music/upbeat-01.mp3",
+  "parts": {
+    "full": ["s01","s02","s03","s04","s05","s06","s07","s08","s09","s10","s11"]
+  },
+  "scenes": [
+    {
+      "id": "s01", "type": "hook-scene",
+      "props": {
+        "setting": "bedroom-night", "clock": "3:00 AM",
+        "notifications": [
+          { "text": "Bug found & fix drafted", "emoji": "🐞" },
+          { "text": "Invoice ready for approval", "emoji": "🧾" },
+          { "text": "Morning plan ready", "emoji": "📅" }
+        ]
+      },
+      "beats": [
+        { "word": "bug", "action": "show", "target": "notifications.0" },
+        { "word": "invoice", "action": "show", "target": "notifications.1" },
+        { "word": "morning", "action": "show", "target": "notifications.2" },
+        { "word": "Dots", "action": "burst" }
+      ]
+    },
+    {
+      "id": "s02", "type": "split-compare",
+      "props": {
+        "left": { "title": "ChatGPT", "items": ["waits for you to type"] },
+        "right": { "title": "A dot", "items": ["own cloud computer", "works 24/7"] },
+        "verdictLine": "ChatGPT waits. A dot doesn't."
+      },
+      "beats": [
+        { "word": "waits", "action": "highlight", "target": "left" },
+        { "word": "computer", "action": "show", "target": "right.items.0" },
+        { "word": "seven", "action": "show", "target": "right.items.1" }
+      ],
+      "source": "OpenAI, Sept 29 2026"
+    },
+    {
+      "id": "s03", "type": "split-compare",
+      "props": {
+        "left": { "title": "Smart friend you call", "illustration": "phone-call" },
+        "right": { "title": "Assistant at the next desk", "illustration": "office-empty" },
+        "openLoop": "👀 Stay till the end"
+      },
+      "beats": [{ "word": "catch", "action": "show", "target": "openLoop" }]
+    },
+    {
+      "id": "s04", "type": "step-flow",
+      "props": {
+        "steps": [
+          { "icon": "🏷️", "label": "Name it" },
+          { "icon": "🔌", "label": "4,000+ apps" },
+          { "icon": "🎯", "label": "Give a goal" },
+          { "icon": "✅", "label": "Approve results" }
+        ]
+      },
+      "beats": [
+        { "word": "name", "action": "show", "target": "steps.0" },
+        { "word": "thousand", "action": "count-up", "target": "steps.1" },
+        { "word": "goal", "action": "show", "target": "steps.2" },
+        { "word": "approval", "action": "show", "target": "steps.3" }
+      ],
+      "source": "OpenAI Help Center"
+    },
+    {
+      "id": "s05", "type": "story-card",
+      "props": {
+        "character": "freelancer-desk",
+        "beats": ["sticky note: Invoice??", "invoice builds", "Approve?", "Sent ✅"]
+      },
+      "beats": [
+        { "word": "forgot", "action": "show", "target": "beats.0" },
+        { "word": "prepared", "action": "show", "target": "beats.1" },
+        { "word": "yes", "action": "show", "target": "beats.2" },
+        { "word": "felt", "action": "burst" }
+      ],
+      "source": "OpenAI, Sept 29 2026"
+    },
+    {
+      "id": "s06", "type": "card-carousel",
+      "props": {
+        "header": "What would YOUR dot do?",
+        "cards": [
+          { "persona": "Developer", "emoji": "👩‍💻", "miniUi": ["feedback", "PR ready ✅"] },
+          { "persona": "Creator", "emoji": "🎬", "miniUi": ["3 clip moments", "draft post"] },
+          { "persona": "Everyone", "emoji": "📅", "miniUi": ["morning summary"] }
+        ]
+      },
+      "beats": [
+        { "word": "developer's", "action": "show", "target": "cards.0" },
+        { "word": "creator's", "action": "show", "target": "cards.1" },
+        { "word": "calendar", "action": "show", "target": "cards.2" }
+      ]
+    },
+    {
+      "id": "s07", "type": "tile-grid",
+      "props": {
+        "tiles": [
+          { "emoji": "💬", "label": "ChatGPT" },
+          { "emoji": "#", "label": "Slack" },
+          { "emoji": "👥", "label": "Teams" },
+          { "emoji": "📞", "label": "Voice call" }
+        ]
+      },
+      "beats": [{ "word": "call", "action": "show", "target": "tiles.3" }]
+    },
+    {
+      "id": "s08", "type": "rules-panel",
+      "props": {
+        "title": "You set the rules",
+        "options": [
+          { "label": "Act without asking", "state": "on" },
+          { "label": "Ask first", "state": "on" },
+          { "label": "Hand off to you", "state": "on" },
+          { "label": "Change password: always you 🔒", "state": "locked" }
+        ]
+      },
+      "beats": [
+        { "word": "own", "action": "show", "target": "options.0" },
+        { "word": "ask", "action": "show", "target": "options.1" },
+        { "word": "hand", "action": "show", "target": "options.2" },
+        { "word": "passwords", "action": "show", "target": "options.3" }
+      ],
+      "source": "OpenAI, Sept 29 2026"
+    },
+    {
+      "id": "s09", "type": "checklist",
+      "props": {
+        "title": "⚠️ The catch",
+        "items": [
+          { "text": "Pro & Business Premium only", "kind": "warn" },
+          { "text": "One dot, can't call you yet", "kind": "warn" },
+          { "text": "Disconnecting an app doesn't erase what it learned", "kind": "no" },
+          { "text": "It can still make mistakes", "kind": "warn" }
+        ]
+      },
+      "beats": [
+        { "word": "Pro", "action": "show", "target": "items.0" },
+        { "word": "call", "action": "show", "target": "items.1" },
+        { "word": "disconnecting", "action": "stamp", "target": "items.2" },
+        { "word": "mistakes", "action": "show", "target": "items.3" }
+      ],
+      "source": "OpenAI Help Center"
+    },
+    {
+      "id": "s10", "type": "timeline",
+      "props": {
+        "points": [
+          { "year": "2022", "label": "AI answers questions" },
+          { "year": "2025", "label": "AI does tasks" },
+          { "year": "2026", "label": "AI works while you're offline" }
+        ],
+        "closingLine": "Chatbots → AI coworkers"
+      },
+      "beats": [
+        { "word": "2022", "action": "show", "target": "points.0" },
+        { "word": "2025", "action": "show", "target": "points.1" },
+        { "word": "offline", "action": "show", "target": "points.2" },
+        { "word": "coworkers", "action": "zoom-punch", "target": "closingLine" }
+      ]
+    },
+    {
+      "id": "s11", "type": "cta",
+      "props": {
+        "question": "What's the first job you'd give your dot? 👇",
+        "followLabel": "Follow for more AI breakdowns",
+        "loopTo": "s01"
+      },
+      "beats": [{ "word": "comments", "action": "show", "target": "question" }]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "shorts-studio",
+  "version": "1.0.0",
+  "description": "Data-driven Remotion engine for vertical explainer Shorts (videos/<slug>/video.json)",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "new": "node scripts/new-video.mjs",
+    "voice": "node scripts/voice.mjs",
+    "durations": "node scripts/durations.mjs",
+    "preview": "node scripts/gen-registry.mjs && remotion studio engine/index.ts",
+    "still": "node scripts/stills.mjs",
+    "render": "node scripts/render.mjs",
+    "lint": "eslint engine && tsc",
+    "audio": ".venv/bin/python scripts/lib/make-audio.py public"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.532",
+    "@remotion/cli": "4.0.532",
+    "@remotion/google-fonts": "4.0.532",
+    "@remotion/renderer": "4.0.532",
+    "@remotion/transitions": "4.0.532",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.532"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.532",
+    "@types/react": "19.2.7",
+    "eslint": "9.39.5",
+    "typescript": "5.9.3"
+  }
+}

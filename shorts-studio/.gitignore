@@ -1,0 +1,7 @@
+node_modules/
+out/
+.venv/
+public/vo/
+videos/*/build/
+engine/registry.generated.ts
+.env

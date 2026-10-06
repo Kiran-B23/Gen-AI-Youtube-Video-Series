@@ -1,0 +1,449 @@
+{
+  "slug": "jev-explained",
+  "title": "Is Jev worth the hype?",
+  "theme": "editorial",
+  "music": "music/soft-pad.mp3",
+  "voiceNote": "Gemini TTS (temporary); replace with your recordings in voice/",
+  "keywords": [
+    "Jev",
+    "billing",
+    "Nope!",
+    "once.",
+    "once!",
+    "human.",
+    "free",
+    "hype?",
+    "catch:",
+    "proven."
+  ],
+  "names": [
+    "Jev",
+    "TypeSafe",
+    "ChatGPT",
+    "OpenAI"
+  ],
+  "parts": {
+    "full": [
+      "s01",
+      "s02",
+      "s03",
+      "s04",
+      "s05",
+      "s06",
+      "s07",
+      "s08",
+      "s09",
+      "s10",
+      "s11"
+    ]
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "title-hook",
+      "page": "ink",
+      "props": {
+        "lines": [
+          "THIS AI MODEL",
+          "CAN'T WRITE A WORD",
+          "STILL BLOWING UP"
+        ],
+        "highlight": "MODEL",
+        "backdrop": "token-rain",
+        "chips": [
+          "NEVER WRITES A WORD",
+          "STILL BLOWING UP"
+        ]
+      },
+      "beats": [
+        {
+          "word": "single",
+          "action": "show",
+          "target": "chips.0"
+        },
+        {
+          "word": "internet",
+          "action": "show",
+          "target": "chips.1"
+        },
+        {
+          "word": "internet",
+          "action": "zoom-punch"
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "type": "big-stamp",
+      "page": "ink",
+      "kicker": "WHY THE HYPE?",
+      "props": {
+        "text": "DECISION MODEL",
+        "color": "highlight",
+        "pair": {
+          "left": {
+            "title": "NOT A",
+            "value": "GENERATOR"
+          },
+          "right": {
+            "title": "A",
+            "value": "DECISION MODEL"
+          }
+        }
+      },
+      "beats": [
+        {
+          "word": "generation",
+          "action": "stamp",
+          "target": "stamp"
+        },
+        {
+          "word": "decision",
+          "action": "show",
+          "target": "pair.right"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "big-stamp",
+      "page": "ink",
+      "kicker": "THE REVEAL",
+      "props": {
+        "text": "MEET JEV",
+        "color": "highlight"
+      },
+      "beats": [
+        {
+          "word": "meet",
+          "action": "stamp",
+          "target": "stamp"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "running-example",
+      "page": "royal",
+      "props": {
+        "eyebrow": "3 KEY DECISIONS",
+        "ticket": {
+          "id": "#4821",
+          "from": "Riya",
+          "plan": "Pro plan",
+          "text": "I was charged twice. Refund me, or I cancel."
+        },
+        "questions": [
+          "Which team?",
+          "Urgent?",
+          "About to leave?"
+        ],
+        "chips": [
+          "MILLIONS OF TICKETS"
+        ]
+      },
+      "beats": [
+        {
+          "word": "ticket",
+          "action": "show",
+          "target": "ticket"
+        },
+        {
+          "word": "three",
+          "action": "show",
+          "target": "questions"
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "type": "big-stamp",
+      "page": "ink",
+      "kicker": "WILL IT REPLACE LLMs?",
+      "props": {
+        "text": "NO.",
+        "color": "danger",
+        "pair": {
+          "left": {
+            "title": "JEV DECIDES",
+            "value": "\u2192 billing"
+          },
+          "right": {
+            "title": "THE LLM WRITES",
+            "value": "\u201cSo sorry about the double charge\u2026\u201d"
+          }
+        }
+      },
+      "beats": [
+        {
+          "word": "Forty",
+          "nth": 0,
+          "action": "count-up",
+          "target": "items.0"
+        },
+        {
+          "word": "Forty",
+          "nth": 1,
+          "action": "count-up",
+          "target": "items.1"
+        },
+        {
+          "word": "ten",
+          "action": "count-up",
+          "target": "items.2"
+        },
+        {
+          "word": "ex-OpenAI",
+          "action": "show",
+          "target": "items.3"
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "type": "mechanism-step",
+      "page": "paper",
+      "kicker": "HOW IT'S DIFFERENT",
+      "props": {
+        "mode": "token-loop",
+        "label": "CHATBOT (Riya Ticket)",
+        "answer": "This ticket is about a duplicate charge , so it should go to the billing team , not technical support . The right team is : billing",
+        "counterLabel": "RUNS",
+        "counterTo": 40
+      },
+      "beats": [
+        {
+          "word": "Nope!",
+          "action": "stamp",
+          "target": "stamp"
+        },
+        {
+          "word": "decides",
+          "action": "show",
+          "target": "pair.left"
+        },
+        {
+          "word": "writes",
+          "nth": 1,
+          "action": "show",
+          "target": "pair.right"
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "mechanism-step",
+      "page": "paper",
+      "kicker": "HOW IT'S DIFFERENT",
+      "props": {
+        "mode": "one-pass",
+        "label": "JEV (Riya Ticket)",
+        "question": "Which team?",
+        "options": [
+          {
+            "label": "billing",
+            "p": 0.97
+          },
+          {
+            "label": "technical",
+            "p": 0.02
+          },
+          {
+            "label": "sales",
+            "p": 0.01
+          }
+        ],
+        "answers": [
+          {
+            "q": "Urgent?",
+            "a": "yes \u00b7 0.88"
+          },
+          {
+            "q": "Leaving?",
+            "a": "4 / 5"
+          }
+        ],
+        "passLabel": "1 PASS"
+      },
+      "beats": [
+        {
+          "word": "writes",
+          "action": "show",
+          "target": "loop"
+        },
+        {
+          "word": "again",
+          "action": "highlight",
+          "target": "loop"
+        },
+        {
+          "word": "runs",
+          "action": "stamp",
+          "target": "counter"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "lookup-table",
+      "page": "royal",
+      "kicker": "WHERE IT HELPS",
+      "props": {
+        "columns": [
+          "USE",
+          "QUESTION"
+        ],
+        "rows": [
+          [
+            "Ticket routing",
+            "Which team?"
+          ],
+          [
+            "Spam & phishing",
+            "Is this a scam?"
+          ],
+          [
+            "Guardrails",
+            "Is this safe?"
+          ],
+          [
+            "Lead scoring",
+            "Will they buy?"
+          ],
+          [
+            "LLM picker",
+            "Which model?"
+          ],
+          [
+            "Agent watch",
+            "Is it stuck?"
+          ]
+        ]
+      },
+      "beats": [
+        {
+          "word": "once",
+          "action": "show",
+          "target": "pass"
+        },
+        {
+          "word": "probability",
+          "action": "show",
+          "target": "options"
+        },
+        {
+          "word": "billing",
+          "action": "highlight",
+          "target": "options"
+        },
+        {
+          "word": "three",
+          "action": "show",
+          "target": "answers"
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "type": "checklist",
+      "page": "sunflower",
+      "kicker": "BUT DOES IT ACTUALLY WORK?",
+      "props": {
+        "items": [
+          {
+            "text": "The idea is genuinely useful",
+            "kind": "ok"
+          },
+          {
+            "text": "Speed & cost numbers are TypeSafe's own",
+            "kind": "warn"
+          },
+          {
+            "text": "~68% accuracy on its own benchmark",
+            "kind": "warn"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "routing",
+          "action": "show",
+          "target": "rows.0"
+        },
+        {
+          "word": "spam",
+          "action": "show",
+          "target": "rows.1"
+        },
+        {
+          "word": "guardrails",
+          "action": "show",
+          "target": "rows.2"
+        },
+        {
+          "word": "leads",
+          "action": "show",
+          "target": "rows.3"
+        },
+        {
+          "word": "picking",
+          "action": "show",
+          "target": "rows.4"
+        },
+        {
+          "word": "spotting",
+          "action": "show",
+          "target": "rows.5"
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "type": "big-stamp",
+      "page": "ink",
+      "kicker": "THE VERDICT",
+      "props": {
+        "text": "PROMISING, NOT PROVEN.",
+        "color": "highlight"
+      },
+      "beats": [
+        {
+          "word": "useful",
+          "action": "show",
+          "target": "items.0"
+        },
+        {
+          "word": "speed",
+          "action": "show",
+          "target": "items.1"
+        },
+        {
+          "word": "benchmark",
+          "action": "show",
+          "target": "items.2"
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "type": "recap-card",
+      "page": "ink",
+      "props": {
+        "title": "JEV",
+        "subtitle": "decides fast. Test it first.",
+        "steps": [],
+        "question": "Would you trust Jev with your tickets? \ud83d\udc47",
+        "next": "Next: the free rival \u2192",
+        "loopTo": "first"
+      },
+      "beats": [
+        {
+          "word": "promising",
+          "action": "stamp",
+          "target": "stamp"
+        }
+      ]
+    }
+  ],
+  "voiceProvider": "gemini"
+}

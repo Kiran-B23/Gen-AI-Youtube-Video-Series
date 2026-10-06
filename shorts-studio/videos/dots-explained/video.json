@@ -1,0 +1,646 @@
+{
+  "slug": "dots-explained",
+  "title": "Dots: the AI that works while you sleep",
+  "theme": "dayToNight",
+  "music": "music/soft-pad.mp3",
+  "voiceNote": "Gemini single take (temporary); replace with your recordings in voice/",
+  "names": [
+    "Dots",
+    "ChatGPT",
+    "Slack",
+    "Teams",
+    "Muse",
+    "OpenAI"
+  ],
+  "keywords": [
+    "Dots,",
+    "dot",
+    "doesn't.",
+    "computer,",
+    "catch.",
+    "4000",
+    "approval.",
+    "sent",
+    "pull",
+    "calendar.",
+    "rules.",
+    "trust.",
+    "always",
+    "Nope!",
+    "stays.",
+    "everything.",
+    "mistakes.",
+    "offline.",
+    "coworkers.",
+    "first"
+  ],
+  "captionMaxWords": 5,
+  "clock": {
+    "from": "03:00",
+    "to": "07:00"
+  },
+  "overlays": [
+    {
+      "type": "padlock",
+      "label": "👀 Stay till the end",
+      "from": {
+        "scene": "s03",
+        "word": "catch."
+      },
+      "until": {
+        "scene": "s09",
+        "word": "think"
+      }
+    },
+    {
+      "type": "clock",
+      "from": {
+        "scene": "s02",
+        "word": "Here's"
+      },
+      "until": {
+        "scene": "s11",
+        "word": "Save"
+      }
+    }
+  ],
+  "parts": {
+    "full": [
+      "s01",
+      "s02",
+      "s03",
+      "s04",
+      "s05",
+      "s06",
+      "s07",
+      "s08",
+      "s09",
+      "s10",
+      "s11"
+    ]
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "hook-scene",
+      "props": {
+        "clock": "3:00 AM",
+        "title": "DOTS",
+        "subtitle": "always-on AI agents",
+        "notifications": [
+          {
+            "emoji": "🐞",
+            "text": "Bug found & fix drafted"
+          },
+          {
+            "emoji": "🧾",
+            "text": "Invoice ready for approval"
+          },
+          {
+            "emoji": "📅",
+            "text": "Morning plan ready"
+          }
+        ]
+      },
+      "source": "OpenAI, Sept 29 2026",
+      "beats": [
+        {
+          "word": "phone",
+          "action": "show",
+          "target": "phone"
+        },
+        {
+          "word": "bug?",
+          "action": "show",
+          "target": "notifications.0"
+        },
+        {
+          "word": "invoice?",
+          "action": "show",
+          "target": "notifications.1"
+        },
+        {
+          "word": "morning",
+          "action": "show",
+          "target": "notifications.2"
+        },
+        {
+          "word": "dots,",
+          "action": "burst",
+          "target": "title"
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "type": "split-compare",
+      "kicker": "THE BIG IDEA",
+      "props": {
+        "mode": "chat-vs-dot",
+        "left": {
+          "title": "ChatGPT",
+          "status": "waiting…"
+        },
+        "right": {
+          "title": "A dot",
+          "tasks": [
+            "Fix the bug",
+            "Draft invoice",
+            "Plan the morning"
+          ],
+          "badge": "its own computer"
+        },
+        "verdictLine": "ChatGPT waits. A dot doesn't."
+      },
+      "source": "OpenAI, Sept 29 2026",
+      "beats": [
+        {
+          "word": "waits",
+          "action": "highlight",
+          "target": "left"
+        },
+        {
+          "word": "doesn't.",
+          "action": "show",
+          "target": "verdictLine"
+        },
+        {
+          "word": "computer,",
+          "action": "show",
+          "target": "right.badge"
+        },
+        {
+          "word": "night,",
+          "action": "show",
+          "target": "clock"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "split-compare",
+      "kicker": "THINK OF IT LIKE THIS",
+      "props": {
+        "mode": "analogy",
+        "left": {
+          "title": "Smart friend you call",
+          "illustration": "phone-call"
+        },
+        "right": {
+          "title": "Assistant at the next desk",
+          "illustration": "office-night"
+        }
+      },
+      "beats": [
+        {
+          "word": "friend",
+          "action": "show",
+          "target": "left"
+        },
+        {
+          "word": "assistant",
+          "action": "show",
+          "target": "right"
+        },
+        {
+          "word": "home.",
+          "action": "show",
+          "target": "night"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "phone-mockup",
+      "kicker": "SETTING ONE UP",
+      "props": {
+        "name": "Nova",
+        "choices": [
+          {
+            "emoji": "🦊",
+            "label": "Fox"
+          },
+          {
+            "emoji": "🤖",
+            "label": "Bot"
+          },
+          {
+            "emoji": "🐙",
+            "label": "Octo"
+          }
+        ],
+        "poll": "Which one would YOU pick? 👇",
+        "counter": {
+          "to": 4000,
+          "suffix": "+",
+          "label": "apps"
+        },
+        "steps": [
+          {
+            "icon": "🎯",
+            "label": "Goal"
+          },
+          {
+            "icon": "⚙️",
+            "label": "Works on its own"
+          },
+          {
+            "icon": "✅",
+            "label": "Back for approval"
+          }
+        ]
+      },
+      "source": "OpenAI, Sept 29 2026",
+      "beats": [
+        {
+          "word": "name",
+          "action": "show",
+          "target": "name"
+        },
+        {
+          "word": "character.",
+          "action": "show",
+          "target": "choices"
+        },
+        {
+          "word": "which",
+          "action": "show",
+          "target": "poll"
+        },
+        {
+          "word": "4000",
+          "action": "count-up",
+          "target": "counter"
+        },
+        {
+          "word": "goal,",
+          "action": "show",
+          "target": "steps.0"
+        },
+        {
+          "word": "own,",
+          "action": "show",
+          "target": "steps.1"
+        },
+        {
+          "word": "approval.",
+          "action": "show",
+          "target": "steps.2"
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "type": "story-card",
+      "kicker": "A REAL STORY",
+      "props": {
+        "note": "Invoice??",
+        "lines": [
+          "Article · Sept issue",
+          "Words: 1,800",
+          "Total: ₹24,000"
+        ],
+        "sent": "Sent ✅",
+        "reaction": "😅"
+      },
+      "source": "OpenAI, Sept 29 2026",
+      "beats": [
+        {
+          "word": "forgot",
+          "action": "show",
+          "target": "note"
+        },
+        {
+          "word": "noticed,",
+          "action": "show",
+          "target": "pulse"
+        },
+        {
+          "word": "prepared",
+          "action": "show",
+          "target": "invoice"
+        },
+        {
+          "word": "sent",
+          "action": "show",
+          "target": "sent"
+        },
+        {
+          "word": "felt",
+          "action": "burst",
+          "target": "reaction"
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "type": "card-carousel",
+      "kicker": "WHAT WOULD YOUR DOT DO?",
+      "props": {
+        "header": "What would YOUR dot do?",
+        "cards": [
+          {
+            "persona": "Developer",
+            "emoji": "👩‍💻",
+            "ui": "dev",
+            "items": [
+              "💬 3 feedback notes",
+              "🔧 fix built & tested",
+              "PR ready, tests passed ✅"
+            ]
+          },
+          {
+            "persona": "Creator",
+            "emoji": "🎬",
+            "ui": "creator",
+            "items": [
+              "🎙️ transcript",
+              "✂️ 3 clip moments",
+              "📝 draft post ready"
+            ]
+          },
+          {
+            "persona": "Everyone",
+            "emoji": "☀️",
+            "ui": "calendar",
+            "items": [
+              "9:00 Stand-up",
+              "1:30 Dentist",
+              "6:00 Gym"
+            ]
+          }
+        ]
+      },
+      "source": "OpenAI, Sept 29 2026",
+      "beats": [
+        {
+          "word": "developer's",
+          "action": "show",
+          "target": "cards.0"
+        },
+        {
+          "word": "request.",
+          "action": "highlight",
+          "target": "cards.0"
+        },
+        {
+          "word": "creator's",
+          "action": "show",
+          "target": "cards.1"
+        },
+        {
+          "word": "everyone",
+          "action": "show",
+          "target": "cards.2"
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "channel-hop",
+      "kicker": "TALK TO IT ANYWHERE",
+      "props": {
+        "channels": [
+          "ChatGPT",
+          "Slack",
+          "Teams"
+        ],
+        "call": "Voice call",
+        "ring": "Knows your style"
+      },
+      "source": "OpenAI, Sept 29 2026",
+      "beats": [
+        {
+          "word": "chatgpt,",
+          "action": "show",
+          "target": "channels.0"
+        },
+        {
+          "word": "slack,",
+          "action": "show",
+          "target": "channels.1"
+        },
+        {
+          "word": "teams,",
+          "action": "show",
+          "target": "channels.2"
+        },
+        {
+          "word": "call",
+          "action": "show",
+          "target": "call"
+        },
+        {
+          "word": "learns",
+          "action": "show",
+          "target": "ring"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "rules-panel",
+      "kicker": "IS IT SAFE?",
+      "tone": "calm",
+      "props": {
+        "title": "Custom Rules",
+        "options": [
+          "Act without asking",
+          "Act if pre-approved",
+          "Ask first",
+          "Hand off to you"
+        ],
+        "tip": "Pro tip: start with “Ask first”",
+        "locked": "Change password 🔒 Always you"
+      },
+      "source": "OpenAI Help Center",
+      "beats": [
+        {
+          "word": "safe?",
+          "action": "show",
+          "target": "shield"
+        },
+        {
+          "word": "rules.",
+          "action": "show",
+          "target": "panel"
+        },
+        {
+          "word": "without",
+          "action": "show",
+          "target": "options.0"
+        },
+        {
+          "word": "pre-approved,",
+          "action": "show",
+          "target": "options.1"
+        },
+        {
+          "word": "ask",
+          "nth": 0,
+          "action": "show",
+          "target": "options.2"
+        },
+        {
+          "word": "hand",
+          "action": "show",
+          "target": "options.3"
+        },
+        {
+          "word": "tip:",
+          "action": "show",
+          "target": "tip"
+        },
+        {
+          "word": "password?",
+          "action": "show",
+          "target": "locked"
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "type": "catch-panel",
+      "kicker": "THE CATCH",
+      "props": {
+        "items": [
+          {
+            "text": "Pro & Business Premium only",
+            "kind": "warn"
+          },
+          {
+            "text": "One dot included",
+            "kind": "warn"
+          },
+          {
+            "text": "Can't call you yet",
+            "kind": "warn"
+          }
+        ],
+        "myth": "Disconnect an app = it forgets",
+        "fact": "What it already learned stays",
+        "reset": "Reset = delete everything",
+        "mistakes": "It can still make mistakes ⚠️"
+      },
+      "source": "OpenAI Help Center",
+      "beats": [
+        {
+          "word": "pro",
+          "action": "show",
+          "target": "items.0"
+        },
+        {
+          "word": "one",
+          "action": "show",
+          "target": "items.1"
+        },
+        {
+          "word": "call",
+          "action": "show",
+          "target": "items.2"
+        },
+        {
+          "word": "think",
+          "action": "show",
+          "target": "myth"
+        },
+        {
+          "word": "nope!",
+          "action": "stamp",
+          "target": "fact"
+        },
+        {
+          "word": "reset",
+          "action": "show",
+          "target": "reset"
+        },
+        {
+          "word": "mistakes.",
+          "action": "show",
+          "target": "mistakes"
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "type": "timeline",
+      "kicker": "THE BIG PICTURE",
+      "props": {
+        "points": [
+          {
+            "year": "2022",
+            "label": "AI answers questions"
+          },
+          {
+            "year": "2025",
+            "label": "AI does tasks"
+          },
+          {
+            "year": "2026",
+            "label": "AI works while you're offline"
+          }
+        ],
+        "versus": {
+          "a": "Dots",
+          "b": "Muse",
+          "caption": "chatbots → AI coworkers"
+        }
+      },
+      "source": "News reports",
+      "beats": [
+        {
+          "word": "2022,",
+          "action": "show",
+          "target": "points.0"
+        },
+        {
+          "word": "year,",
+          "action": "show",
+          "target": "points.1"
+        },
+        {
+          "word": "offline.",
+          "action": "show",
+          "target": "points.2"
+        },
+        {
+          "word": "muse,",
+          "action": "show",
+          "target": "versus"
+        },
+        {
+          "word": "coworkers.",
+          "action": "zoom-punch",
+          "target": "versus"
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "type": "cta",
+      "props": {
+        "save": "Save this 🔖",
+        "question": "What's the first job you'd give your dot? 👇",
+        "follow": "Follow for more AI breakdowns",
+        "loopTo": "first"
+      },
+      "beats": [
+        {
+          "word": "save",
+          "action": "show",
+          "target": "save"
+        },
+        {
+          "word": "first",
+          "action": "show",
+          "target": "question"
+        },
+        {
+          "word": "follow",
+          "action": "show",
+          "target": "follow"
+        }
+      ]
+    }
+  ]
+}

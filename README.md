@@ -6,7 +6,7 @@ Planning, teaching standards and session packages for **NxtWave's Gen AI YouTube
 
 | # | Session | Status | Folder |
 |---|---|---|---|
-| 01 | **Jev by TypeSafe AI**, the AI that only decides | Two options drafted, pick one: **A** explainer (no code) or **B** scam-SMS test (Colab build) | [sessions/01-jev/](sessions/01-jev/) |
+| 01 | **Jev by TypeSafe AI**, the new AI model that only decides | Two options drafted, pick one: **A** explainer (no code) or **B** scam-SMS test (Colab build) | [sessions/01-jev/](sessions/01-jev/) |
 
 Next topics are in [planning/topics/00-INDEX.md](planning/topics/00-INDEX.md).
 
@@ -28,8 +28,8 @@ Next topics are in [planning/topics/00-INDEX.md](planning/topics/00-INDEX.md).
 └── sessions/
     └── 01-jev/
         ├── README.md             ← side-by-side comparison of the two options
-        ├── option-A-explainer/   ← TR doc + script (no code)
-        ├── option-B-scam-sms-test/ ← TR doc + script + Colab notebook, helpers, 100-message dataset
+        ├── option-A-explainer/   ← TR doc, script, production notes (no code)
+        ├── option-B-scam-sms-test/ ← TR doc, script, production notes + Colab notebook, helpers, dataset
         └── archive/v3/           ← earlier V3 package (runbook with the fact-check sources)
 ```
 
