@@ -1,0 +1,105 @@
+# Task: Build the "Jev: The AI That Doesn't Write" reel (v3)
+
+You are building a vertical short-form video (9:16, 60-65 s) from the scene spec below. Work in the repo's existing video pipeline; if none exists, ask me before choosing a stack.
+
+## Goal
+Produce one MP4 where each scene's voiceover, header, caption and visual are timed together, and every number appears on screen at the moment it is spoken.
+
+## Hard rules (check these before you say you're done)
+1. Story arc: Buzz -> Pivot -> Meet Jev -> Speed -> Cost -> Proof -> Catch -> Fix -> Verdict.
+2. Each scene's last line sets up the next scene's opening (see `bridge`).
+3. Layer rule: header, caption and visual text never repeat each other.
+4. No blank frames. Every frame has a header and a visual.
+5. Numbers pop in on the spoken word, not before or after.
+6. No views, funding or adoption numbers anywhere.
+7. Spoken length ~195 words at ~1.2x pace = 60-65 s. Current VO is ~205 words, so trim if the render runs over 65 s.
+8. Sources shown on screen where given (TypeSafe for speed/cost/accuracy, arXiv study for the independent test).
+
+## Suggested workflow
+1. Write `scenes.json` from the spec below (one object per scene).
+2. Generate VO per scene and measure real durations; do not guess timings.
+3. Derive on-screen timings for each `pop` from word-level timestamps.
+4. Render each scene, then concatenate.
+5. Run a QA pass: total duration, word count, frames with no visual, any repeated text across layers, any banned numbers. Report results as a short checklist.
+
+## Scene spec
+
+```json
+[
+  {
+    "id": "s01", "name": "Hook", "header": "Is Jev Worth the Hype?",
+    "vo": "This AI model can't write a single word... yet it's all over the internet.",
+    "delivery": "mysterious, brisk build",
+    "visual": "Chat window, typing cursor stalls, counter 'Words written: 0'. Behind it, a feed of generic post/demo/benchmark tiles keeps scrolling (no numbers, no real quotes).",
+    "bridge": "can't write -> so what does it do?"
+  },
+  {
+    "id": "s02", "name": "Pivot", "header": "The Pivot",
+    "vo": "Why? It's not built to write. It's built to decide, in milliseconds, for fractions of a cent.",
+    "delivery": "'aha'; land 'decide', 'milliseconds', 'fractions of a cent'",
+    "visual": "Split graphic: 'Writing model' crossed out, 'Decision model' lights up. Badges pop on spoken words: 'ms' stopwatch, '¢' coin.",
+    "pops": ["decide", "milliseconds", "fractions of a cent"],
+    "bridge": "decide -> show a decision happening"
+  },
+  {
+    "id": "s03", "name": "Meet Jev", "header": "Meet Jev",
+    "vo": "Meet Jev. Give it a message and the questions you care about, and it returns typed answers in one pass: which team, how urgent, how likely to churn.",
+    "delivery": "punchy name reveal, angry-customer read for the ticket, quick list for outputs",
+    "visual": "'JEV' title card, ticket card slides in, then three chips appear on each word: 'Team: Billing', 'Urgent: Yes', 'Churn risk: High'. Label chips 'Example output'.",
+    "pops": ["which team", "how urgent", "how likely to churn"],
+    "bridge": "answers appear instantly -> how instantly?"
+  },
+  {
+    "id": "s04", "name": "Speed", "header": "Speed",
+    "vo": "How fast? Seventy to five hundred milliseconds, versus seconds for frontier LLMs. That's TypeSafe's own benchmark.",
+    "delivery": "excited, hit every number",
+    "visual": "Race bars. Jev finishes in a blink ('70-500 ms'); LLM bar keeps crawling ('seconds'). Small label: 'Source: TypeSafe'.",
+    "bridge": "speed is half the story -> price tag"
+  },
+  {
+    "id": "s05", "name": "Cost", "header": "Cost",
+    "vo": "How cheap? Four point two cents per million input tokens. Output is free. A thousand short tickets cost a few cents.",
+    "delivery": "energetic, land 'free' and 'four point two cents'",
+    "visual": "'$0.042 / 1M input tokens', 'Output: FREE', '1,000 tickets ≈ a few cents (≤1,000 tokens each)'.",
+    "bridge": "TypeSafe says -> does independent data agree?"
+  },
+  {
+    "id": "s06", "name": "Proof", "header": "Independent Test",
+    "vo": "Independent researchers labeled nearly eight thousand items with Jev for twenty-one cents. Nineteen LLMs cost thirty-four cents to sixty-three dollars.",
+    "delivery": "confident, 'aha' on the range",
+    "visual": "Jev bar '$0.21' beside a long bar '$0.34 to $62.99'. Label: '7,977 items, 18 tasks, independent arXiv study'.",
+    "bridge": "great price... what do you give up?"
+  },
+  {
+    "id": "s07", "name": "The Catch", "header": "Reality Check",
+    "vo": "The catch: about sixty-eight percent agreement with frontier-model answers on TypeSafe's own benchmark, and a valid format can still hold a wrong answer. Users reported a median thirty times cheaper, seven times faster.",
+    "delivery": "honest; slow on 'the catch', recover speed on the user numbers",
+    "visual": "Gauge fills to '~68%', warning icon 'Valid format ≠ right answer', then 'Launch-day users: ~30x cheaper, ~7x faster (median)'. Add: 'Weak at math and dates: keep those in code'.",
+    "bridge": "accuracy gap -> so use both"
+  },
+  {
+    "id": "s08", "name": "The Fix", "header": "Cascade",
+    "vo": "So cascade. Jev takes the easy tickets; low confidence goes to an LLM. One third-party test matched GPT-5.6 Terra's accuracy at about a quarter of the cost, in half the time.",
+    "delivery": "fast, payoff on 'quarter' and 'half'",
+    "visual": "Flow: Ticket -> Jev -> (confident: done) / (unsure: LLM). Badges: '~26-28% cost', '~50% latency'.",
+    "pops": ["quarter", "half"],
+    "bridge": "Jev decides, LLM writes -> verdict"
+  },
+  {
+    "id": "s09", "name": "Verdict + CTA", "header": "Your Turn",
+    "vo": "Verdict: Jev decides, the LLM writes. Test it on your own tickets. What would you route first? Tell me below!",
+    "delivery": "warm, confident, light tease",
+    "visual": "Two-box 'Jev decides -> LLM writes', checklist 'Test on your own data', comment box 'What would you route first?'."
+  }
+]
+```
+
+## Changes from v3 (so you don't reintroduce them)
+- s05 delivery said to land "forty cents"; the VO says four point two cents. Fixed to match.
+- s06 had two competing visual labels; kept the "independent arXiv study" one.
+- Removed stray "s03 VO:" / "s05 Visual:" prefixes; every scene now uses the same fields.
+- Spoken length is ~205 words vs the ~195 target: trim s07 first if the render runs long.
+
+## Open items to confirm with me before rendering
+- s08 names "GPT-5.6 Terra". Verify the exact model name and the third-party test before it goes on screen.
+- Confirm the "19 LLMs" (VO) vs "18 tasks" (label) figures against the arXiv paper.

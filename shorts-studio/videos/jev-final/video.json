@@ -1,20 +1,15 @@
 {
-  "slug": "jev-explained",
-  "title": "Is Jev worth the hype?",
+  "slug": "jev-final",
+  "title": "Is Jev Worth the Hype?",
   "theme": "editorial",
   "music": "music/soft-pad.mp3",
-  "voiceNote": "Gemini TTS (temporary); replace with your recordings in voice/",
+  "voiceNote": "Gemini TTS, Laomedeia (1.2x speed, energetic)",
   "keywords": [
     "Jev",
-    "billing",
-    "Nope!",
-    "once.",
-    "once!",
-    "human.",
-    "free",
-    "hype?",
-    "catch:",
-    "proven."
+    "decision",
+    "hype",
+    "proven",
+    "trust"
   ],
   "names": [
     "Jev",
@@ -41,44 +36,43 @@
       "type": "title-hook",
       "page": "ink",
       "props": {
+        "header": "Is Jev Worth the Hype?",
         "lines": [
           "THIS AI MODEL",
-          "CAN'T WRITE A WORD",
-          "YET BLOWING UP"
+          "CAN'T WRITE A WORD"
         ],
-        "highlight": "MODEL",
+        "highlight": "CAN'T WRITE",
         "backdrop": "token-rain",
-        "effects": ["glitch-on-pivot"],
         "chips": [
-          "NEVER WRITES A WORD",
-          "ALL OVER THE INTERNET"
+          "0 Words Written",
+          "Trending Now"
         ]
       },
       "beats": [
         {
-          "word": "single",
+          "word": "model",
           "action": "show",
-          "target": "chips.0"
+          "target": "lines.0"
+        },
+        {
+          "word": "write",
+          "action": "show",
+          "target": "lines.1"
         },
         {
           "word": "internet",
           "action": "show",
           "target": "chips.1"
-        },
-        {
-          "word": "internet",
-          "action": "zoom-punch"
         }
       ]
     },
     {
       "id": "s02",
-      "type": "comparison-flip",
-      "page": "ink",
-      "kicker": "WHY THE HYPE?",
+      "type": "compare",
+      "page": "paper",
       "props": {
+        "header": "The Pivot",
         "text": "DECISION MODEL",
-        "color": "highlight",
         "pair": {
           "left": {
             "title": "NOT A",
@@ -92,34 +86,29 @@
       },
       "beats": [
         {
-          "word": "writing",
-          "action": "show",
-          "target": "pair.left"
-        },
-        {
           "word": "generation",
-          "action": "push-off",
-          "target": "pair.left"
+          "action": "stamp",
+          "target": "stamp"
         },
         {
           "word": "decision",
-          "action": "flip-in",
+          "action": "show",
           "target": "pair.right"
         }
       ]
     },
     {
       "id": "s03",
-      "type": "big-counter",
+      "type": "stat",
       "page": "sunflower",
-      "kicker": "WHY THE LAUNCH BLEW UP",
       "props": {
-        "backdrop": "social-ticker",
+        "header": "Meet Jev",
+        "text": "MEET JEV",
         "items": [
           {
             "value": 40,
             "suffix": "M",
-            "label": "launch views"
+            "label": "views"
           },
           {
             "value": 40,
@@ -129,25 +118,30 @@
           },
           {
             "value": "ex-OpenAI",
-            "label": "research founder"
+            "label": "founder"
           }
         ]
       },
       "beats": [
         {
-          "word": "40",
+          "word": "Jev",
+          "action": "show",
+          "target": "text"
+        },
+        {
+          "word": "forty",
           "nth": 0,
           "action": "count-up",
           "target": "items.0"
         },
         {
-          "word": "40",
+          "word": "forty",
           "nth": 1,
           "action": "count-up",
           "target": "items.1"
         },
         {
-          "word": "ex-OpenAI",
+          "word": "founder",
           "action": "show",
           "target": "items.2"
         }
@@ -155,23 +149,20 @@
     },
     {
       "id": "s04",
-      "type": "ticket-flow",
+      "type": "running-example",
       "page": "royal",
       "props": {
-        "eyebrow": "3 KEY DECISIONS",
+        "header": "The Ticket",
         "ticket": {
-          "id": "#4821",
-          "from": "Riya",
-          "plan": "Pro plan",
-          "text": "I was charged twice. Refund me, or I cancel."
+          "text": "I was charged twice. Refund me, or I cancel.",
+          "questions": [
+            "Which team?",
+            "Is it urgent?",
+            "About to leave?"
+          ]
         },
         "questions": [
-          "Which team?",
-          "Urgent?",
-          "About to leave?"
-        ],
-        "chips": [
-          "MILLIONS OF TICKETS"
+          "Question 1"
         ]
       },
       "beats": [
@@ -181,41 +172,39 @@
           "target": "ticket"
         },
         {
-          "word": "3",
-          "action": "tag-sequence",
+          "word": "three",
+          "action": "show",
           "target": "questions"
         }
       ]
     },
     {
       "id": "s05",
-      "type": "big-stamp",
+      "type": "compare",
       "page": "ink",
-      "kicker": "WILL IT REPLACE LLMs?",
       "props": {
-        "text": "NO.",
-        "color": "danger",
-        "effect": "screen-shake",
+        "header": "Decide vs. Write",
+        "text": "TINY DECISIONS",
         "pair": {
           "left": {
-            "title": "JEV DECIDES (1 PASS)",
-            "value": "→ billing · 97%"
+            "title": "JEV",
+            "value": "-> billing 97%"
           },
           "right": {
-            "title": "THE LLM WRITES",
-            "value": "“So sorry about the charge…”"
+            "title": "LLM",
+            "value": "\u201cSo sorry about...\u201d"
           }
         }
       },
       "beats": [
         {
-          "word": "billing",
+          "word": "pass",
           "action": "show",
           "target": "pair.left"
         },
         {
           "word": "Nope!",
-          "action": "stamp-shake",
+          "action": "stamp",
           "target": "stamp"
         },
         {
@@ -227,37 +216,33 @@
     },
     {
       "id": "s06",
-      "type": "rapid-card-stack",
+      "type": "list",
       "page": "royal",
-      "kicker": "WHERE IT HELPS",
       "props": {
-        "columns": [
-          "USE",
-          "QUESTION"
-        ],
+        "header": "Use Cases",
         "rows": [
           [
-            "Ticket routing",
+            "Ticket Routing",
             "Which team?"
           ],
           [
-            "Spam & phishing",
-            "Is this a scam?"
+            "Spam Detection",
+            "Is it a scam?"
           ],
           [
             "Guardrails",
             "Is this safe?"
           ],
           [
-            "Lead scoring",
+            "Lead Scoring",
             "Will they buy?"
           ],
           [
-            "LLM picker",
+            "LLM Picker",
             "Which model?"
           ],
           [
-            "Agent watch",
+            "Agent Watch",
             "Is it stuck?"
           ]
         ]
@@ -265,88 +250,88 @@
       "beats": [
         {
           "word": "routing",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.0"
         },
         {
           "word": "spam",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.1"
         },
         {
           "word": "guardrails",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.2"
         },
         {
           "word": "leads",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.3"
         },
         {
           "word": "picking",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.4"
         },
         {
-          "word": "spotting",
-          "action": "pop-card",
+          "word": "stuck",
+          "action": "show",
           "target": "rows.5"
         }
       ]
     },
     {
       "id": "s07",
-      "type": "balance-scale",
+      "type": "stat",
       "page": "sunflower",
-      "kicker": "BUT DOES IT ACTUALLY WORK?",
       "props": {
+        "header": "Reality Check",
+        "text": "THE CATCH",
         "items": [
           {
-            "text": "The idea is genuinely useful",
+            "text": "Format Guaranteed",
             "kind": "ok"
           },
           {
-            "text": "Guarantees format, not the truth",
+            "text": "Truth NOT Guaranteed",
             "kind": "warn"
           },
           {
-            "text": "~68% accuracy on its own benchmark",
+            "text": "68% Accuracy",
             "kind": "warn"
           }
         ]
       },
       "beats": [
         {
-          "word": "useful",
-          "action": "tip-left",
+          "word": "format",
+          "action": "show",
           "target": "items.0"
         },
         {
-          "word": "format",
-          "action": "tip-right",
+          "word": "truth",
+          "action": "show",
           "target": "items.1"
         },
         {
-          "word": "benchmark",
-          "action": "tip-right",
+          "word": "accuracy",
+          "action": "show",
           "target": "items.2"
         }
       ]
     },
     {
       "id": "s08",
-      "type": "big-stamp",
+      "type": "verdict",
       "page": "ink",
-      "kicker": "THE VERDICT",
       "props": {
-        "text": "PROMISING, NOT PROVEN.",
-        "color": "highlight",
-        "style": "document-seal"
+        "header": "Verdict",
+        "text": "PROMISING, NOT PROVEN",
+        "color": "highlight"
       },
       "beats": [
         {
-          "word": "promising",
+          "word": "verdict",
           "action": "stamp",
           "target": "stamp"
         }
@@ -354,15 +339,13 @@
     },
     {
       "id": "s09",
-      "type": "recap-card",
+      "type": "cta",
       "page": "ink",
       "props": {
-        "title": "JEV",
-        "subtitle": "decides fast. Test it first.",
-        "steps": [],
+        "header": "Your Turn",
+        "title": "TRUST JEV?",
         "question": "Would you trust Jev with your tickets? Tell us in the comments! \ud83d\udc47",
-        "next": "Next: the free rival \u2192",
-        "loopTo": "first"
+        "next": "Next: the free rival \u2192"
       },
       "beats": [
         {
@@ -377,6 +360,5 @@
         }
       ]
     }
-  ],
-  "voiceProvider": "gemini"
+  ]
 }

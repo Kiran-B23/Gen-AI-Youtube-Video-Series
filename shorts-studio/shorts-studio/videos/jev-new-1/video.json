@@ -1,0 +1,167 @@
+{
+  "slug": "jev-new-1",
+  "theme": "editorial",
+  "voiceProvider": "gemini",
+  "voiceNote": "Gemini TTS (Laomedeia)",
+  "parts": {
+    "full": ["s01", "s02", "s03", "s04", "s05", "s06", "s07", "s08", "s09"]
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "title-hook",
+      "page": "ink",
+      "props": {
+        "lines": ["THIS AI MODEL", "CAN'T WRITE A WORD", "YET BLOWING UP"],
+        "highlight": "MODEL",
+        "backdrop": "token-rain"
+      },
+      "beats": [
+        { "word": "single", "action": "show", "target": "chips.0" },
+        { "word": "internet", "action": "zoom-punch" }
+      ]
+    },
+    {
+      "id": "s02",
+      "type": "big-stamp",
+      "page": "ink",
+      "props": {
+        "text": "DECISION MODEL",
+        "color": "highlight",
+        "pair": {
+          "left": { "title": "NOT A", "value": "GENERATOR" },
+          "right": { "title": "A", "value": "DECISION MODEL" }
+        }
+      },
+      "beats": [
+        { "word": "writing", "action": "show", "target": "pair.left" },
+        { "word": "decision", "action": "flip-in", "target": "pair.right" }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "big-counter",
+      "page": "sunflower",
+      "props": {
+        "items": [
+          { "value": 40, "suffix": "M", "label": "launch views" },
+          { "value": 40, "prefix": "$", "suffix": "M", "label": "seed round" },
+          { "value": "ex-OpenAI", "label": "research founder" }
+        ]
+      },
+      "beats": [
+        { "word": "forty", "nth": 0, "action": "count-up", "target": "items.0" },
+        { "word": "forty", "nth": 1, "action": "count-up", "target": "items.1" },
+        { "word": "ex-OpenAI", "action": "show", "target": "items.2" }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "running-example",
+      "page": "royal",
+      "props": {
+        "eyebrow": "SUPPORT TICKET",
+        "ticket": {
+          "id": "#4821",
+          "from": "Customer",
+          "plan": "Pro plan",
+          "text": "I was charged twice. Refund me, or I cancel!"
+        },
+        "questions": ["Which team?", "Is it urgent?", "About to leave?"]
+      },
+      "beats": [
+        { "word": "ticket", "action": "show", "target": "ticket" },
+        { "word": "three", "action": "tag-sequence", "target": "questions" }
+      ]
+    },
+    {
+      "id": "s05",
+      "type": "big-stamp",
+      "page": "ink",
+      "props": {
+        "text": "NO.",
+        "color": "danger",
+        "pair": {
+          "left": { "title": "JEV DECIDES", "value": "billing · 97%" },
+          "right": { "title": "LLM WRITES", "value": "“So sorry...”" }
+        }
+      },
+      "beats": [
+        { "word": "billing", "action": "show", "target": "pair.left" },
+        { "word": "Nope!", "action": "stamp-shake", "target": "stamp" },
+        { "word": "writes", "action": "show", "target": "pair.right" }
+      ]
+    },
+    {
+      "id": "s06",
+      "type": "lookup-table",
+      "page": "paper",
+      "props": {
+        "eyebrow": "WHERE IT HELPS",
+        "columns": ["USE CASE", "QUESTION"],
+        "rows": [
+          ["Ticket routing", "Which team?"],
+          ["Spam/Phishing", "Is this a scam?"],
+          ["Guardrails", "Is this safe?"],
+          ["Lead scoring", "Will they buy?"],
+          ["LLM picker", "Which model?"],
+          ["Agent watch", "Is it stuck?"]
+        ]
+      },
+      "beats": [
+        { "word": "routing", "action": "pop-row", "target": "rows.0" },
+        { "word": "spam", "action": "pop-row", "target": "rows.1" },
+        { "word": "guardrails", "action": "pop-row", "target": "rows.2" },
+        { "word": "leads", "action": "pop-row", "target": "rows.3" },
+        { "word": "picking", "action": "pop-row", "target": "rows.4" },
+        { "word": "spotting", "action": "pop-row", "target": "rows.5" }
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "checklist",
+      "page": "sunflower",
+      "props": {
+        "items": [
+          { "text": "Idea is genuinely useful", "kind": "ok" },
+          { "text": "Guarantees format, not truth", "kind": "warn" },
+          { "text": "68% accuracy benchmark", "kind": "warn" }
+        ]
+      },
+      "beats": [
+        { "word": "useful", "action": "show", "target": "items.0" },
+        { "word": "catch", "action": "show", "target": "items.1" },
+        { "word": "accuracy", "action": "show", "target": "items.2"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "big-stamp",
+      "page": "ink",
+      "props": {
+        "text": "PROMISING, NOT PROVEN.",
+        "color": "highlight",
+        "style": "document-seal"
+      },
+      "beats": [
+        { "word": "promising", "action": "stamp", "target": "stamp" }
+      ]
+    },
+    {
+      "id": "s09",
+      "type": "recap-card",
+      "page": "ink",
+      "props": {
+        "title": "JEV",
+        "subtitle": "Decides fast. Test first.",
+        "question": "Would you trust Jev with your tickets? Tell us in the comments! 👇",
+        "next": "Next: the free rival →"
+      },
+      "beats": [
+        { "word": "trust", "action": "show", "target": "question" },
+        { "word": "rival", "action": "show", "target": "next" }
+      ]
+    }
+  ]
+}

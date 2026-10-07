@@ -1,7 +1,7 @@
 {
-  "slug": "jev-explained",
+  "slug": "jev-tech-noir",
   "title": "Is Jev worth the hype?",
-  "theme": "editorial",
+  "theme": "dark-tech",
   "music": "music/soft-pad.mp3",
   "voiceNote": "Gemini TTS (temporary); replace with your recordings in voice/",
   "keywords": [
@@ -47,8 +47,7 @@
           "YET BLOWING UP"
         ],
         "highlight": "MODEL",
-        "backdrop": "token-rain",
-        "effects": ["glitch-on-pivot"],
+        "backdrop": "star-field",
         "chips": [
           "NEVER WRITES A WORD",
           "ALL OVER THE INTERNET"
@@ -73,12 +72,13 @@
     },
     {
       "id": "s02",
-      "type": "comparison-flip",
+      "type": "big-stamp",
       "page": "ink",
       "kicker": "WHY THE HYPE?",
       "props": {
         "text": "DECISION MODEL",
         "color": "highlight",
+        "glow": true,
         "pair": {
           "left": {
             "title": "NOT A",
@@ -98,12 +98,12 @@
         },
         {
           "word": "generation",
-          "action": "push-off",
-          "target": "pair.left"
+          "action": "stamp",
+          "target": "stamp"
         },
         {
           "word": "decision",
-          "action": "flip-in",
+          "action": "show",
           "target": "pair.right"
         }
       ]
@@ -111,10 +111,10 @@
     {
       "id": "s03",
       "type": "big-counter",
-      "page": "sunflower",
+      "page": "ink",
       "kicker": "WHY THE LAUNCH BLEW UP",
       "props": {
-        "backdrop": "social-ticker",
+        "glow": true,
         "items": [
           {
             "value": 40,
@@ -155,10 +155,11 @@
     },
     {
       "id": "s04",
-      "type": "ticket-flow",
-      "page": "royal",
+      "type": "running-example",
+      "page": "ink",
       "props": {
         "eyebrow": "3 KEY DECISIONS",
+        "glow": true,
         "ticket": {
           "id": "#4821",
           "from": "Riya",
@@ -182,7 +183,7 @@
         },
         {
           "word": "3",
-          "action": "tag-sequence",
+          "action": "show",
           "target": "questions"
         }
       ]
@@ -194,16 +195,16 @@
       "kicker": "WILL IT REPLACE LLMs?",
       "props": {
         "text": "NO.",
-        "color": "danger",
-        "effect": "screen-shake",
+        "color": "highlight",
+        "glow": true,
         "pair": {
           "left": {
             "title": "JEV DECIDES (1 PASS)",
-            "value": "→ billing · 97%"
+            "value": "\u2192 billing \u00b7 97%"
           },
           "right": {
             "title": "THE LLM WRITES",
-            "value": "“So sorry about the charge…”"
+            "value": "\u201cSo sorry about the charge\u2026\u201d"
           }
         }
       },
@@ -215,7 +216,7 @@
         },
         {
           "word": "Nope!",
-          "action": "stamp-shake",
+          "action": "stamp",
           "target": "stamp"
         },
         {
@@ -227,10 +228,11 @@
     },
     {
       "id": "s06",
-      "type": "rapid-card-stack",
-      "page": "royal",
+      "type": "lookup-table",
+      "page": "ink",
       "kicker": "WHERE IT HELPS",
       "props": {
+        "glow": true,
         "columns": [
           "USE",
           "QUESTION"
@@ -265,42 +267,43 @@
       "beats": [
         {
           "word": "routing",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.0"
         },
         {
           "word": "spam",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.1"
         },
         {
           "word": "guardrails",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.2"
         },
         {
           "word": "leads",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.3"
         },
         {
           "word": "picking",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.4"
         },
         {
           "word": "spotting",
-          "action": "pop-card",
+          "action": "show",
           "target": "rows.5"
         }
       ]
     },
     {
       "id": "s07",
-      "type": "balance-scale",
-      "page": "sunflower",
+      "type": "checklist",
+      "page": "ink",
       "kicker": "BUT DOES IT ACTUALLY WORK?",
       "props": {
+        "glow": true,
         "items": [
           {
             "text": "The idea is genuinely useful",
@@ -319,17 +322,17 @@
       "beats": [
         {
           "word": "useful",
-          "action": "tip-left",
+          "action": "show",
           "target": "items.0"
         },
         {
           "word": "format",
-          "action": "tip-right",
+          "action": "show",
           "target": "items.1"
         },
         {
           "word": "benchmark",
-          "action": "tip-right",
+          "action": "show",
           "target": "items.2"
         }
       ]
@@ -342,6 +345,7 @@
       "props": {
         "text": "PROMISING, NOT PROVEN.",
         "color": "highlight",
+        "glow": true,
         "style": "document-seal"
       },
       "beats": [

@@ -10,7 +10,7 @@ type P = { filename: string; code: string[]; outputs?: GateRow[]; threshold?: nu
 
 const highlight = (line: string, c: { str: string; kw: string; name: string; punct: string }) => {
   const parts: React.ReactNode[] = [];
-  const re = /("[^"]*"?)|\b(for|in|if|else|import|from|True|False)\b|\b([A-Z_]{3,})\b|(\d+\.\d+)|([=(){}:,.\[\]>]+)/g;
+  const re = /("[^"]*"?)|\b(for|in|if|else|import|from|True|False)\b|\b([A-Z_]{3,})\b|(\d+\.\d+)|([=(){}:,.[\]>]+)/g;
   let last = 0, m: RegExpExecArray | null, k = 0;
   while ((m = re.exec(line))) {
     if (m.index > last) parts.push(<span key={k++}>{line.slice(last, m.index)}</span>);

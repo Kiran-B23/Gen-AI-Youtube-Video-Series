@@ -1,0 +1,177 @@
+{
+  "slug": "jev-new-1",
+  "theme": "dark-tech-neon",
+  "voiceProvider": "web",
+  "voiceNote": "Edge TTS (Emma) - Fast & Punchy",
+  "parts": {
+    "full": ["s01", "s02", "s03", "s04", "s05", "s06", "s07", "s08", "s09"]
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "title-hook",
+      "page": "ink",
+      "props": {
+        "lines": ["THIS AI MODEL", "CAN'T WRITE", "A SINGLE WORD"],
+        "highlight": "CAN'T WRITE",
+        "backdrop": "star-field",
+        "chips": ["ALL OVER THE INTERNET"]
+      },
+      "beats": [
+        { "word": "single", "action": "show", "target": "chips.0" },
+        { "word": "internet", "action": "zoom-punch" }
+      ]
+    },
+    {
+      "id": "s02",
+      "type": "big-stamp",
+      "page": "royal",
+      "props": {
+        "text": "DECISION MODEL",
+        "color": "highlight",
+        "glow": true,
+        "pair": {
+          "left": { "title": "NOT A", "value": "GENERATOR" },
+          "right": { "title": "A", "value": "DECISION MODEL" }
+        }
+      },
+      "beats": [
+        { "word": "writing", "action": "show", "target": "pair.left" },
+        { "word": "generation", "action": "show", "target": "pair.left" },
+        { "word": "decision", "action": "flip-in", "target": "pair.right" }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "big-counter",
+      "page": "ink",
+      "props": {
+        "glow": true,
+        "items": [
+          { "value": 10, "suffix": "x", "label": "SPEED" },
+          { "value": 100, "suffix": "x", "label": "CHEAPER" },
+          { "value": "ex-OpenAI", "label": "Founder" }
+        ],
+        "layout": "grid"
+      },
+      "beats": [
+        { "word": "cheap", "action": "count-up", "target": "items.0" },
+        { "word": "fast", "action": "count-up", "target": "items.1" },
+        { "word": "founder", "action": "show", "target": "items.2" }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "running-example",
+      "page": "royal",
+      "props": {
+        "eyebrow": "THE PROBLEM",
+        "glow": true,
+        "ticket": {
+          "id": "#4821",
+          "from": "Angry User",
+          "plan": "Pro",
+          "text": "I was charged twice. Refund me, or I cancel!"
+        },
+        "questions": ["Which team?", "Is it urgent?", "Churn risk?"]
+      },
+      "beats": [
+        { "word": "ticket", "action": "show", "target": "ticket" },
+        { "word": "three", "action": "tag-sequence", "target": "questions" }
+      ]
+    },
+    {
+      "id": "s05",
+      "type": "big-stamp",
+      "page": "ink",
+      "props": {
+        "text": "NO.",
+        "color": "danger",
+        "glow": true,
+        "pair": {
+          "left": { "title": "JEV DECIDES", "value": "Billing (97%)" },
+          "right": { "title": "LLM WRITES", "value": "Apology Email" }
+        }
+      },
+      "beats": [
+        { "word": "billing", "action": "show", "target": "pair.left" },
+        { "word": "Nope!", "action": "stamp-shake", "target": "stamp" },
+        { "word": "writes", "action": "show", "target": "pair.right" }
+      ]
+    },
+    {
+      "id": "s06",
+      "type": "lookup-table",
+      "page": "royal",
+      "props": {
+        "eyebrow": "SUPER POWERS",
+        "glow": true,
+        "columns": ["USE", "ACTION"],
+        "rows": [
+          ["Tickets", "Route"],
+          ["Spam", "Block"],
+          ["Guardrails", "Filter"],
+          ["Leads", "Score"],
+          ["LLMs", "Pick"],
+          ["Agents", "Watch"]
+        ]
+      },
+      "beats": [
+        { "word": "routing", "action": "pop-row", "target": "rows.0" },
+        { "word": "spam", "action": "pop-row", "target": "rows.1" },
+        { "word": "guardrails", "action": "pop-row", "target": "rows.2" },
+        { "word": "leads", "action": "pop-row", "target": "rows.3" },
+        { "word": "picking", "action": "pop-row", "target": "rows.4" },
+        { "word": "spotting", "action": "pop-row", "target": "rows.5" }
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "checklist",
+      "page": "ink",
+      "props": {
+        "glow": true,
+        "items": [
+          { "text": "Useful Idea", "kind": "ok" },
+          { "text": "Format ≠ Truth", "kind": "warn" },
+          { "text": "68% Accuracy", "kind": "warn" }
+        ]
+      },
+      "beats": [
+        { "word": "useful", "action": "show", "target": "items.0" },
+        { "word": "catch", "action": "show", "target": "items.1" },
+        { "word": "accuracy", "action": "show", "target": "items.2" }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "big-stamp",
+      "page": "royal",
+      "props": {
+        "text": "NOT PROVEN.",
+        "color": "highlight",
+        "glow": true,
+        "style": "document-seal"
+      },
+      "beats": [
+        { "word": "promising", "action": "stamp", "target": "stamp" }
+      ]
+    },
+    {
+      "id": "s09",
+      "type": "recap-card",
+      "page": "ink",
+      "props": {
+        "title": "JEV",
+        "subtitle": "Fast Decisions. Test First.",
+        "steps": [],
+        "question": "Trust it with your tickets? 👇",
+        "next": "Free rival next →"
+      },
+      "beats": [
+        { "word": "trust", "action": "show", "target": "question" },
+        { "word": "rival", "action": "show", "target": "next" }
+      ]
+    }
+  ]
+}

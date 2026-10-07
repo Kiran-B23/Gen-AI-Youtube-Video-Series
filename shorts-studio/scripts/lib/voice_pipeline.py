@@ -62,7 +62,7 @@ if missing and key and spec.get("voiceProvider", "auto") in ("auto", "elevenlabs
     missing = [s for s in voiced if not raw_file(s)]
 # Google Gemini TTS (free tier, steerable delivery) when GEMINI_API_KEY is set
 gkey = env.get("GEMINI_API_KEY") or env.get("GOOGLE_API_KEY")
-if missing and gkey:
+if missing and gkey and spec.get("voiceProvider", "auto") in ("gemini", "auto"):
     import base64, time, urllib.request, wave
     notes = dict(re.findall(r"### (s\d\d): .+?\n\n.+?\n\n\*Delivery: (.+?)\*", open(os.path.join(VD, "script.md")).read()))
     voice = spec.get("geminiVoice", "Laomedeia")  # upbeat female; "Puck" = upbeat male
