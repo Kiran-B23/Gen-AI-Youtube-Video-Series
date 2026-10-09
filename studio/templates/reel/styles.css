@@ -1,0 +1,93 @@
+/* Reel template · 1080x1920 · grid: tracker y70 · kicker y150 · visual zone x40-1040 y220-1260 (centred) · source tag y1272 (key claims) · captions y1380-1560 · bottom 15% and the lower-right button column clear */
+@font-face { font-family: "Anton"; src: url("fonts/Anton.ttf") format("truetype"); font-weight: 400; }
+@font-face { font-family: "Inter"; src: url("fonts/Inter.ttf") format("truetype"); font-weight: 100 900; }
+@font-face { font-family: "Noto Sans Tamil"; src: url("fonts/NotoSansTamil-Regular.ttf") format("truetype"); font-weight: 400; }
+@font-face { font-family: "Noto Sans Tamil"; src: url("fonts/NotoSansTamil-Bold.ttf") format("truetype"); font-weight: 700; }
+@font-face { font-family: "Noto Sans Devanagari"; src: url("fonts/NotoSansDevanagari-Regular.ttf") format("truetype"); font-weight: 400; }
+@font-face { font-family: "Noto Sans Devanagari"; src: url("fonts/NotoSansDevanagari-Bold.ttf") format("truetype"); font-weight: 700; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/JetBrainsMono.ttf") format("truetype"); font-weight: 100 900; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Inter", "Noto Sans Tamil", "Noto Sans Devanagari", sans-serif; color: var(--text); }  /* Indic fallbacks (OFL) */
+
+.bgfill { position: absolute; inset: 0; background: var(--bg); }
+.secbg { position: absolute; inset: 0; background: var(--bg); overflow: hidden; }   /* section colour; clips are transparent so they sit on these depth layers */
+.vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 42%, transparent 55%, rgba(0,0,0,0.28) 100%); }
+.lightspot { position: absolute; left: -10%; top: -8%; width: 70%; height: 45%; background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.16) 0%, transparent 65%); }
+.grain { position: absolute; inset: 0; opacity: 0.09; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>"); }
+.glowlayer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.bgglow { position: absolute; left: -20%; top: 5%; width: 140%; height: 75%; background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.10) 0%, transparent 60%); mix-blend-mode: soft-light; }
+.drift { position: absolute; inset: 0; transform-origin: 50% 40%; }
+.wipe { position: absolute; inset: 0; overflow: hidden; }
+.wipefill { position: absolute; inset: 0; background: var(--bg); }
+.mwrap { position: absolute; transform-origin: 50% 50%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 36px, #000 calc(100% - 36px), transparent 100%), linear-gradient(to bottom, transparent 0, #000 36px, #000 calc(100% - 36px), transparent 100%);
+  -webkit-mask-composite: source-in; mask-composite: intersect; }   /* feathered edges: the clip melts into its section */
+.tracker { position: absolute; left: 72px; top: 70px; width: 820px; display: flex; gap: 12px; }
+.step { flex: 1; text-align: center; padding: 10px 8px; border-radius: 999px; border: 2px solid var(--line); font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700; color: var(--dim); white-space: nowrap; overflow: hidden; }
+.step.done { background: var(--card); }
+.step.now { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+.scene { position: absolute; inset: 0; color: var(--text); }   /* re-read the section's --text (inheritance alone keeps the root colour) */
+.kicker { position: absolute; left: 72px; top: 150px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 32px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+.source { position: absolute; left: 72px; top: 1272px; font-size: 30px; font-weight: 700; color: var(--dim); }   /* key claims only */
+.band { position: absolute; left: 90px; top: 260px; width: 900px; height: 960px; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
+.band.center { align-items: center; text-align: center; }
+.band-top { justify-content: center; }
+
+.hl { font-family: "Anton", sans-serif; font-size: 150px; line-height: 0.98; text-transform: uppercase; }
+.acc { color: var(--accent); }
+.sub { font-size: 52px; font-weight: 800; color: var(--dim); line-height: 1.2; }
+.chips { display: flex; flex-wrap: wrap; gap: 16px; }
+.chip { display: block; padding: 12px 22px; border: 3px solid var(--accent); border-radius: 14px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 38px; color: var(--accent); opacity: 0; }
+
+.h2 { font-size: 64px; font-weight: 900; line-height: 1.1; }
+.h3 { font-family: "Anton", sans-serif; font-size: 72px; line-height: 1; margin-bottom: 18px; }
+.rows { display: flex; flex-direction: column; gap: 18px; }
+.row { display: flex; align-items: center; gap: 22px; padding: 24px 28px; border-radius: 24px; background: var(--card); border: 2px solid var(--line); font-size: 46px; font-weight: 800; opacity: 0; }
+.ico { font-size: 52px; }
+.pill { margin-left: auto; padding: 6px 14px; border-radius: 999px; border: 2px solid var(--line); font-size: 30px; font-weight: 600; color: var(--dim); white-space: nowrap; }
+.pill.big { margin: 0; font-size: 36px; }
+
+.bignum { font-family: "Anton", sans-serif; font-size: 300px; line-height: 1; color: var(--accent); }
+
+.cols { display: flex; gap: 28px; }
+.card { background: var(--card); border: 2px solid var(--line); border-radius: 28px; padding: 30px 28px; }
+.col { flex: 1; min-height: 460px; opacity: 0; }
+.col.accent { border-color: var(--accent); }
+.li { font-size: 42px; font-weight: 700; line-height: 1.25; margin-top: 14px; }
+.verdict { font-family: "Anton", sans-serif; font-size: 84px; line-height: 1.05; color: var(--accent); text-align: center; opacity: 0; }
+
+.stamp { display: block; padding: 10px 40px; border: 12px solid var(--danger); border-radius: 26px; font-family: "Anton", sans-serif; font-size: 220px; line-height: 1.05; color: var(--danger); opacity: 0; }
+
+.codecard { border-radius: 26px; background: #0D1124; border: 2px solid var(--line); overflow: hidden; }
+.codebar { padding: 14px 22px; background: rgba(255,255,255,0.06); font-family: "JetBrains Mono", monospace; font-size: 30px; color: var(--dim); }
+.code { padding: 20px 24px; font-family: "JetBrains Mono", monospace; font-size: 40px; line-height: 1.35; white-space: pre; }
+.cline { opacity: 0; }
+
+.media { position: absolute; object-fit: contain; }
+.overlay { pointer-events: none; }
+.medialabel { position: absolute; left: 72px; top: 1250px; display: none; }
+
+.bubble { font-family: "Anton", sans-serif; font-size: 110px; line-height: 1.05; padding: 40px; border-radius: 44px 44px 44px 10px; background: var(--card); border: 2px solid var(--accent); opacity: 0; }
+.follow { padding: 26px 56px; border-radius: 999px; background: var(--accent); color: var(--bg); font-size: 52px; font-weight: 900; opacity: 0; }
+.kicker { top: 150px; font-size: 34px; }
+
+.caption { position: absolute; left: 72px; top: 1555px; width: 880px; }   /* caption zone: 81-90% of the height (user: lower) */
+.capbox { display: block; font-size: 60px; font-weight: 800; line-height: 1.2; color: var(--text);
+  text-shadow: 0 0 18px var(--bg), 0 0 6px var(--bg), 0 2px 0 var(--bg); }   /* no box: the sentence sits on the section, a halo in the bg colour keeps it legible over visuals */
+.w { opacity: 0.55; display: inline-block; margin: 0 0.06em; transform-origin: 50% 70%; }   /* inline-block + side margin so the kinetic pop never touches its neighbours */
+.w.hot { color: var(--accent); }
+
+.duel { display: flex; gap: 28px; width: 100%; }
+.duelcol { flex: 1; padding: 28px 20px; border-radius: 32px; background: var(--card); border: 3px solid var(--line); text-align: center; opacity: 0; }
+.duelcol.accent { border-color: var(--accent); }
+.duellab { font-family: "Anton", sans-serif; font-size: 70px; line-height: 1; }
+.duelnum { font-family: "Anton", sans-serif; font-size: 260px; line-height: 1; color: var(--accent); }
+.duelunit { font-size: 46px; font-weight: 800; }
+.duelsub { margin-top: 14px; font-size: 36px; font-weight: 600; color: var(--dim); line-height: 1.25; }
+.recaptitle { font-family: "Anton", sans-serif; font-size: 96px; line-height: 1; text-transform: uppercase; }
+.recap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.recapitem { display: flex; align-items: center; gap: 22px; padding: 18px 34px; border-radius: 26px; background: var(--card); border: 3px solid var(--accent); font-size: 60px; font-weight: 900; opacity: 0; }
+.recapn { font-family: "JetBrains Mono", monospace; font-size: 40px; color: var(--accent); }
+.arrow { font-size: 54px; font-weight: 900; color: var(--accent); line-height: 1; opacity: 0; }

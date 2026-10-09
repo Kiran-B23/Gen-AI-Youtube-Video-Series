@@ -1,0 +1,298 @@
+{
+  "slug": "tokenization",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/beat-one",
+  "padSeconds": 0.18,
+  "steps": [
+    "Numbers",
+    "Tokens",
+    "Chopping",
+    "IDs"
+  ],
+  "names": [
+    "strawberry",
+    "tokenization",
+    "tokens",
+    "Tamil"
+  ],
+  "keywords": [
+    "strawberry",
+    "two.",
+    "letter.",
+    "number.",
+    "tokens:",
+    "tokenization",
+    "token.",
+    "Tamil.",
+    "IDs."
+  ],
+  "voice": {
+    "name": "Laomedeia",
+    "style": "Read this as an energetic young tech creator recording a YouTube Short: brisk, lively pace of about three words per second, curious and delighted like revealing a magic trick, a smile in the voice. Slow down slightly only on the reveal 'It's one number'. Articulate every word clearly, especially short words like 'you pay'. Keep pauses between paragraphs short. Read every word. Never robotic."
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "media",
+      "section": "void",
+      "say": "Ask an AI how many r's are in strawberry, and it might say two.",
+      "source": "illustrative",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/c01_chat.py",
+          "scene": "ChatFail",
+          "quality": "m"
+        },
+        "clip": "build/clips/s01.webm"
+      },
+      "pad": 0.8
+    },
+    {
+      "id": "s02",
+      "type": "media",
+      "section": "core",
+      "step": 1,
+      "kicker": "HOW COMPUTERS STORE TEXT",
+      "say": "Here's why. Your computer has never seen a single letter.",
+      "source": "Unicode",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/a_numbers.py",
+          "scene": "NumbersSpan",
+          "quality": "m",
+          "span": [
+            "s03"
+          ]
+        },
+        "clip": "build/clips/s02.webm"
+      }
+    },
+    {
+      "id": "s03",
+      "type": "media",
+      "section": "core",
+      "step": 1,
+      "kicker": "HOW COMPUTERS STORE TEXT",
+      "say": "Every character you type is stored as a number. Capital A is sixty-five.",
+      "source": "Unicode",
+      "props": {
+        "of": "s02"
+      }
+    },
+    {
+      "id": "s04",
+      "type": "media",
+      "section": "void",
+      "step": 2,
+      "kicker": "SO WHY NOT LETTERS?",
+      "say": "For AI, letter by letter makes text far too long. Whole words? Far too many.",
+      "source": "Hugging Face LLM course",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/b_board.py",
+          "scene": "BoardSpan",
+          "quality": "m",
+          "span": [
+            "s05",
+            "s06"
+          ]
+        },
+        "clip": "build/clips/s04.webm"
+      }
+    },
+    {
+      "id": "s05",
+      "type": "media",
+      "section": "void",
+      "step": 2,
+      "kicker": "TOKENS",
+      "say": "So AI uses tokens: whole words or pieces, from a fixed list of two hundred thousand.",
+      "source": "GPT-4o tokenizer",
+      "props": {
+        "of": "s04"
+      }
+    },
+    {
+      "id": "s06",
+      "type": "media",
+      "section": "void",
+      "step": 3,
+      "kicker": "TOKENIZATION",
+      "say": "Tokenization is the chopping. Our strawberry question becomes eight tokens.",
+      "source": "GPT-4o tokenizer",
+      "props": {
+        "of": "s04"
+      }
+    },
+    {
+      "id": "s07",
+      "type": "media",
+      "section": "core",
+      "step": 4,
+      "kicker": "WHAT THE AI SEES",
+      "say": "Each token gets one ID. So to an AI, strawberry isn't ten letters. It's one number.",
+      "source": "GPT-4o tokenizer",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/c_ids.py",
+          "scene": "IdsSpan",
+          "quality": "m",
+          "span": [
+            "s08"
+          ]
+        },
+        "clip": "build/clips/s07.webm"
+      }
+    },
+    {
+      "id": "s08",
+      "type": "media",
+      "section": "core",
+      "step": 4,
+      "say": "That's a big reason models miscount the r's. The letters are hidden inside.",
+      "source": "research: arXiv 2412.18626",
+      "props": {
+        "of": "s07"
+      },
+      "pad": 0.6,
+      "kicker": "WHAT THE AI SEES"
+    },
+    {
+      "id": "s09",
+      "type": "media",
+      "section": "signal",
+      "kicker": "WHY YOU SHOULD CARE",
+      "say": "And you pay for every token.",
+      "source": "OpenAI tokens guide",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/d_receipts.py",
+          "scene": "CostSpan",
+          "quality": "m",
+          "span": [
+            "s10"
+          ]
+        },
+        "clip": "build/clips/s09.webm"
+      }
+    },
+    {
+      "id": "s10",
+      "type": "media",
+      "section": "signal",
+      "kicker": "WHY YOU SHOULD CARE",
+      "say": "The same greeting is six tokens in English, ten in Tamil.",
+      "source": "GPT-4o tokenizer · our test",
+      "props": {
+        "of": "s09"
+      },
+      "pad": 0.9
+    },
+    {
+      "id": "s11",
+      "type": "media",
+      "section": "void",
+      "say": "Quick recap: letters become numbers, text becomes tokens, tokens become IDs.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/e_recap.py",
+          "scene": "RecapReplay",
+          "quality": "m"
+        },
+        "clip": "build/clips/s11.webm"
+      },
+      "pad": 0.4
+    },
+    {
+      "id": "s12",
+      "type": "title",
+      "section": "signal",
+      "kicker": "DO THIS",
+      "say": "For letter questions, ask it to spell the word out first.",
+      "source": "research: arXiv 2412.18626",
+      "props": {
+        "lines": [
+          "Spell it",
+          "out first"
+        ],
+        "highlight": "Spell",
+        "sub": "For letter questions, ask the AI to spell the word first"
+      },
+      "beats": [
+        {
+          "word": "For",
+          "target": "sub",
+          "offset": 0.1
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "type": "cta",
+      "section": "void",
+      "say": "Which AI word should I break down next?",
+      "props": {
+        "question": "Which AI word should I break down next? 👇",
+        "follow": "Follow for more AI breakdowns"
+      },
+      "beats": [
+        {
+          "word": "Which",
+          "target": "question"
+        },
+        {
+          "word": "break",
+          "target": "follow"
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "void": {
+      "bg": "#0A0F1E",
+      "bg2": "#070B16",
+      "text": "#E8F0FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#4DF2C2",
+      "accent2": "#7C9CFF",
+      "card": "rgba(232,240,255,0.07)",
+      "line": "rgba(232,240,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    },
+    "core": {
+      "bg": "#141033",
+      "bg2": "#0E0B26",
+      "text": "#E8F0FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#FF5C8A",
+      "accent2": "#4DF2C2",
+      "card": "rgba(232,240,255,0.08)",
+      "line": "rgba(232,240,255,0.24)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    },
+    "signal": {
+      "bg": "#0E1B2A",
+      "bg2": "#09131F",
+      "text": "#E8F0FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#FFD166",
+      "accent2": "#4DF2C2",
+      "card": "rgba(232,240,255,0.07)",
+      "line": "rgba(232,240,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    }
+  }
+}

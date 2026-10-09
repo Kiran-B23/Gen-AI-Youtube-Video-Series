@@ -33,6 +33,19 @@ Next topics are in [planning/topics/00-INDEX.md](planning/topics/00-INDEX.md).
         └── archive/v3/           ← earlier V3 package (runbook with the fact-check sources)
 ```
 
+## Topic → video package (reels, shorts, long-form)
+Give a topic or tool, get a ready-to-produce package: `/video-scripter "<topic>" [reel | explainer | session | all]`.
+
+The skill (`.claude/skills/video-scripter/`) researches the topic with sources, studies similar videos online, scores hook options, then writes the script, storyboard, publish kit and QA into `productions/<date>-<slug>/`. Reference videos you want to learn from go in `references/`.
+
+| Format | Length | Presentation |
+|---|---|---|
+| Reel / Short | 30–60 s (up to 3 min when needed) | faceless: voiceover, motion graphics, captions |
+| Explainer | 8–15 min | on camera + screen + B-roll |
+| Session | 30–60 min | on camera + hands-on build |
+
+**Package → finished video:** `/video-studio <production folder>` builds the video with free, code-generated visuals (Manim, Playwright, VHS) on a HyperFrames timeline, with Gemini TTS voice and word-synced captions. Engine and steps: [studio/README.md](studio/README.md); roadmap: [docs/video-generation-plan.md](docs/video-generation-plan.md).
+
 ## How a new session is made
 1. Pick a topic from `planning/topics/`.
 2. Research what's already on YouTube, then discuss the angle before writing anything.

@@ -1,0 +1,420 @@
+{
+  "slug": "tokenization",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/beat-one",
+  "padSeconds": 0.22,
+  "steps": [
+    "Numbers",
+    "Tokens",
+    "Cut",
+    "IDs",
+    "Cost"
+  ],
+  "sections": {
+    "void": {
+      "bg": "#0A0F1E",
+      "bg2": "#070B16",
+      "text": "#E8F0FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#4DF2C2",
+      "accent2": "#7C9CFF",
+      "card": "rgba(232,240,255,0.07)",
+      "line": "rgba(232,240,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    },
+    "core": {
+      "bg": "#141033",
+      "bg2": "#0E0B26",
+      "text": "#E8F0FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#FF5C8A",
+      "accent2": "#4DF2C2",
+      "card": "rgba(232,240,255,0.08)",
+      "line": "rgba(232,240,255,0.24)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    },
+    "signal": {
+      "bg": "#0E1B2A",
+      "bg2": "#09131F",
+      "text": "#E8F0FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#FFD166",
+      "accent2": "#4DF2C2",
+      "card": "rgba(232,240,255,0.07)",
+      "line": "rgba(232,240,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    }
+  },
+  "names": [
+    "strawberry",
+    "tokenization",
+    "tokenizer",
+    "tokens",
+    "Tamil",
+    "GPT-4o",
+    "GPT-4"
+  ],
+  "keywords": [
+    "strawberry",
+    "two.",
+    "letter.",
+    "number.",
+    "tokens:",
+    "tokenization",
+    "list.",
+    "cutting.",
+    "piece.",
+    "three:",
+    "ID,",
+    "number.",
+    "hidden",
+    "tokens,",
+    "Tamil.",
+    "forty-two",
+    "ten.",
+    "tokenizer."
+  ],
+  "voice": {
+    "name": "Laomedeia",
+    "style": "Read this script as a calm, clear, confident teacher explaining a technical idea in a short video: deliberate pace of about two to two and a half words per second, natural pitch movement, warm and precise, a short pause between paragraphs, light emphasis on key words and numbers. Slow down slightly on 'It's one number'. Read digits one by one where they are written as words. Never hyped, never robotic. Read every word, including the questions."
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "media",
+      "section": "void",
+      "say": "Ask an AI how many r's are in strawberry, and it might say two.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/c01_chat.py",
+          "scene": "ChatFail",
+          "quality": "m"
+        }
+      },
+      "pad": 0.6
+    },
+    {
+      "id": "s02",
+      "type": "media",
+      "section": "core",
+      "say": "Here's why. Your computer has never seen a single letter.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/a_numbers.py",
+          "scene": "NumbersSpan",
+          "quality": "m",
+          "span": [
+            "s03",
+            "s04"
+          ]
+        }
+      },
+      "step": 1,
+      "kicker": "HOW COMPUTERS STORE TEXT"
+    },
+    {
+      "id": "s03",
+      "type": "media",
+      "section": "core",
+      "say": "Every character you type is stored as a number. Capital A is sixty-five.",
+      "props": {
+        "of": "s02"
+      },
+      "step": 1,
+      "kicker": "HOW COMPUTERS STORE TEXT"
+    },
+    {
+      "id": "s04",
+      "type": "media",
+      "section": "core",
+      "say": "Strawberry is ten letters, so ten numbers. Simple. But that's not what the AI gets.",
+      "props": {
+        "of": "s02"
+      },
+      "step": 1,
+      "kicker": "HOW COMPUTERS STORE TEXT",
+      "pad": 0.5
+    },
+    {
+      "id": "s05",
+      "type": "media",
+      "section": "void",
+      "say": "For AI, letter by letter makes every text far too long. Whole words? Far too many to list.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/b_board.py",
+          "scene": "BoardSpan",
+          "quality": "m",
+          "span": [
+            "s06",
+            "s07"
+          ]
+        }
+      },
+      "step": 2,
+      "kicker": "WHY TOKENS"
+    },
+    {
+      "id": "s06",
+      "type": "media",
+      "section": "void",
+      "say": "So AI uses tokens: whole words or pieces of words, from one fixed list. GPT-4o's list has about two hundred thousand pieces.",
+      "props": {
+        "of": "s05"
+      },
+      "step": 2,
+      "kicker": "THE TOKEN LIST"
+    },
+    {
+      "id": "s07",
+      "type": "media",
+      "section": "void",
+      "say": "Common words sit on the list whole. Rare words are built from pieces: un, bel, ievable.",
+      "props": {
+        "of": "s05"
+      },
+      "step": 2,
+      "kicker": "THE TOKEN LIST",
+      "pad": 0.5
+    },
+    {
+      "id": "s08",
+      "type": "media",
+      "section": "void",
+      "say": "Tokenization is the cutting. Let's follow our question.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/c_cut.py",
+          "scene": "CutSpan",
+          "quality": "m",
+          "span": [
+            "s09",
+            "s10",
+            "s11"
+          ]
+        }
+      },
+      "step": 3,
+      "kicker": "TOKENIZATION"
+    },
+    {
+      "id": "s09",
+      "type": "media",
+      "section": "void",
+      "say": "The tokenizer cuts at the spaces and punctuation, then checks each piece against the list.",
+      "props": {
+        "of": "s08"
+      },
+      "step": 3,
+      "kicker": "TOKENIZATION"
+    },
+    {
+      "id": "s10",
+      "type": "media",
+      "section": "void",
+      "say": "In this sentence, strawberry is one piece. On its own, it would be three: st, raw, berry. The space in front changes the cut.",
+      "props": {
+        "of": "s08"
+      },
+      "step": 3,
+      "kicker": "TOKENIZATION"
+    },
+    {
+      "id": "s11",
+      "type": "media",
+      "section": "void",
+      "say": "Our eight-word question becomes eight tokens.",
+      "props": {
+        "of": "s08"
+      },
+      "step": 3,
+      "kicker": "TOKENIZATION",
+      "pad": 0.6
+    },
+    {
+      "id": "s12",
+      "type": "media",
+      "section": "core",
+      "say": "Step four: each token is swapped for its ID, a row number in that list.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/d_ids.py",
+          "scene": "IdsSpan",
+          "quality": "m",
+          "span": [
+            "s13",
+            "s14",
+            "s15"
+          ]
+        }
+      },
+      "step": 4,
+      "kicker": "WHAT THE AI SEES"
+    },
+    {
+      "id": "s13",
+      "type": "media",
+      "section": "core",
+      "say": "Strawberry becomes one single ID: one zero one eight three zero. The number means nothing by itself. It only points to a row.",
+      "props": {
+        "of": "s12"
+      },
+      "step": 4,
+      "kicker": "WHAT THE AI SEES"
+    },
+    {
+      "id": "s14",
+      "type": "media",
+      "section": "core",
+      "say": "So to an AI, strawberry isn't ten letters. It's one number.",
+      "props": {
+        "of": "s12"
+      },
+      "step": 4,
+      "kicker": "WHAT THE AI SEES",
+      "pad": 0.8
+    },
+    {
+      "id": "s15",
+      "type": "media",
+      "section": "core",
+      "say": "That's a big reason models miscount the r's: the letters are hidden inside that one ID. It's not the only reason, but it's the big one.",
+      "props": {
+        "of": "s12"
+      },
+      "step": 4,
+      "kicker": "WHAT THE AI SEES",
+      "pad": 0.5
+    },
+    {
+      "id": "s16",
+      "type": "media",
+      "section": "signal",
+      "say": "And this is where it costs you. Prices and context limits are counted in tokens, not words.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/e_cost.py",
+          "scene": "CostSpan",
+          "quality": "m",
+          "span": [
+            "s17",
+            "s18"
+          ]
+        }
+      },
+      "step": 5,
+      "kicker": "WHY YOU SHOULD CARE"
+    },
+    {
+      "id": "s17",
+      "type": "media",
+      "section": "signal",
+      "say": "The same greeting is six tokens in English, but ten in Tamil. Same meaning, more tokens, more cost.",
+      "props": {
+        "of": "s16"
+      },
+      "step": 5,
+      "kicker": "WHY YOU SHOULD CARE"
+    },
+    {
+      "id": "s18",
+      "type": "media",
+      "section": "signal",
+      "say": "Different models cut differently too. GPT-4's older tokenizer needed forty-two tokens for that Tamil greeting. GPT-4o needs ten.",
+      "props": {
+        "of": "s16"
+      },
+      "step": 5,
+      "kicker": "WHY YOU SHOULD CARE",
+      "pad": 0.6
+    },
+    {
+      "id": "s19",
+      "type": "title",
+      "section": "signal",
+      "say": "So always count tokens with your own model's tokenizer.",
+      "props": {
+        "lines": [
+          "Count tokens",
+          "with your",
+          "model's tokenizer"
+        ],
+        "highlight": "model's"
+      },
+      "step": 5,
+      "kicker": "THE RULE",
+      "pad": 0.3,
+      "beats": []
+    },
+    {
+      "id": "s20",
+      "type": "media",
+      "section": "void",
+      "say": "Quick recap: letters become numbers, text becomes tokens, tokens become IDs, and you pay per token.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/f_recap.py",
+          "scene": "RecapReplay",
+          "quality": "m"
+        }
+      },
+      "pad": 0.4
+    },
+    {
+      "id": "s21",
+      "type": "title",
+      "section": "signal",
+      "say": "For letter questions, ask the AI to spell the word out first.",
+      "props": {
+        "lines": [
+          "Spell it",
+          "out first"
+        ],
+        "highlight": "Spell",
+        "sub": "For letter questions, ask the AI to spell the word first"
+      },
+      "kicker": "DO THIS",
+      "beats": [
+        {
+          "word": "For",
+          "target": "sub",
+          "offset": 0.1
+        }
+      ]
+    },
+    {
+      "id": "s22",
+      "type": "cta",
+      "section": "void",
+      "say": "What should I explain next? Tell me below.",
+      "props": {
+        "question": "What should I explain next? 👇",
+        "follow": "Follow for more AI breakdowns"
+      },
+      "beats": [
+        {
+          "word": "What",
+          "target": "question"
+        },
+        {
+          "word": "Tell",
+          "target": "follow"
+        }
+      ]
+    }
+  ]
+}

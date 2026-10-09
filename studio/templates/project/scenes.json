@@ -1,0 +1,71 @@
+{
+  "slug": "__SLUG__",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "upbeat-synth",
+  "names": [],
+  "keywords": [],
+  "voice": {
+    "name": "Laomedeia"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "title",
+      "say": "Hook line goes here.",
+      "props": {
+        "lines": [
+          "Two short",
+          "lines"
+        ],
+        "highlight": "lines"
+      }
+    },
+    {
+      "id": "s02",
+      "type": "points",
+      "kicker": "KICKER",
+      "say": "First point, second point.",
+      "props": {
+        "items": [
+          {
+            "icon": "⚡",
+            "text": "First point"
+          },
+          {
+            "icon": "🎯",
+            "text": "Second point"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "first",
+          "target": "items.0"
+        },
+        {
+          "word": "second",
+          "target": "items.1"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "cta",
+      "say": "What should I break down next? Tell me below!",
+      "props": {
+        "question": "What should I break down next? 👇",
+        "follow": "Follow for more AI breakdowns"
+      },
+      "beats": [
+        {
+          "word": "below",
+          "target": "follow"
+        }
+      ]
+    }
+  ]
+}

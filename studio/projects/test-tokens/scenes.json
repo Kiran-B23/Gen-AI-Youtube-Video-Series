@@ -1,0 +1,158 @@
+{
+  "slug": "test-tokens",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "upbeat-synth",
+  "names": [
+    "tokens",
+    "ChatGPT"
+  ],
+  "keywords": [
+    "tokens.",
+    "tokens",
+    "four",
+    "words."
+  ],
+  "voice": {
+    "name": "Laomedeia"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "title",
+      "say": "AI doesn't read your words. It reads tokens.",
+      "props": {
+        "lines": [
+          "AI doesn't",
+          "read words"
+        ],
+        "highlight": "words",
+        "chips": [
+          "IT READS TOKENS"
+        ]
+      },
+      "beats": [
+        {
+          "word": "tokens",
+          "target": "chips.0"
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "type": "media",
+      "kicker": "WATCH",
+      "say": "Watch. Two words just became three tokens, the small chunks a model actually sees.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/tokens.py",
+          "scene": "Tokens"
+        },
+        "clip": "build/clips/s02.mp4"
+      }
+    },
+    {
+      "id": "s03",
+      "type": "counter",
+      "kicker": "RULE OF THUMB",
+      "say": "In English, one token is about four characters, roughly three quarters of a word.",
+      "props": {
+        "value": 4,
+        "prefix": "~",
+        "label": "characters per token",
+        "source": "OpenAI tokenizer guide"
+      },
+      "beats": [
+        {
+          "word": "four",
+          "target": "number"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "media",
+      "kicker": "IN THE TERMINAL",
+      "say": "Your terminal counts two words. The model counts tokens instead.",
+      "props": {
+        "build": {
+          "tool": "vhs",
+          "file": "clips/words.tape"
+        },
+        "clip": "build/clips/s04.mp4"
+      }
+    },
+    {
+      "id": "s05",
+      "type": "media",
+      "kicker": "WHY IT MATTERS",
+      "say": "And that matters, because prices and limits are counted in tokens, not words.",
+      "props": {
+        "build": {
+          "tool": "playwright",
+          "file": "clips/counter.mjs"
+        },
+        "clip": "build/clips/s05.mp4"
+      }
+    },
+    {
+      "id": "s06",
+      "type": "points",
+      "kicker": "QUICK TIPS",
+      "say": "So keep prompts tight, cut repeated context, and check long documents first.",
+      "props": {
+        "items": [
+          {
+            "icon": "✂️",
+            "text": "Keep prompts tight"
+          },
+          {
+            "icon": "🔁",
+            "text": "Cut repeated context"
+          },
+          {
+            "icon": "📄",
+            "text": "Check long docs first"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "tight",
+          "target": "items.0"
+        },
+        {
+          "word": "repeated",
+          "target": "items.1"
+        },
+        {
+          "word": "documents",
+          "target": "items.2"
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "cta",
+      "say": "What should I break down next? Tell me below!",
+      "props": {
+        "question": "What should I break down next? 👇",
+        "follow": "Follow for more AI breakdowns"
+      },
+      "beats": [
+        {
+          "word": "what",
+          "target": "question"
+        },
+        {
+          "word": "below",
+          "target": "follow"
+        }
+      ]
+    }
+  ]
+}

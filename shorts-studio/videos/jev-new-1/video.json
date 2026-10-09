@@ -37,8 +37,8 @@
       },
       "beats": [
         { "word": "writing", "action": "show", "target": "pair.left" },
-        { "word": "generation", "action": "show", "target": "pair.left" },
-        { "word": "decision", "action": "flip-in", "target": "pair.right" }
+        { "word": "generation", "action": "stamp", "target": "stamp" },
+        { "word": "decision", "action": "show", "target": "pair.right" }
       ]
     },
     {
@@ -48,16 +48,15 @@
       "props": {
         "glow": true,
         "items": [
-          { "value": 10, "suffix": "x", "label": "SPEED" },
-          { "value": 100, "suffix": "x", "label": "CHEAPER" },
-          { "value": "ex-OpenAI", "label": "Founder" }
-        ],
-        "layout": "grid"
+          { "value": 40, "suffix": "M", "label": "launch views" },
+          { "value": 40, "prefix": "$", "suffix": "M", "label": "seed round" },
+          { "value": "ex-OpenAI", "label": "research founder" }
+        ]
       },
       "beats": [
-        { "word": "cheap", "action": "count-up", "target": "items.0" },
-        { "word": "fast", "action": "count-up", "target": "items.1" },
-        { "word": "founder", "action": "show", "target": "items.2" }
+        { "word": "40", "nth": 0, "action": "count-up", "target": "items.0" },
+        { "word": "40", "nth": 1, "action": "count-up", "target": "items.1" },
+        { "word": "ex-OpenAI", "action": "show", "target": "items.2" }
       ]
     },
     {
@@ -73,11 +72,11 @@
           "plan": "Pro",
           "text": "I was charged twice. Refund me, or I cancel!"
         },
-        "questions": ["Which team?", "Is it urgent?", "Churn risk?"]
+        "questions": ["Which team?", "Urgent?", "About to leave?"]
       },
       "beats": [
         { "word": "ticket", "action": "show", "target": "ticket" },
-        { "word": "three", "action": "tag-sequence", "target": "questions" }
+        { "word": "three", "action": "show", "target": "questions" }
       ]
     },
     {
@@ -95,7 +94,7 @@
       },
       "beats": [
         { "word": "billing", "action": "show", "target": "pair.left" },
-        { "word": "Nope!", "action": "stamp-shake", "target": "stamp" },
+        { "word": "Nope!", "action": "stamp", "target": "stamp" },
         { "word": "writes", "action": "show", "target": "pair.right" }
       ]
     },
@@ -117,12 +116,12 @@
         ]
       },
       "beats": [
-        { "word": "routing", "action": "pop-row", "target": "rows.0" },
-        { "word": "spam", "action": "pop-row", "target": "rows.1" },
-        { "word": "guardrails", "action": "pop-row", "target": "rows.2" },
-        { "word": "leads", "action": "pop-row", "target": "rows.3" },
-        { "word": "picking", "action": "pop-row", "target": "rows.4" },
-        { "word": "spotting", "action": "pop-row", "target": "rows.5" }
+        { "word": "routing", "action": "show", "target": "rows.0" },
+        { "word": "spam", "action": "show", "target": "rows.1" },
+        { "word": "guardrails", "action": "show", "target": "rows.2" },
+        { "word": "leads", "action": "show", "target": "rows.3" },
+        { "word": "picking", "action": "show", "target": "rows.4" },
+        { "word": "spotting", "action": "show", "target": "rows.5" }
       ]
     },
     {

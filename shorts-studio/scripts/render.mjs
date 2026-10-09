@@ -4,8 +4,10 @@ import path from "node:path";
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
 import { MAX, FPS, ROOT, compId, genRegistry, layout, loadVideo, py } from "./lib/common.mjs";
+import { assertValidVideo } from "./lib/validate.mjs";
 const slug = process.argv[2];
 genRegistry();
+assertValidVideo(slug, { requireVoice: true });
 const { spec, timings } = loadVideo(slug);
 if (!timings) { console.error(`run npm run voice ${slug} first`); process.exit(1); }
 const SHORTS = path.resolve(ROOT, "../shorts");

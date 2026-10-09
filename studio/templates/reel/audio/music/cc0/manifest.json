@@ -1,0 +1,12 @@
+{
+ "license": "CC0 1.0 Universal (public domain): free for commercial use, no attribution required. Source: FreePD.com catalogue, via the mirror https://a.ocv.me/pub/stuff/music/freepd/ (README copies FreePD's licence text).",
+ "base": "https://a.ocv.me/pub/stuff/music/freepd/",
+ "tracks": {
+  "fresh-focus":     {"path": "upbeat/Fresh%20Focus.mp3",     "mood": "bright, steady; good under explanations"},
+  "motions":         {"path": "upbeat/Motions.mp3",           "mood": "light, moving"},
+  "inventing-flight":{"path": "upbeat/Inventing%20Flight.mp3", "mood": "curious, building"},
+  "advertime":       {"path": "upbeat/Advertime.mp3",         "mood": "punchy, commercial"},
+  "backbeat":        {"path": "electronic/Backbeat.mp3",      "mood": "electronic groove"},
+  "beat-one":        {"path": "electronic/Beat%20One.mp3",    "mood": "electronic, techy"}
+ }
+}

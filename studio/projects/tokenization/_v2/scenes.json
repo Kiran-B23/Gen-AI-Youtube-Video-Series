@@ -1,0 +1,270 @@
+{
+  "slug": "tokenization",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "upbeat-synth",
+  "names": [
+    "strawberry",
+    "tokenization",
+    "tokens",
+    "Tamil"
+  ],
+  "keywords": [
+    "letter.",
+    "numbers.",
+    "tokens:",
+    "tokenization",
+    "strawberry",
+    "number.",
+    "token.",
+    "Tamil."
+  ],
+  "voice": {
+    "name": "Laomedeia",
+    "style": "Curious and delighted, like a young tech creator revealing a magic trick in a YouTube Short: lively, warm and conversational, a smile in the voice, slow down a little on the reveals ('only numbers', 'it's one number'), speed up on the steps, warm and practical on the tips. Short natural pause between paragraphs. Read every word. Never robotic. Articulate every word clearly, especially short words like 'you pay'; never rush a line."
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "media",
+      "say": "Your computer has never seen a single letter. Only numbers.",
+      "source": "Unicode",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/s01_letter.py",
+          "scene": "LetterToNumber"
+        },
+        "clip": "build/clips/s01.mp4"
+      }
+    },
+    {
+      "id": "s02",
+      "type": "media",
+      "kicker": "HOW COMPUTERS STORE TEXT",
+      "say": "Every character you type is stored as a number. Capital A is sixty-five.",
+      "source": "Unicode",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/s02_strawberry_codes.py",
+          "scene": "StrawberryCodes"
+        },
+        "clip": "build/clips/s02.mp4"
+      }
+    },
+    {
+      "id": "s03",
+      "type": "compare",
+      "kicker": "SO WHY NOT LETTERS?",
+      "say": "For AI, letter by letter makes text far too long. Whole words? Far too many.",
+      "source": "Hugging Face LLM course",
+      "props": {
+        "left": {
+          "title": "Letters",
+          "items": [
+            "s·t·r·a·w·b·e·r·r·y…",
+            "Far too long"
+          ]
+        },
+        "right": {
+          "title": "Whole words",
+          "items": [
+            "Millions of them",
+            "Far too many"
+          ]
+        },
+        "verdict": "The middle: tokens"
+      },
+      "beats": [
+        {
+          "word": "For",
+          "target": "left",
+          "offset": -0.8
+        },
+        {
+          "word": "Whole",
+          "target": "right"
+        },
+        {
+          "word": "Far",
+          "nth": 1,
+          "target": "verdict"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "media",
+      "kicker": "TOKENS",
+      "say": "So AI reads tokens: chunks of text, like a whole word, or a piece of one.",
+      "source": "GPT-4o tokenizer",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/s04_tokens.py",
+          "scene": "Tokens"
+        },
+        "clip": "build/clips/s04.mp4"
+      }
+    },
+    {
+      "id": "s05",
+      "type": "media",
+      "kicker": "TOKENIZATION",
+      "say": "Tokenization is the chopping. Ask, how many r's are in strawberry? That's eight tokens.",
+      "source": "GPT-4o tokenizer",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/s05_chop.py",
+          "scene": "Chop"
+        },
+        "clip": "build/clips/s05.mp4"
+      }
+    },
+    {
+      "id": "s06",
+      "type": "media",
+      "kicker": "WHAT THE AI SEES",
+      "say": "Each token gets one ID. So to an AI, strawberry isn't ten letters. It's one number.",
+      "source": "GPT-4o tokenizer",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/s06_ids.py",
+          "scene": "Ids"
+        },
+        "clip": "build/clips/s06.mp4"
+      },
+      "pad": 1.2
+    },
+    {
+      "id": "s07",
+      "type": "stamp",
+      "say": "That's a big reason models miscount the r's. The letters are hidden inside.",
+      "source": "research: arXiv 2412.18626",
+      "props": {
+        "text": "Letters hidden",
+        "sub": "inside one number",
+        "size": 170
+      },
+      "beats": [
+        {
+          "word": "That's",
+          "target": "stamp",
+          "offset": 0.1
+        },
+        {
+          "word": "hidden",
+          "target": "sub"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "title",
+      "kicker": "WHY YOU SHOULD CARE",
+      "say": "And you pay for every token.",
+      "source": "OpenAI tokens guide",
+      "props": {
+        "lines": [
+          "You pay",
+          "per token"
+        ],
+        "highlight": "token"
+      }
+    },
+    {
+      "id": "s09",
+      "type": "compare",
+      "kicker": "WHY YOU SHOULD CARE",
+      "say": "The same greeting is six tokens in English, ten in Tamil.",
+      "source": "GPT-4o tokenizer · our test",
+      "props": {
+        "left": {
+          "title": "English",
+          "items": [
+            "Hello, how are you?",
+            "6 tokens"
+          ]
+        },
+        "right": {
+          "title": "Tamil",
+          "items": [
+            "வணக்கம், எப்படி இருக்கிறீர்கள்?",
+            "10 tokens"
+          ]
+        },
+        "verdict": "Same words, more tokens"
+      },
+      "beats": [
+        {
+          "word": "The",
+          "target": "left",
+          "offset": 0.1
+        },
+        {
+          "word": "ten",
+          "target": "right"
+        },
+        {
+          "word": "in",
+          "nth": 1,
+          "target": "verdict"
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "type": "points",
+      "kicker": "DO THIS",
+      "say": "So for letters, ask it to spell the word out first, and keep prompts tight.",
+      "props": {
+        "items": [
+          {
+            "icon": "🔤",
+            "text": "Spell it out first"
+          },
+          {
+            "icon": "✂️",
+            "text": "Keep prompts tight"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "So",
+          "target": "items.0",
+          "offset": 0.15
+        },
+        {
+          "word": "keep",
+          "target": "items.1"
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "type": "cta",
+      "say": "Which AI word should I break down next?",
+      "props": {
+        "question": "Which AI word should I break down next? 👇",
+        "follow": "Follow for more AI breakdowns"
+      },
+      "beats": [
+        {
+          "word": "Which",
+          "target": "question"
+        },
+        {
+          "word": "break",
+          "target": "follow"
+        }
+      ]
+    }
+  ]
+}

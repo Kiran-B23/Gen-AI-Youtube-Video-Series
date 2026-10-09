@@ -2,3 +2,18 @@ __pycache__/
 .ipynb_checkpoints/
 *_results.csv
 .env
+# studio: environments and generated outputs (rebuild with tools/setup.sh and tools/run.sh)
+studio/.venv/
+studio/.manim-env/
+studio/node_modules/
+studio/projects/*/build/
+studio/projects/*/hf/
+studio/projects/*/out/
+studio/smoke/media/
+studio/smoke/pw/
+studio/**/__pycache__/
+# YouTube research: other creators' transcripts, frames and media are for local analysis only.
+# The repo is public, so none of it is committed (inspiration.md keeps our own analysis).
+productions/*/yt/
+studio/templates/reel/audio/music/cc0/*.mp3
+studio/templates/reel/audio/music/cc0/*.wav
