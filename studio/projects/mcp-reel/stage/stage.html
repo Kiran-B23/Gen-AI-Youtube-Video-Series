@@ -1,0 +1,124 @@
+<!-- MCP reel · house style reference-flat · running object: the question "Will it rain in Tokyo tomorrow?"
+     The relay desk: MODEL (top) · APP (middle) · SERVER (bottom) + weather service. No wire between MODEL and SERVER, ever. -->
+
+<!-- progress: 3 mechanism steps (structure-check PASS 2026-10-12), lit s07-s14 only -->
+<div id="prog" class="prog"><i id="p1" class="seg"></i><i id="p2" class="seg"></i><i id="p3" class="seg"></i><span class="proglab">/ 03</span></div>
+
+<!-- s01 hook (dark): the answered chat, on screen from frame 0 -->
+<div class="g" id="g01">
+  <div id="h1q" class="m-bub m-user">Will it rain in Tokyo tomorrow?</div>
+  <div id="h1a" class="m-bub m-ai">Yes, pack an umbrella. ☂<span id="h1x" class="m-qmark">?</span></div>
+  <div id="h1h" class="m-hook hl">IT CAN'T<br>SEE THE<br><span class="m-u">WEATHER.</span></div>
+</div>
+
+<!-- s02-s03 the question meets the model alone (blue) -->
+<div class="g" id="g02">
+  <div id="q2" class="m-q2 card"><span class="kick m-k">YOU ASK</span><div id="q2t" class="m-q2t"></div></div>
+  <div id="m3" class="m-alone card glass">
+    <div class="m-alhd"><span class="hl m-aln">MODEL</span><span class="kick m-alk">ON ITS OWN</span></div>
+    <div class="m-shelf"><span class="m-tr">training data</span><span class="m-tr">text</span><span class="m-tr">code</span><span class="m-tr">books</span><span class="m-tr">web pages</span></div>
+  </div>
+  <div id="cal" class="m-cal"><span class="m-day">past</span><span class="m-day">past</span><span class="m-day">past</span><span class="m-day m-today">trained</span><b class="m-wall"></b></div>
+  <div id="tomc" class="chip yel m-tomc">tomorrow?</div>
+  <div id="nolive" class="stampx m-nolive">NO LIVE DATA</div>
+</div>
+
+<!-- chapter cards (Concept mechanism: numbered) -->
+<div class="g chap" id="c1"><div class="chapk">STEP 1 OF 3</div><div class="chapn">01</div><div class="chapt">The menu</div></div>
+<div class="g chap on-yellow" id="c2"><div class="chapk">STEP 2 OF 3</div><div class="chapn">02</div><div class="chapt">The note</div></div>
+<div class="g chap on-blue" id="c3"><div class="chapk">STEP 3 OF 3</div><div class="chapn">03</div><div class="chapt">The call</div></div>
+
+<!-- the relay desk (s04-s14): tiles left, content right -->
+<div class="g" id="gdesk">
+  <div id="lanes" class="m-lanes"><i id="ln1" class="m-ln m-ln1"></i><i id="ln2" class="m-ln m-ln2"></i><i id="ln3" class="m-ln m-ln3"></i></div>
+  <div id="tm" class="card m-tile m-tm"><div class="hl m-tn">MODEL</div><div id="tms" class="m-ts">the AI</div></div>
+  <div id="ta" class="card m-tile m-ta"><div class="hl m-tn">APP</div><div id="tas" class="m-ts">host +<br>MCP client</div></div>
+  <div id="ts" class="card m-tile m-ts0"><div class="hl m-tn">SERVER</div><div id="tss" class="m-ts">wraps a tool</div></div>
+  <div id="tw" class="m-wsvc"><span>weather service</span></div>
+  <div id="mcpc" class="chip yel m-mcpc">MCP</div>
+  <div id="pulse" class="m-pulse"></div>
+  <div id="flow" class="m-flow"></div>
+</div>
+
+<!-- s04 the twist: the empty gap -->
+<div class="g" id="g04">
+  <div id="gap" class="m-gap"></div>
+  <div id="never" class="stampx m-never">NEVER CALLS IT.</div>
+</div>
+
+<!-- s05 the concept, in the app slot -->
+<div class="g" id="g05">
+  <div id="mbig" class="hl m-big">MCP</div>
+  <div class="m-full"><span id="mfull" class="mono"></span></div>
+</div>
+
+<!-- the running object and what travels (s06-s14) -->
+<div class="g" id="gobj">
+  <div id="qcard" class="card m-qcard"><span class="kick m-k2">YOU ASK</span><span class="m-qt">Will it rain in <b id="qtk" class="m-hl">Tokyo</b> <b id="qtm" class="m-hl">tomorrow</b>?</span></div>
+  <div id="clist" class="chip ink m-clist">tools/list</div>
+  <div id="cback" class="chip yel m-clist">↑ the menu</div>
+  <div id="menu" class="card m-menu">
+    <div class="m-mtag">menu · illustrative</div>
+    <div id="r1" class="m-row m-r1"><div class="m-rn"><span class="mono">get_forecast</span><span id="runb" class="m-run">run ▶<b id="runx">✕</b></span></div><div id="d1" class="m-rd">gets the weather for a city</div><div class="m-needs">needs <span id="ia" class="chip ink m-in">city</span><span id="ib" class="chip ink m-in">date</span></div></div>
+    <div id="r2" class="m-row"><span class="mono">get_alerts</span><span id="d2" class="m-rd1">weather warnings</span></div>
+    <div id="r3" class="m-row"><span class="mono">find_city</span><span id="d3" class="m-rd1">looks up a city name</span></div>
+    <i id="scan" class="m-scan"></i>
+  </div>
+  <div id="note" class="card m-note"><div class="m-ntag">THE NOTE · illustrative</div><pre id="notet" class="m-nt"></pre><span id="tcall" class="chip yel m-tcall">tools/call</span></div>
+  <div id="res" class="chip ok m-res">rain likely · illustrative</div>
+  <div id="reply" class="m-reply"><span id="rw1">Yes,</span> <span id="rw2">pack</span> <span id="rw3">an</span> <span id="rw4">umbrella.</span></div>
+</div>
+
+<!-- s15-s17 why a standard (light) -->
+<div class="g" id="g15">
+  <div id="gk1" class="m-gk kick">BEFORE MCP</div><div id="gk2" class="m-gk kick">WITH MCP</div>
+  <div id="tools" class="m-tools"><span class="chip ink">weather</span><span class="chip ink">calendar</span><span class="chip ink">files</span><span class="chip ink">database</span></div>
+  <div id="plugs" class="m-plugs"><span><b class="m-pl">MCP</b><i></i></span><span><b class="m-pl">MCP</b><i></i></span><span><b class="m-pl">MCP</b><i></i></span><span><b class="m-pl">MCP</b><i></i></span></div>
+  <div id="grid" class="m-grid"></div>
+  <div id="apps" class="m-apps"><span id="ap1" class="chip wht m-app"><em>chat app</em><strong>ChatGPT</strong></span><span id="ap2" class="chip wht m-app"><em>assistant</em><strong>Gemini</strong></span><span id="ap3" class="chip wht m-app"><em>copilot</em><strong>Copilot</strong></span><span id="ap4" class="chip wht m-app"><em>editor</em><strong>VS Code</strong></span></div>
+  <div id="rail" class="m-rail"><b>MCP</b><i id="railg" class="m-railg"></i></div>
+  <div id="ups" class="m-ups"><i></i><i></i><i></i><i></i></div>
+  <div id="n10k" class="big bl m-n10k">10,000+</div>
+  <div id="n10l" class="m-n10l mono">public MCP servers</div>
+</div>
+
+<!-- s18-s20 the catch (dark) -->
+<div class="g" id="g18">
+  <div id="believe" class="hl m-believe">THE MODEL<br>BELIEVES<br><span class="yl">THE MENU.</span></div>
+  <div id="cmenu" class="card m-cmenu">
+    <div class="m-mtag">menu · illustrative</div>
+    <div class="m-row m-r1"><div class="m-rn"><span class="mono">get_forecast</span></div><div class="m-rd">gets the weather for a city</div><div id="hid" class="m-hid"></div></div>
+    <div class="m-row"><span class="mono">get_alerts</span><span class="m-rd1">weather warnings</span></div>
+  </div>
+  <div id="uview" class="m-uview"><div class="kick m-uk">WHAT YOU SEE</div><div class="m-urow"><span class="mono">get_forecast</span> · gets the weather…</div></div>
+  <i id="cscan" class="m-cscan"></i>
+  <svg id="arr" class="m-arr" viewBox="0 0 1080 1920"><path id="arrp" d="M812 440 C 1010 540, 1010 900, 780 1080" /></svg>
+  <div id="cmodel" class="m-cmodel hl">MODEL</div>
+</div>
+
+<!-- s21-s22 what to do (dark) -->
+<div class="g" id="g21">
+  <div id="do1" class="card m-do1"><span class="m-ck">✓</span> Install only servers you trust</div>
+  <div id="prev" class="card m-prev">
+    <div class="kick m-pk">ABOUT TO RUN · illustrative</div>
+    <div class="mono m-pl1">get_forecast</div>
+    <div class="mono m-pl2">city: "Tokyo" · date: "tomorrow"</div>
+    <div class="m-btns"><span class="m-deny">Deny</span><span id="appr" class="m-appr">Approve</span></div>
+  </div>
+  <div id="do3" class="card m-do3"><span>Allow all tools</span><span class="m-tog"><i></i></span><b id="allx" class="m-allx">✕</b></div>
+</div>
+
+<!-- s23 recap (yellow) -->
+<div class="g" id="g23">
+  <div id="rc1" class="card m-rc m-rc1"><span class="hl m-rcn">01 MENU</span><span class="mono m-rcs">the app gets the tools</span></div>
+  <div id="rc2" class="card m-rc m-rc2"><span class="hl m-rcn">02 NOTE</span><span class="mono m-rcs">the model writes the call</span></div>
+  <div id="rc3" class="card m-rc m-rc3"><span class="hl m-rcn">03 CALL</span><span class="mono m-rcs">the app makes the call</span></div>
+  <div id="rq" class="chip ink m-rq">Tokyo?</div>
+  <div id="dd" class="m-dd hl">THE MODEL DECIDES.<br>THE APP DOES.</div>
+</div>
+
+<!-- s24 CTA (dark) -->
+<div class="g" id="g24">
+  <div class="cta"><span id="cw1">WHAT</span> <span id="cw2">SHOULD</span> <span id="cw3">I</span> <span id="cw4">EXPLAIN</span> <span id="cw5" class="yl">NEXT?</span></div>
+  <div id="ctaf" class="ctaf">+ Follow for more AI breakdowns</div>
+</div>

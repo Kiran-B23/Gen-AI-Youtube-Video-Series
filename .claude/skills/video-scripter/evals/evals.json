@@ -1,6 +1,6 @@
 {
  "skill_name": "video-scripter",
- "about": "Judgement evals: what the skill must decide or refuse. Deterministic checks live in scripts/lint_package.py (run on fixtures/good-reel → must pass, fixtures/bad-reel → must fail). Run these after any change to SKILL.md, archetypes/ or style-rules.md.",
+ "about": "Judgement evals: what the skill must decide or refuse. Deterministic checks live in scripts/lint_package.py (run on fixtures/good-reel → must pass, fixtures/bad-reel, bad-content and bad-visual → must fail with exactly the planted errors). Run these after any change to SKILL.md, archetypes/, style-rules.md or an agent in .claude/agents/. Goldfish comprehension (2026-10-27): script-comprehension is a stateless viewer given only the read-aloud; script-review scores 'understood' from its report.",
  "evals": [
   {
    "id": "arch-concept",
@@ -155,6 +155,169 @@
    "expectations": [
     "asks the user before using --cookies-from-browser",
     "otherwise continues with search data and says what couldn't be watched"
+   ]
+  },
+  {
+   "id": "plan-catch-skip-concept",
+   "group": "content",
+   "agent": "content-plan",
+   "prompt": "(research) Concept reel 'What is a vector database?'. Research limitations: 'results can vary', 'it is a newer technology', 'needs good embeddings'.",
+   "expectations": [
+    "Catch: skip, because the listed limitations are generic or obvious, not material to the viewer's question",
+    "core message ≤ 20 words about what a vector database does",
+    "no plan/price/vendor trivia in Must include"
+   ]
+  },
+  {
+   "id": "plan-catch-include-material",
+   "group": "content",
+   "agent": "content-plan",
+   "prompt": "(research) Launch reel on OpenAI dots. Official Help Center: 'Disconnecting an app does not delete information your dot has already obtained from it. To delete that information, you need to delete your dot.'",
+   "expectations": [
+    "Catch: include, citing the official Help Center wording",
+    "the catch is stated as one concrete point (memory stays after disconnect; only reset deletes it), not 'it can make mistakes'"
+   ]
+  },
+  {
+   "id": "plan-leave-out",
+   "group": "content",
+   "agent": "content-plan",
+   "prompt": "(research) Launch reel. Research includes: DevDay venue and date, Pro/Business plan availability, excluded regions, a rival company's launch the same week, and the core feature behaviour from official docs. The user said: 'No need to mention plans, regions; focus on what it is and its functionality.'",
+   "expectations": [
+    "venue/date, plans, regions and the rival launch are in Leave out with reasons",
+    "Must include is only functionality, each with a source"
+   ]
+  },
+  {
+   "id": "plan-absolute-claim",
+   "group": "content",
+   "agent": "content-plan",
+   "prompt": "(research) Tool docs say 'No text generation, no parsing'; a yes/no answer returns a probability between 0 and 1. A draft hook says 'This AI never writes a single word'.",
+   "expectations": [
+    "the Claim safety table lists 'never writes a single word' with the official wording that supports it",
+    "notes that yes/no answers are probabilities, so the screen must not show a bare 'yes'"
+   ]
+  },
+  {
+   "id": "review-vague",
+   "group": "content",
+   "agent": "script-review",
+   "prompt": "(script) beat 2: 'This is a powerful tool with many use cases, and it never fails.' (no source)",
+   "expectations": [
+    "VERDICT: CHANGES",
+    "blocking items for the vague filler and the unsourced absolute, each with an exact concrete rewrite",
+    "specific score ≤ 3 and accurate score ≤ 3"
+   ]
+  },
+  {
+   "id": "review-unplanned-catch",
+   "group": "content",
+   "agent": "script-review",
+   "prompt": "(script + plan) content-plan.md says 'Catch: skip (concept explainer, no material limitation)'; the script ends with 'But here's the catch: AI can make mistakes.'",
+   "expectations": [
+    "VERDICT: CHANGES",
+    "blocking: catch added that the plan skipped; rewrite removes it or replaces it with the payoff"
+   ]
+  },
+  {
+   "id": "review-pass-good",
+   "group": "content",
+   "agent": "script-review",
+   "prompt": "(fixture) evals/fixtures/good-reel with its content-plan.md",
+   "expectations": [
+    "VERDICT: PASS",
+    "every score ≥ 4",
+    "no blocking items"
+   ]
+  },
+  {
+   "id": "visual-none-run",
+   "group": "visual",
+   "agent": "visual-plan",
+   "prompt": "(animation plan) rows s03, s04 and s05 all say 'none: caption + held frame'; s04 is the [NUMBER] beat ('about four characters'); the other rows name verbs on the strawberry chip.",
+   "expectations": [
+    "VERDICT: CHANGES",
+    "blocking items under rule 1 for the three consecutive none rows and for the none on the number beat",
+    "each fix names a verb, the running object and the cue word (e.g. s04: '~4' COUNTS UP on \"four\")",
+    "the none-rows count in the summary line is 3"
+   ]
+  },
+  {
+   "id": "visual-depth-not-shown",
+   "group": "visual",
+   "agent": "visual-plan",
+   "prompt": "(plan + content plan) content-plan.md Depth lists 'the word split into token chunks'; every animation-plan row keeps the word whole, and s04 only shows the overlay 'TOKENS ~4 chars' while the voice says 'chunks called tokens'.",
+   "expectations": [
+    "VERDICT: CHANGES",
+    "the depth mapping table marks the point as not shown (depth: 0/1 shown)",
+    "blocking item under rule 3 on s04: the chip must SLICE into chunks on 'chunks', not an overlay that names it"
+   ]
+  },
+  {
+   "id": "visual-pass-good",
+   "group": "visual",
+   "agent": "visual-plan",
+   "prompt": "(fixture) evals/fixtures/good-reel with its animation-plan.md, art-direction.md and hooks.md",
+   "expectations": [
+    "VERDICT: PASS",
+    "depth 1/1 shown · running object 100 % · none-rows 0",
+    "hook blind score within 2 points of the self-score (18)",
+    "no blocking items; '- [x] Visual plan passed' is ticked"
+   ]
+  },
+  {
+   "id": "visual-overlay-too-long",
+   "group": "visual",
+   "agent": "visual-plan",
+   "prompt": "(storyboard) row 5 text overlay: 'Spell the word out letter by letter first, or write a bit of code' (14 words) while the voice says the same sentence.",
+   "expectations": [
+    "VERDICT: CHANGES",
+    "blocking item under rule 5: ≤ 6 words per element, ≤ 12 on screen; fix is two chips such as 'Spell it out' · 'Use code'",
+    "the spoken line is not rewritten"
+   ]
+  },
+  {
+   "id": "goldfish-jargon",
+   "group": "content",
+   "agent": "script-comprehension",
+   "prompt": "(read-aloud only) 'MCP just hit one point oh. It standardises the JSON-RPC transport between hosts and servers, so your client negotiates capabilities once. Servers expose tools, resources and prompts, and sampling lets them call back into the model. With streamable HTTP replacing SSE, and OAuth two point one for auth, remote servers finally make sense.'",
+   "expectations": [
+    "WHAT IT IS says what MCP is only vaguely or 'not said' (the narration never says it)",
+    "LOST ME lists MCP, JSON-RPC, capabilities negotiation, sampling, SSE / streamable HTTP as unexplained",
+    "ONE-LISTEN RISK: high",
+    "no rewrite or style advice; only the fixed output block"
+   ]
+  },
+  {
+   "id": "goldfish-isolated",
+   "group": "content",
+   "agent": "script-comprehension",
+   "prompt": "(prompt gives a production folder path instead of narration text)",
+   "expectations": [
+    "opens only the script's '## Read-aloud version' section, never content-plan.md, research.md or brief.md",
+    "the report contains no fact that is absent from the narration"
+   ]
+  },
+  {
+   "id": "review-takeaway-mismatch",
+   "group": "content",
+   "agent": "script-review",
+   "prompt": "(content plan core message: 'A dot keeps working between chats under rules you set'; comprehension.md TAKEAWAY: 'ChatGPT can now fix bugs overnight'; REMEMBERED misses the four permission levels, a must-include)",
+   "expectations": [
+    "VERDICT: CHANGES",
+    "understood ≤ 3",
+    "blocking: the takeaway misses the core message, and the must-include 'four levels' is not remembered, each with an exact script fix",
+    "does not edit comprehension.md"
+   ]
+  },
+  {
+   "id": "review-stale-goldfish",
+   "group": "content",
+   "agent": "script-review",
+   "prompt": "(comprehension.md read-aloud sha1 differs from lint_package.py --read-aloud-sha1)",
+   "expectations": [
+    "VERDICT: CHANGES",
+    "asks to re-run script-comprehension on the current read-aloud before reviewing"
    ]
   }
  ]

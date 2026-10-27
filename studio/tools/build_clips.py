@@ -6,9 +6,13 @@ In scenes.json a media scene declares its builder:
   {"type": "media", "props": {"build": {"tool": "playwright", "file": "clips/demo.mjs"}}}      # script records into $OUT_DIR
   {"type": "media", "props": {"build": {"tool": "vhs", "file": "clips/terminal.tape"}}}         # tape's Output is overridden
   {"type": "media", "props": {"clip": "clips/existing.mp4"}}                                     # pre-made / stock
-usage: python tools/build_clips.py <slug> [scene-id ...]
+usage: python tools/build_clips.py <slug> [scene-id ...]    (FORCE=1 rebuilds unchanged clips; SEED=1 marks existing clips current)
+
+A clip is skipped when its inputs are unchanged since the last build: the clip file, its folder's helpers (kit.py…),
+tools/manim_lib, its scenes' word timings, palette and size (hash in build/clips/<scene>.hash). A Manim clip costs
+6-12 min on a laptop CPU, so a one-line fix should rebuild only the clip it touched.
 """
-import json, glob, os, re, shutil, subprocess, sys, tempfile
+import hashlib, json, glob, os, re, shutil, subprocess, sys, tempfile
 STUDIO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 slug, only = sys.argv[1], set(sys.argv[2:])
 P = os.path.join(STUDIO, "projects", slug)
@@ -21,7 +25,6 @@ env = dict(os.environ, PYTHONNOUSERSITE="1", STUDIO_MANIM_LIB=os.path.join(STUDI
 def to_mp4(src, dst):
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-an", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", dst], check=True)
 
-changed = False
 for s in spec["scenes"]:
     b = s.get("props", {}).get("build")
     if s["type"] != "media" or not b or (only and s["id"] not in only): continue
@@ -47,6 +50,22 @@ for s in spec["scenes"]:
     env["STUDIO_OFFSETS"] = json.dumps(_off); env["STUDIO_CLIP_LEN"] = str(round(_t, 3))
     secs = json.load(open(os.path.join(STUDIO, "templates", "reel", "sections.json"))); secs.update(spec.get("sections", {}))
     env["STUDIO_PALETTE"] = json.dumps(secs[s.get("section", spec.get("section", "dark"))])   # clip background = section colour
+    key = hashlib.sha1(json.dumps([b, s.get("section"), env["STUDIO_PALETTE"], env["STUDIO_OFFSETS"], env["STUDIO_CLIP_LEN"],
+                                 {k: _tm.get(k) for k in _ids}, spec.get("size")], sort_keys=True).encode())
+    others = {os.path.join(P, x["props"]["build"]["file"]) for x in spec["scenes"] if x.get("props", {}).get("build")} - {src}   # other clips don't count
+    for f in [src] + sorted(glob.glob(os.path.join(os.path.dirname(src), "*")) + glob.glob(os.path.join(STUDIO, "tools", "manim_lib", "*.py"))):
+        if not os.path.isfile(f) or f in others or f.endswith((".pyc", ".mp4", ".webm")): continue
+        mod = os.path.splitext(os.path.basename(f))[0]   # a helper counts only if this clip imports it (kit.py, motion_kit…)
+        if f == src or f.startswith(os.path.join(STUDIO, "tools", "manim_lib")) or re.search(rf"\b(import|from)\s+{re.escape(mod)}\b", open(src).read()): key.update(open(f, "rb").read())
+    key = key.hexdigest(); hf = os.path.join(OUT, f"{s['id']}.hash")
+    built = [f for f in (dst, dst[:-4] + ".webm") if os.path.exists(f)]
+    if built and os.environ.get("SEED"):   # SEED=1: mark the clips already on disk as current (projects built before the cache)
+        open(hf, "w").write(key); print("  seeded hash"); continue
+    if built and not os.environ.get("FORCE") and os.path.exists(hf) and open(hf).read() == key:
+        print("  unchanged: reusing", os.path.relpath(built[0], P))
+        if s["props"].get("clip") != os.path.relpath(built[0], P):
+            s["props"]["clip"] = os.path.relpath(built[0], P); json.dump(spec, open(os.path.join(P, "scenes.json"), "w"), indent=2, ensure_ascii=False)
+        continue
     with tempfile.TemporaryDirectory() as tmp:
         if b["tool"] == "manim":
             w, h = b.get("size", [1600, 1664] if H > W else [W, H])  # 1.6x the 1000x1040 visual zone (crisp, renders fast)
@@ -68,6 +87,10 @@ for s in spec["scenes"]:
             to_mp4(os.path.join(tmp, "clip.mp4"), dst)
         else:
             sys.exit(f"unknown builder {b['tool']}")
-    s["props"]["clip"] = os.path.relpath(dst, P); changed = True
-if changed: json.dump(spec, open(os.path.join(P, "scenes.json"), "w"), indent=2, ensure_ascii=False)
+    s["props"]["clip"] = os.path.relpath(dst, P); open(hf, "w").write(key)
+    # saved per clip, re-reading the file first: parallel builds (one process per scene id) each add only their own clip
+    cur = json.load(open(os.path.join(P, "scenes.json")))
+    for x in cur["scenes"]:
+        if x["id"] == s["id"]: x.setdefault("props", {})["clip"] = s["props"]["clip"]
+    json.dump(cur, open(os.path.join(P, "scenes.json"), "w"), indent=2, ensure_ascii=False)
 print("clips ->", os.path.relpath(OUT, STUDIO))

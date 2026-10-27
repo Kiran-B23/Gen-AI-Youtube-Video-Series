@@ -23,7 +23,7 @@ company's own demo, labelled as such).
 | What it is | 2–8 s | Define it by what it does | "It's a ___ that ___." No dates, venues or HQs | `[TITLE]` |
 | Demo | 8–22 s | The running example, start to finish | The input → the output; the real UI or a labelled illustration | `[SCREEN]` / `[TERMINAL]` |
 | Why it's different | 22–30 s | The one thing it does that the alternatives don't | One sourced number or a visible difference | `[VS]` / `[NUMBER]` |
-| The catch | 30–38 s | The honest limit | Price, access, accuracy, privacy, "company claim" label | `[VERDICT]` |
+| The catch *(only if material, see content-plan)* | 30–38 s | The honest limit | Price, access, accuracy, privacy, "company claim" label | `[VERDICT]` |
 | Verdict | 38–45 s | Who should try it, and who shouldn't | A person-level recommendation | `[VERDICT]` / `[LIST]` |
 | CTA | last 3–5 s | Comment prompt | "Would you use it for ___?" | `[CTA]` |
 
@@ -35,7 +35,7 @@ company's own demo, labelled as such).
 | Hands-on | 35% | 2–3 real tasks of rising difficulty, on camera. 🔁 Open loop at ~25% |
 | How it works (briefly) | 10% | Only what explains the behaviour |
 | Vs the alternatives | 15% | The same task on the closest alternative |
-| The catch | 15% | Limits, cost, privacy, what we couldn't verify. 🔁 Pay-off at ~60% |
+| The catch *(only if material)* | 15% | Limits, cost, privacy, what we couldn't verify. 🔁 Pay-off at ~60% |
 | Verdict + CTA | 10% | Who should switch, who shouldn't |
 
 **Tone (→ voice style):** "Genuinely excited but honest, like a creator who just tried it: fast on the demo, calm and serious on the catch."
@@ -43,7 +43,7 @@ company's own demo, labelled as such).
 **Must-haves:**
 - The demo is shown, not just described.
 - Company claims are worded as claims ("they say…").
-- The catch is included.
+- The catch is included **only if material** (changes the try/skip decision: real cost, accuracy gap, privacy, access); otherwise the verdict carries the honest framing. Decided in `content-plan.md`.
 - It is introduced by what it does.
 
 **Don'ts:**

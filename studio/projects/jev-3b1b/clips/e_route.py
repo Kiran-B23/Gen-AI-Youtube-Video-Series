@@ -1,0 +1,90 @@
+from kit import *
+
+class RouteSpan(B1BScene):
+    """s10-s13 (Step 4 + verdict + CTA): Jev routes confident tickets to DONE and unsure ones to an LLM; the router shrinks
+    and two bars show the university test (99.6% of GPT-6's accuracy, 47% of its cost); verdict; the question."""
+    def construct(self):
+        S10, S11, S12, S13 = "s10", "s11", "s12", "s13"
+        hd = header(4, 4, "Route it")
+        jev = node("Jev", 1.5, BLUE_, 100).move_to(UP * 3.4)
+        self.add(hd, jev)
+        ill = illustrative(self)
+        ring = DashedVMobject(Circle(radius=1.85, color=BLUE_, stroke_width=4, stroke_opacity=0.6), num_dashes=30).move_to(jev)
+        ring.add_updater(lambda m, dt: m.rotate(dt * 0.6))
+        self.play(FadeIn(ring), run_time=0.3)
+        done = VGroup(card(5.2, 2.6, GRN), S("done", 96, GRN)); done[1].move_to(done[0])
+        llm = VGroup(card(5.2, 2.6, TEALC), S("LLM", 96, TEALC)); llm[1].move_to(llm[0])
+        done.move_to([-3.6, -3.0, 0]); llm.move_to([3.6, -3.0, 0])
+        pl = CubicBezier(jev.get_bottom(), jev.get_bottom() + DOWN * 2.2, done.get_top() + UP * 2.2, done.get_top()).set_stroke(GRN, 7)
+        pr = CubicBezier(jev.get_bottom(), jev.get_bottom() + DOWN * 2.2, llm.get_top() + UP * 2.2, llm.get_top()).set_stroke(TEALC, 7)
+        tl_ = S("confident", 64, GRN, slant=ITALIC).next_to(done, DOWN, buff=0.35)
+        tr_ = S("unsure", 64, TEALC, slant=ITALIC).next_to(llm, DOWN, buff=0.35)
+        self.until(w("both", scene=S10) - 0.2)
+        self.cue("whoosh")
+        self.play(Create(pl), Create(pr), FadeIn(done, shift=UP * 0.3), FadeIn(llm, shift=UP * 0.3), run_time=0.5)
+        def send(conf, path, dest, col):
+            t = VGroup(Dot(radius=0.24, color=col), M(f"{conf:.2f}", 60, col)).arrange(RIGHT, buff=0.18)
+            t.move_to(jev.get_right() + RIGHT * 2.0 + UP * 1.2)
+            self.play(FadeIn(t, shift=DOWN * 0.4), run_time=0.2)
+            self.play(t.animate.move_to(jev.get_bottom() + DOWN * 1.0), run_time=0.25)   # below the node, never over its label
+            self.play(MoveAlongPath(t, path.copy()), run_time=0.6, rate_func=rate_functions.ease_in_out_sine)
+            self.cue("pop")
+            self.play(t.animate.move_to(dest).scale(0.5).set_opacity(0), Indicate(dest[1], color=col, scale_factor=1.1), run_time=0.35)
+            self.remove(t)
+        self.until(w("confident", scene=S10) - 0.45)
+        self.play(FadeIn(tl_), run_time=0.2); send(0.97, pl, done, GRN)
+        self.until(w("unsure", scene=S10) - 0.45)
+        self.play(FadeIn(tr_), run_time=0.2); send(0.52, pr, llm, TEALC)
+        if self.renderer.time + 1.5 < at(S11): send(0.95, pl, done, GRN)
+        self.until(at(S11) - 0.05)
+        # s11: router shrinks to the top right; the result as two bars against GPT-6 alone (100%)
+        router = VGroup(jev, ring, done, llm, pl, pr, tl_, tr_)
+        ring.clear_updaters()
+        self.play(router.animate.scale(0.5).move_to([3.7, 4.5, 0]), FadeOut(ill), run_time=0.5)
+        test = S("one university\ntest", 60, SOFT, slant=ITALIC).move_to([-3.6, 3.3, 0])
+        self.play(FadeIn(test), run_time=0.3)
+        rows = []
+        for lab, y in (("accuracy", -0.4), ("cost", -4.8)):
+            ref = Rectangle(width=12.6, height=1.1, stroke_color=GREY_C, stroke_width=4).move_to([0, y, 0])
+            name = S(lab, 72, INK).next_to(ref, UP, buff=0.3).align_to(ref, LEFT)
+            refl = S("GPT-6 alone = 100%", 48, SOFT).next_to(ref, DOWN, buff=0.25).align_to(ref, RIGHT)
+            rows.append((name, ref, refl, y))
+        self.play(*[FadeIn(VGroup(n, r, l)) for n, r, l, _ in rows], run_time=0.4)
+        def grow(row, frac, col, word, text):
+            n, r, l, y = row
+            self.until(w(word, scene=S11) - 0.35)
+            f = Rectangle(width=12.6 * frac, height=1.1, fill_color=col, fill_opacity=0.9, stroke_width=0).align_to(r, LEFT).set_y(y)
+            self.cue("ding")
+            self.play(GrowFromEdge(f, LEFT), run_time=0.6)
+            v = S(text, 100, col).next_to(n, RIGHT, buff=0.5)
+            self.play(FadeIn(v, shift=UP * 0.2), run_time=0.3)
+        grow(rows[0], 0.996, GRN, "accuracy", "99.6%")
+        grow(rows[1], 0.47, YEL, "half", "47%")
+        self.until(at(S12) - 0.45)
+        # s12: verdict (cross-fades in as the chart leaves: no blank frame, no overlap)
+        vk = S("Verdict", 80, SOFT, slant=ITALIC).move_to(UP * 7.4)
+        vu = Line(LEFT * 2.6, RIGHT * 2.6, color=SOFT, stroke_width=4).next_to(vk, DOWN, buff=0.15)
+        v1 = S("Jev decides.", 140, BLUE_).move_to(UP * 4.9)
+        self.cue("pop")
+        self.crossfade([vk, vu, v1])
+        self.until(w("LLM", scene=S12) - 0.15)
+        v2 = fitw(S("The LLM writes.", 140, YEL)).move_to(UP * 2.5)
+        self.cue("pop"); self.play(Write(v2), run_time=0.55)
+        c1 = check("routing", 96); c2 = check("tagging", 96); c3 = cross("writing", 96)
+        VGroup(c1, c2, c3).arrange(DOWN, buff=0.55, aligned_edge=LEFT).move_to(DOWN * 2.6)
+        self.until(w("routing", scene=S12) - 0.15); self.cue("pop"); self.play(FadeIn(c1, shift=RIGHT * 0.3), run_time=0.3)
+        self.until(w("tagging", scene=S12) - 0.15); self.cue("pop"); self.play(FadeIn(c2, shift=RIGHT * 0.3), run_time=0.3)
+        self.until(w("writing", scene=S12) - 0.15); self.cue("stamp"); self.play(FadeIn(c3, scale=1.3), run_time=0.3)
+        # s13: the question builds word by word (first word cross-fades in as the verdict leaves)
+        words = [("What", "What"), ("should", "should"), ("I", "I"), ("explain", "explain"), ("next?", "next")]
+        mobs = [S(t, 170, YEL if t == "next?" else INK) for t, _ in words]
+        lines = VGroup(VGroup(mobs[0], mobs[1]).arrange(RIGHT, buff=0.5), VGroup(mobs[2], mobs[3]).arrange(RIGHT, buff=0.5), mobs[4]).arrange(DOWN, buff=0.55, aligned_edge=LEFT).move_to(UP * 2.4)
+        fitw(lines, 0.9)
+        self.until(w("What", scene=S13) - 0.3)
+        self.crossfade([mobs[0]])
+        for m, (_, key) in zip(mobs[1:], words[1:]):
+            self.until(w(key, scene=S13) - 0.1)
+            self.play(FadeIn(m, shift=UP * 0.3), run_time=0.22)
+        ul = Line(mobs[4].get_corner(DL) + DOWN * 0.25, mobs[4].get_corner(DR) + DOWN * 0.25, color=YEL, stroke_width=7)
+        self.play(Create(ul), run_time=0.4)
+        self.until(CLIP_LEN)   # the last clip holds its end card

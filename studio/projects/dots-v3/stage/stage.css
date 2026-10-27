@@ -1,0 +1,170 @@
+/* Dots reel stage · on top of the reference-flat kit · all classes prefixed d- (never the engine's preset names).
+   Replica of the dot's ChatGPT window (official carousel screenshots as references only): white window, 20 px radius, grey
+   left rail with five line icons, grey assistant bubbles #F3F3F3, user bubbles in the dot's colour (house blue), composer with
+   +, mic and a round blue send button, the dot's computer pane with dark chrome and a URL pill. Inter for UI text, JetBrains Mono
+   for the URL, receipts, chips and the terminal. Non-hero type ≤ 58 px; body text ≥ 30 px. */
+
+/* ---------- giant hook clock + chips ---------- */
+.d-clock { position: absolute; left: 60px; top: 220px; font-family: "Anton", sans-serif; font-size: 165px; line-height: 0.95; color: #FFD23F; white-space: nowrap; transform-origin: 0 50%; }
+.d-ampm { font-size: 90px; }
+.d-chip { display: inline-block; padding: 6px 20px; border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 700; line-height: 1.25; white-space: nowrap; }
+.d-yel { background: #FFD23F; color: #0B1020; } .d-ink { background: #0B1020; color: #fff; } .d-white { background: #fff; color: #0B1020; border: 2px solid #E5E5E5; }
+.d-grey { background: #F3F3F3; color: #4A4D5A; } .d-ok { background: #0E8F5E; color: #fff; }
+.d-sped { position: absolute; left: 630px; top: 300px; opacity: 0; }
+.d-sped2 { position: absolute; left: 450px; top: 1360px; opacity: 0; }
+.d-passed { position: absolute; left: 180px; top: 1356px; font-size: 36px; opacity: 0; }
+
+/* ---------- the window (local 1000x880 at x 40, y 240) ---------- */
+.d-win { position: absolute; left: 40px; top: 240px; width: 1000px; height: 880px; background: #fff; border: 4px solid #0B1020; border-radius: 22px; color: #0C0E16; font-family: "Inter", sans-serif; box-sizing: border-box; }
+.d-bar { position: absolute; left: 0; top: 0; width: 992px; height: 60px; border-bottom: 2px solid #ECECEF; border-radius: 18px 18px 0 0; background: #F7F7F9; }
+.d-dot1, .d-dot2, .d-dot3 { position: absolute; top: 22px; width: 16px; height: 16px; border-radius: 50%; background: #C9CBD3; }
+.d-dot1 { left: 22px; } .d-dot2 { left: 48px; } .d-dot3 { left: 74px; }
+.d-wtitle { position: absolute; left: 118px; top: 12px; font-size: 30px; font-weight: 600; color: #4A4D5A; }
+.d-clockchip { position: absolute; left: 500px; top: 8px; font-size: 28px; padding: 4px 16px; opacity: 0; }
+.d-more { position: absolute; left: 860px; top: 10px; font-size: 30px; font-weight: 700; color: #4A4D5A; letter-spacing: 2px; }
+.d-rail { position: absolute; left: 0; top: 62px; width: 64px; height: 810px; background: #F4F4F6; border-radius: 0 0 0 18px; }
+.d-ic { position: absolute; left: 17px; width: 30px; height: 30px; box-sizing: border-box; border: 3px solid #4A4D5A; border-radius: 7px; }
+.d-ic1 { top: 36px; border-radius: 7px 7px 4px 4px; } .d-ic1::after { content: ""; position: absolute; left: 8px; top: 12px; width: 8px; height: 12px; background: #4A4D5A; }
+.d-ic2 { top: 96px; } .d-ic2::after { content: ""; position: absolute; left: 5px; top: 10px; width: 14px; height: 3px; background: #4A4D5A; box-shadow: 0 6px 0 #4A4D5A; }
+.d-ic3 { top: 156px; border-radius: 50%; } .d-ic3::after { content: ""; position: absolute; left: 11px; top: 5px; width: 3px; height: 9px; background: #4A4D5A; box-shadow: 3px 7px 0 #4A4D5A; }
+.d-ic4 { top: 216px; border-radius: 50%; } .d-ic4::after { content: ""; position: absolute; left: 7px; top: 7px; width: 10px; height: 10px; border: 3px solid #4A4D5A; border-radius: 50%; box-sizing: border-box; }
+.d-ic5 { top: 276px; border: 0; } .d-ic5::before, .d-ic5::after { content: ""; position: absolute; width: 11px; height: 11px; border: 3px solid #4A4D5A; box-sizing: border-box; border-radius: 3px; }
+.d-ic5::before { left: 0; top: 0; box-shadow: 16px 0 0 -3px #4A4D5A; } .d-ic5::after { left: 0; top: 16px; box-shadow: 16px 0 0 -3px #4A4D5A; }
+
+.d-col { position: absolute; left: 80px; top: 62px; width: 820px; height: 720px; }
+.d-av { position: absolute; left: 388px; top: 12px; width: 64px; height: 64px; border-radius: 50%; background: #2B3BE0; }
+.d-chipwrap { position: absolute; left: 220px; top: 88px; width: 400px; display: flex; justify-content: center; }
+.d-namechip { position: relative; font-size: 28px; padding: 4px 18px; }
+.d-spin { display: none; position: relative; top: 2px; width: 22px; height: 22px; margin-right: 10px; box-sizing: border-box; border: 4px solid #C9D0FF; border-top-color: #2B3BE0; border-radius: 50%; vertical-align: -2px; }
+.d-ub, .d-ab { position: absolute; max-width: 700px; padding: 16px 24px; font-size: 34px; font-weight: 500; line-height: 1.25; border-radius: 22px; opacity: 0; }
+.d-ub { right: 0; background: #2B3BE0; color: #fff; border-bottom-right-radius: 6px; }
+.d-ab { left: 0; background: #F3F3F3; color: #0C0E16; border-bottom-left-radius: 6px; }
+.d-slack { top: 304px; } .d-slack b { font-weight: 700; }
+.d-rev { line-height: 1.3; }
+.d-link { position: relative; display: inline-block; color: #2B3BE0; font-weight: 600; padding-bottom: 2px; }
+.d-ul { position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #2B3BE0; transform-origin: 0 50%; transform: scaleX(0); }
+.d-link.lit { color: #0B1020; background: #C9D0FF; }
+.d-rcpt { margin-left: 24px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: #7A7D8A; }
+.d-dots { display: inline-block; margin-left: 6px; }
+.d-dots i { display: inline-block; width: 12px; height: 12px; margin: 0 3px; border-radius: 50%; background: #9A9DAA; }
+
+.d-kick { position: absolute; left: 0; top: 186px; font-size: 28px; opacity: 0; }
+.d-diff { position: absolute; left: 0; top: 430px; width: 700px; padding: 14px 22px; box-sizing: border-box; border-radius: 16px; background: #11111C; color: #C9D0FF; font-family: "JetBrains Mono", monospace; font-size: 30px; line-height: 1.5; white-space: pre; opacity: 0; }
+.d-dl { position: relative; } .d-red { color: #FF6B7A; } .d-green { color: #2ED3A0; }
+.d-ring { position: absolute; left: -10px; top: -4px; width: 220px; height: 52px; box-sizing: border-box; border: 5px solid #FFD23F; border-radius: 14px; opacity: 0; }
+.d-rulebox { position: absolute; left: 0; top: 196px; width: 820px; height: 310px; box-sizing: border-box; border: 3px solid #E5E5E5; border-radius: 20px; background: #fff; opacity: 0; }
+.d-rrow { position: absolute; left: 20px; width: 780px; height: 60px; font-size: 32px; font-weight: 600; line-height: 60px; }
+.d-radio { position: relative; display: inline-block; width: 30px; height: 30px; margin-right: 16px; box-sizing: border-box; border: 3px solid #4A4D5A; border-radius: 50%; vertical-align: -5px; }
+.d-rdot { position: absolute; left: 26px; top: 179px; width: 18px; height: 18px; border-radius: 50%; background: #2B3BE0; opacity: 0; }
+.d-earned { position: absolute; left: 500px; top: 8px; font-size: 26px; padding: 3px 14px; line-height: 1.3; opacity: 0; }
+
+.d-comp { position: absolute; left: 80px; top: 790px; width: 820px; height: 70px; box-sizing: border-box; border: 3px solid #E5E5E5; border-radius: 36px; background: #fff; }
+.d-plus { position: absolute; left: 24px; top: 10px; font-size: 36px; font-weight: 500; color: #4A4D5A; }
+.d-typed { position: absolute; left: 70px; top: 15px; font-size: 30px; font-weight: 500; color: #8A8D9A; white-space: nowrap; }
+.d-typed.on { color: #0C0E16; }
+.d-mic { position: absolute; left: 712px; top: 18px; width: 16px; height: 28px; border-radius: 8px; background: #8A8D9A; }
+.d-mic::after { content: ""; position: absolute; left: -6px; top: 10px; width: 24px; height: 22px; border: 3px solid #8A8D9A; border-top: 0; border-radius: 0 0 14px 14px; box-sizing: border-box; }
+.d-send { position: absolute; left: 758px; top: 8px; width: 48px; height: 48px; border-radius: 50%; background: #2B3BE0; }
+.d-send::after { content: ""; position: absolute; left: 17px; top: 13px; width: 14px; height: 14px; border-left: 4px solid #fff; border-top: 4px solid #fff; transform: rotate(45deg); }
+.d-pbar { position: absolute; left: 80px; top: 868px; width: 820px; height: 6px; border-radius: 3px; background: #ECECEF; overflow: hidden; }
+.d-pfill { display: block; width: 100%; height: 100%; background: #2B3BE0; transform-origin: 0 50%; transform: scaleX(0); }
+.d-dimveil { position: absolute; left: 66px; top: 62px; width: 926px; height: 724px; background: rgba(255,255,255,0.6); opacity: 0; }
+.d-illus { position: absolute; left: 104px; top: 892px; font-size: 26px; padding: 4px 16px; background: rgba(255,255,255,0.16); color: #fff; opacity: 0; }
+.d-illus.d-onlight { background: rgba(11,16,32,0.1); color: #0B1020; }
+
+/* sheets inside the window */
+.d-sheet { position: absolute; left: 80px; top: 190px; width: 820px; height: 670px; box-sizing: border-box; background: #fff; border: 3px solid #E5E5E5; border-radius: 24px; padding: 20px 24px; opacity: 0; }
+.d-shead { font-family: "JetBrains Mono", monospace; font-size: 28px; font-weight: 700; color: #7A7D8A; }
+.d-tabs { position: relative; display: flex; gap: 40px; font-size: 32px; font-weight: 600; color: #4A4D5A; padding-bottom: 14px; border-bottom: 2px solid #ECECEF; }
+.d-tabline { position: absolute; left: 0; bottom: -2px; width: 170px; height: 5px; background: #2B3BE0; border-radius: 3px; }
+.d-prow { position: absolute; left: 24px; width: 770px; height: 72px; padding: 0 20px; box-sizing: border-box; display: flex; align-items: center; gap: 16px; border-radius: 16px; background: #F7F7F9; font-size: 32px; font-weight: 600; opacity: 0; }
+.d-prow .d-chip { margin-left: auto; font-size: 26px; padding: 2px 14px; }
+.d-calrow .d-chip { margin-left: auto; }
+.d-tg { position: relative; display: inline-block; width: 64px; height: 36px; border-radius: 18px; background: #C9CBD3; flex: none; }
+.d-tg b { position: absolute; left: 4px; top: 4px; width: 28px; height: 28px; border-radius: 50%; background: #fff; }
+.d-tg.on { background: #2B3BE0; } .d-tg.on b { left: 32px; }
+.d-addrule { margin-top: 16px; font-size: 32px; font-weight: 700; color: #2B3BE0; }
+.d-field { position: relative; margin-top: 14px; background: #FFE9A3; opacity: 0; height: 66px; box-sizing: border-box; border: 3px solid #0B1020; border-radius: 14px; padding: 12px 20px; font-size: 32px; font-weight: 600; }
+.d-caret { display: inline-block; width: 3px; height: 34px; margin-left: 4px; background: #0B1020; vertical-align: -6px; }
+.d-slots { position: absolute; left: 24px; top: 210px; width: 680px; height: 350px; opacity: 0; }
+.d-slot { position: absolute; left: 0; width: 680px; height: 78px; box-sizing: border-box; border: 3px solid #C9CBD3; border-radius: 16px; padding: 0 20px; display: flex; align-items: center; font-size: 32px; font-weight: 600; opacity: 0; }
+.d-lvt { position: relative; opacity: 0; line-height: 1.1; }
+.d-lvt small { display: block; font-size: 24px; font-weight: 500; color: #7A7D8A; }
+.d-pw { left: 24px; top: 570px; border-color: #ECECEF; color: #7A7D8A; }
+.d-radiolock { border-color: #C9CBD3; }
+.d-lock { display: inline-block; width: 22px; height: 18px; margin-right: 14px; border: 3px solid #7A7D8A; border-radius: 4px; position: relative; box-sizing: border-box; }
+.d-lock::before { content: ""; position: absolute; left: 2px; top: -14px; width: 12px; height: 14px; border: 3px solid #7A7D8A; border-bottom: 0; border-radius: 8px 8px 0 0; box-sizing: border-box; }
+.d-pw .d-chip { margin-left: auto; font-size: 26px; padding: 3px 14px; opacity: 0; }
+.d-lines { position: absolute; left: 0; top: 0; width: 820px; height: 670px; }
+.d-line { fill: none; stroke: #C9CBD3; stroke-width: 4; }
+.d-arow { position: absolute; left: 24px; width: 360px; height: 76px; box-sizing: border-box; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; border-radius: 16px; background: #F7F7F9; font-size: 32px; font-weight: 600; }
+.d-notes { position: absolute; left: 480px; top: 0; width: 320px; height: 500px; }
+.d-note { position: absolute; left: 0; padding: 8px 16px; border-radius: 12px; background: #F3F3F3; color: #7A7D8A; font-size: 28px; font-weight: 600; white-space: nowrap; }
+.d-note.lit { background: #FFD23F; color: #0B1020; }
+.d-stays { position: absolute; left: 24px; top: 392px; font-size: 26px; opacity: 0; }
+.d-menu { position: absolute; left: 600px; top: 66px; width: 190px; box-sizing: border-box; background: #fff; border: 3px solid #E5E5E5; border-radius: 14px; box-shadow: 0 8px 20px rgba(11,16,32,0.15); font-size: 30px; font-weight: 600; opacity: 0; }
+.d-menu div { padding: 10px 20px; } .d-menu div.hot { background: #F3F3F3; color: #E5364A; }
+.d-dialog { position: absolute; left: 120px; top: 320px; width: 760px; box-sizing: border-box; padding: 30px 36px; background: #fff; border: 4px solid #0B1020; border-radius: 24px; opacity: 0; }
+.d-dtitle { font-size: 40px; font-weight: 700; }
+.d-dbody { margin-top: 16px; font-size: 32px; font-weight: 500; line-height: 1.4; }
+.d-lit { display: inline-block; padding: 0 6px; border-radius: 8px; }
+.d-lit.on { background: #FFD23F; color: #0B1020; font-weight: 700; }
+.d-dbtns { margin-top: 24px; display: flex; justify-content: flex-end; gap: 16px; }
+.d-btn { padding: 10px 28px; border-radius: 999px; font-size: 30px; font-weight: 700; }
+.d-cancel { background: #F3F3F3; color: #4A4D5A; } .d-resetbtn { background: #E5364A; color: #fff; }
+
+/* ---------- the dot's computer pane (stage x 40-1040, y 820-1420) ---------- */
+.d-pane { position: absolute; left: 40px; top: 820px; width: 1000px; height: 600px; box-sizing: border-box; color: #0C0E16; font-family: "Inter", sans-serif; background: #fff; border: 4px solid #0B1020; border-radius: 22px; overflow: hidden; opacity: 0; }
+.d-pbarr { position: relative; height: 60px; background: #11111C; }
+.d-pbarr .d-dot1, .d-pbarr .d-dot2, .d-pbarr .d-dot3 { background: #4A4D5A; }
+.d-label { position: absolute; left: 110px; top: 12px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 700; color: #FFD23F; white-space: nowrap; }
+.d-url { position: absolute; left: 360px; top: 10px; width: 500px; height: 40px; box-sizing: border-box; border-radius: 20px; background: #2A2A38; color: #fff; font-family: "JetBrains Mono", monospace; font-size: 28px; line-height: 40px; padding-left: 20px; white-space: nowrap; }
+.d-pbar2 { height: 6px; background: #2A2A38; overflow: hidden; }
+.d-page { position: relative; height: 414px; }
+.d-example { position: absolute; left: 76px; top: 16px; font-size: 26px; padding: 4px 16px; opacity: 0; }
+.d-form { position: absolute; left: 60px; top: 70px; width: 410px; opacity: 0; }
+.d-ftitle { font-size: 34px; font-weight: 700; }
+.d-frow { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; font-size: 30px; font-weight: 500; color: #4A4D5A; }
+.d-fbox { position: relative; display: inline-block; width: 230px; height: 48px; box-sizing: border-box; border: 3px solid #C9CBD3; border-radius: 10px; font-family: "JetBrains Mono", monospace; font-size: 28px; line-height: 42px; padding-left: 12px; color: #0C0E16; font-style: normal; }
+.d-fbox.lit { border-color: #2B3BE0; background: #EEF1FF; }
+.d-pay { margin-top: 22px; width: 160px; height: 50px; border-radius: 12px; background: #2B3BE0; color: #fff; font-size: 30px; font-weight: 700; line-height: 50px; text-align: center; }
+.d-code { position: absolute; left: 480px; top: 70px; width: 380px; opacity: 0; height: 320px; box-sizing: border-box; padding: 14px 20px; border-radius: 16px; background: #11111C; color: #C9D0FF; font-family: "JetBrains Mono", monospace; font-size: 28px; line-height: 1.6; white-space: pre; }
+.d-chead { color: #7A7D8A; font-size: 26px; margin-bottom: 6px; }
+.d-cl { min-height: 44px; }
+.d-term { position: relative; height: 112px; background: #11111C; border-top: 2px solid #2A2A38; }
+.d-termtxt { position: absolute; left: 140px; top: 22px; font-family: "JetBrains Mono", monospace; font-size: 32px; font-weight: 700; color: #fff; white-space: pre; }
+.d-scan { position: absolute; left: 0; top: 0; width: 14px; height: 120px; background: #FFD23F; opacity: 0; }
+.d-illus2 { position: absolute; left: 670px; top: 18px; font-size: 26px; padding: 4px 14px; background: #2A2A38; color: #C9CBD3; }
+.d-dotend { position: absolute; left: 524px; top: 324px; width: 32px; height: 32px; border-radius: 50%; background: #2B3BE0; opacity: 0; }
+
+/* cursor (stage level) */
+.d-cur { position: absolute; left: 0; top: 0; width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 40px solid #0B1020; transform: rotate(-35deg); transform-origin: 50% 0; opacity: 0; filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 2px #fff); }
+
+/* ---------- section overlays ---------- */
+.d-title { position: absolute; left: 72px; top: 250px; padding: 14px 36px; border-radius: 22px; font-family: "Inter", sans-serif; font-size: 96px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; white-space: nowrap; transform-origin: 0 0; opacity: 0; }
+.d-ontint { background: #FFD23F; color: #0B1020; } .d-onlight { background: #0B1020; color: #fff; }
+.d-adot { position: absolute; left: 72px; top: 240px; font-family: "Anton", sans-serif; font-size: 180px; line-height: 1; color: #fff; opacity: 0; }
+.d-chip3 { position: absolute; left: 72px; top: 440px; font-size: 36px; opacity: 0; }
+.d-askfirst { position: absolute; left: 160px; top: 320px; font-family: "Anton", sans-serif; font-size: 160px; line-height: 1; color: #FFD23F; opacity: 0; }
+
+#d-profile { height: 440px; }
+.d-prow1dim { color: #9A9DAA; background: #FBFBFC; }
+.d-pwt { opacity: 1; }
+.d-rhl { position: absolute; left: 8px; top: 158px; width: 804px; height: 60px; border-radius: 12px; background: #DCE1FF; opacity: 0; }
+
+/* the rig: the camera that never rests (slow drift toward the next action between the planned moves) */
+.d-rig { position: absolute; inset: 0; transform-origin: 0 0; }
+.d-halo { position: absolute; left: 388px; top: 12px; width: 64px; height: 64px; box-sizing: border-box; border: 8px solid #2B3BE0; border-radius: 50%; opacity: 0; }
+.d-term { overflow: hidden; }
+.d-log { position: absolute; left: 140px; top: 0; width: 520px; font-family: "JetBrains Mono", monospace; font-size: 28px; line-height: 40px; color: #9AA0B5; white-space: pre; }
+.d-ccaret { position: absolute; left: 70px; top: 15px; width: 3px; height: 36px; background: #2B3BE0; opacity: 0; }
+.d-fcaret { height: 30px; vertical-align: -6px; opacity: 0; }
+.d-calcaret { flex: none; margin-left: -14px; opacity: 0; }
+.d-shl { position: absolute; left: 0; top: 0; width: 680px; height: 78px; border-radius: 16px; background: #DCE1FF; opacity: 0; }
+.d-line { stroke-dasharray: 14 10; }
+.d-lred { color: #FF6B7A; }
+
+/* s12-s14 (2026-10-27): each level's sub-line appears on its own word */
+.d-lvt small.d-sub { opacity: 0; }
+.d-lvt small.d-youdo { color: #0B1020; font-weight: 700; }
+.d-wd { font-weight: 700; display: inline-block; }

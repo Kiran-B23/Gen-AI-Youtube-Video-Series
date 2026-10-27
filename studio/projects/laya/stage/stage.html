@@ -1,0 +1,109 @@
+<!-- Laya · house style reference-flat · running object: the ticket "I was charged twice. Refund me, or I cancel." -->
+
+<!-- s01 hook (dark) -->
+<div class="g" id="g01">
+  <div id="free" class="free hl">FREE.</div>
+  <div class="lapwrap">
+    <svg id="lap" class="lap" viewBox="0 0 900 560"><path id="lapscr" class="lapline" d="M90 20 H810 Q830 20 830 40 V420 H70 V40 Q70 20 90 20 Z"/><path id="lapbase" class="lapline" d="M10 440 H890 L850 520 H50 Z"/></svg>
+    <div id="laptxt" class="laptxt"><div class="hl">JEV RIVAL</div><div class="kick">ON YOUR OWN LAPTOP</div></div>
+  </div>
+</div>
+
+<!-- s02-s03 what it is (blue) -->
+<div class="g" id="g02">
+  <div id="layabig" class="layabig hl">LAYA</div>
+  <div class="dchips"><span id="dc1" class="chip yel">decides ✓</span><span id="dc2" class="chip wht nowrite">writes text<i id="strike"></i></span></div>
+  <div id="msg" class="card glass msg"><span class="kick">MESSAGE</span><div>"Where is my refund?"</div></div>
+  <div class="qrows">
+    <div class="qrow" id="q1"><span class="chip wht qq">team?</span><span class="qbar"><i id="qb1"></i></span><span id="qp1" class="qp">94%</span></div>
+    <div class="qrow" id="q2"><span class="chip wht qq">urgent?</span><span class="qbar"><i id="qb2"></i></span><span id="qp2" class="qp">71%</span></div>
+    <div class="qrow" id="q3"><span class="chip wht qq">refund?</span><span class="qbar"><i id="qb3"></i></span><span id="qp3" class="qp">63%</span></div>
+  </div>
+  <div class="illus">illustrative</div>
+</div>
+
+<!-- section cards (plain titles: Launch archetype, no numbered steps per structure-check) -->
+<div class="g chap plain on-dark" id="c1"><div class="chapk"></div><div class="chapn"></div><div class="chapt">Install it</div></div>
+<div class="g chap plain" id="c2"><div class="chapk"></div><div class="chapn"></div><div class="chapt">Ask it</div></div>
+<div class="g chap plain on-blue" id="c3"><div class="chapk"></div><div class="chapn"></div><div class="chapt">Laya vs Jev</div></div>
+<div class="g chap plain on-dark" id="c4"><div class="chapk"></div><div class="chapn"></div><div class="chapt">The catch</div></div>
+
+<!-- s04 install (dark) -->
+<div class="g" id="g04">
+  <div id="term" class="term">
+    <div class="tbar"><i></i><i></i><i></i><span>our laptop · CPU only</span></div>
+    <div class="tl"><span class="pr">$</span> <span id="t1"></span></div>
+    <div class="tl out" id="t2l">Version: 0.4.2</div>
+    <div class="tl"><span class="pr">$</span> <span id="t3"></span></div>
+    <div class="tl out err" id="t4l">nvidia-smi: command not found</div>
+  </div>
+  <div id="nogpu" class="stampx nogpu">NO GPU</div>
+</div>
+
+<!-- s05-s07 ask it (light): the ticket -->
+<div class="g" id="g05">
+  <div id="ticket" class="card ticket">
+    <div class="tkhead"><span class="bl">TICKET</span><span class="mut">real test · our laptop</span></div>
+    <div class="tktext"><span id="tkt"></span></div>
+  </div>
+  <div id="teamq" class="qlabel">WHICH TEAM?</div>
+  <div class="pbars" id="pbars">
+    <div class="pb" id="pb1"><span class="pn">billing</span><span class="pt"><i id="pf1" class="win"></i></span><span class="pv" id="pv1">98.4%</span></div>
+    <div class="pb" id="pb2"><span class="pn">other</span><span class="pt"><i id="pf2"></i></span><span class="pv">0.6%</span></div>
+    <div class="pb" id="pb3"><span class="pn">technical</span><span class="pt"><i id="pf3"></i></span><span class="pv">0.5%</span></div>
+    <div class="pb" id="pb4"><span class="pn">sales</span><span class="pt"><i id="pf4"></i></span><span class="pv">0.4%</span></div>
+  </div>
+  <div id="nailed" class="stampx ok nailed">✓ NAILED IT</div>
+  <div id="leaveq" class="qlabel">WILL THEY LEAVE?</div>
+  <div id="gauge" class="gauge">
+    <div class="gtrack"><i id="gfill"></i><b class="half"></b></div>
+    <div class="gscale"><span>0</span><span class="mid">50% = coin flip</span><span>100</span></div>
+  </div>
+  <div id="g48" class="big ink g48">48%</div>
+  <div id="guess" class="stampx guess">A GUESS</div>
+</div>
+
+<!-- s08 speed (yellow) -->
+<div class="g" id="g08">
+  <svg id="ring" class="ring" viewBox="0 0 400 400"><circle cx="200" cy="200" r="170" class="rbg"/><circle id="rarc" cx="200" cy="200" r="170" class="rarc" transform="rotate(-90 200 200)"/></svg>
+  <div class="ringlab" id="ringlab">of 1 second</div>
+  <div id="spd" class="big ink spd">0.65 s</div>
+  <div class="spdrow"><span id="three" class="chip ink">3 answers</span><span class="chip wht">median of 20 runs</span></div>
+  <div id="cpu" class="stampx cpu">CPU ONLY</div>
+</div>
+
+<!-- s09-s10 compare (blue) -->
+<div class="g" id="g09">
+  <div class="vs">
+    <div id="vj" class="card glass vcard"><svg class="vic" viewBox="0 0 200 120"><path d="M50 100 H160 A35 35 0 0 0 150 32 A50 50 0 0 0 58 45 A30 30 0 0 0 50 100 Z" class="icl"/></svg><div class="hl vn">JEV</div><div id="vjp" class="chip yel">paid cloud API</div></div>
+    <div id="vl" class="card glass vcard"><svg class="vic" viewBox="0 0 200 120"><path d="M40 15 H160 V85 H40 Z M15 95 H185 L172 110 H28 Z" class="icl"/></svg><div class="hl vn">LAYA</div><div id="vlp" class="chip wht">free · open</div></div>
+  </div>
+  <div id="mini" class="chip ink mini">ticket</div>
+  <div id="stay" class="stay kick">STAYS ON YOUR MACHINE</div>
+  <div class="bench" id="bench">
+    <div class="bk kick">LAYA'S OWN BENCHMARK</div>
+    <div class="bcol"><div class="bv" id="bv1">77%</div><div class="btr"><i id="bf1"></i><b id="ghost"></b></div><div class="bn">Laya · tuned</div></div>
+    <div class="bcol"><div class="bv" id="bv2">73%</div><div class="btr"><i id="bf2"></i></div><div class="bn">Jev · published</div></div>
+  </div>
+</div>
+
+<!-- s11 the catch (dark) -->
+<div class="g" id="g11">
+  <div class="bench catchb" id="cb">
+    <div class="bcol"><div class="bv red" id="cv">36%</div><div class="btr"><b class="ghost77"></b><i id="cf"></i></div><div class="bn">Laya · untuned</div></div>
+    <div class="cside"><div class="kick">TUNED</div><div class="hl c77">77%</div><div id="tune" class="chip yel">tune it on your tickets first</div></div>
+  </div>
+</div>
+
+<!-- s12 verdict (yellow) -->
+<div class="g" id="g12">
+  <div class="kick vk">VERDICT</div>
+  <div class="vrow" id="vr1"><div class="vwhen">private data<br>+ time to tune</div><div class="varr">→</div><div id="vt1" class="vwho hl">LAYA</div></div>
+  <div class="vrow" id="vr2"><div class="vwhen">zero setup<br>+ accuracy</div><div class="varr">→</div><div id="vt2" class="vwho hl">JEV</div></div>
+</div>
+
+<!-- s13 CTA (dark) -->
+<div class="g" id="g13">
+  <div class="cta"><span id="cw1">WHAT</span> <span id="cw2">SHOULD</span> <span id="cw3">I</span> <span id="cw4">EXPLAIN</span> <span id="cw5" class="yl">NEXT?</span></div>
+  <div id="ctaf" class="ctaf">+ Follow for more AI breakdowns</div>
+</div>

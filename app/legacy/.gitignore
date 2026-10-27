@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# run logs: local Claude sessions, may quote research sources
+.runs/

@@ -11,14 +11,19 @@ subprocess.run(["npx", "--yes", "hyperframes@0.8.143", "snapshot", "--at", ",".j
                cwd=os.path.join(P, "hf"), check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 shots = sorted(glob.glob(os.path.join(snap, "*.png")))
 if not shots: sys.exit("no snapshots produced")
-w, h = 360, 640; cols = 8; rows = (len(shots) + cols - 1) // cols
+LAND = lay["size"][0] > lay["size"][1]
+w, h = (480, 270) if LAND else (360, 640); cols = 6 if LAND else 8; rows = (len(shots) + cols - 1) // cols
 sheet = Image.new("RGB", (w * cols, h * rows), "black")
 for i, f in enumerate(shots):
     im = Image.open(f).convert("RGB").resize((w, h)); d = ImageDraw.Draw(im)
-    d.rectangle([0, int(h * 0.85), w, h], outline="red", width=2)                                  # bottom 15%: platform title/channel
-    d.rectangle([int(w * 0.88), int(h * 0.5), w, int(h * 0.85)], outline="red", width=2)             # lower-right button column
-    d.rectangle([int(w * 40 / 1080), int(h * 220 / 1920), int(w * 1040 / 1080), int(h * 1260 / 1920)], outline=(255, 255, 0))  # visual zone
-    d.rectangle([int(w * 72 / 1080), int(h * 1555 / 1920), int(w * 952 / 1080), int(h * 1730 / 1920)], outline=(0, 255, 255))  # caption zone
+    if LAND:   # 16:9 long-form: side columns for the cast, stage in the middle, captions low and centred
+        d.rectangle([int(w * 460 / 1920), int(h * 40 / 1080), int(w * 1460 / 1920), int(h * 900 / 1080)], outline=(255, 255, 0))   # stage zone
+        d.rectangle([int(w * 460 / 1920), int(h * 925 / 1080), int(w * 1460 / 1920), int(h * 1035 / 1080)], outline=(0, 255, 255))  # caption zone
+    else:
+        d.rectangle([0, int(h * 0.85), w, h], outline="red", width=2)                                  # bottom 15%: platform title/channel
+        d.rectangle([int(w * 0.88), int(h * 0.5), w, int(h * 0.85)], outline="red", width=2)             # lower-right button column
+        d.rectangle([int(w * 40 / 1080), int(h * 220 / 1920), int(w * 1040 / 1080), int(h * 1260 / 1920)], outline=(255, 255, 0))  # visual zone
+        d.rectangle([int(w * 72 / 1080), int(h * 1555 / 1920), int(w * 952 / 1080), int(h * 1730 / 1920)], outline=(0, 255, 255))  # caption zone
     d.line([w // 2, 0, w // 2, h], fill=(0, 255, 255))                                               # centre line
     d.text((4, h - 14), os.path.basename(f)[:40], fill="yellow"); sheet.paste(im, ((i % cols) * w, (i // cols) * h))
 out = os.path.join(P, "out", "stills.png"); sheet.save(out); print(f"{len(shots)} stills -> {os.path.relpath(out, STUDIO)}")

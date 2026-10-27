@@ -9,11 +9,50 @@ studio/node_modules/
 studio/projects/*/build/
 studio/projects/*/hf/
 studio/projects/*/out/
+studio/projects/*/voice/_kokoro/
 studio/smoke/media/
 studio/smoke/pw/
 studio/**/__pycache__/
 # YouTube research: other creators' transcripts, frames and media are for local analysis only.
 # The repo is public, so none of it is committed (inspiration.md keeps our own analysis).
-productions/*/yt/
+productions/*/yt/*
+!productions/*/yt/summary.md
 studio/templates/reel/audio/music/cc0/*.mp3
 studio/templates/reel/audio/music/cc0/*.wav
+
+# Remotion engine (studio/remotion): deps, copied fonts/audio, generated project pointer
+studio/remotion/node_modules/
+studio/remotion/public/
+studio/remotion/src/current.generated.ts
+
+# analysis of other creators' videos (transcripts, frames) stays local: the repo is public
+references/yt-*/
+references/ig-reels/
+
+# Higgsfield (paid; owner's personal use only, installed locally via `npx skills add higgsfield-ai/skills`)
+.agents/skills/higgsfield-*/
+.claude/skills/higgsfield-*
+
+# people's photos and personal avatars (likeness references): local only, the repo is public
+productions/*/characters/refs/
+studio/templates/characters/avatars/
+# personal builds with the owner's avatar (Avaturn: personal use only): never committed, never channel output
+studio/projects/personal-*/
+shorts/personal-*
+shorts/play-on-this-pc/personal-*
+
+# studio app (app/): deps, builds, the local job queue; app/.env (APP_PASSWORD) is covered by .env above
+app/node_modules/
+app/**/node_modules/
+app/**/dist/
+app/data.db
+app/data.db-*
+app/legacy/.runs/
+
+# media stays on this PC, not in the public repo (user, 2026-10-27: commit code and docs only)
+shorts/**/*.mp4
+studio/projects/*/voice/**/*.wav
+studio/projects/*/voice/**/*.mp3
+studio/projects/*/voice/**/*.m4a
+# Claude Code /export transcripts
+/20??-??-??-*.txt

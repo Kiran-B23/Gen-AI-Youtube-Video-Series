@@ -1,0 +1,564 @@
+{
+  "slug": "jev-glass",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/fresh-focus",
+  "padSeconds": 0.18,
+  "sections": {
+    "dark": {
+      "bg": "#070A1C",
+      "bg2": "#1A1450",
+      "text": "#F4F6FF",
+      "dim": "rgba(244,246,255,0.68)",
+      "accent": "#7CF5FF",
+      "accent2": "#B892FF",
+      "card": "rgba(255,255,255,0.08)",
+      "line": "rgba(255,255,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#5CFFB5"
+    },
+    "blue": {
+      "bg": "#0A1240",
+      "bg2": "#1B2C8F",
+      "text": "#F4F6FF",
+      "dim": "rgba(244,246,255,0.70)",
+      "accent": "#7CF5FF",
+      "accent2": "#B892FF",
+      "card": "rgba(255,255,255,0.09)",
+      "line": "rgba(255,255,255,0.24)",
+      "danger": "#FF5C8A",
+      "ok": "#5CFFB5"
+    },
+    "light": {
+      "bg": "#061A22",
+      "bg2": "#0D4A55",
+      "text": "#F2FFFE",
+      "dim": "rgba(242,255,254,0.70)",
+      "accent": "#5CFFB5",
+      "accent2": "#7CF5FF",
+      "card": "rgba(255,255,255,0.09)",
+      "line": "rgba(255,255,255,0.24)",
+      "danger": "#FF5C8A",
+      "ok": "#5CFFB5"
+    },
+    "yellow": {
+      "bg": "#160A2E",
+      "bg2": "#4A1A7A",
+      "text": "#FFF6FF",
+      "dim": "rgba(255,246,255,0.70)",
+      "accent": "#FFC86B",
+      "accent2": "#FF8AD8",
+      "card": "rgba(255,255,255,0.09)",
+      "line": "rgba(255,255,255,0.24)",
+      "danger": "#FF5C8A",
+      "ok": "#5CFFB5"
+    }
+  },
+  "names": [
+    "Jev",
+    "TypeSafe",
+    "GPT-6",
+    "LLM",
+    "LLMs"
+  ],
+  "keywords": [
+    "Jev",
+    "decisions.",
+    "typed",
+    "tenth",
+    "free.",
+    "21",
+    "68",
+    "both."
+  ],
+  "voice": {
+    "engine": "kokoro",
+    "kokoroVoice": "af_heart",
+    "kokoroSpeed": 0.85,
+    "style": "Genuinely excited but honest, like a developer who just tried it: quick and bright on the demo and the numbers, calm and serious on the catch. Read every word. Never robotic."
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "stage",
+      "section": "dark",
+      "say": "This AI never writes a single word. It only makes decisions.",
+      "props": {
+        "lines": [
+          "Never writes.",
+          "Only decides."
+        ],
+        "highlight": "decides.",
+        "chips": [
+          "WORDS WRITTEN: 0"
+        ]
+      },
+      "beats": [
+        {
+          "target": "never",
+          "word": "never",
+          "sfx": "stamp",
+          "offset": -0.08
+        },
+        {
+          "target": "word",
+          "word": "word",
+          "sfx": "pop"
+        },
+        {
+          "target": "decides",
+          "word": "decisions",
+          "sfx": "stamp",
+          "offset": -0.1
+        }
+      ],
+      "source": "S1"
+    },
+    {
+      "id": "s02",
+      "type": "stage",
+      "section": "blue",
+      "kicker": "TYPED DECISIONS",
+      "say": "Meet Jev. You ask questions; it returns typed answers with a confidence score.",
+      "props": {
+        "lines": [
+          "Jev"
+        ],
+        "highlight": "Jev",
+        "chips": [
+          "QUESTIONS IN",
+          "TYPED ANSWER + CONFIDENCE"
+        ]
+      },
+      "beats": [
+        {
+          "target": "jev",
+          "word": "Jev",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "questions",
+          "word": "questions",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "typed",
+          "word": "typed",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "confidence",
+          "word": "confidence",
+          "sfx": "ding",
+          "offset": -0.1
+        }
+      ],
+      "source": "S1"
+    },
+    {
+      "id": "s03",
+      "type": "stage",
+      "section": "light",
+      "kicker": "TICKET #4821",
+      "say": "Here's a support ticket: charged twice this month, refund me or I cancel.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/a_gate.py",
+          "scene": "GateSpan",
+          "quality": "m",
+          "span": [
+            "s04"
+          ]
+        },
+        "clip": "build/clips/s03.webm"
+      },
+      "beats": [
+        {
+          "target": "ticket",
+          "word": "ticket",
+          "sfx": "pop",
+          "offset": -0.2
+        },
+        {
+          "target": "type",
+          "word": "charged",
+          "offset": -0.1
+        },
+        {
+          "target": "typed",
+          "word": "cancel",
+          "offset": 0.35
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "stage",
+      "section": "light",
+      "kicker": "TICKET #4821",
+      "say": "One pass, three answers. Billing team. Urgent. High churn risk.",
+      "props": {
+        "of": "s03"
+      },
+      "source": "S1",
+      "beats": [
+        {
+          "target": "pass",
+          "word": "pass",
+          "sfx": "whoosh",
+          "offset": -0.1
+        },
+        {
+          "target": "three",
+          "word": "three",
+          "sfx": "ding",
+          "offset": -0.05
+        },
+        {
+          "target": "billing",
+          "word": "Billing",
+          "sfx": "pop",
+          "offset": -0.08
+        },
+        {
+          "target": "urgent",
+          "word": "Urgent",
+          "sfx": "pop",
+          "offset": -0.08
+        },
+        {
+          "target": "high",
+          "word": "High",
+          "sfx": "pop",
+          "offset": -0.08
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "section": "blue",
+      "kicker": "#4821 · ANSWERED IN",
+      "say": "TypeSafe says most answers take about a tenth of a second.",
+      "props": {
+        "value": 0.1,
+        "decimals": 1,
+        "prefix": "~",
+        "suffix": " s",
+        "label": "per answer · TypeSafe's claim"
+      },
+      "beats": [
+        {
+          "target": "label",
+          "word": "TypeSafe",
+          "offset": 0.2
+        },
+        {
+          "target": "tenth",
+          "word": "tenth",
+          "sfx": "ding",
+          "offset": -0.1
+        }
+      ],
+      "source": "S3"
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "section": "blue",
+      "kicker": "#4821 · PRICE",
+      "say": "Price: 4.2 cents per million input tokens. Output is free.",
+      "props": {
+        "value": 0.042,
+        "decimals": 3,
+        "prefix": "$",
+        "label": "per 1M input tokens · output free"
+      },
+      "beats": [
+        {
+          "target": "price",
+          "word": "4.2",
+          "sfx": "ding",
+          "offset": -0.1
+        },
+        {
+          "target": "output",
+          "word": "Output",
+          "offset": -0.1
+        },
+        {
+          "target": "free",
+          "word": "free",
+          "sfx": "stamp",
+          "offset": -0.08
+        }
+      ],
+      "source": "S2"
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "section": "yellow",
+      "kicker": "INDEPENDENT TEST",
+      "say": "Independent researchers labeled nearly 8,000 items with it for 21 cents. The priciest of 19 LLMs cost about 300 times more.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/c_cost.py",
+          "scene": "CostBars",
+          "quality": "m"
+        },
+        "clip": "build/clips/s07.webm"
+      },
+      "source": "S5",
+      "beats": [
+        {
+          "target": "labeled",
+          "word": "labeled",
+          "offset": -0.1
+        },
+        {
+          "target": "items",
+          "word": "items",
+          "offset": 0.2
+        },
+        {
+          "target": "cents",
+          "word": "21",
+          "sfx": "ding",
+          "offset": -0.08
+        },
+        {
+          "target": "priciest",
+          "word": "priciest",
+          "sfx": "whoosh",
+          "offset": -0.1
+        },
+        {
+          "target": "times",
+          "word": "300",
+          "sfx": "stamp",
+          "offset": -0.08
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "section": "dark",
+      "kicker": "THE CATCH",
+      "say": "The catch? On TypeSafe's own test, it matched frontier models 68% of the time.",
+      "props": {
+        "value": 68,
+        "suffix": "%",
+        "label": "agreement with frontier-model answers · TypeSafe's benchmark"
+      },
+      "beats": [
+        {
+          "target": "catch",
+          "word": "catch",
+          "sfx": "whoosh",
+          "offset": -0.15
+        },
+        {
+          "target": "test",
+          "word": "test",
+          "offset": -0.1
+        },
+        {
+          "target": "pct",
+          "word": "68",
+          "sfx": "ding",
+          "offset": -0.1
+        }
+      ],
+      "source": "S4"
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "section": "dark",
+      "kicker": "THE CATCH",
+      "say": "And an answer can fit the format perfectly and still be wrong.",
+      "props": {
+        "text": "VALID BUT WRONG",
+        "sub": "a perfect format is not a correct answer",
+        "size": 150
+      },
+      "beats": [
+        {
+          "target": "answer",
+          "word": "answer",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "format",
+          "word": "format",
+          "sfx": "pop",
+          "offset": -0.05
+        },
+        {
+          "target": "wrong",
+          "word": "wrong",
+          "sfx": "stamp",
+          "offset": -0.08
+        }
+      ],
+      "source": "S8",
+      "pad": 0.5
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "section": "light",
+      "kicker": "THE FIX",
+      "say": "So use both. Jev takes the confident calls; unsure ones go to an LLM.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/b_route.py",
+          "scene": "RouteSpan",
+          "quality": "m",
+          "span": [
+            "s11"
+          ]
+        },
+        "clip": "build/clips/s10.webm"
+      },
+      "source": "S6",
+      "beats": [
+        {
+          "target": "both",
+          "word": "both",
+          "sfx": "whoosh",
+          "offset": -0.1
+        },
+        {
+          "target": "confident",
+          "word": "confident",
+          "sfx": "pop",
+          "offset": -0.15
+        },
+        {
+          "target": "unsure",
+          "word": "unsure",
+          "sfx": "pop",
+          "offset": -0.15
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "section": "light",
+      "kicker": "THE FIX · ONE UNIVERSITY TEST",
+      "say": "One university test kept almost all of GPT-6's accuracy at about half the cost.",
+      "props": {
+        "of": "s10"
+      },
+      "source": "S6",
+      "pad": 0.9,
+      "beats": [
+        {
+          "target": "test",
+          "word": "university",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "accuracy",
+          "word": "accuracy",
+          "sfx": "ding",
+          "offset": -0.2
+        },
+        {
+          "target": "cost",
+          "word": "half",
+          "sfx": "ding",
+          "offset": -0.1
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "section": "blue",
+      "kicker": "VERDICT",
+      "say": "Verdict: Jev decides, the LLM writes. Great for routing and tagging, not for writing.",
+      "props": {
+        "title": "Save this",
+        "items": [
+          "Jev decides",
+          "The LLM writes",
+          "Route + tag with Jev",
+          "Unsure? Escalate"
+        ]
+      },
+      "beats": [
+        {
+          "target": "jev",
+          "word": "Jev",
+          "sfx": "pop",
+          "offset": -0.08
+        },
+        {
+          "target": "llm",
+          "word": "LLM",
+          "sfx": "pop",
+          "offset": -0.08
+        },
+        {
+          "target": "routing",
+          "word": "routing",
+          "sfx": "pop",
+          "offset": -0.08
+        },
+        {
+          "target": "writing",
+          "word": "writing",
+          "sfx": "stamp",
+          "offset": -0.08
+        }
+      ],
+      "pad": 0.6
+    },
+    {
+      "id": "s13",
+      "type": "stage",
+      "section": "dark",
+      "say": "What should I explain next? Tell me below.",
+      "props": {
+        "question": "What should I explain next? 👇",
+        "follow": "Follow for more AI breakdowns"
+      },
+      "beats": [
+        {
+          "target": "q",
+          "word": "What"
+        },
+        {
+          "target": "tell",
+          "word": "Tell",
+          "sfx": "pop",
+          "offset": -0.05
+        }
+      ],
+      "pad": 0.8
+    }
+  ],
+  "flat": false,
+  "stage": {
+    "kit": "hyperframes-glass",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "slug": "dots-v2",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/fresh-focus",
+  "padSeconds": 0.25,
+  "names": [
+    "ChatGPT",
+    "Slack",
+    "OpenAI"
+  ],
+  "keywords": [
+    "dot",
+    "always-on",
+    "computer",
+    "freedom",
+    "password",
+    "catch",
+    "reset",
+    "mistakes",
+    "trust"
+  ],
+  "voice": {
+    "engine": "gemini",
+    "model": "gemini-2.5-flash-preview-tts",
+    "name": "Sulafat",
+    "style": "You are a warm, curious tech friend telling a student about something genuinely new you just tried. Talk, don't read: natural conversational rhythm, real pitch movement, a little wonder on the 3 a.m. story, lean in on 'its very own cloud computer', sound genuinely pleased on 'the part I really like', then take a short breath and get calm and honest for 'here's the catch'. About two and a half words per second, short natural pauses between thoughts. Clear, global English. Never hyped, never robotic, no announcer voice. Read every word exactly as written."
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "stage",
+      "say": "It's 3 a.m. A bug report lands in Slack. By the time you wake up, a fix is waiting for you to review.",
+      "beats": [
+        {
+          "target": "bug",
+          "word": "bug"
+        },
+        {
+          "target": "slack",
+          "word": "Slack"
+        },
+        {
+          "target": "fix",
+          "word": "fix"
+        },
+        {
+          "target": "review",
+          "word": "review"
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "type": "stage",
+      "say": "That's a dot. It's an always-on agent inside ChatGPT, and it keeps working even after you close the chat.",
+      "beats": [
+        {
+          "target": "dot",
+          "word": "dot"
+        },
+        {
+          "target": "always",
+          "word": "always-on"
+        },
+        {
+          "target": "close",
+          "word": "close"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "stage",
+      "say": "So how does it do that? It gets its very own cloud computer, with its own browser. So it doesn't just talk. It actually does the work.",
+      "beats": [
+        {
+          "target": "computer",
+          "word": "computer"
+        },
+        {
+          "target": "browser",
+          "word": "browser"
+        },
+        {
+          "target": "talk",
+          "word": "talk"
+        },
+        {
+          "target": "work",
+          "word": "work"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "stage",
+      "say": "You give it a goal, connect the apps it needs, and it brings the results back for you to review.",
+      "beats": [
+        {
+          "target": "goal",
+          "word": "goal"
+        },
+        {
+          "target": "apps",
+          "word": "apps"
+        },
+        {
+          "target": "results",
+          "word": "results"
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "say": "And it doesn't always wait to be asked. It can run scheduled checks, like going through your calendar every morning.",
+      "beats": [
+        {
+          "target": "wait",
+          "word": "wait"
+        },
+        {
+          "target": "scheduled",
+          "word": "scheduled"
+        },
+        {
+          "target": "calendar",
+          "word": "calendar"
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "say": "Now, the part I really like: you decide how much freedom it gets. It can act on its own, act only when you asked, ask you first, or hand the task back to you.",
+      "beats": [
+        {
+          "target": "freedom",
+          "word": "freedom"
+        },
+        {
+          "target": "l1",
+          "word": "own"
+        },
+        {
+          "target": "l2",
+          "word": "asked"
+        },
+        {
+          "target": "l3",
+          "word": "first"
+        },
+        {
+          "target": "l4",
+          "word": "hand"
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "say": "And some things, like changing a password, it will always leave to you.",
+      "beats": [
+        {
+          "target": "password",
+          "word": "password"
+        },
+        {
+          "target": "you",
+          "word": "leave"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "say": "Here's the catch. Disconnect an app, and what your dot already learned from it stays.",
+      "beats": [
+        {
+          "target": "catch",
+          "word": "catch"
+        },
+        {
+          "target": "disconnect",
+          "word": "Disconnect"
+        },
+        {
+          "target": "stays",
+          "word": "stays"
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "say": "The only way to wipe that is a reset, which deletes the whole dot.",
+      "beats": [
+        {
+          "target": "wipe",
+          "word": "wipe"
+        },
+        {
+          "target": "reset",
+          "word": "reset"
+        },
+        {
+          "target": "deletes",
+          "word": "deletes"
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "say": "And yes, it can still make mistakes, even while following your rules. So check its work.",
+      "beats": [
+        {
+          "target": "mistakes",
+          "word": "mistakes"
+        },
+        {
+          "target": "rules",
+          "word": "rules"
+        },
+        {
+          "target": "check",
+          "word": "check"
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "say": "My take? Great for ongoing jobs you can review. Start with ask first, and give it more freedom as it earns your trust.",
+      "beats": [
+        {
+          "target": "take",
+          "word": "take"
+        },
+        {
+          "target": "ongoing",
+          "word": "ongoing"
+        },
+        {
+          "target": "start",
+          "word": "Start"
+        },
+        {
+          "target": "trust",
+          "word": "trust"
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "say": "What should I explain next? Tell me in the comments.",
+      "beats": [
+        {
+          "target": "q",
+          "word": "What"
+        },
+        {
+          "target": "tell",
+          "word": "Tell"
+        }
+      ]
+    }
+  ]
+}

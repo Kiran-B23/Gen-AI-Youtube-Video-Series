@@ -1,0 +1,4 @@
+{
+ "board": {"bg": "#1C1C1C", "bg2": "#1C1C1C", "text": "#FFFFFF", "dim": "rgba(255,255,255,0.62)", "accent": "#F7D96F", "accent2": "#58C4DD",
+           "card": "rgba(255,255,255,0.06)", "line": "rgba(255,255,255,0.2)", "danger": "#FC6255", "ok": "#83C167"}
+}

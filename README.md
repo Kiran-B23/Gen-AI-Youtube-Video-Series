@@ -8,16 +8,18 @@ Planning, teaching standards and session packages for **NxtWave's Gen AI YouTube
 |---|---|---|---|
 | 01 | **Jev by TypeSafe AI**, the new AI model that only decides | Two options drafted, pick one: **A** explainer (no code) or **B** scam-SMS test (Colab build) | [sessions/01-jev/](sessions/01-jev/) |
 
-Next topics are in [planning/topics/00-INDEX.md](planning/topics/00-INDEX.md).
+The topics playbook (`planning/`) was removed from the working tree on 2026-10-06; it is still in git history: `git show d76c9f1:planning/topics/00-INDEX.md`.
 
 **Option B notebook:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Kiran-B23/Gen-AI-Youtube-Video-Series/blob/main/sessions/01-jev/option-B-scam-sms-test/notebook/jev_scam_detector.ipynb)
 
 ## Repository layout
 
 ```
-├── planning/
-│   ├── project-ideas.md          ← the ranked AI-topics playbook (starting point)
-│   └── topics/                   ← one file per topic: angle, video ideas, build plan, resources
+├── app/                          ← studio app: LAN web UI over the build + review steps (app/README.md); app/legacy/ = the older scripter runner
+├── productions/<date>-<slug>/   ← video-scripter packages (research, hooks, script, storyboard, publish kit, QA)
+├── studio/                       ← the free video engine (HyperFrames + Manim/Playwright/VHS, Gemini TTS); see studio/README.md
+├── shorts/                       ← rendered MP4s (+ play-on-this-pc/ MP3-audio copies)
+├── references/                   ← first-party reference reels and YouTube URLs to learn from
 ├── guidelines/
 │   ├── session-teaching-guidelines.md   ← the teaching rules every session follows (hooks, YouTube style, standalone, code focus)
 │   └── script-vs-video-analysis.md      ← how past scripts were actually delivered, plus script-writing rules W1–W11
@@ -38,6 +40,8 @@ Give a topic or tool, get a ready-to-produce package: `/video-scripter "<topic>"
 
 The skill (`.claude/skills/video-scripter/`) researches the topic with sources, studies similar videos online, scores hook options, then writes the script, storyboard, publish kit and QA into `productions/<date>-<slug>/`. Reference videos you want to learn from go in `references/`.
 
+Prefer a UI? The studio app (`cd app && npm install && npm run build && npm start`, http://<this-pc>:4310, one password in `app/.env`) runs the `run.sh` build steps with live logs and holds the review: sheets, gates and the editable `review.md` ([app/README.md](app/README.md)). The older `/video-scripter` runner is in `app/legacy/` (`npm start` there, http://localhost:4321).
+
 | Format | Length | Presentation |
 |---|---|---|
 | Reel / Short | 30–60 s (up to 3 min when needed) | faceless: voiceover, motion graphics, captions |
@@ -47,7 +51,7 @@ The skill (`.claude/skills/video-scripter/`) researches the topic with sources, 
 **Package → finished video:** `/video-studio <production folder>` builds the video with free, code-generated visuals (Manim, Playwright, VHS) on a HyperFrames timeline, with Gemini TTS voice and word-synced captions. Engine and steps: [studio/README.md](studio/README.md); roadmap: [docs/video-generation-plan.md](docs/video-generation-plan.md).
 
 ## How a new session is made
-1. Pick a topic from `planning/topics/`.
+1. Pick a topic (the old playbook is in git history: `git show d76c9f1:planning/project-ideas.md`).
 2. Research what's already on YouTube, then discuss the angle before writing anything.
 3. Draft the TR doc and script to `guidelines/`: standalone, YouTube-style, subject-first hook, only the idea-carrying code taught, and scripts written to rules W1–W11.
 4. Dry run, fill in the real numbers, and fact-check on recording day.

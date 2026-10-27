@@ -1,0 +1,775 @@
+{
+  "slug": "dots-v3",
+  "package": "productions/2026-10-11-dots",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/fresh-focus",
+  "flat": true,
+  "padSeconds": 0.3,
+  "names": [
+    "Slack",
+    "ChatGPT",
+    "OpenAI",
+    "iOS"
+  ],
+  "keywords": [
+    "dot",
+    "always",
+    "computer",
+    "review",
+    "levels",
+    "password",
+    "stays",
+    "trust"
+  ],
+  "voice": {
+    "engine": "gemini",
+    "model": "gemini-2.5-flash-preview-tts",
+    "name": "Puck",
+    "style": "You are an upbeat, confident tech explainer talking straight to one student who just asked what this new 'dot' thing in ChatGPT is. A warm, curious tech friend who just read the manual: brisk and pleased on the demo, calm and honest on the catch. Calm pace, about 2.3 words per second, never rushed; a real pause at every full stop and a short breath at every comma. Open hushed and close-up on 'It's three A.M.', then brighter on 'By morning'. Say 'three A.M.' as the letters A, M. Say 'ChatGPT' as chat-G-P-T, 'iOS' as eye-O-S, 'dot' as a plain word. Slow down on 'Now, the part that matters' and read the four levels one by one with a beat between them. Take one breath before 'Now, here's the catch' and say the catch calmly, never alarmed. Warm and practical on 'My take?'. Smile on the last line. Read every word exactly as written. Never hyped, never robotic.",
+    "minPause": {
+      "sentence": 0.75,
+      "comma": 0.3
+    }
+  },
+  "stage": {
+    "kit": "reference-flat",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "stage",
+      "section": "dark",
+      "say": "It's three A.M. A bug report lands in Slack.",
+      "beats": [
+        {
+          "word": "three",
+          "target": "clock",
+          "check": "motion",
+          "settle": 0.2,
+          "sfx": "tick"
+        },
+        {
+          "word": "bug",
+          "target": "slack",
+          "check": "reveal",
+          "sfx": "blip"
+        },
+        {
+          "word": "Slack",
+          "target": "illus",
+          "check": "reveal",
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S15",
+      "beat": 1
+    },
+    {
+      "id": "s02",
+      "type": "stage",
+      "section": "dark",
+      "say": "By morning, a fix is waiting for you to review.",
+      "beats": [
+        {
+          "word": "morning",
+          "target": "roll",
+          "check": "motion",
+          "sfx": "tick",
+          "pauseAfter": [
+            "morning",
+            "waiting"
+          ]
+        },
+        {
+          "word": "morning",
+          "target": "sped",
+          "check": "reveal",
+          "offset": 0.45,
+          "sfx": "stamp"
+        },
+        {
+          "word": "fix",
+          "target": "bubble",
+          "check": "reveal",
+          "sfx": "ding"
+        },
+        {
+          "word": "review",
+          "target": "link",
+          "check": "motion",
+          "sfx": "pop",
+          "cam": [
+            540,
+            900,
+            1.4
+          ]
+        }
+      ],
+      "source": "S14",
+      "pad": 0.65,
+      "beat": 2
+    },
+    {
+      "id": "s03",
+      "type": "stage",
+      "section": "blue",
+      "say": "That's a dot: an always on agent inside ChatGPT.",
+      "beats": [
+        {
+          "word": "dot",
+          "target": "adot",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "always",
+          "target": "chip",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "ChatGPT",
+          "target": "avatar",
+          "check": "motion",
+          "sfx": "tick"
+        }
+      ],
+      "source": "S14",
+      "beat": 3
+    },
+    {
+      "id": "s04",
+      "type": "stage",
+      "section": "blue",
+      "say": "You give it a goal, and it keeps working between your chats.",
+      "beats": [
+        {
+          "word": "goal",
+          "target": "typed",
+          "check": "motion",
+          "sfx": "key",
+          "pauseAfter": [
+            "goal",
+            "working"
+          ]
+        },
+        {
+          "word": "goal",
+          "target": "sent",
+          "check": "reveal",
+          "offset": 0.9,
+          "sfx": "click"
+        },
+        {
+          "word": "working",
+          "target": "working",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "chats",
+          "target": "dim",
+          "check": "motion",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S14",
+      "pad": 0.65,
+      "beat": 4
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "section": "light",
+      "say": "How? Each dot gets its own cloud computer, with its own browser.",
+      "beats": [
+        {
+          "word": "computer",
+          "target": "pane",
+          "check": "reveal",
+          "sfx": "click",
+          "cam": [
+            500,
+            1100,
+            1.3
+          ]
+        },
+        {
+          "word": "browser",
+          "target": "url",
+          "check": "motion",
+          "sfx": "key"
+        },
+        {
+          "word": "browser",
+          "target": "form",
+          "check": "reveal",
+          "offset": 0.35,
+          "sfx": "pop"
+        }
+      ],
+      "source": "S14",
+      "beat": 5
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "section": "light",
+      "say": "So it doesn't just talk about the bug. In OpenAI's own example, it writes the fix, and tests it.",
+      "beats": [
+        {
+          "word": "talk",
+          "target": "invest",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "example",
+          "target": "example",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "writes",
+          "target": "code",
+          "check": "motion",
+          "sfx": "key"
+        },
+        {
+          "word": "tests",
+          "target": "passed",
+          "check": "reveal",
+          "sfx": "ding",
+          "cam": [
+            540,
+            1200,
+            1.4
+          ]
+        }
+      ],
+      "source": "S14",
+      "beat": 6
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "section": "light",
+      "say": "You can open its computer any time and watch it work.",
+      "beats": [
+        {
+          "word": "open",
+          "target": "home",
+          "check": "none",
+          "sfx": "click",
+          "cam": [
+            540,
+            840,
+            1
+          ],
+          "pauseAfter": [
+            "computer",
+            "time"
+          ]
+        },
+        {
+          "word": "computer",
+          "target": "label",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "watch",
+          "target": "field",
+          "check": "motion",
+          "sfx": "tick"
+        }
+      ],
+      "source": "S15",
+      "beat": 7
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "section": "light",
+      "say": "When it's done, the results come back to you, for review.",
+      "beats": [
+        {
+          "word": "done",
+          "target": "bar",
+          "check": "motion",
+          "sfx": "tick",
+          "pauseAfter": [
+            "done",
+            "results",
+            "you"
+          ]
+        },
+        {
+          "word": "results",
+          "target": "result",
+          "check": "reveal",
+          "sfx": "ding"
+        },
+        {
+          "word": "review",
+          "target": "click",
+          "check": "motion",
+          "sfx": "click",
+          "cam": [
+            540,
+            760,
+            1.4
+          ]
+        }
+      ],
+      "source": "S14",
+      "beat": 8
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "section": "light",
+      "say": "It can also run on a schedule, like checking your calendar every morning.",
+      "beats": [
+        {
+          "word": "schedule",
+          "target": "sheet",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            620,
+            1.25
+          ],
+          "pauseAfter": [
+            "schedule",
+            "calendar"
+          ]
+        },
+        {
+          "word": "calendar",
+          "target": "calrow",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "morning",
+          "target": "toggle",
+          "check": "motion",
+          "sfx": "tick"
+        }
+      ],
+      "source": "S14",
+      "pad": 0.65,
+      "beat": 9
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Now, the part that matters: you decide how much it can do alone.",
+      "beats": [
+        {
+          "word": "part",
+          "target": "rules",
+          "check": "reveal",
+          "sfx": "pop",
+          "pauseAfter": [
+            "decide"
+          ]
+        },
+        {
+          "word": "decide",
+          "target": "rule",
+          "check": "motion",
+          "sfx": "click"
+        },
+        {
+          "word": "alone",
+          "target": "slots",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S14",
+      "beat": 10
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "section": "yellow",
+      "say": "There are four levels. At the top, it acts on its own, without asking you.",
+      "beats": [
+        {
+          "word": "four",
+          "target": "slots4",
+          "check": "visible",
+          "sfx": "none",
+          "cam": [
+            540,
+            760,
+            1.35
+          ],
+          "pauseAfter": [
+            "levels"
+          ]
+        },
+        {
+          "word": "top",
+          "target": "hl1",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "asking",
+          "target": "lv1",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S14",
+      "beat": 11
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "section": "yellow",
+      "say": "One step down, it acts only on what your prompt already asked for.",
+      "beats": [
+        {
+          "word": "down",
+          "target": "hl2",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "only",
+          "target": "lv2",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "prompt",
+          "target": "lv2sub",
+          "check": "reveal",
+          "sfx": "key"
+        }
+      ],
+      "source": "S14",
+      "beat": 12
+    },
+    {
+      "id": "s13",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Next, it asks you first, and waits for your okay.",
+      "beats": [
+        {
+          "word": "Next",
+          "target": "hl3",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "first",
+          "target": "lv3",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "okay",
+          "target": "wait",
+          "check": "reveal",
+          "sfx": "blip"
+        }
+      ],
+      "source": "S14",
+      "beat": 13
+    },
+    {
+      "id": "s14",
+      "type": "stage",
+      "section": "yellow",
+      "say": "At the bottom, it doesn't act. It hands the job back to you.",
+      "beats": [
+        {
+          "word": "bottom",
+          "target": "hl4",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "act",
+          "target": "lv4",
+          "check": "reveal",
+          "sfx": "pop",
+          "pauseAfter": [
+            "act"
+          ]
+        },
+        {
+          "word": "hands",
+          "target": "youdo",
+          "check": "reveal",
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S14",
+      "beat": 14
+    },
+    {
+      "id": "s15",
+      "type": "stage",
+      "section": "yellow",
+      "say": "And some things, like changing a password, it always leaves to you.",
+      "beats": [
+        {
+          "word": "things",
+          "target": "drift",
+          "check": "motion",
+          "pauseAfter": [
+            "things",
+            "password"
+          ]
+        },
+        {
+          "word": "password",
+          "target": "pw",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "always",
+          "target": "alwaysyou",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "leaves",
+          "target": "locked",
+          "check": "motion",
+          "sfx": "blip"
+        }
+      ],
+      "source": "S14",
+      "pad": 0.65,
+      "beat": 15
+    },
+    {
+      "id": "s16",
+      "type": "stage",
+      "section": "dark",
+      "say": "Now, here's the catch. Disconnect an app like Slack from your dot, and what it already read there stays.",
+      "beats": [
+        {
+          "word": "catch",
+          "target": "plugins",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "Disconnect",
+          "target": "slackrow",
+          "check": "visible",
+          "sfx": "none",
+          "cam": [
+            540,
+            640,
+            1.3
+          ]
+        },
+        {
+          "word": "app",
+          "target": "off",
+          "check": "motion",
+          "sfx": "click"
+        },
+        {
+          "word": "read",
+          "target": "notes",
+          "check": "motion",
+          "sfx": "pop"
+        },
+        {
+          "word": "stays",
+          "target": "stays",
+          "check": "reveal",
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S14",
+      "beat": 16
+    },
+    {
+      "id": "s17",
+      "type": "stage",
+      "section": "dark",
+      "say": "To wipe that, you delete the whole dot. Chats, memories, schedules, all of it.",
+      "beats": [
+        {
+          "word": "wipe",
+          "target": "menu",
+          "check": "reveal",
+          "sfx": "click"
+        },
+        {
+          "word": "delete",
+          "target": "dialog",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            760,
+            1.4
+          ]
+        },
+        {
+          "word": "Chats",
+          "target": "lit1",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "memories",
+          "target": "lit2",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "schedules",
+          "target": "lit3",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "all",
+          "target": "gone",
+          "check": "motion",
+          "sfx": "whoosh"
+        }
+      ],
+      "source": "S14",
+      "pad": 0.65,
+      "beat": 17
+    },
+    {
+      "id": "s18",
+      "type": "stage",
+      "section": "blue",
+      "say": "And it can still make mistakes, even while following your rules. So check its work.",
+      "beats": [
+        {
+          "word": "mistakes",
+          "target": "diff",
+          "check": "reveal",
+          "sfx": "blip",
+          "pauseAfter": [
+            "mistakes"
+          ]
+        },
+        {
+          "word": "rules",
+          "target": "kicker",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "check",
+          "target": "ring",
+          "check": "reveal",
+          "sfx": "click"
+        }
+      ],
+      "source": "S14",
+      "beat": 18
+    },
+    {
+      "id": "s19",
+      "type": "stage",
+      "section": "blue",
+      "say": "My take? Start it on ask first, and loosen the rules as it earns your trust.",
+      "beats": [
+        {
+          "word": "take",
+          "target": "pulse",
+          "check": "motion",
+          "settle": 0.15,
+          "pauseAfter": [
+            "first",
+            "rules"
+          ]
+        },
+        {
+          "word": "ask",
+          "target": "chosen",
+          "check": "reveal",
+          "sfx": "click",
+          "cam": [
+            540,
+            780,
+            1.35
+          ]
+        },
+        {
+          "word": "first",
+          "target": "askfirst",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "loosen",
+          "target": "loosen",
+          "check": "motion",
+          "sfx": "click"
+        },
+        {
+          "word": "trust",
+          "target": "earned",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S14",
+      "pad": 0.65,
+      "beat": 19
+    },
+    {
+      "id": "s20",
+      "type": "stage",
+      "section": "dark",
+      "say": "What should I explain next?",
+      "beats": [
+        {
+          "word": "explain",
+          "target": "question",
+          "check": "visible",
+          "sfx": "none"
+        }
+      ],
+      "beat": 20
+    },
+    {
+      "id": "s21",
+      "type": "stage",
+      "section": "dark",
+      "beat": 20,
+      "say": "Tell me below.",
+      "beats": [
+        {
+          "word": "below",
+          "target": "follow",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "pad": 0.65
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+/* long-form cast: SVG characters in the side columns of a 16:9 frame (see cast.js) */
+.cast { position: absolute; width: 460px; height: 805px; }
+.cast svg { width: 100%; height: 100%; overflow: visible; }
+.cast.flip svg { transform: scaleX(-1); }

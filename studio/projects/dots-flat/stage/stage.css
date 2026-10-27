@@ -1,0 +1,121 @@
+/* Dots v2 stage · on top of the reference-flat kit */
+.mut { color: rgba(11,16,32,0.5); }
+.chip.sm { font-size: 34px; padding: 8px 18px; }
+.chip.glass { background: rgba(255,255,255,0.10); border: 3px solid rgba(255,255,255,0.35); color: #fff; }
+
+/* the dot: a teammate avatar (pulses forever, so no frame is static) */
+.dotav { display: inline-block; flex: none; width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFE680, #FFD23F 55%, #E8A800); box-shadow: 0 0 0 6px rgba(255,210,63,0.25); }
+.dotav.sm { width: 44px; height: 44px; box-shadow: 0 0 0 4px rgba(255,210,63,0.25); }
+.dotav.big { width: 120px; height: 120px; }
+.dotav.huge { width: 220px; height: 220px; }
+.reply { position: absolute; left: 72px; width: 936px; display: flex; align-items: center; gap: 24px; opacity: 0; }
+.bub { flex: 1; padding: 22px 30px; border-radius: 30px 30px 30px 8px; background: #fff; color: #0B1020; }
+.bub b { display: block; font-family: "JetBrains Mono", monospace; font-size: 28px; color: #2B3BE0; letter-spacing: 0.08em; margin-bottom: 6px; }
+.bub span { font-size: 50px; font-weight: 800; }
+
+/* s01 */
+.clock { position: absolute; left: 60px; top: 240px; width: 960px; height: 240px; font-size: 230px; color: #fff; }
+.clock span { position: absolute; left: 0; top: 0; }
+#clk7 { color: #FFD23F; opacity: 0; }
+.msg { position: absolute; left: 72px; top: 590px; width: 936px; padding: 28px 36px 34px; opacity: 0; }
+.mhead { display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; }
+.mch { color: #2B3BE0; }
+.mtext { margin-top: 14px; font-size: 64px; font-weight: 900; line-height: 1.1; }
+#reply { top: 900px; }
+.revbtn { position: absolute; left: 670px; top: 1150px; padding: 18px 40px; border-radius: 999px; background: #FFD23F; color: #0B1020; font-family: "JetBrains Mono", monospace; font-size: 42px; font-weight: 800; opacity: 0; }
+
+/* s02 */
+.adot { position: absolute; left: 60px; top: 230px; font-size: 300px; color: #fff; opacity: 0; }
+.dchips { position: absolute; left: 72px; top: 560px; display: flex; gap: 20px; }
+.dchips .chip { opacity: 0; }
+.chatwin { position: absolute; left: 72px; top: 720px; width: 600px; padding: 0 0 30px; overflow: hidden; opacity: 0; transform-origin: 90% 0; }
+.cwbar { display: flex; justify-content: space-between; padding: 16px 26px; background: #EEF1F6; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; }
+.cwx { color: #E5364A; }
+.cwbody { padding: 22px 26px 0; font-size: 46px; font-weight: 800; }
+.still { position: absolute; left: 72px; top: 1000px; width: 936px; display: flex; align-items: center; gap: 30px; color: #fff; opacity: 0; }
+.still b { font-size: 60px; font-weight: 900; }
+.sbar { margin-top: 18px; width: 560px; height: 22px; border-radius: 11px; background: rgba(255,255,255,0.25); overflow: hidden; }
+.sbar i { display: block; height: 100%; width: 100%; background: #FFD23F; transform: scaleX(0.05); transform-origin: 0 50%; }
+
+/* s03 */
+.comp { position: absolute; left: 60px; top: 240px; width: 960px; padding: 24px 28px 30px; opacity: 0; }
+.ctitle { display: flex; align-items: center; gap: 16px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; }
+.brow { margin-top: 22px; border: 4px solid #0B1020; border-radius: 22px; overflow: hidden; opacity: 0; }
+.bbar { display: flex; align-items: center; gap: 10px; padding: 14px 20px; background: #EEF1F6; }
+.bbar i { width: 16px; height: 16px; border-radius: 50%; background: #0B1020; opacity: 0.35; }
+.url { margin-left: 12px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 700; color: #0B1020; }
+.bpage { padding: 20px 26px 26px; font-family: "JetBrains Mono", monospace; font-size: 46px; font-weight: 800; line-height: 1.5; }
+.bl { opacity: 0; } .bl.ok { color: #0C8F5F; }
+.tw { position: absolute; left: 60px; top: 1010px; width: 960px; display: flex; gap: 30px; }
+.twc { position: relative; flex: 1; height: 170px; display: flex; align-items: center; justify-content: center; gap: 18px; border: 4px solid #0B1020; border-radius: 30px; background: #fff; font-size: 50px; font-weight: 900; color: #0B1020; opacity: 0; }
+.twc.on { background: #2B3BE0; border-color: #2B3BE0; color: #fff; }
+.twi { font-size: 50px; }
+.xline { position: absolute; left: 26px; right: 26px; top: 50%; height: 9px; margin-top: -4px; border-radius: 5px; background: #E5364A; transform: scaleX(0); transform-origin: 0 50%; }
+
+/* s04 */
+.flow { position: absolute; left: 60px; top: 260px; width: 960px; }
+.frow { display: flex; align-items: center; gap: 26px; padding: 30px 32px; opacity: 0; }
+.frow.res { border-color: #0C8F5F; }
+.fk { width: 210px; font-family: "JetBrains Mono", monospace; font-size: 36px; font-weight: 800; color: #2B3BE0; }
+.fv { flex: 1; display: flex; flex-wrap: wrap; gap: 12px; font-size: 50px; font-weight: 800; }
+.farr { margin: 10px 0; text-align: center; font-size: 70px; font-weight: 900; color: #2B3BE0; line-height: 1; opacity: 0; }
+.rvb { margin-left: 10px; padding: 2px 20px; border-radius: 999px; background: #FFD23F; }
+
+/* s05 */
+.nowait { position: absolute; left: 72px; top: 260px; opacity: 0; }
+.cal { position: absolute; left: 60px; top: 400px; width: 960px; padding: 28px 30px 34px; opacity: 0; }
+.calh { display: flex; justify-content: space-between; align-items: center; font-family: "JetBrains Mono", monospace; font-size: 36px; font-weight: 800; color: #2B3BE0; }
+.days { margin-top: 26px; display: flex; gap: 16px; }
+.day { flex: 1; height: 200px; border: 4px solid #0B1020; border-radius: 22px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; opacity: 0; }
+.day b { font-family: "JetBrains Mono", monospace; font-size: 34px; }
+.day span { font-size: 56px; font-weight: 900; color: #0C8F5F; }
+#d5 span { color: #2B3BE0; }
+.calb { top: 860px; }
+.calb .bub { background: #0B1020; color: #fff; } .calb .bub b { color: #FFD23F; }
+
+/* s06-s07 */
+.ladk { position: absolute; left: 72px; top: 250px; color: #0B1020; opacity: 0; }
+.ladder { position: absolute; left: 60px; top: 320px; width: 960px; }
+.rung { position: relative; display: flex; align-items: center; gap: 26px; height: 150px; margin-bottom: 20px; padding: 0 34px 0 120px; border: 4px solid #0B1020; border-radius: 30px; background: #fff; font-size: 54px; font-weight: 900; color: #0B1020; opacity: 0; }
+.rn { position: absolute; left: 34px; font-family: "JetBrains Mono", monospace; font-size: 40px; color: #2B3BE0; }
+.knob { position: absolute; left: -10px; top: 45px; width: 60px; height: 60px; border-radius: 50%; background: #2B3BE0; box-shadow: 0 0 0 8px rgba(43,59,224,0.25); opacity: 0; }
+.pw { position: absolute; left: 160px; top: 1060px; width: 760px; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 30px; font-size: 54px; font-weight: 900; opacity: 0; }
+.lock { position: relative; width: 50px; height: 44px; margin-top: 18px; border-radius: 8px; background: #0B1020; }
+.lock i { position: absolute; left: 9px; top: -26px; width: 32px; height: 34px; border: 7px solid #0B1020; border-bottom: 0; border-radius: 18px 18px 0 0; box-sizing: border-box; }
+.always { position: absolute; left: 230px; top: 1260px; font-size: 130px; border-color: #E5364A; color: #E5364A; }
+
+/* s08-s09 */
+.mem { position: absolute; left: 60px; top: 300px; width: 960px; height: 260px; }
+.appc { position: absolute; left: 0; top: 95px; font-size: 48px; opacity: 0; }
+.link { position: absolute; left: 190px; top: 70px; width: 520px; height: 120px; }
+.lnk { fill: none; stroke: #FFD23F; stroke-width: 10; stroke-dasharray: 18 14; stroke-dashoffset: 0; opacity: 0; }
+.cut { position: absolute; left: 400px; top: 70px; font-size: 110px; color: #FF4D5E; opacity: 0; }
+#dav8 { position: absolute; right: 0; top: 20px; opacity: 0; }
+.mchips { position: absolute; left: 60px; top: 640px; width: 960px; display: flex; flex-direction: column; align-items: flex-end; gap: 22px; }
+.mc { font-size: 46px; opacity: 0; }
+.stays { position: absolute; left: 0; width: 1020px; text-align: right; top: 1020px; color: #FFD23F; opacity: 0; }
+.resetb { position: absolute; left: 340px; top: 330px; padding: 26px 70px; border-radius: 26px; background: #FF4D5E; color: #fff; font-family: "Anton", sans-serif; font-size: 120px; line-height: 1; opacity: 0; }
+.delk { position: absolute; left: 0; width: 1080px; top: 900px; text-align: center; color: #fff; font-size: 64px; font-weight: 900; opacity: 0; }
+.delk span { display: block; margin-top: 14px; font-family: "JetBrains Mono", monospace; font-size: 34px; color: rgba(255,255,255,0.7); }
+
+/* s10 */
+.fixc { top: 280px; }
+.mist { position: absolute; left: 150px; top: 560px; font-size: 140px; }
+.rul { position: absolute; left: 0; right: 0; margin: 0 auto; width: fit-content; top: 860px; font-size: 44px; opacity: 0; }
+.chk { position: absolute; left: 190px; top: 1040px; width: 700px; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 34px; font-size: 64px; font-weight: 900; opacity: 0; }
+.mag { width: 80px; height: 80px; border-radius: 50%; background: #14B87A; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 50px; }
+
+/* s11 */
+.vk { position: absolute; left: 72px; top: 260px; color: rgba(255,255,255,0.8); }
+.vt { position: absolute; left: 72px; top: 330px; font-size: 140px; color: #fff; opacity: 0; }
+.dial { position: absolute; left: 90px; top: 900px; width: 900px; height: 330px; }
+.dtrack { position: absolute; left: 0; top: 60px; width: 900px; height: 40px; border-radius: 20px; background: rgba(255,255,255,0.25); overflow: hidden; opacity: 0; }
+.dtrack i { display: block; width: 100%; height: 100%; background: #FFD23F; transform: scaleX(0); transform-origin: 0 50%; }
+.dlabs { position: absolute; left: 0; top: 130px; width: 900px; display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 38px; font-weight: 800; color: #fff; }
+.dknob { position: absolute; left: -30px; top: 35px; width: 90px; height: 90px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 10px rgba(255,210,63,0.6); opacity: 0; }
+.earn { position: absolute; left: 0; top: 220px; font-size: 50px; font-weight: 900; color: #FFD23F; opacity: 0; }
+
+/* section cards: plain big titles, no step kicker / numeral (structure check 2026-10-12) */
+.chap .chapk, .chap .chapn { display: none; }
+.chap .chapt { top: 300px; font-family: "Anton", sans-serif; font-size: 170px; line-height: 0.95; text-transform: uppercase; width: 936px; }
+.chap.on-dark .chapt, .chap.on-blue .chapt { color: #FFD23F; }

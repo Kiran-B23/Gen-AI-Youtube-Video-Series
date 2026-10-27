@@ -1,0 +1,154 @@
+<!-- LangGraph reel · house style reference-flat · running object: the email "I was charged twice." + its state card
+     The switchboard (s07-s19): graph y 250-880 · save rail y 890-960 · state card y 990-1440. Classes prefixed l-. -->
+
+<!-- progress: 3 mechanism steps (structure-check PASS 2026-10-13), lit s07-s19 only -->
+<div id="prog" class="prog"><i id="p1" class="seg"></i><i id="p2" class="seg"></i><i id="p3" class="seg"></i><span class="proglab">/ 03</span></div>
+
+<!-- s01 hook (dark): the refund card, on screen from frame 0 -->
+<div class="g" id="g01">
+  <div id="rc0" class="card l-rcard">
+    <div class="kick l-k">AGENT ACTION</div>
+    <div class="l-rt">Refund sent · $49 <b class="l-ok">✓</b></div>
+    <div class="l-rby">approved by: <span id="slot" class="l-slot"></span></div>
+  </div>
+  <div id="hh" class="hl l-hook"><span class="l-u">NOBODY</span><br>APPROVED IT.</div>
+  <div class="illus">illustrative</div>
+</div>
+
+<!-- s02-s04 the email meets a plain loop (blue) -->
+<div class="g" id="g02">
+  <div id="em" class="card l-email"><div class="kick l-k">NEW EMAIL · SUPPORT</div><div id="emt" class="l-emt"></div></div>
+  <div id="ring" class="l-ring">
+    <svg viewBox="0 0 600 600" class="l-ringsvg"><circle cx="300" cy="300" r="230" class="l-ringc"/></svg>
+    <div id="rdot" class="l-rdotw"><i class="l-rdot"></i></div>
+    <div id="rn1" class="l-rn" style="left:200px;top:20px">model</div>
+    <div id="rn2" class="l-rn" style="left:390px;top:380px">tool</div>
+    <div id="rn3" class="l-rn" style="left:10px;top:380px">result</div>
+    <div id="rdone" class="chip ok l-rdone">✓ done</div>
+  </div>
+  <div id="mem" class="l-mem"><div id="memf" class="l-memf"></div><span>progress: in memory</span></div>
+  <div id="qp" class="chip wht l-q1">⏸ pause for hours?</div>
+  <div id="qr" class="chip wht l-q2">↻ go on after a restart?</div>
+  <div id="yours" class="l-yours"><span>= code you'd write yourself</span></div>
+</div>
+
+<!-- s05-s06 LangGraph enters (dark) -->
+<div class="g" id="g05">
+  <div id="lgt" class="hl l-lgt">LangGraph</div>
+  <div id="lgs" class="mono l-lgs">open-source · your agent as a graph</div>
+  <div id="ag" class="l-ag">
+    <svg viewBox="0 0 1080 420" class="l-agsvg">
+      <defs><marker id="ah0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#fff"/></marker></defs>
+      <path id="a1" d="M352 80 L530 80" class="l-ae" marker-end="url(#ah0)"/>
+      <path id="a2" d="M680 140 C 680 250, 340 250, 320 148" class="l-ae" marker-end="url(#ah0)"/>
+      <path id="a3" d="M180 140 L180 262" class="l-ae" marker-end="url(#ah0)"/>
+    </svg>
+    <div id="an1" class="l-an" style="left:72px;top:25px">model</div>
+    <div id="an2" class="l-an" style="left:540px;top:25px">tools</div>
+    <div id="an3" class="l-an l-end" style="left:70px;top:270px">END</div>
+    <div id="apause" class="chip yel l-apause">⏸ paused</div>
+  </div>
+  <div id="emc" class="chip yel l-emc">✉ "I was charged twice."</div>
+  <div id="k1" class="hl l-kw" style="top:1050px">NODES</div>
+  <div id="k2" class="hl l-kw" style="top:1180px">EDGES</div>
+  <div id="k3" class="hl l-kw" style="top:1310px">CHECKPOINTS</div>
+  <div id="ki1" class="l-ki" style="top:1070px"><i class="l-kpill"></i></div>
+  <div id="ki2" class="l-ki" style="top:1200px"><i class="l-karrow"></i></div>
+  <div id="ki3" class="l-ki" style="top:1330px"><i class="l-ktile"></i></div>
+</div>
+
+<!-- chapter cards (Concept mechanism: numbered) -->
+<div class="g chap" id="c1"><div class="chapk">STEP 1 OF 3</div><div class="chapn">01</div><div class="chapt">Nodes</div></div>
+<div class="g chap on-yellow" id="c2"><div class="chapk">STEP 2 OF 3</div><div class="chapn">02</div><div class="chapt">Edges</div></div>
+<div class="g chap on-blue" id="c3"><div class="chapk">STEP 3 OF 3</div><div class="chapn">03</div><div class="chapt">Checkpoints</div></div>
+
+<!-- the switchboard (s07-s19) -->
+<div class="g" id="gsw">
+  <div id="swg" class="l-swg">
+    <svg viewBox="0 0 1080 1920" class="l-edges" id="edges">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="currentColor"/></marker></defs>
+      <path id="e1" d="M336 435 L398 435" class="l-e" marker-end="url(#ah)"/>
+      <path id="e2" d="M674 435 L736 435" class="l-e" marker-end="url(#ah)"/>
+      <path id="eA" d="M540 380 L540 344" class="l-e" marker-end="url(#ah)"/>
+      <path id="e3" d="M820 494 L820 688" class="l-e" marker-end="url(#ah)"/>
+      <path id="e4" d="M744 755 L682 755" class="l-e" marker-end="url(#ah)"/>
+      <path id="e5" d="M406 755 L344 755" class="l-e" marker-end="url(#ah)"/>
+      <path id="eL" d="M955 700 C 1000 640, 1000 550, 955 500" class="l-e l-loop" marker-end="url(#ah)"/>
+    </svg>
+    <div id="nAns" class="card l-node l-ans" style="left:410px;top:250px">answer</div>
+    <div id="nRead" class="card l-node" style="left:72px;top:380px">read</div>
+    <div id="nCls" class="card l-node" style="left:410px;top:380px">classify</div>
+    <div id="nDrf" class="card l-node" style="left:748px;top:380px">draft</div>
+    <div id="nRef" class="card l-node" style="left:72px;top:700px">refund</div>
+    <div id="nApp" class="card l-node" style="left:410px;top:700px">approve</div>
+    <div id="nChk" class="card l-node" style="left:748px;top:700px">check</div>
+    <div id="sw" class="chip ink l-sw">intent == refund?</div>
+    <div id="itag" class="chip yel l-itag">interrupt()</div>
+    <svg id="wring" viewBox="0 0 300 150" class="l-wring"><rect x="6" y="6" width="288" height="138" rx="34" class="l-wr"/></svg>
+  </div>
+  <div id="xamt" class="stampx l-xamt">✕ NO AMOUNT</div>
+  <div id="okamt" class="chip ok l-okamt">✓ check passed</div>
+  <div id="paused" class="stampx l-paused">PAUSED.</div>
+  <div id="appb" class="l-appb">Approve ✓<i id="ripple" class="l-ripple"></i></div>
+  <div id="rc1" class="card l-rcard2">
+    <div class="l-rt2">Refund sent · $49 <b class="l-ok">✓</b></div>
+    <div class="l-rby2">approved by: <b>you</b></div>
+  </div>
+  <!-- the save rail -->
+  <div id="rail" class="l-rail"><span id="railk" class="mono l-railk">thread ID: email-1</span><div id="tiles" class="l-tiles"></div></div>
+  <!-- the state card -->
+  <div id="st" class="card l-state">
+    <div class="l-sth"><span class="kick l-stk">STATE</span><span class="l-sti">illustrative</span></div>
+    <div id="f1" class="l-f"><span class="l-fk">email:</span><span id="fv1" class="l-fv">—</span></div>
+    <div id="f2" class="l-f"><span class="l-fk">intent:</span><span id="fv2" class="l-fv">—</span></div>
+    <div id="f3" class="l-f"><span class="l-fk">reply:</span><span id="fv3" class="l-fv">—</span></div>
+    <div id="f4" class="l-f"><span class="l-fk">approved:</span><span id="fv4" class="l-fv">—</span></div>
+    <i id="scan" class="l-scan"></i>
+  </div>
+  <div id="chip" class="l-chip">✉</div>
+</div>
+
+<!-- s20-s22 the catch (dark) -->
+<div class="g" id="g20">
+  <div class="kick l-ck">INSIDE THE approve NODE · illustrative</div>
+  <div id="code" class="card glass l-code">
+    <div id="cl1" class="l-cl" style="top:40px">send_email("We're on it")</div>
+    <div id="cl2" class="l-cl" style="top:130px">ok = interrupt("approve?")</div>
+    <div id="cl3" class="l-cl" style="top:220px">return refund(email)</div>
+    <div id="ptr" class="l-ptr">▶</div>
+  </div>
+  <div id="again" class="hl l-again">IT RUNS AGAIN<br>FROM THE TOP.</div>
+  <div id="env1" class="l-env">✉</div>
+  <div id="env2" class="l-env" style="top:418px">✉</div>
+  <div id="inbox" class="card glass l-inbox"><span class="kick l-ik">CUSTOMER INBOX</span><span id="icount" class="l-icount">0</span></div>
+  <div id="fixrow" class="l-fixrow">
+    <div class="card l-mnode">approve</div><i class="l-marr"></i><div id="nnot" class="card l-mnode l-mnew">notify</div><i class="l-marr"></i><div class="card l-mnode">refund</div>
+  </div>
+</div>
+
+<!-- s23-s24 when you need it (light) -->
+<div class="g" id="g23">
+  <div id="bLC" class="l-blk l-blc">LangChain agents</div>
+  <div id="bLG" class="l-blk l-blg">LangGraph</div>
+  <div id="noreq" class="chip bad l-noreq">LangChain required? ✕</div>
+  <div id="dec" class="card l-dec">
+    <div id="d1" class="l-drow"><span class="l-dq">simple agent</span><span class="l-da">→ LangChain's prebuilt agent ✓</span></div>
+    <div id="d2" class="l-drow"><span class="l-dq">your own <b id="i1">⑂ branches</b> <b id="i2">↺ loops</b> <b id="i3">⏸ approvals</b></span><span id="d2a" class="l-da l-dlg">→ LangGraph</span></div>
+  </div>
+</div>
+
+<!-- s25 recap (yellow) -->
+<div class="g" id="g25">
+  <div id="rk1" class="card l-rk" style="top:260px"><span class="l-rkn">01</span>NODES<span class="l-rks">do one job each</span></div>
+  <div id="rk2" class="card l-rk" style="top:500px"><span class="l-rkn">02</span>EDGES<span class="l-rks">branch and loop</span></div>
+  <div id="rk3" class="card l-rk" style="top:740px"><span class="l-rkn">03</span>CHECKPOINTS<span class="l-rks">save, pause, resume</span></div>
+  <div id="rmini" class="l-chip l-rmini">✉</div>
+  <div id="rtiles" class="l-rtiles"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div id="rby" class="l-rby3">approved by: you ✓</div>
+</div>
+
+<!-- s26 CTA (dark) -->
+<div class="g" id="g26">
+  <div class="cta"><span id="cw1">What </span><span id="cw2">should </span><span id="cw3">I </span><span id="cw4">explain </span><span id="cw5">next?</span></div>
+  <div id="ctaf" class="ctaf">Follow for more AI breakdowns</div>
+</div>

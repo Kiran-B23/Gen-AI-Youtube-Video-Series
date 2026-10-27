@@ -13,6 +13,8 @@ Downloaded media is analysis-only and deleted afterwards (--keep-media keeps it)
 usage:
   python tools/yt_research.py "<topic>" --out <dir> [--context "LLM AI"] [--queries "q1;q2"] [--shorts 5 --long 3 --low 2]
   python tools/yt_research.py --urls <file-or-url> [more urls] --out <dir>          # analyse given videos only
+      any site yt-dlp supports (YouTube, Instagram reels, X, Reddit, TikTok, Vimeo, Bluesky…); a file may be a list or a
+      markdown table with notes. Login-only posts need --cookies-from-browser chrome (the owner's own browser login).
 """
 import argparse, concurrent.futures as cf, datetime as dt, glob, json, os, re, shutil, subprocess, sys, time
 from PIL import Image, ImageDraw, ImageFont
@@ -35,7 +37,7 @@ ap.add_argument("--keep-media", action="store_true")
 ap.add_argument("--stage", choices=["search", "watch", "all"], default="all",
                 help="search: rank and write candidates.md, then stop for review; watch: re-use the cached search and watch the picks")
 ap.add_argument("--drop", default="", help="comma-separated video ids to exclude after review (off-topic, duplicates)")
-ap.add_argument("--cookies-from-browser", default="", help="only if YouTube keeps showing a bot check, e.g. 'chrome' (uses that browser's YouTube login)")
+ap.add_argument("--cookies-from-browser", default="", help="only for a YouTube bot check or a login-only post (Instagram/X), e.g. 'chrome' (uses that browser's login; opt-in)")
 a = ap.parse_args()
 if a.cookies_from_browser: YTDLP += ["--cookies-from-browser", a.cookies_from_browser]
 OUT = os.path.abspath(a.out); os.makedirs(OUT, exist_ok=True)
@@ -74,7 +76,7 @@ def full(v):
     if BLOCKED[0] or v.get("enriched"): return v
     out, err = ytdlp("--skip-download", "--dump-json", "--sleep-requests", "1", v["webpage_url"])
     if "not a bot" in err: BLOCKED[0] = True; print("  ⚠ YouTube bot check on every client: stopping full fetches (ranking falls back to views)"); return v
-    try: v.update(slim(json.loads(out.splitlines()[0]))); v["enriched"] = True
+    try: key = v["id"]; v.update(slim(json.loads(out.splitlines()[0]))); v["id"] = key; v["enriched"] = True   # keep our key (site-prefixed for non-YouTube)
     except Exception: v["fetch_error"] = (err.strip().splitlines() or ["no data"])[-1][:160]
     time.sleep(1.5); return v
 
@@ -84,10 +86,22 @@ vids = {}
 if a.urls:
     urls = []
     for u in a.urls:
-        urls += [l.strip() for l in open(u) if l.strip().startswith("http")] if os.path.exists(u) else [u]
+        # a file may be plain URLs or a markdown table with notes: take every link, in order, once (any site yt-dlp supports)
+        urls += list(dict.fromkeys(m.rstrip(").,>|") for m in re.findall(r"https?://[^\s|)\]>\"']+", open(u).read()))) if os.path.exists(u) else [u]
+    YT = re.compile(r"(?:youtube\.com/(?:watch\?v=|shorts/)|youtu\.be/)([\w-]{11})")
     for u in urls:
-        vid = re.search(r"(?:v=|youtu\.be/|shorts/)([\w-]{11})", u).group(1)
-        vids[vid] = cache.get(vid) or {"id": vid, "webpage_url": f"https://www.youtube.com/watch?v={vid}", "view_count": 0, "duration": 0}
+        if (m := YT.search(u)):
+            vid = m.group(1); vids[vid] = cache.get(vid) or {"id": vid, "webpage_url": f"https://www.youtube.com/watch?v={vid}", "view_count": 0, "duration": 0}
+            continue
+        # other sites: ask yt-dlp what the link is; the folder is <site>-<id> (e.g. instagram-DehL0UdMPw4)
+        out, err = ytdlp("--skip-download", "--dump-json", "--no-playlist", u.split("?")[0] if "instagram.com" in u else u)
+        try: d = json.loads(out.splitlines()[0])
+        except Exception:
+            why = (err.strip().splitlines() or ["no data"])[-1][:160]
+            print(f"  ✗ {u}: {why}" + ("  (login-only? re-run with --cookies-from-browser chrome)" if re.search(r"login|cookies|empty media|private", why, re.I) else "")); continue
+        key = re.sub(r"[^\w-]", "_", f"{(d.get('extractor_key') or 'web').lower()}-{d.get('id')}")
+        v = cache.get(key) or dict(slim(d), id=key, enriched=True, site=(d.get("extractor_key") or "").lower())
+        v["webpage_url"] = d.get("webpage_url") or u; v["channel"] = v.get("channel") or d.get("uploader"); vids[key] = v
     print(f"analysing {len(vids)} given video(s)")
 elif a.stage == "watch" and cache:
     vids = {k: v for k, v in cache.items()}
@@ -139,7 +153,7 @@ for v in vids:
         v["age_days"] = max((TODAY - dt.datetime.strptime(v["upload_date"], "%Y%m%d").date()).days, 1)
         v["views_per_day"] = round(views / v["age_days"], 1)
     if v.get("channel_follower_count"): v["outlier"] = round(views / max(v["channel_follower_count"], 1000), 2)
-    if v.get("enriched"): v["engagement"] = round(((v.get("like_count") or 0) + (v.get("comment_count") or 0)) / max(views, 1), 4)
+    if v.get("enriched") and views: v["engagement"] = round(((v.get("like_count") or 0) + (v.get("comment_count") or 0)) / max(views, 1), 4)
     v["views"] = views
 
 def pct_rank(xs):
@@ -228,18 +242,20 @@ def watch(v):
     d = os.path.join(OUT, v["id"]); os.makedirs(d, exist_ok=True)
     url = v.get("webpage_url") or f"https://www.youtube.com/watch?v={v['id']}"
     out, err = ytdlp(url, "--sleep-requests", "1", "--write-auto-subs", "--write-subs", "--sub-langs", "en-orig,en,en-US,en-GB", "--sub-format", "json3",
-          "-f", ("bv*[height<=240]/worst" if (v.get("duration") or 0) > 1800 else "bv*[height<=360][vcodec^=avc1]/bv*[height<=480]/worst"),
-          "-o", os.path.join(d, "%(id)s.%(ext)s"), timeout=1800)   # (--download-sections crashes this static ffmpeg build)
+          "-f", ("bv*[height<=240]/worst" if (v.get("duration") or 0) > 1800 else "bv*[height<=360][vcodec^=avc1]/bv*[height<=480]/b[height<=720]/best/worst"),
+          "--no-playlist", "-o", os.path.join(d, f"{v['id']}.%(ext)s"), timeout=1800)   # (--download-sections crashes this static ffmpeg build)
     find = lambda: next(iter(sorted(glob.glob(os.path.join(d, f"{v['id']}.mp4")) + glob.glob(os.path.join(d, f"{v['id']}.webm")))), None)
     if not find():   # downloads fail transiently (403s, throttling): retry once through the other client
         time.sleep(5); keep = CLIENT[0]; CLIENT[0] = 1 - CLIENT[0] if len(CLIENTS) == 2 else CLIENT[0]
-        out, err = ytdlp(url, "--sleep-requests", "1", "-f", "bv*[height<=360][vcodec^=avc1]/bv*[height<=480]/18/worst",
-                         "-o", os.path.join(d, "%(id)s.%(ext)s"), timeout=1800)
+        out, err = ytdlp(url, "--sleep-requests", "1", "-f", "bv*[height<=360][vcodec^=avc1]/bv*[height<=480]/18/best/worst",
+                         "--no-playlist", "-o", os.path.join(d, f"{v['id']}.%(ext)s"), timeout=1800)
         CLIENT[0] = max(keep, CLIENT[0]) if "not a bot" in err else keep
     video = find()
+    if video and not v.get("duration"):   # Instagram/X often give no duration in metadata: measure the file
+        v["duration"] = int(ffprobe_dur(video) or 0); v["kind"] = "short" if 0 < v["duration"] <= 180 else "long"
     lines, source = captions(v["id"], d), "youtube captions"
     if not lines and not BLOCKED[0]:
-        ytdlp(url, "-f", "ba", "-o", os.path.join(d, "audio.%(ext)s"), timeout=600)
+        ytdlp(url, "-f", "ba/b", "--no-playlist", "-o", os.path.join(d, "audio.%(ext)s"), timeout=600)
         aud = next(iter(glob.glob(os.path.join(d, "audio.*"))), None)
         lines, source = (whisper_lines(aud), "whisper") if aud else ([], "none")
     for f in glob.glob(os.path.join(d, "*.json3")) + glob.glob(os.path.join(d, "audio.*")): os.remove(f)

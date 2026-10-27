@@ -79,7 +79,8 @@ video-scripter package
 |---|---|---|---|
 | 1 | **HyperFrames base**: port the caption, voice-sync, ducking, safe-zone and QA pieces from `shorts-studio`; one 30 s test reel | engine swap works, free licence | ✅ done 2026-10-09 (`studio/`, test reel `test-tokens`) |
 | 2 | **Asset builders**: Manim, Playwright, VHS, diagram/chart/code blocks; a scene catalog showing each | every render type produces clean clips | ✅ Manim, Playwright, VHS done; HyperFrames registry blocks not yet used |
-| 3 | **Scene planner skill**: package → `scenes.json` → full **reel** end to end | the reel pipeline is automated | ✅ `video-studio` skill; first real reel pending |
+| 3 | **Scene planner skill**: package → `scenes.json` → full **reel** end to end | the reel pipeline is automated | ✅ `video-studio` skill; reels approved: MCP, LangGraph, REA (2026-10-13/14) |
+| 3b | **Quality gates** (branch `video-quality-gates`, 2026-10-16): one pace rule (`pace.json`, 2.3 w/s) with a per-scene gate; `visual-plan` agent; `payoffs.mjs` plan-vs-composition check; camera keyframes + a sound per action; `qa.json`/`watch.json`/`review.md` and a `deliver` gate; Dots pilot | a bad reel is stopped before it costs a voice request or a render | 🔧 engine done; Dots pilot next |
 | 4 | **Long-form**: chapters, 16:9 layouts, presenter compositing (option A); one **8–10 min explainer** | long-form quality and pacing | next |
 | 5 | **AI avatar experiment** (option B) on Colab free GPU: one 60 s presenter segment | whether avatar quality is good enough | later |
 | 6 | Polish: one command from topic to draft video; learnings fed back into `video-scripter` | repeatable | later |
@@ -88,7 +89,7 @@ video-scripter package
 1. **Presenter for the first long-form:** start with **you on camera** (option A) and trial the
    avatar in phase 5, or do the avatar first?
 2. **Pilot topic** for phase 3–4, ideally one with a real demo (a tool) plus a mechanism to explain.
-3. **Existing `shorts-studio`**: after the port, archive it (keep the code for reference) or delete it.
+3. **Existing `shorts-studio`**: deleted on 2026-10-12 after the port (recoverable from git history). Remotion now lives on as the optional `studio/remotion/` engine (owner's personal use).
 
 ## Sources
 - Engines: [Remotion pricing](https://www.remotion.dev/docs/pricing) · [Remotion licence FAQ](https://www.remotion.dev/docs/license/faq) · [Remotion LICENSE.md](https://cdn.jsdelivr.net/npm/remotion@4.0.529/LICENSE.md) · [HyperFrames on GitHub](https://github.com/heygen-com/hyperframes) · [Remotion vs Motion Canvas vs Revideo (PkgPulse)](https://www.pkgpulse.com/guides/remotion-vs-motion-canvas-vs-revideo-programmatic-video-2026) · [Best programmatic video tools 2026 (RenderComp)](https://rendercomp.com/blog/best-programmatic-video-tools-2026/) · [HyperFrames alternatives (GenMotion)](https://genmotion.dev/blog/hyperframes-alternatives) · [Open-source Remotion alternatives (AutoAE)](https://autoae.online/blog/open-source-remotion-alternatives-2026)

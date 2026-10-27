@@ -1,5 +1,6 @@
 {
   "slug": "__SLUG__",
+  "package": "productions/<date>-<slug>",
   "format": "reel",
   "size": [
     1080,
@@ -32,11 +33,11 @@
       "props": {
         "items": [
           {
-            "icon": "⚡",
+            "icon": "\u26a1",
             "text": "First point"
           },
           {
-            "icon": "🎯",
+            "icon": "\ud83c\udfaf",
             "text": "Second point"
           }
         ]
@@ -57,7 +58,7 @@
       "type": "cta",
       "say": "What should I break down next? Tell me below!",
       "props": {
-        "question": "What should I break down next? 👇",
+        "question": "What should I break down next? \ud83d\udc47",
         "follow": "Follow for more AI breakdowns"
       },
       "beats": [

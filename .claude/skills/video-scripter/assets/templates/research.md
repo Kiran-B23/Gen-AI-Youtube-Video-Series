@@ -13,7 +13,7 @@ _Researched on YYYY-MM-DD. Labels: company claim · independent · our test · c
 
 ## Analogy candidates
 
-## The catch (limitations, risks, costs)
+## Limitations, risks, costs (candidates: the content plan decides whether any of them is material enough to say)
 
 ## Alternatives / competitors
 

@@ -1,0 +1,125 @@
+<!-- Jev · hyperframes-glass style · running object: ticket #4821 through 4 steps -->
+<div id="aurora" class="aurora"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<div class="hud"></div>
+
+<!-- s01 hook -->
+<div class="g" id="g01">
+  <div id="h1" class="disp hook1">Never<br>writes.</div>
+  <div id="h0" class="gchip pk h0">0 words written</div>
+  <div id="h2c" class="glass h2c"><div class="sweep"></div><div class="disp h2 cy glow">Only decides.</div></div>
+</div>
+
+<!-- s02 meet Jev -->
+<div class="g" id="g02">
+  <div id="meet" class="kick meet">MEET</div>
+  <div id="jevbig" class="disp jevbig">Jev</div>
+  <div id="qa" class="glass qa"><div class="sweep"></div>
+    <div class="qarow" id="qa1"><span class="gchip q">team?</span><span class="arr" id="ar1">→</span><span class="gchip cy a" id="an1">billing</span><span class="conf"><i id="cf1" style="width:94%"></i></span></div>
+    <div class="qarow" id="qa2"><span class="gchip q">urgent?</span><span class="arr" id="ar2">→</span><span class="gchip cy a" id="an2">yes</span><span class="conf"><i id="cf2" style="width:81%"></i></span></div>
+    <div class="qarow" id="qa3"><span class="gchip q">refund?</span><span class="arr" id="ar3">→</span><span class="gchip cy a" id="an3">no</span><span class="conf"><i id="cf3" style="width:57%"></i></span></div>
+    <div class="qalab"><span id="ql1">QUESTIONS IN</span><span id="ql2">TYPED ANSWERS</span><span id="ql3">CONFIDENCE</span></div>
+  </div>
+</div>
+
+<div class="g chap" id="c1"><div class="chapt">Read the ticket</div></div>
+<div class="g chap" id="c2"><div class="chapt">Check the cost</div></div>
+<div class="g chap" id="c3"><div class="chapt">The catch</div></div>
+<div class="g chap" id="c4"><div class="chapt">Route it</div></div>
+
+<!-- s03-s04 the ticket -->
+<div class="g" id="g03">
+  <div id="ticket" class="glass ticket"><div class="sweep"></div>
+    <div class="tkhead"><span class="cy">TICKET #4821</span><span class="tkfrom">support inbox</span></div>
+    <div class="tktext"><span id="tkt"></span><span id="cur" class="cur"></span></div>
+    <div id="scan" class="scan"></div>
+  </div>
+  <div id="three" class="three"><div id="threen" class="disp threen glow cy">3</div><div class="kick">ANSWERS · ONE PASS</div></div>
+  <div class="rows">
+    <div class="glass row" id="r1"><span class="rq">TEAM?</span><span class="gchip mi ra" id="ra1">billing</span></div>
+    <div class="glass row" id="r2"><span class="rq">URGENT?</span><span class="gchip am ra" id="ra2">yes</span></div>
+    <div class="glass row" id="r3"><span class="rq">CHURN RISK?</span><span class="gchip pk ra" id="ra3">high</span></div>
+  </div>
+  <div class="illus">illustrative</div>
+</div>
+
+<!-- s05 speed -->
+<div class="g" id="g05">
+  <div class="mini" id="mini1"><span class="gchip">#4821</span><span class="gchip">billing</span><span class="gchip">urgent</span></div>
+  <svg id="clock" class="clock" viewBox="0 0 400 400"><circle cx="200" cy="200" r="170" class="clk-bg"/><circle id="clkarc" cx="200" cy="200" r="170" class="clk-arc" transform="rotate(-90 200 200)"/></svg>
+  <div class="clocklab" id="clocklab">1 second</div>
+  <div id="speed" class="big cy glow">~0.1 s</div>
+  <div id="speedl" class="bigl">per answer · TypeSafe's claim</div>
+</div>
+
+<!-- s06 price -->
+<div class="g" id="g06">
+  <div id="pcard" class="glass pcard"><div class="sweep"></div>
+    <div id="price" class="big pricen cy glow">$0.042</div>
+    <div id="pricel" class="bigl pricel">per million input tokens</div>
+  </div>
+  <div id="outrow" class="outrow"><span class="disp">Output</span><span id="free" class="gchip mi free">FREE</span></div>
+</div>
+
+<!-- s07 7,977 items for 21 cents vs priciest LLM -->
+<div class="g" id="g07">
+  <div class="cnt" id="cntwrap"><div class="kick cntl">ITEMS LABELLED · INDEPENDENT TEST</div><div id="cnt" class="disp cntn">7,977</div></div>
+  <canvas id="cells" class="cells" width="1000" height="560"></canvas>
+  <div id="cost21" class="glass cost21"><div class="sweep"></div><div class="disp am glow">$0.21</div><div class="kick">TOTAL</div></div>
+  <div class="bars" id="bars">
+    <div class="bar"><div class="bval" id="bv1">$0.21</div><div class="btrack"><div class="bfill jev" id="bf1"></div></div><div class="bname">Jev</div></div>
+    <div class="bar"><div class="bval" id="bv2">$62.99</div><div class="btrack"><div class="bfill llm" id="bf2"></div></div><div class="bname">priciest of 19 LLMs</div></div>
+    <div id="x300" class="x300 disp pk glow">~300×</div>
+  </div>
+</div>
+
+<!-- s08 the catch: 68% -->
+<div class="g" id="g08">
+  <div id="pct" class="big am glow pctn">68%</div>
+  <div id="pctl" class="bigl pctl">matched frontier models · TypeSafe's own test</div>
+  <svg id="donut" class="donut" viewBox="0 0 400 400"><circle cx="200" cy="200" r="150" class="dn-bg"/><circle id="dnarc" cx="200" cy="200" r="150" class="dn-arc" transform="rotate(-90 200 200)"/><circle id="dnmiss" cx="200" cy="200" r="150" class="dn-miss" transform="rotate(-90 200 200)"/></svg>
+  <div id="dnlab" class="dnlab"><span class="am">68 match</span> · <span class="pk">32 miss</span></div>
+</div>
+
+<!-- s09 valid but wrong -->
+<div class="g" id="g09">
+  <div id="tk2" class="glass tk2"><span class="kick">TICKET #4830</span><div>"My order is three weeks late."</div></div>
+  <div id="json" class="glass json"><div class="sweep"></div><div>{</div><div>&nbsp;&nbsp;"team": <span id="jteam" class="cy">"billing"</span></div><div>}</div></div>
+  <div id="valid" class="gchip mi valid">✓ fits the format</div>
+  <div id="wrong" class="wrongst disp pk glow">WRONG</div>
+  <div id="should" class="should">should be: <b class="mi">shipping</b></div>
+  <div class="illus">illustrative</div>
+</div>
+
+<!-- s10-s11 route it -->
+<div class="g" id="g10">
+  <div class="router" id="router">
+    <div id="node" class="node disp">JEV</div>
+    <svg class="lanes" viewBox="0 0 1000 420"><path id="laneL" d="M500 60 C500 220 220 200 220 380" class="lane okl"/><path id="laneR" d="M500 60 C500 220 780 200 780 380" class="lane llml"/></svg>
+    <div class="glass bin okbin" id="binL"><b class="disp mi">DONE</b><span>confident</span></div>
+    <div class="glass bin llmbin" id="binR"><b class="disp vi">LLM</b><span>unsure</span></div>
+    <div class="gchip chip c1" id="chip1">#4821 · 0.97</div>
+    <div class="gchip chip c2" id="chip2">#4822 · 0.52</div>
+    <div class="gchip chip c3" id="chip3">#4823 · 0.95</div>
+    <div class="gchip chip c4" id="chip4">#4824 · 0.91</div>
+  </div>
+  <div class="stats" id="stats">
+    <div class="kick statk" id="statk">ONE UNIVERSITY TEST</div>
+    <div class="glass stat" id="st1"><div class="sweep"></div><div class="sn mi glow" id="sn1">99.6%</div><div class="sl">of GPT-6's accuracy</div><div class="sb"><i id="sb1"></i></div></div>
+    <div class="glass stat" id="st2"><div class="sweep"></div><div class="sn cy glow" id="sn2">47%</div><div class="sl">of its cost</div><div class="sb"><i id="sb2"></i></div></div>
+  </div>
+  <div class="illus" id="ill10">illustrative</div>
+</div>
+
+<!-- s12 verdict -->
+<div class="g" id="g12">
+  <div class="kick vk">VERDICT</div>
+  <div id="v1" class="disp vl">Jev decides.</div>
+  <div id="v2" class="disp vl vl2">The LLM writes.</div>
+  <div class="vchips"><span id="vc1" class="gchip mi">routing ✓</span><span id="vc2" class="gchip mi">tagging ✓</span><span id="vc3" class="gchip pk">writing ✗</span></div>
+</div>
+
+<!-- s13 CTA -->
+<div class="g" id="g13">
+  <div class="cta"><span id="cw1">What</span> <span id="cw2">should</span> <span id="cw3">I</span> <span id="cw4">explain</span> <span id="cw5" class="cy">next?</span></div>
+  <div id="ctaf" class="ctaf">+ Follow for more AI breakdowns</div>
+</div>

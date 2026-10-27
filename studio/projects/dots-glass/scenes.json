@@ -1,0 +1,378 @@
+{
+  "slug": "dots-glass",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/fresh-focus",
+  "padSeconds": 0.25,
+  "names": [
+    "ChatGPT",
+    "Slack",
+    "OpenAI"
+  ],
+  "keywords": [
+    "dot",
+    "always-on",
+    "computer",
+    "freedom",
+    "password",
+    "catch",
+    "reset",
+    "mistakes",
+    "trust"
+  ],
+  "voice": {
+    "engine": "gemini",
+    "model": "gemini-2.5-flash-preview-tts",
+    "name": "Charon",
+    "style": "You are a calm, thoughtful narrator for a premium, late-night tech film: low, smooth and intimate, a hint of wonder at 3 a.m., measured and assured, letting the important lines land softly; serious and honest on the catch. Never dramatic, never announcer-like. Pace: unhurried, about two and a quarter words per second, with a real pause after each question and between thoughts; never rush. Read every word exactly as written.",
+    "minPause": {
+      "sentence": 0.65,
+      "comma": 0.28
+    }
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "stage",
+      "say": "It's 3 a.m. A bug report lands in Slack. By the time you wake up, a fix is waiting for you to review.",
+      "beats": [
+        {
+          "target": "bug",
+          "word": "bug",
+          "sfx": "pop"
+        },
+        {
+          "target": "slack",
+          "word": "Slack",
+          "sfx": "pop"
+        },
+        {
+          "target": "fix",
+          "word": "fix",
+          "sfx": "ding"
+        },
+        {
+          "target": "review",
+          "word": "review",
+          "sfx": "pop"
+        }
+      ],
+      "section": "dark"
+    },
+    {
+      "id": "s02",
+      "type": "stage",
+      "say": "That's a dot. It's an always-on agent inside ChatGPT, and it keeps working even after you close the chat.",
+      "beats": [
+        {
+          "target": "dot",
+          "word": "dot",
+          "sfx": "pop"
+        },
+        {
+          "target": "always",
+          "word": "always-on",
+          "sfx": "pop"
+        },
+        {
+          "target": "close",
+          "word": "close",
+          "sfx": "whoosh"
+        }
+      ],
+      "section": "blue"
+    },
+    {
+      "id": "s03",
+      "type": "stage",
+      "say": "So how does it do that? It gets its very own cloud computer, with its own browser. So it doesn't just talk. It actually does the work.",
+      "beats": [
+        {
+          "target": "computer",
+          "word": "computer",
+          "sfx": "pop"
+        },
+        {
+          "target": "browser",
+          "word": "browser",
+          "sfx": "pop"
+        },
+        {
+          "target": "talk",
+          "word": "talk",
+          "sfx": "tick"
+        },
+        {
+          "target": "work",
+          "word": "work",
+          "sfx": "ding"
+        }
+      ],
+      "section": "light"
+    },
+    {
+      "id": "s04",
+      "type": "stage",
+      "say": "You give it a goal, connect the apps it needs, and it brings the results back for you to review.",
+      "beats": [
+        {
+          "target": "goal",
+          "word": "goal",
+          "sfx": "pop"
+        },
+        {
+          "target": "apps",
+          "word": "apps",
+          "sfx": "pop"
+        },
+        {
+          "target": "results",
+          "word": "results",
+          "sfx": "ding"
+        }
+      ],
+      "section": "light"
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "say": "And it doesn't always wait to be asked. It can run scheduled checks, like going through your calendar every morning.",
+      "beats": [
+        {
+          "target": "wait",
+          "word": "wait"
+        },
+        {
+          "target": "scheduled",
+          "word": "scheduled",
+          "sfx": "pop"
+        },
+        {
+          "target": "calendar",
+          "word": "calendar",
+          "sfx": "tick"
+        }
+      ],
+      "section": "light"
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "say": "Now, the part I really like: you decide how much freedom it gets. It can act on its own, act only when you asked, ask you first, or hand the task back to you.",
+      "beats": [
+        {
+          "target": "freedom",
+          "word": "freedom",
+          "sfx": "pop"
+        },
+        {
+          "target": "l1",
+          "word": "own",
+          "sfx": "tick"
+        },
+        {
+          "target": "l2",
+          "word": "asked",
+          "sfx": "tick"
+        },
+        {
+          "target": "l3",
+          "word": "first",
+          "sfx": "tick"
+        },
+        {
+          "target": "l4",
+          "word": "hand",
+          "sfx": "tick"
+        }
+      ],
+      "section": "yellow"
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "say": "And some things, like changing a password, it will always leave to you.",
+      "beats": [
+        {
+          "target": "password",
+          "word": "password",
+          "sfx": "pop"
+        },
+        {
+          "target": "you",
+          "word": "leave",
+          "sfx": "stamp"
+        }
+      ],
+      "section": "yellow"
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "say": "Here's the catch. Disconnect an app, and what your dot already learned from it stays.",
+      "beats": [
+        {
+          "target": "catch",
+          "word": "catch"
+        },
+        {
+          "target": "disconnect",
+          "word": "Disconnect",
+          "sfx": "whoosh"
+        },
+        {
+          "target": "stays",
+          "word": "stays",
+          "sfx": "ding"
+        }
+      ],
+      "section": "dark"
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "say": "The only way to wipe that is a reset, which deletes the whole dot.",
+      "beats": [
+        {
+          "target": "wipe",
+          "word": "wipe"
+        },
+        {
+          "target": "reset",
+          "word": "reset",
+          "sfx": "pop"
+        },
+        {
+          "target": "deletes",
+          "word": "deletes",
+          "sfx": "whoosh"
+        }
+      ],
+      "section": "dark"
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "say": "And yes, it can still make mistakes, even while following your rules. So check its work.",
+      "beats": [
+        {
+          "target": "mistakes",
+          "word": "mistakes",
+          "sfx": "stamp"
+        },
+        {
+          "target": "rules",
+          "word": "rules"
+        },
+        {
+          "target": "check",
+          "word": "check",
+          "sfx": "ding"
+        }
+      ],
+      "section": "dark"
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "say": "My take? Great for ongoing jobs you can review. Start with ask first, and give it more freedom as it earns your trust.",
+      "beats": [
+        {
+          "target": "take",
+          "word": "take"
+        },
+        {
+          "target": "ongoing",
+          "word": "ongoing"
+        },
+        {
+          "target": "start",
+          "word": "Start",
+          "sfx": "pop"
+        },
+        {
+          "target": "trust",
+          "word": "trust",
+          "sfx": "ding"
+        }
+      ],
+      "section": "blue"
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "say": "What should I explain next? Tell me in the comments.",
+      "beats": [
+        {
+          "target": "q",
+          "word": "What"
+        },
+        {
+          "target": "tell",
+          "word": "Tell",
+          "sfx": "pop"
+        }
+      ],
+      "section": "dark"
+    }
+  ],
+  "stage": {
+    "kit": "hyperframes-glass",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
+  },
+  "sections": {
+    "dark": {
+      "bg": "#070A1C",
+      "bg2": "#1A1450",
+      "text": "#F4F6FF",
+      "dim": "rgba(244,246,255,0.68)",
+      "accent": "#7CF5FF",
+      "accent2": "#B892FF",
+      "card": "rgba(255,255,255,0.08)",
+      "line": "rgba(255,255,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#5CFFB5"
+    },
+    "blue": {
+      "bg": "#0A1240",
+      "bg2": "#1B2C8F",
+      "text": "#F4F6FF",
+      "dim": "rgba(244,246,255,0.70)",
+      "accent": "#7CF5FF",
+      "accent2": "#B892FF",
+      "card": "rgba(255,255,255,0.09)",
+      "line": "rgba(255,255,255,0.24)",
+      "danger": "#FF5C8A",
+      "ok": "#5CFFB5"
+    },
+    "light": {
+      "bg": "#061A22",
+      "bg2": "#0D4A55",
+      "text": "#F2FFFE",
+      "dim": "rgba(242,255,254,0.70)",
+      "accent": "#5CFFB5",
+      "accent2": "#7CF5FF",
+      "card": "rgba(255,255,255,0.09)",
+      "line": "rgba(255,255,255,0.24)",
+      "danger": "#FF5C8A",
+      "ok": "#5CFFB5"
+    },
+    "yellow": {
+      "bg": "#160A2E",
+      "bg2": "#4A1A7A",
+      "text": "#FFF6FF",
+      "dim": "rgba(255,246,255,0.70)",
+      "accent": "#FFC86B",
+      "accent2": "#FF8AD8",
+      "card": "rgba(255,255,255,0.09)",
+      "line": "rgba(255,255,255,0.24)",
+      "danger": "#FF5C8A",
+      "ok": "#5CFFB5"
+    }
+  }
+}

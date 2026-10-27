@@ -1,0 +1,18 @@
+{
+  "_": "One pace for every tool and doc (user, 2026-10-16: house pace 2.3 w/s, like the reference reel at 2.25). words/s = words \u00f7 (last word end \u2212 first word start). Never speed the voice up or down (no atempo); fix pace with pauses, fewer words, or a retake. min_words_gate: a scene with fewer words only warns (short lines measure noisily).",
+  "target": 2.3,
+  "budget": 2.3,
+  "scene_warn": 2.6,
+  "scene_max": 2.9,
+  "delivery_max": 2.6,
+  "raw_take_retake": 3.2,
+  "pause_sentence": 0.5,
+  "pause_sentence_max": 0.75,
+  "pause_comma": 0.22,
+  "pause_comma_max": 0.3,
+  "pad_section_end": 0.65,
+  "max_change_s": 2.5,
+  "max_beat_s": 6,
+  "max_beat_s_long": 10,
+  "min_words_gate": 8
+}

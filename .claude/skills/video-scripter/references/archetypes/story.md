@@ -19,7 +19,7 @@ from the pain to the result.
 | The before | 3–12 s | The pain the viewer recognises | A specific, relatable struggle | `[TITLE]` / `[SCREEN]` |
 | What was built | 12–26 s | The solution at a glance | 2–3 parts and how they connect, with no deep how-to | `[ANIMATE]` / `[SCREEN]` |
 | The numbers | 26–34 s | Proof | Time/cost/errors before vs after, sourced or "our test" | `[VS]` / `[NUMBER]` |
-| The catch | 34–40 s | Honesty | What still needs a human, what broke | `[VERDICT]` |
+| The catch *(only if material)* | 34–40 s | Honesty | What still needs a human, what broke | `[VERDICT]` |
 | Your version + CTA | last 5–8 s | Transfer it to the viewer | "You could do this for ___", then a question | `[CTA]` |
 
 ## Explainer outline (8–15 min)
@@ -32,7 +32,7 @@ system (40%; 🔁 at ~25% "and then it broke") → the results and costs (15%) �
 **Must-haves:**
 - A real case (ours or sourced).
 - Before/after numbers.
-- The catch.
+- The catch, only if material (what still needs a human / what broke and matters to the viewer).
 - A "your version" transfer line.
 
 **Don'ts:**

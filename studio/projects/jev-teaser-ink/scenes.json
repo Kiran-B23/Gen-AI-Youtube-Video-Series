@@ -1,0 +1,310 @@
+{
+ "slug": "jev-teaser-ink",
+ "format": "longform",
+ "size": [
+  1920,
+  1080
+ ],
+ "flat": true,
+ "music": "cc0/fresh-focus",
+ "padSeconds": 0.25,
+ "names": [
+  "Jev",
+  "AI"
+ ],
+ "keywords": [
+  "Jev",
+  "Scam.",
+  "decides.",
+  "once,",
+  "third",
+  "trust"
+ ],
+ "voice": {
+  "speakers": {
+   "M": {
+    "label": "Mentor",
+    "name": "Charon"
+   },
+   "L": {
+    "label": "Learner",
+    "name": "Puck"
+   }
+  },
+  "style": "A short two-person explainer. The Mentor is calm, warm and sure of himself; the Learner is curious, quick and a little sceptical. It should sound like a real conversation between two friends, not a read: natural pitch, small pauses between turns, about two and a half words per second, light emphasis on the key words. Read every word. Never robotic."
+ },
+ "sections": {
+  "dark": {
+   "bg": "#0B1020",
+   "bg2": "#0B1020",
+   "text": "#FFFFFF",
+   "dim": "rgba(255,255,255,0.62)",
+   "accent": "#FFD23F",
+   "accent2": "#7B8CFF",
+   "card": "rgba(255,255,255,0.08)",
+   "line": "rgba(255,255,255,0.22)",
+   "danger": "#FF4D5E",
+   "ok": "#2ED3A0"
+  },
+  "blue": {
+   "bg": "#2B3BE0",
+   "bg2": "#2B3BE0",
+   "text": "#FFFFFF",
+   "dim": "rgba(255,255,255,0.70)",
+   "accent": "#FFD23F",
+   "accent2": "#C9D0FF",
+   "card": "rgba(255,255,255,0.12)",
+   "line": "rgba(255,255,255,0.35)",
+   "danger": "#FF4D5E",
+   "ok": "#2ED3A0"
+  },
+  "light": {
+   "bg": "#EEF1F6",
+   "bg2": "#EEF1F6",
+   "text": "#0B1020",
+   "dim": "rgba(11,16,32,0.55)",
+   "accent": "#2B3BE0",
+   "accent2": "#2B3BE0",
+   "card": "#FFFFFF",
+   "line": "rgba(11,16,32,0.85)",
+   "danger": "#E5364A",
+   "ok": "#14B87A"
+  },
+  "yellow": {
+   "bg": "#FFD23F",
+   "bg2": "#FFD23F",
+   "text": "#0B1020",
+   "dim": "rgba(11,16,32,0.62)",
+   "accent": "#2B3BE0",
+   "accent2": "#0B1020",
+   "card": "#FFFFFF",
+   "line": "rgba(11,16,32,0.85)",
+   "danger": "#E5364A",
+   "ok": "#0B1020"
+  }
+ },
+ "stage": {
+  "kit": "reference-flat",
+  "cast": true,
+  "html": "stage/stage.html",
+  "css": "../jev-teaser-geo/stage/stage.css",
+  "js": "../jev-teaser-geo/stage/stage.js"
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "type": "stage",
+   "speaker": "L",
+   "section": "light",
+   "say": "Got this message. Is it real?",
+   "beats": [
+    {
+     "target": "phone",
+     "word": "Got",
+     "sfx": "pop"
+    },
+    {
+     "target": "sms",
+     "word": "message"
+    }
+   ]
+  },
+  {
+   "id": "s02",
+   "type": "stage",
+   "speaker": "M",
+   "section": "light",
+   "say": "Scam. 96% sure. Decided in about a tenth of a second.",
+   "beats": [
+    {
+     "target": "stamp",
+     "word": "Scam",
+     "sfx": "stamp"
+    },
+    {
+     "target": "pct",
+     "word": "96",
+     "sfx": "ding"
+    },
+    {
+     "target": "timer",
+     "word": "tenth",
+     "sfx": "pop"
+    }
+   ]
+  },
+  {
+   "id": "s03",
+   "type": "stage",
+   "speaker": "L",
+   "section": "dark",
+   "say": "Which AI wrote that?",
+   "beats": [
+    {
+     "target": "chat",
+     "word": "Which",
+     "sfx": "pop"
+    },
+    {
+     "target": "cursor",
+     "word": "wrote"
+    }
+   ]
+  },
+  {
+   "id": "s04",
+   "type": "stage",
+   "speaker": "M",
+   "section": "blue",
+   "say": "None. This one's called Jev. It doesn't write anything. It decides.",
+   "beats": [
+    {
+     "target": "none",
+     "word": "None"
+    },
+    {
+     "target": "title",
+     "word": "Jev",
+     "sfx": "stamp"
+    },
+    {
+     "target": "write",
+     "word": "write",
+     "sfx": "pop"
+    },
+    {
+     "target": "decides",
+     "word": "decides",
+     "sfx": "stamp"
+    }
+   ]
+  },
+  {
+   "id": "s05",
+   "type": "stage",
+   "speaker": "M",
+   "section": "blue",
+   "say": "You ask it questions. Is this a scam? What kind? How urgent? It answers all of them at once, and tells you how sure it is.",
+   "beats": [
+    {
+     "target": "sms",
+     "word": "questions",
+     "sfx": "pop"
+    },
+    {
+     "target": "q1",
+     "word": "scam",
+     "sfx": "pop"
+    },
+    {
+     "target": "q2",
+     "word": "kind",
+     "sfx": "pop"
+    },
+    {
+     "target": "q3",
+     "word": "urgent",
+     "sfx": "pop"
+    },
+    {
+     "target": "fill",
+     "word": "once",
+     "sfx": "whoosh"
+    },
+    {
+     "target": "pct",
+     "word": "sure",
+     "sfx": "ding"
+    }
+   ]
+  },
+  {
+   "id": "s06",
+   "type": "stage",
+   "speaker": "L",
+   "section": "blue",
+   "say": "So I just trust it?",
+   "beats": [
+    {
+     "target": "bubble",
+     "word": "trust",
+     "sfx": "pop"
+    }
+   ]
+  },
+  {
+   "id": "s07",
+   "type": "stage",
+   "speaker": "M",
+   "section": "yellow",
+   "say": "Careful. In one test, renaming the answer options changed a third of its answers.",
+   "beats": [
+    {
+     "target": "warn",
+     "word": "Careful",
+     "sfx": "stamp"
+    },
+    {
+     "target": "rename",
+     "word": "renaming",
+     "sfx": "whoosh"
+    },
+    {
+     "target": "third",
+     "word": "third",
+     "sfx": "ding"
+    }
+   ]
+  },
+  {
+   "id": "s08",
+   "type": "stage",
+   "speaker": "M",
+   "section": "light",
+   "say": "The real skill is knowing when to trust it, and when to hand a message to a bigger AI.",
+   "beats": [
+    {
+     "target": "rows",
+     "word": "real",
+     "sfx": "pop"
+    },
+    {
+     "target": "line",
+     "word": "trust",
+     "sfx": "stamp"
+    },
+    {
+     "target": "route",
+     "word": "hand",
+     "sfx": "whoosh"
+    },
+    {
+     "target": "llm",
+     "word": "bigger",
+     "sfx": "pop"
+    }
+   ]
+  },
+  {
+   "id": "s09",
+   "type": "stage",
+   "speaker": "L",
+   "section": "dark",
+   "say": "Okay. Show me.",
+   "beats": [
+    {
+     "target": "cheer",
+     "word": "Show",
+     "sfx": "pop"
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "type": "stage",
+   "section": "dark",
+   "seconds": 3.2,
+   "beats": []
+  }
+ ]
+}

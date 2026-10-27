@@ -1,0 +1,137 @@
+<!-- REA reel · house style reference-flat · running object: the function card sound( ____ ) (the decompiler's draft of the
+     sound function) that fills, drives the pan needle and is tested. Launch archetype: plain section kickers, no numbers.
+     Fixed layout s06-s11: game panel y 250-770 · bench y 820-1420 (game.exe block left, function card right). Classes prefixed r-. -->
+
+<!-- section kickers (plain titles, structure check 2026-10-14) -->
+<div id="kq" class="r-kick ink">THE QUESTION</div>
+<div id="kd" class="r-kick wt">THE FIRST DRAFT</div>
+<div id="kf" class="r-kick ink">THE FORMULA</div>
+<div id="kc" class="r-kick wt">THE CHECK</div>
+<div id="kx" class="r-kick yl">THE CATCH</div>
+
+<!-- s01-s02 hook (dark): the sealed game file + the full counter, on screen from frame 0 -->
+<div class="g" id="g01">
+  <div id="srcc" class="chip wht r-src">source code</div><i id="srcx" class="r-strike"></i>
+  <div id="hex0" class="r-hex" style="left:72px;top:400px;width:470px;height:780px"><div class="r-hexk">game.exe</div><div id="hex0i" class="r-hexi"></div></div>
+  <div id="y96" class="chip yel r-y96">1996</div>
+  <div id="cnt0" class="r-cnt0"><div class="r-cbig">3,205</div><div class="r-cof">/ 3,205 <b class="r-ok">✓</b></div><div class="r-ctl">tests matched</div></div>
+  <div id="agent0" class="chip ink r-agent0">AI agent</div>
+  <div id="fn0" class="card r-fn0"><span class="mono">sound( … )</span><span class="r-fn0k">one function · illustrative</span></div>
+  <div id="one0" class="chip ok r-one0">one function</div>
+  <div id="grid0" class="r-grid0"></div>
+</div>
+
+<!-- s03-s05 what it is (blue) -->
+<div class="g" id="g03">
+  <div id="rea" class="r-rea">REA</div>
+  <div id="reav" class="mono r-reav">Reverse Engineer Anything</div>
+  <div id="reao" class="chip yel r-reao">open source</div>
+  <div id="reas" class="r-reas">from their showcase</div>
+</div>
+<div class="g" id="g04">
+  <div id="reac" class="chip yel r-reac">REA</div>
+  <div id="agent4" class="chip wht r-agent4">your coding agent</div>
+  <div id="arr4" class="r-arr4"></div>
+  <div id="hex4" class="r-hex" style="left:290px;top:520px;width:500px;height:560px"><div class="r-hexk">a program</div><div id="hex4i" class="r-hexi"></div><i id="scan4" class="r-scan"></i></div>
+  <div id="src4" class="chip wht r-src4">source code</div><i id="src4x" class="r-strike4"></i>
+</div>
+<div class="g" id="g05">
+  <div id="c1" class="r-box" style="top:260px"><span class="r-bk">your agent</span><span class="r-bv">"How does this work?"</span></div>
+  <div id="c2" class="r-box" style="top:540px"><span class="r-bk">REA</span><span class="r-bv">runs the tools</span></div>
+  <div id="c3" class="r-box r-box3" style="top:820px"><span class="r-bk">decompilers</span>
+    <div class="r-flip"><div id="fhex" class="mono r-fhex">8B 45 08 D9 05 …</div><div id="fcode" class="mono r-fcode">pan = x * k − c</div></div>
+    <div id="farr" class="r-farr">→ readable code</div></div>
+  <div id="c4" class="r-box r-box4" style="top:1140px"><span class="r-bk">evidence</span></div>
+  <div id="ev1" class="chip wht r-ev" style="left:110px;top:1290px">code</div>
+  <div id="ev2" class="chip wht r-ev" style="left:330px;top:1290px">caller</div>
+  <div id="ev3" class="chip wht r-ev" style="left:590px;top:1290px">data</div>
+  <i id="a12" class="r-varr" style="top:470px"></i><i id="a23" class="r-varr" style="top:750px"></i><i id="a34" class="r-varr" style="top:1050px"></i>
+</div>
+
+<!-- s06-s11 the game panel (top) -->
+<div class="g" id="gpan">
+  <div id="pan" class="r-pan">
+    <div id="bricks" class="r-bricks"></div>
+    <div id="ruler" class="r-ruler"><span>0</span><i></i><span>position on screen</span><i></i><span>640</span></div>
+    <div id="spL" class="r-sp" style="left:22px"><i class="r-spb"></i><i class="r-spc"></i></div>
+    <div id="spR" class="r-sp r-spr" style="left:842px"><i class="r-spb"></i><i class="r-spc"></i></div>
+    <div id="paddle" class="r-paddle"></div>
+    <div id="ball" class="r-ball"></div>
+    <div class="r-meter"><span class="r-ml">−500 · L</span><i class="r-mbar"><i class="r-mc"></i><i id="needle" class="r-needle"></i></i><span class="r-mr">+500 · R</span></div>
+    <div id="pv" class="r-pv"></div>
+    <div id="qm" class="r-qm">?</div>
+    <div class="r-pill">brick game (1996) · illustrative</div>
+  </div>
+</div>
+
+<!-- s07-s11 the bench (bottom): game.exe + the function card -->
+<div class="g" id="gbench">
+  <div id="hexb" class="r-hex" style="left:72px;top:820px;width:360px;height:600px"><div class="r-hexk">game.exe</div><div id="hexbi" class="r-hexi r-hexs"></div>
+    <div id="itab" class="r-itab"></div><i id="scanb" class="r-scan"></i></div>
+  <div id="lit" class="chip yel r-lit">a number goes in</div>
+  <div id="neq" class="r-neq">≠</div>
+  <div id="k1" class="chip yel r-const" style="left:120px;top:1000px">1.5625</div>
+  <div id="k2" class="chip yel r-const" style="left:160px;top:1110px">500</div>
+  <div id="fn" class="card r-fn">
+    <div class="kick r-fnk"><span id="fnk1">FIRST DRAFT</span><span id="fnk2" style="display:none">REBUILT</span></div>
+    <div class="mono r-sig">sound( <span id="slot" class="r-slot"></span> )</div>
+    <div id="blur" class="r-blur"><i></i><i></i><i style="width:62%"></i></div>
+    <div id="fl" class="mono r-fl"><div id="f1"></div><div id="f2"></div><div id="f3"></div><div id="f4"></div><div id="f5"></div></div>
+    <div id="inc" class="chip yel r-inc">INCOMPLETE</div>
+  </div>
+  <svg class="r-callsvg" viewBox="0 0 1080 1920"><path id="callp" d="M 760 905 C 760 820, 290 840, 300 470" class="r-call"/></svg>
+  <i id="dot" class="r-dot"></i>
+  <div id="illb" class="illus">illustrative</div>
+</div>
+
+<!-- s12-s14 the check (blue) -->
+<div class="g" id="g12">
+  <div id="colO" class="r-col" style="left:72px"><div class="r-colk">original</div><div id="hexc" class="r-hex r-hexin"><div id="hexci" class="r-hexi r-hexs"></div></div></div>
+  <div id="colR" class="r-col" style="left:588px"><div class="r-colk">rebuilt</div><div class="card r-mini"><div class="mono">sound( position )</div><div class="mono r-minib">× 1.5625 − 500<br>× pan scale</div></div></div>
+  <div id="cmp" class="r-cmp">⇄</div>
+  <div id="cnt" class="r-cnt"><span id="cntn" class="r-cbig2"></span><span class="r-cof2">/ 3,205</span></div>
+  <div id="grid" class="r-grid"></div>
+  <div id="mt" class="chip ok r-mt">match ✓</div>
+  <div id="one1" class="chip wht r-one1">one function</div>
+  <div id="bytes" class="r-bytes"><div class="r-bg"><div class="r-colk">original bytes</div><div id="bo" class="r-bgrid"></div></div><div class="r-bg"><div class="r-colk">rebuilt bytes</div><div id="br" class="r-bgrid"></div></div></div>
+  <div id="b63" class="r-b63"><span id="b63n"></span> / 63</div>
+</div>
+
+<!-- s15-s16 not a clone (light) -->
+<div class="g" id="g15">
+  <div id="clb" class="r-clb">CLONE</div>
+  <i id="clx1" class="r-clx" style="rotate:-14deg"></i><i id="clx2" class="r-clx" style="rotate:14deg"></i>
+  <div id="ncl" class="r-ncl">NOT A CLONE BUTTON.</div>
+  <div id="rec" class="card r-rec"><div class="kick r-fnk">RECOVERED</div><div class="mono r-recl">how the feature works <b class="r-ok2">✓</b></div></div>
+  <div id="src15" class="chip ink r-src15">original source code</div><i id="src15x" class="r-strike15"></i>
+  <div id="e1" class="card r-ec" style="left:72px"><div class="kick r-fnk">CODE</div><div class="mono r-ecl">sound(position)</div><b id="t1" class="r-tick">✓</b></div>
+  <div id="e2" class="card r-ec" style="left:388px"><div class="kick r-fnk">CALLER</div><div class="mono r-ecl">brick hit</div><b id="t2" class="r-tick">✓</b></div>
+  <div id="e3" class="card r-ec" style="left:704px"><div class="kick r-fnk">DATA</div><div class="mono r-ecl">1.5625 · 500</div><b id="t3" class="r-tick">✓</b></div>
+  <div id="mag" class="r-mag"><i class="r-magc"></i><i class="r-magh"></i></div>
+</div>
+
+<!-- s17-s18 the catch (dark) -->
+<div class="g" id="g17">
+  <div class="r-catch"><span id="cw1">ONLY</span> <span id="cw2">ON</span> <span id="cw3">SOFTWARE</span> <span id="cw4">YOU</span> <span id="cw5">MAY</span> <span id="cw6">EXAMINE.</span></div>
+  <div id="ch1" class="chip wht r-ch" style="top:960px">✓ software you own</div>
+  <div id="ch2" class="chip wht r-ch" style="top:1060px">✓ you're allowed to examine</div>
+  <div id="x1" class="chip yel r-x" style="top:1180px">licences can forbid it</div>
+  <div id="x2" class="chip yel r-x" style="top:1270px">local laws can forbid it</div>
+  <div id="x3" class="chip yel r-x" style="top:1360px">no rights to the original</div>
+</div>
+
+<!-- s19 verdict (yellow) -->
+<div class="g" id="g19">
+  <div id="v1" class="r-tile" style="top:300px">learning</div>
+  <div id="v2" class="r-tile" style="top:500px">security work</div>
+  <div id="v3" class="r-tile" style="top:700px">preserving old software</div>
+  <div id="vq" class="card r-vq"><div class="kick r-fnk">ONE FOCUSED QUESTION</div><div class="mono r-recl">"How does the sound pan?"</div></div>
+  <div id="ve" class="r-ve"><span class="chip ink">code ✓</span><span class="chip ink">caller ✓</span><span class="chip ink">data ✓</span></div>
+  <div id="vk" class="r-vk">→ then check the evidence</div>
+</div>
+
+<!-- s20 CTA (dark) -->
+<div class="g" id="g20">
+  <div class="cta"><span id="q1">What</span> <span id="q2">should</span> <span id="q3">I</span> <span id="q4">explain</span> <span id="q5" class="yl">next?</span></div>
+  <div id="ctaf" class="ctaf">Tell me below ↓</div>
+</div>

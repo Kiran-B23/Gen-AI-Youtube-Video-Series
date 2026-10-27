@@ -5,42 +5,54 @@ is one Gemini TTS take, and the master timeline is **HyperFrames** (Apache-2.0, 
 Drive it with the `/video-studio` skill, or by hand with `tools/run.sh`.
 
 ```
-script package ─► scenes.json ─► validate ─► voice ─► clips ─► assemble ─► check ─► stills ─► render
- (video-scripter)   (plan)        (free)    (1 Gemini   (Manim,    (HyperFrames  (lint,    (QA       (MP4 → shorts/)
-                                             request)   Playwright, project +     layout,   contact
-                                                        VHS)        audio mix)    contrast) sheet)
+script package ─► scenes.json ─► validate ─► voice ─► clips ─► assemble ─► check ─► payoffs ─► render ─► qa ─► watch ─► review ─► deliver
+ (video-scripter)   (plan)        (free)    (1 Gemini   (Manim,    (HyperFrames  (lint,    (beats on   (MP4 →   (eval)  (2 fps   (fix list  (→ shorts/
+                                             request    Playwright, project +     layout,   their word, out/)            sheets)  review.md) when clean)
+                                             + pace)    VHS)        audio mix)    contrast) before any render)
 ```
 
 ## Quick start
 ```bash
-tools/setup.sh                                   # once: ffmpeg, Python env, Manim, Playwright, VHS, audio beds
+tools/setup.sh                                   # once, no sudo: Node, ffmpeg, Python env, Manim, Playwright, VHS, Kokoro, CC0 music
 tools/run.sh my-reel new                         # projects/my-reel/ from the template
 # edit projects/my-reel/scenes.json (+ clips/ for Manim / Playwright / VHS scenes)
 tools/run.sh my-reel validate                    # free; fix every ✗ first
-tools/run.sh my-reel voice                       # one Gemini request → build/timings.json
-tools/run.sh my-reel clips assemble check stills # look at out/stills.png
-tools/run.sh my-reel render                      # out/my-reel.mp4, copied to ../shorts/
+tools/run.sh my-reel voice                       # one Gemini request → build/timings.json + the pace table (fails > 2.9 w/s)
+tools/run.sh my-reel clips assemble check payoffs stills   # payoffs: every beat's element on screen on its word; look at out/stills.png
+tools/run.sh my-reel render qa watch review      # out/my-reel.mp4 only; qa.json, watch sheets, review.md (the fix list)
+tools/run.sh my-reel deliver                     # → ../shorts/ when qa/payoffs/watch are clean and review.md is closed and ticked
 ```
-`RETAKE=1 tools/run.sh <slug> voice` asks Gemini for a new take. To use your own voice, record
+`RETAKE=1 tools/run.sh <slug> voice` asks Gemini for a new take; `RESPLIT=1` re-splits the saved take (free). `VOICE_ENGINE=kokoro tools/run.sh <slug> voice` uses the
+free local Kokoro voice instead (no key, no quota; lines cached by text in `voice/_kokoro/`, git-ignored).
+`tools/run.sh <slug> preview` opens HyperFrames Studio to scrub the timeline. To use your own voice, record
 `projects/<slug>/voice/s01.wav, s02.wav…` (one file per scene); `voice` uses them instead.
 The Gemini key is read from `studio/.env` or the repo `.env` (`GEMINI_API_KEY`), never committed.
 
 ## Layout
 | Path | What |
 |---|---|
-| `tools/run.sh` | the pipeline steps (`new validate voice clips assemble check stills render all`) |
+| `tools/run.sh` | the pipeline steps (`new validate voice clips assemble check payoffs stills preview render qa watch review deliver`; `all` = validate … review) |
+| `templates/reel/pace.json` | the one pace rule: 2.3 words/s house pace, scene ≤ 2.9, delivery ≤ 2.6, pauses, section-end pad, change every ≤ 2.5 s |
+| `tools/payoffs.mjs` | before any render: seeks the GSAP timeline in Chrome, asserts each beat's element (`data-beat="sNN/target"`) is on screen on its word, captions ≤ 2 lines, no still > 2.5 s, camera moves ≤ 1 per 2.5 s → `out/payoffs.json` |
+| `tools/review.py` | merges every ✗ from qa / payoffs / watch into `projects/<slug>/review.md` (one finding per row: time, scene, status open / fixed / accepted) |
+| `tools/deliver_check.py` | the `deliver` gate: qa.json for this MP4, payoffs.json for this composition, watch.json present |
+| `voice-pace.json` | every take's raw pace per voice (pick a voice whose raw pace fits the house pace) |
 | `tools/validate.py` | static check of `scenes.json`: types, props, beat words, clip files, length |
-| `tools/voice.py` | Gemini single take → split per scene → clean-up → Whisper word timings aligned to the script |
-| `tools/build_clips.py` | renders `media` scenes' `build` specs: Manim / Playwright / VHS → `build/clips/` |
+| `tools/voice.py` | Gemini single take (or Kokoro per line, or your recordings) → split per scene → clean-up → Whisper word timings aligned to the script |
+| `tools/qa_video.py` | render eval → `out/qa.json`: format, timing, loudness, dropouts, audio = script, pace, motion, openings, payoffs fresh, sound on action, music bed + `review.png`, `transitions.png`, `payoffs.png` |
+| `remotion/` | optional second engine (owner's personal use; Remotion licence): `run.sh <slug> remotion` renders the same project from a React `projects/<slug>/remotion/Stage.tsx` → `out/<slug>-remotion.mp4`; then `RM=1 … qa watch review deliver` |
+| `tools/watch.py` | watch the render end to end: 2 fps contact sheets in `out/watch/` + transcript, unclear words, pauses, pace, music level |
+| `tools/build_clips.py` | renders `media` scenes' `build` specs: Manim / Playwright / VHS → `build/clips/`; skips clips whose inputs are unchanged (`FORCE=1` rebuilds) |
 | `tools/manim_lib/studio_style.py` | channel fonts and colours for Manim clips (`T()` text helper) |
 | `tools/assemble.py` | `scenes.json` + timings → HyperFrames project `hf/` (scenes, word-lit captions, beats, SFX) + `-14 LUFS` mix |
 | `tools/stills.py` | snapshots of every scene with safe-zone guides → `out/stills.png` |
 | `tools/yt_research.py` | YouTube research for `video-scripter`: search, rank by reach, transcripts + hook frames + contact sheets of the winners |
-| `tools/make_audio.py` | synthesises the music beds and SFX (no licences needed) |
+| `tools/make_audio.py`, `tools/sfx_synth.py` | synthesise the music beds and SFX (pop, ding, stamp, whoosh, tick, riser, click, key, blip; no licences needed) |
 | `tools/setup.sh` | one-time toolchain install (no sudo) |
 | `templates/reel/` | fonts (OFL), GSAP, styles, audio beds/SFX, HyperFrames config |
 | `templates/project/` | starter `scenes.json` used by `new` |
-| `projects/<slug>/` | `scenes.json`, `clips/`, `voice/` (source audio, kept) · `build/`, `hf/`, `out/` (generated, git-ignored) |
+| `templates/styles/<kit>/` | the style skills: `reference-flat` (house style), `hyperframes-glass`, `3b1b-manim`, `remotion-spring`. Each `design.md` holds rules, motion vocabulary, camera, sound, pace and export; `kit.css`/`kit.js` (stage helpers incl. `cam`/`camHome`), `sections.json` (palette); used by `"stage": {"kit": "<kit>"}` |
+| `projects/<slug>/` | `scenes.json`, `clips/`, `voice/` (source audio, kept), `review.md` (the fix list, committed) · `build/`, `hf/`, `out/` (generated, git-ignored) |
 | `projects/test-tokens/` | the reference reel: every scene type and all three clip builders |
 | `smoke/` | the toolchain smoke tests |
 
@@ -48,10 +60,13 @@ Scene types, props and beat targets: `.claude/skills/video-studio/references/sce
 Writing Manim / Playwright / VHS clips: `.claude/skills/video-studio/references/clip-recipes.md`.
 
 ## Specs
-- Reel: 1080×1920, 30 fps, H.264 + AAC, −14 LUFS integrated, peak ≤ −1 dBTP.
-- The voice leads: each scene lasts its spoken line + 0.3 s; visual beats fire on spoken words.
+- Reel: 1080×1920, 30 fps, H.264 yuv420p + AAC, −14 LUFS integrated, true peak ≤ −1 dBTP.
+- The voice leads: each scene lasts its spoken line + 0.3 s (`padSeconds`; per-scene `pad` 0.65 at section ends);
+  visual beats fire on spoken words. Pace: 2.3 words/s (`templates/reel/pace.json`); never speed the voice.
 - Captions: 2–6 word cards, each word lights up as it is spoken, keywords in accent colour.
-- Safe zones: right 12 % and bottom 20 % clear of content (captions excepted).
+- Geometry: stage zone y 220–1460; media clip box y 220–1260 (x 40–1040); captions from y 1555 (81–90 %), bottom and
+  lower-right button column clear. Right 12 % clear of content.
+- Render writes `out/<slug>.mp4` only; `deliver` copies to `shorts/` when the gates are green and `review.md` is closed.
 
 ## Status
 - **Reels:** ready (validated on `test-tokens`: 32.6 s, check clean, −14.0 LUFS).

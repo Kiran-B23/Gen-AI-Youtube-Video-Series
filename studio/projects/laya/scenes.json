@@ -1,0 +1,469 @@
+{
+  "slug": "laya",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/fresh-focus",
+  "padSeconds": 0.18,
+  "names": [
+    "Laya",
+    "Jev",
+    "pip",
+    "GPU",
+    "CPU",
+    "API"
+  ],
+  "keywords": [
+    "free",
+    "Laya",
+    "Jev",
+    "billing",
+    "guess",
+    "machine",
+    "untuned",
+    "laptop"
+  ],
+  "voice": {
+    "engine": "kokoro",
+    "kokoroVoice": "af_heart",
+    "kokoroSpeed": 0.85,
+    "style": "Genuinely excited but honest, like a creator who just ran it: quick and bright on the demo, calm and serious on the catch. Read every word. Never robotic.",
+    "respell": {
+      "Laya": "Laaya",
+      "Laya's": "Laaya's"
+    }
+  },
+  "sections": {
+    "dark": {
+      "bg": "#0B1020",
+      "bg2": "#0B1020",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.62)",
+      "accent": "#FFD23F",
+      "accent2": "#7B8CFF",
+      "card": "rgba(255,255,255,0.08)",
+      "line": "rgba(255,255,255,0.22)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
+    },
+    "blue": {
+      "bg": "#2B3BE0",
+      "bg2": "#2B3BE0",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.70)",
+      "accent": "#FFD23F",
+      "accent2": "#C9D0FF",
+      "card": "rgba(255,255,255,0.12)",
+      "line": "rgba(255,255,255,0.35)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
+    },
+    "light": {
+      "bg": "#EEF1F6",
+      "bg2": "#EEF1F6",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.55)",
+      "accent": "#2B3BE0",
+      "accent2": "#2B3BE0",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#14B87A"
+    },
+    "yellow": {
+      "bg": "#FFD23F",
+      "bg2": "#FFD23F",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.62)",
+      "accent": "#2B3BE0",
+      "accent2": "#0B1020",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#0B1020"
+    }
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "stage",
+      "section": "dark",
+      "say": "There's a free rival to Jev, and it runs on your own laptop.",
+      "beats": [
+        {
+          "target": "free",
+          "word": "free",
+          "sfx": "stamp",
+          "offset": -0.1
+        },
+        {
+          "target": "laptop",
+          "word": "laptop",
+          "sfx": "whoosh",
+          "offset": -0.15
+        }
+      ],
+      "source": "S2 S3"
+    },
+    {
+      "id": "s02",
+      "type": "stage",
+      "section": "blue",
+      "kicker": "WHAT IT IS",
+      "say": "It's called Laya. It's a decision model, so it never writes text.",
+      "source": "S1",
+      "beats": [
+        {
+          "target": "laya",
+          "word": "Laya",
+          "sfx": "pop",
+          "offset": -0.15
+        },
+        {
+          "target": "decides",
+          "word": "decision",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "never",
+          "word": "never",
+          "sfx": "stamp",
+          "offset": -0.05
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "stage",
+      "section": "blue",
+      "kicker": "WHAT IT IS",
+      "say": "Give it a message and some questions. It answers each with a probability.",
+      "source": "S1",
+      "beats": [
+        {
+          "target": "msg",
+          "word": "message",
+          "sfx": "whoosh",
+          "offset": -0.15
+        },
+        {
+          "target": "qs",
+          "word": "questions",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "pct",
+          "word": "probability",
+          "sfx": "ding",
+          "offset": -0.15
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "stage",
+      "section": "dark",
+      "kicker": "OUR TEST",
+      "say": "We installed it with one pip command, on a laptop with no GPU.",
+      "source": "S3 S12",
+      "beats": [
+        {
+          "target": "pip",
+          "word": "pip",
+          "offset": -0.1
+        },
+        {
+          "target": "ver",
+          "word": "laptop",
+          "offset": -0.1
+        },
+        {
+          "target": "gpu",
+          "word": "GPU",
+          "sfx": "stamp",
+          "offset": -0.1
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "section": "light",
+      "kicker": "OUR TEST",
+      "say": "Then we gave it a real ticket: I was charged twice. Refund me, or I cancel.",
+      "source": "S12",
+      "beats": [
+        {
+          "target": "ticket",
+          "word": "ticket",
+          "sfx": "pop",
+          "offset": -0.2
+        },
+        {
+          "target": "type",
+          "word": "charged",
+          "offset": -0.35
+        },
+        {
+          "target": "typed",
+          "word": "cancel",
+          "offset": 0.3
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "section": "light",
+      "kicker": "OUR TEST",
+      "say": "Which team? Billing, 98% sure. Nailed it.",
+      "source": "S12",
+      "beats": [
+        {
+          "target": "team",
+          "word": "team",
+          "sfx": "whoosh",
+          "offset": -0.1
+        },
+        {
+          "target": "billing",
+          "word": "Billing",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "pct",
+          "word": "98",
+          "sfx": "ding",
+          "offset": -0.1
+        },
+        {
+          "target": "nailed",
+          "word": "Nailed",
+          "sfx": "stamp",
+          "offset": -0.08
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "section": "light",
+      "kicker": "OUR TEST",
+      "say": "Will they leave? 48%. Basically a guess, even though they said they'd cancel.",
+      "pad": 0.3,
+      "source": "S12",
+      "beats": [
+        {
+          "target": "leave",
+          "word": "leave",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "pct",
+          "word": "48",
+          "sfx": "ding",
+          "offset": -0.1
+        },
+        {
+          "target": "guess",
+          "word": "guess",
+          "sfx": "stamp",
+          "offset": -0.1
+        },
+        {
+          "target": "cancel",
+          "word": "cancel",
+          "sfx": "pop",
+          "offset": -0.1
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "section": "yellow",
+      "kicker": "OUR TEST",
+      "say": "All three answers took about two thirds of a second, CPU only.",
+      "beats": [
+        {
+          "target": "three",
+          "word": "three",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "time",
+          "word": "two",
+          "sfx": "ding",
+          "offset": -0.1
+        },
+        {
+          "target": "cpu",
+          "word": "CPU",
+          "sfx": "stamp",
+          "offset": -0.1
+        }
+      ],
+      "source": "S12"
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "section": "blue",
+      "kicker": "WHY IT'S DIFFERENT",
+      "say": "Jev is a paid cloud API. Laya is free and open, so tickets stay on your machine.",
+      "beats": [
+        {
+          "target": "jev",
+          "word": "Jev",
+          "sfx": "pop",
+          "offset": 0.15
+        },
+        {
+          "target": "paid",
+          "word": "paid",
+          "offset": -0.1
+        },
+        {
+          "target": "laya",
+          "word": "Laya",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "machine",
+          "word": "machine",
+          "sfx": "whoosh",
+          "offset": -0.3
+        }
+      ],
+      "source": "S9 S2"
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "section": "blue",
+      "kicker": "ON PAPER",
+      "say": "On Laya's own benchmark, the tuned version scores 77%. Jev's published score is 73.",
+      "beats": [
+        {
+          "target": "bench",
+          "word": "benchmark",
+          "offset": -0.1
+        },
+        {
+          "target": "tuned",
+          "word": "77",
+          "sfx": "ding",
+          "offset": -0.1
+        },
+        {
+          "target": "jev",
+          "word": "published",
+          "sfx": "ding",
+          "offset": -0.1
+        }
+      ],
+      "pad": 0.3,
+      "source": "S6"
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "section": "dark",
+      "say": "The catch? Untuned, Laya scores just 36% there. Tune it on your own tickets first.",
+      "beats": [
+        {
+          "target": "catch",
+          "word": "catch",
+          "sfx": "whoosh",
+          "offset": -0.15
+        },
+        {
+          "target": "untuned",
+          "word": "Untuned",
+          "offset": -0.1
+        },
+        {
+          "target": "pct",
+          "word": "36",
+          "sfx": "stamp",
+          "offset": -0.1
+        },
+        {
+          "target": "tune",
+          "word": "Tune",
+          "sfx": "pop",
+          "offset": -0.1
+        }
+      ],
+      "source": "S7 S11"
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "section": "yellow",
+      "kicker": "THE VERDICT",
+      "say": "Private data and time to tune? Try Laya. Accuracy with zero setup? Pay for Jev.",
+      "beats": [
+        {
+          "target": "private",
+          "word": "Private",
+          "sfx": "pop",
+          "offset": -0.05
+        },
+        {
+          "target": "try",
+          "word": "Try",
+          "sfx": "stamp",
+          "offset": -0.08
+        },
+        {
+          "target": "acc",
+          "word": "Accuracy",
+          "sfx": "pop",
+          "offset": -0.1
+        },
+        {
+          "target": "pay",
+          "word": "Pay",
+          "sfx": "stamp",
+          "offset": -0.08
+        }
+      ],
+      "pad": 0.4,
+      "source": "S2 S9 S7"
+    },
+    {
+      "id": "s13",
+      "type": "stage",
+      "section": "dark",
+      "say": "What should I explain next? Tell me below!",
+      "beats": [
+        {
+          "target": "q",
+          "word": "What"
+        },
+        {
+          "target": "tell",
+          "word": "Tell",
+          "sfx": "pop",
+          "offset": -0.05
+        }
+      ]
+    }
+  ],
+  "flat": true,
+  "stage": {
+    "kit": "reference-flat",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
+  }
+}

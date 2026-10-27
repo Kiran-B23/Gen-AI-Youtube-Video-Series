@@ -1,0 +1,147 @@
+/* REA reel stage · on top of the reference-flat kit · all classes prefixed r- (never the engine's preset names) */
+.r-kick { position: absolute; left: 72px; top: 120px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; letter-spacing: 0.2em; opacity: 0; }
+.r-ok { color: #2ED3A0; } .r-ok2 { color: #14B87A; }
+
+/* sealed program blocks (navy, read on every section) */
+.r-hex { position: absolute; box-sizing: border-box; background: #0B1020; border: 4px solid rgba(255,255,255,0.35); border-radius: 26px; overflow: hidden; opacity: 0; }
+.r-hexk { position: absolute; left: 24px; top: 16px; z-index: 2; padding: 4px 14px; border-radius: 10px; background: #FFD23F; color: #0B1020;
+  font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; }
+.r-hexi { position: absolute; left: 24px; top: 74px; right: 16px; bottom: 16px; overflow: hidden; font-family: "JetBrains Mono", monospace; font-size: 31px; line-height: 44px;
+  font-weight: 600; color: rgba(255,255,255,0.5); white-space: pre; }
+.r-hexs { font-size: 30px; line-height: 42px; }
+.r-scan { position: absolute; left: 0; right: 0; top: 60px; height: 14px; background: #FFD23F; box-shadow: 0 0 0 6px rgba(255,210,63,0.25); opacity: 0; z-index: 3; }
+
+/* s01-s02 hook */
+.r-src { position: absolute; left: 72px; top: 270px; opacity: 0; }
+.r-strike { position: absolute; left: 62px; top: 300px; width: 360px; height: 10px; border-radius: 5px; background: #FF4D5E; transform-origin: 0 50%; transform: scaleX(0); }
+.r-y96 { position: absolute; left: 450px; top: 270px; opacity: 0; }
+.r-cnt0 { position: absolute; left: 580px; top: 410px; width: 428px; }
+.r-cbig { font-family: "Anton", sans-serif; font-size: 170px; line-height: 1; color: #2ED3A0; }
+.r-cof { font-family: "JetBrains Mono", monospace; font-size: 60px; font-weight: 800; color: #2ED3A0; margin-top: 6px; }
+.r-ctl { font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 700; color: rgba(255,255,255,0.7); margin-top: 10px; }
+.r-one0 { position: absolute; left: 580px; top: 770px; opacity: 0; }
+.r-agent0 { position: absolute; left: 580px; top: 880px; background: #2B3BE0; opacity: 0; }
+.r-grid0 { position: absolute; left: 580px; top: 990px; width: 410px; display: grid; grid-template-columns: repeat(8, 40px); gap: 10px; }
+.r-grid0 i, .r-grid i { display: block; height: 40px; border-radius: 8px; background: rgba(255,255,255,0.14); }
+.r-fn0 { position: absolute; left: 72px; top: 1265px; width: 936px; height: 150px; box-sizing: border-box; padding: 0 40px; display: flex; align-items: center;
+  justify-content: space-between; font-size: 60px; font-weight: 800; opacity: 0; }
+.r-fn0k { font-size: 30px; font-weight: 700; color: rgba(11,16,32,0.6); }
+
+/* s03-s05 what it is */
+.r-rea { position: absolute; left: 0; width: 1080px; top: 300px; text-align: center; font-family: "Anton", sans-serif; font-size: 330px; line-height: 1; color: #fff; opacity: 0; }
+.r-reav { position: absolute; left: 0; width: 1080px; top: 720px; text-align: center; font-size: 56px; font-weight: 800; color: #fff; }
+.r-reav:empty { opacity: 0; }
+.r-reao { position: absolute; left: 380px; top: 850px; opacity: 0; }
+.r-reas { position: absolute; left: 0; width: 1080px; top: 980px; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 700; color: rgba(255,255,255,0.75); opacity: 0; }
+.r-reac { position: absolute; left: 72px; top: 250px; opacity: 0; }
+.r-agent4 { position: absolute; left: 72px; top: 370px; opacity: 0; }
+.r-arr4 { position: absolute; left: 470px; top: 395px; width: 0; height: 0; border-top: 26px solid transparent; border-bottom: 26px solid transparent; border-left: 40px solid #FFD23F; opacity: 0; }
+.r-src4 { position: absolute; left: 360px; top: 1140px; opacity: 0; }
+.r-strike4 { position: absolute; left: 350px; top: 1172px; width: 360px; height: 10px; border-radius: 5px; background: #FF4D5E; transform-origin: 0 50%; transform: scaleX(0); }
+.r-box { position: absolute; left: 72px; width: 936px; height: 190px; box-sizing: border-box; padding: 28px 40px; border-radius: 30px;
+  background: rgba(255,255,255,0.12); border: 3px solid rgba(255,255,255,0.35); color: #fff; opacity: 0; }
+.r-box3 { height: 220px; } .r-box4 { height: 260px; }
+.r-bk { display: block; font-family: "JetBrains Mono", monospace; font-size: 50px; font-weight: 800; color: #FFD23F; }
+.r-bv { display: block; margin-top: 14px; font-size: 48px; font-weight: 700; }
+.r-flip { position: absolute; left: 40px; top: 104px; width: 560px; height: 80px; }
+.r-fhex, .r-fcode { position: absolute; left: 0; top: 0; padding: 8px 22px; border-radius: 14px; font-size: 44px; font-weight: 800; white-space: nowrap; }
+.r-fhex { background: #0B1020; color: rgba(255,255,255,0.6); }
+.r-fcode { background: #fff; color: #0B1020; opacity: 0; }
+.r-farr { position: absolute; right: 40px; top: 118px; font-size: 40px; font-weight: 800; color: #FFD23F; opacity: 0; }
+.r-varr { position: absolute; left: 520px; width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 50px solid #FFD23F; opacity: 0; }
+.r-ev { position: absolute; opacity: 0; }
+
+/* s06-s11 game panel */
+.r-pan { position: absolute; left: 72px; top: 250px; width: 936px; height: 520px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 30px; }
+.r-bricks { position: absolute; left: 69px; top: 40px; width: 790px; height: 160px; }
+.r-brick { position: absolute; width: 120px; height: 44px; box-sizing: border-box; border: 4px solid #0B1020; border-radius: 10px; }
+.r-ruler { position: absolute; left: 69px; top: 210px; width: 790px; display: flex; align-items: center; gap: 12px; font-family: "JetBrains Mono", monospace;
+  font-size: 28px; font-weight: 800; color: #2B3BE0; opacity: 0; }
+.r-ruler i { flex: 1; height: 4px; background: #2B3BE0; }
+.r-sp { position: absolute; top: 250px; width: 70px; height: 90px; }
+.r-spb { position: absolute; left: 0; top: 25px; width: 30px; height: 40px; background: #0B1020; border-radius: 6px; }
+.r-spc { position: absolute; left: 18px; top: 5px; width: 0; height: 0; border-top: 40px solid transparent; border-bottom: 40px solid transparent; border-right: 44px solid #0B1020; transform: scaleX(-1); }
+.r-spr { transform: scaleX(-1); }
+.r-paddle { position: absolute; left: 408px; top: 400px; width: 120px; height: 18px; border-radius: 9px; background: #0B1020; }
+.r-ball { position: absolute; left: 453px; top: 366px; width: 30px; height: 30px; box-sizing: border-box; border-radius: 50%; background: #FFD23F; border: 4px solid #0B1020; }
+.r-meter { position: absolute; left: 36px; top: 446px; width: 856px; height: 44px; display: flex; align-items: center; gap: 16px; font-family: "JetBrains Mono", monospace;
+  font-size: 26px; font-weight: 800; color: #0B1020; }
+.r-mbar { position: relative; flex: none; width: 540px; height: 14px; border-radius: 7px; background: rgba(11,16,32,0.15); }
+.r-mc { position: absolute; left: 50%; top: -8px; width: 4px; height: 30px; margin-left: -2px; background: rgba(11,16,32,0.4); }
+.r-needle { position: absolute; left: 0; top: -15px; width: 10px; height: 44px; margin-left: -5px; border-radius: 5px; background: #2B3BE0; }
+.r-pv { position: absolute; left: 318px; top: 262px; width: 300px; text-align: center; font-family: "Anton", sans-serif; font-size: 110px; line-height: 1; color: #2B3BE0; }
+.r-qm { position: absolute; left: 368px; top: 200px; width: 200px; text-align: center; font-family: "Anton", sans-serif; font-size: 190px; line-height: 1; color: #2B3BE0; opacity: 0; }
+.r-pill { position: absolute; right: 24px; top: 6px; font-size: 22px; font-weight: 700; color: rgba(11,16,32,0.55); }
+.r-shard { position: absolute; width: 26px; height: 18px; border-radius: 4px; background: #FFD23F; border: 3px solid #0B1020; opacity: 0; }
+
+/* s07-s11 bench */
+.r-itab { position: absolute; left: 24px; top: 74px; right: 20px; opacity: 0; }
+.r-itab i { display: block; height: 20px; margin: 0 0 22px; border-radius: 6px; background: rgba(255,255,255,0.28); }
+.r-itab i.on { background: #FFD23F; }
+.r-lit { position: absolute; left: 96px; top: 1330px; font-size: 34px; opacity: 0; }
+.r-neq { position: absolute; left: 400px; top: 940px; width: 100px; height: 100px; border-radius: 50%; background: #FF4D5E; color: #fff; font-family: "Anton", sans-serif;
+  font-size: 90px; line-height: 100px; text-align: center; opacity: 0; z-index: 4; }
+.r-const { position: absolute; font-size: 44px; opacity: 0; z-index: 4; }
+.r-fn { position: absolute; left: 470px; top: 820px; width: 538px; height: 600px; box-sizing: border-box; padding: 26px 30px; opacity: 0; }
+.r-fnk { color: #2B3BE0; font-size: 28px; }
+.r-sig { margin-top: 20px; font-size: 44px; font-weight: 800; color: #0B1020; white-space: nowrap; display: flex; align-items: center; gap: 0; }
+.r-slot { display: inline-flex; align-items: center; justify-content: center; width: 220px; height: 64px; margin: 0 8px; box-sizing: border-box; border: 5px dashed #E5364A;
+  border-radius: 14px; font-size: 38px; color: #0B1020; }
+.r-blur { margin-top: 34px; }
+.r-blur i { display: block; height: 30px; width: 88%; margin-bottom: 26px; border-radius: 8px; background: rgba(11,16,32,0.14); }
+.r-fl { position: absolute; left: 30px; top: 190px; font-size: 44px; font-weight: 800; line-height: 70px; color: #0B1020; white-space: nowrap; }
+.r-fl div { min-height: 70px; }
+.r-inc { position: absolute; right: 24px; bottom: 24px; font-size: 32px; opacity: 0; }
+.r-callsvg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; pointer-events: none; }
+.r-call { fill: none; stroke: #FFD23F; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 1100; stroke-dashoffset: 1100; opacity: 0; }
+.r-dot { position: absolute; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: #FFD23F; border: 5px solid #0B1020; box-sizing: border-box; opacity: 0; z-index: 5; }
+
+/* s12-s14 the check */
+.r-col { position: absolute; top: 250px; width: 420px; height: 420px; opacity: 0; }
+.r-colk { font-family: "JetBrains Mono", monospace; font-size: 36px; font-weight: 800; color: #fff; margin-bottom: 14px; letter-spacing: 0.08em; }
+.r-hexin { position: relative; opacity: 1; height: 340px; width: 420px; }
+.r-hexin .r-hexi { top: 20px; }
+.r-mini { box-sizing: border-box; height: 340px; padding: 34px 28px; font-size: 40px; font-weight: 800; }
+.r-minib { margin-top: 28px; font-size: 40px; line-height: 64px; color: #2B3BE0; }
+.r-cmp { position: absolute; left: 490px; top: 430px; width: 100px; text-align: center; font-family: "Anton", sans-serif; font-size: 90px; color: #FFD23F; opacity: 0; }
+.r-cnt { position: absolute; left: 0; width: 1080px; top: 720px; text-align: center; color: #fff; white-space: nowrap; }
+.r-cbig2 { font-family: "Anton", sans-serif; font-size: 210px; line-height: 1; opacity: 0; display: inline-block; }
+.r-cof2 { font-family: "JetBrains Mono", monospace; font-size: 64px; font-weight: 800; margin-left: 20px; opacity: 0; }
+.r-grid { position: absolute; left: 76px; top: 970px; display: grid; grid-template-columns: repeat(20, 38px); gap: 8px; }
+.r-grid i { height: 38px; }
+.r-mt { position: absolute; left: 72px; top: 1230px; opacity: 0; }
+.r-one1 { position: absolute; left: 420px; top: 1230px; opacity: 0; }
+.r-bytes { position: absolute; left: 72px; top: 720px; width: 936px; display: flex; justify-content: space-between; opacity: 0; }
+.r-bgrid { display: grid; grid-template-columns: repeat(9, 36px); gap: 8px; }
+.r-bgrid i { display: block; height: 36px; border-radius: 6px; background: rgba(255,255,255,0.14); }
+.r-b63 { position: absolute; left: 0; width: 1080px; top: 1110px; text-align: center; font-family: "Anton", sans-serif; font-size: 150px; line-height: 1; color: #2ED3A0; opacity: 0; }
+
+/* s15-s16 not a clone */
+.r-clb { position: absolute; left: 190px; top: 250px; width: 700px; height: 230px; box-sizing: border-box; border: 10px solid rgba(11,16,32,0.35); border-radius: 115px;
+  text-align: center; font-family: "Anton", sans-serif; font-size: 150px; line-height: 210px; color: rgba(11,16,32,0.35); opacity: 0; }
+.r-ncl { position: absolute; left: 72px; top: 530px; width: 936px; text-align: center; font-family: "Anton", sans-serif; font-size: 136px; line-height: 1; color: #E5364A; opacity: 0; }
+.r-rec { position: absolute; left: 72px; top: 830px; width: 936px; height: 150px; box-sizing: border-box; padding: 24px 36px; opacity: 0; }
+.r-recl { margin-top: 12px; font-size: 46px; font-weight: 800; color: #0B1020; }
+.r-src15 { position: absolute; left: 72px; top: 1005px; font-size: 40px; opacity: 0; }
+.r-strike15 { position: absolute; left: 62px; top: 1033px; width: 600px; height: 10px; border-radius: 5px; background: #E5364A; transform-origin: 0 50%; transform: scaleX(0); }
+.r-ec { position: absolute; top: 1095px; height: 200px !important; width: 304px; height: 230px; box-sizing: border-box; padding: 24px 24px; opacity: 0; }
+.r-ecl { margin-top: 26px; font-size: 32px; font-weight: 800; color: #0B1020; }
+.r-tick { position: absolute; right: 20px; top: 14px; width: 62px; height: 62px; border-radius: 50%; background: #14B87A; color: #fff; font-size: 42px; line-height: 62px; text-align: center; opacity: 0; }
+.r-mag { position: absolute; left: 60px; top: 1300px; width: 140px; height: 140px; opacity: 0; }
+.r-magc { position: absolute; left: 0; top: 0; width: 100px; height: 100px; box-sizing: border-box; border: 12px solid #2B3BE0; border-radius: 50%; }
+.r-magh { position: absolute; left: 86px; top: 82px; width: 56px; height: 16px; border-radius: 8px; background: #2B3BE0; transform: rotate(45deg); transform-origin: 0 50%; }
+
+/* s17-s18 the catch */
+.r-catch { position: absolute; left: 72px; top: 230px; width: 936px; font-family: "Anton", sans-serif; font-size: 150px; line-height: 1; color: #FFD23F; }
+.r-catch span { display: inline-block; opacity: 0; }
+.r-ch { position: absolute; left: 72px; opacity: 0; }
+.r-x { position: absolute; left: 72px; opacity: 0; }
+
+/* s19 verdict */
+.r-tile { position: absolute; left: 72px; width: 936px; height: 160px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 30px;
+  font-family: "Anton", sans-serif; font-size: 90px; line-height: 152px; text-align: center; text-transform: uppercase; color: #0B1020; opacity: 0; }
+.r-vq { position: absolute; left: 72px; top: 400px; width: 936px; height: 200px; box-sizing: border-box; padding: 30px 40px; opacity: 0; }
+.r-ve { position: absolute; left: 72px; top: 680px; width: 936px; display: flex; gap: 22px; opacity: 0; }
+.r-vk { position: absolute; left: 72px; top: 820px; font-family: "Anton", sans-serif; font-size: 96px; line-height: 1.05; width: 936px; color: #0B1020; opacity: 0; }
+
+.r-clx { position: absolute; left: 240px; top: 352px; width: 600px; height: 24px; border-radius: 12px; background: #E5364A; transform-origin: 50% 50%; transform: scaleX(0); }

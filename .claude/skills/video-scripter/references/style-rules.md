@@ -14,7 +14,7 @@
 - **One running example**, introduced early and carried through to the end.
 - **Structure follows the topic's archetype** (`archetypes/`). Numbered steps only in Tutorial (and Concept mechanism steps).
 - **Honesty:** label company claims ("they say…", "in their own demo"), source every number,
-  always include the catch. Never overstate.
+  include a catch/limitation only when it is **material**: it would change the viewer's decision, protects them from a real cost/risk/misuse, or the hype hides it — and it's sourced. Decided in `content-plan.md` (content-plan agent); never a filler "but there's a catch". Never overstate.
 - **Accurate framing:** introduce a tool by what it does, e.g. "an AI model that makes decisions
   instead of writing text", not "the AI that can't…". No clickbait the video doesn't pay off.
 - **Interaction:** reels end with a comment question / "save this" / a poll. The question is channel-generic (the channel covers all of Gen AI, not one format or topic). Long-form uses open
@@ -54,8 +54,11 @@
 - **Sources:** every fact is sourced in `research.md` and listed in the publish kit's description. **Nothing on screen**: the viewer gets the
   sources from the description / pinned comment. Mock UIs always say "illustrative" (that's a label, not a source).
 - **Benchmark:** `references/tokenization-reel.mp4` is first-party: take its explanation depth, detailing, voice and visualisation approach for every reel (see `brand.md`).
-- **Aesthetic:** modern and futuristic tech (see `brand.md`). Metaphors are rendered as sleek technology, never as cartoon or kids-style objects.
+- **Aesthetic:** the house style `reference-flat` (see `brand.md` and `studio/templates/styles/reference-flat/design.md`). Metaphors are rendered as clean tech, never as cartoon or kids-style objects.
 - **One grid:** every scene keeps the same positions (visual zone centred, captions in one zone), so nothing jumps between scenes.
+
+## Written to be said (2026-10-12)
+- Talk to "you"; use contractions; ask and answer ("The price? 4.2 cents…"); add small reactions ("Not one.", "Now, here's the catch."); vary sentence length; no list-like claim fragments ("Price: X. Output: Y."). Read every line aloud: if no one would say it that way, rewrite it.
 
 ## Words to avoid
 "game-changer", "revolutionary", "mind-blowing", "insane" (unless really earned), "delve",

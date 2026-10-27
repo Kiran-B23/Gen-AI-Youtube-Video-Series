@@ -1,0 +1,125 @@
+/* LangGraph reel stage · on top of the reference-flat kit · all classes prefixed l- (never the engine's preset names) */
+.l-u { text-decoration: underline; text-decoration-thickness: 14px; text-underline-offset: 16px; }
+.l-k { color: #2B3BE0; font-size: 28px; }
+.l-ok { color: #14B87A; }
+
+/* s01 hook */
+.l-rcard { position: absolute; left: 72px; top: 250px; width: 936px; box-sizing: border-box; padding: 30px 40px 36px; opacity: 0; }
+.l-rt { margin-top: 12px; font-size: 68px; font-weight: 900; color: #0B1020; }
+.l-rby { margin-top: 18px; font-family: "JetBrains Mono", monospace; font-size: 46px; font-weight: 800; color: rgba(11,16,32,0.7); display: flex; align-items: center; gap: 18px; }
+.l-slot { display: inline-block; width: 300px; height: 64px; border: 5px dashed #F5A400; border-radius: 14px; }
+.l-hook { position: absolute; left: 72px; top: 690px; font-size: 172px; color: #FFD23F; opacity: 0; }
+
+/* s02-s04 email + plain loop */
+.l-email { position: absolute; left: 72px; top: 250px; width: 936px; box-sizing: border-box; padding: 26px 36px 30px; opacity: 0; }
+.l-emt { margin-top: 10px; min-height: 80px; font-size: 66px; font-weight: 900; color: #0B1020; }
+.l-ring { position: absolute; left: 240px; top: 500px; width: 600px; height: 600px; opacity: 0; }
+.l-ringsvg { position: absolute; inset: 0; width: 600px; height: 600px; }
+.l-ringc { fill: none; stroke: rgba(255,255,255,0.55); stroke-width: 10; stroke-dasharray: 22 18; }
+.l-rdotw { position: absolute; inset: 0; }
+.l-rdot { position: absolute; left: 279px; top: 49px; width: 42px; height: 42px; border-radius: 50%; background: #FFD23F; border: 5px solid #0B1020; box-sizing: border-box; }
+.l-rn { position: absolute; width: 200px; height: 96px; box-sizing: border-box; border-radius: 26px; background: #fff; border: 4px solid #0B1020; color: #0B1020;
+  font-family: "JetBrains Mono", monospace; font-size: 42px; font-weight: 800; display: flex; align-items: center; justify-content: center; opacity: 0; }
+.l-rdone { position: absolute; left: 192px; top: 262px; font-size: 44px; opacity: 0; }
+.l-mem { position: absolute; left: 72px; top: 1160px; width: 936px; height: 76px; box-sizing: border-box; border: 4px solid #fff; border-radius: 38px; overflow: hidden; opacity: 0; }
+.l-memf { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: rgba(255,210,63,0.85); }
+.l-mem span { position: absolute; left: 30px; top: 0; line-height: 68px; font-family: "JetBrains Mono", monospace; font-size: 36px; font-weight: 800; color: #fff; }
+.l-q1, .l-q2 { position: absolute; left: 72px; font-size: 36px; opacity: 0; }
+.l-q1 { top: 1262px; } .l-q2 { top: 1350px; }
+.l-yours { position: absolute; left: 690px; top: 1258px; width: 318px; height: 168px; box-sizing: border-box; border: 5px dashed #FFD23F; border-radius: 24px;
+  display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; color: #FFD23F; font-size: 36px; font-weight: 900; line-height: 1.15; opacity: 0; }
+
+/* s05-s06 LangGraph enters */
+.l-lgt { position: absolute; left: 72px; top: 240px; font-size: 180px; text-transform: none; color: #FFD23F; opacity: 0; }
+.l-lgs { position: absolute; left: 76px; top: 450px; font-size: 38px; font-weight: 800; color: #fff; opacity: 0; }
+.l-ag { position: absolute; left: 0; top: 640px; width: 1080px; height: 420px; }
+.l-agsvg { position: absolute; inset: 0; width: 1080px; height: 420px; }
+.l-ae { fill: none; stroke: #fff; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 700; stroke-dashoffset: 700; opacity: 0; }
+.l-an { position: absolute; width: 280px; height: 110px; box-sizing: border-box; border-radius: 28px; background: #fff; border: 4px solid #0B1020; color: #0B1020;
+  font-family: "JetBrains Mono", monospace; font-size: 46px; font-weight: 800; display: flex; align-items: center; justify-content: center; opacity: 0; }
+.l-end { width: 220px; height: 90px; background: #0B1020; color: #fff; border-color: #fff; }
+.l-apause { position: absolute; left: 600px; top: 300px; font-size: 40px; opacity: 0; }
+.l-emc { position: absolute; left: 72px; top: 540px; font-size: 38px; opacity: 0; }
+.l-kw { position: absolute; left: 210px; font-size: 104px; color: #fff; opacity: 0; }
+.l-ki { position: absolute; left: 72px; width: 110px; height: 90px; opacity: 0; }
+.l-kpill { position: absolute; left: 0; top: 18px; width: 110px; height: 56px; border-radius: 18px; background: #fff; }
+.l-karrow { position: absolute; left: 0; top: 40px; width: 90px; height: 10px; background: #FFD23F; }
+.l-karrow::after { content: ""; position: absolute; right: -20px; top: -14px; border-left: 26px solid #FFD23F; border-top: 19px solid transparent; border-bottom: 19px solid transparent; }
+.l-ktile { position: absolute; left: 14px; top: 6px; width: 76px; height: 76px; border-radius: 12px; background: #2ED3A0; }
+
+/* the switchboard */
+.l-swg { position: absolute; inset: 0; color: #0B1020; }
+.l-edges { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+.l-e { fill: none; stroke: currentColor; stroke-width: 9; stroke-linecap: round; stroke-dasharray: 400; stroke-dashoffset: 400; opacity: 0; }
+.l-node { position: absolute; width: 260px; height: 110px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+  font-family: "JetBrains Mono", monospace; font-size: 44px; font-weight: 800; border-radius: 26px; opacity: 0; }
+.l-ans { height: 80px; font-size: 36px; }
+.l-sw { position: absolute; left: 300px; top: 508px; padding: 8px 20px; font-size: 32px; opacity: 0; }
+.l-itag { position: absolute; left: 430px; top: 822px; padding: 4px 18px; font-size: 32px; opacity: 0; }
+.l-wring { position: absolute; left: 398px; top: 688px; width: 284px; height: 134px; opacity: 0; overflow: visible; }
+.l-wr { fill: none; stroke: #FFD23F; stroke-width: 8; stroke-dasharray: 30 20; }
+.l-xamt { position: absolute; left: 200px; top: 528px; font-size: 84px; padding: 0 30px; border-width: 9px; }
+.l-okamt { position: absolute; left: 270px; top: 548px; font-size: 44px; opacity: 0; }
+.l-paused { position: absolute; left: 110px; top: 515px; font-size: 118px; border-color: #FFD23F; color: #FFD23F; padding: 0 34px; border-width: 10px; }
+.l-appb { position: absolute; left: 110px; top: 530px; width: 430px; height: 128px; border-radius: 64px; background: #0B7A52; color: #fff; font-size: 62px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center; opacity: 0; overflow: visible; }
+.l-ripple { position: absolute; left: 165px; top: 14px; width: 100px; height: 100px; border-radius: 50%; border: 6px solid #fff; opacity: 0; }
+.l-rcard2 { position: absolute; left: 72px; top: 512px; width: 680px; box-sizing: border-box; padding: 20px 32px; opacity: 0; }
+.l-rt2 { font-size: 52px; font-weight: 900; color: #0B1020; }
+.l-rby2 { margin-top: 6px; font-family: "JetBrains Mono", monospace; font-size: 42px; font-weight: 800; color: rgba(11,16,32,0.75); }
+.l-rby2 b { color: #14B87A; }
+.l-rail { position: absolute; left: 72px; top: 888px; width: 936px; height: 74px; box-sizing: border-box; border-radius: 37px; background: #fff; border: 4px solid #0B1020; opacity: 0; }
+.l-railk { position: absolute; left: 26px; top: 0; line-height: 68px; font-size: 30px; font-weight: 800; color: #0B1020; border-radius: 10px; padding: 0 8px; }
+.l-tiles { position: absolute; left: 388px; top: 8px; display: flex; gap: 12px; }
+.l-tile { width: 52px; height: 52px; box-sizing: border-box; border-radius: 10px; background: #fff; border: 4px solid #0B1020; position: relative; opacity: 0; }
+.l-tile::before { content: ""; position: absolute; left: 8px; right: 8px; top: 9px; height: 5px; background: #0B1020; box-shadow: 0 10px 0 #0B1020, 0 20px 0 #0B1020; }
+.l-tile.lock { background: #FFD23F; }
+.l-state { position: absolute; left: 72px; top: 988px; width: 936px; height: 452px; box-sizing: border-box; padding: 18px 34px; overflow: hidden; opacity: 0; }
+.l-sth { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+.l-stk { color: #2B3BE0; font-size: 30px; } .l-sti { font-size: 26px; font-weight: 700; color: rgba(11,16,32,0.55); }
+.l-f { display: flex; align-items: center; height: 92px; border-top: 3px solid rgba(11,16,32,0.12); border-radius: 12px; font-family: "JetBrains Mono", monospace; font-size: 38px; font-weight: 800; color: #0B1020; }
+.l-fk { width: 238px; flex: none; color: rgba(11,16,32,0.55); }
+.l-fv { white-space: nowrap; }
+.l-scan { position: absolute; left: 0; right: 0; top: 70px; height: 10px; background: #2B3BE0; opacity: 0; }
+.l-chip { position: absolute; left: 0; top: 0; width: 74px; height: 74px; box-sizing: border-box; border-radius: 50%; background: #FFD23F; border: 5px solid #0B1020;
+  color: #0B1020; font-size: 40px; line-height: 64px; text-align: center; opacity: 0; }
+
+/* s20-s22 the catch */
+.l-ck { position: absolute; left: 72px; top: 250px; color: #FFD23F; font-size: 30px; }
+.l-code { position: absolute; left: 72px; top: 310px; width: 936px; height: 320px; box-sizing: border-box; opacity: 0; }
+.l-cl { position: absolute; left: 92px; font-family: "JetBrains Mono", monospace; font-size: 44px; font-weight: 800; color: #fff; white-space: nowrap; }
+.l-ptr { position: absolute; left: 30px; top: 40px; color: #FFD23F; font-size: 44px; font-weight: 900; opacity: 0; }
+.l-again { position: absolute; left: 72px; top: 680px; font-size: 128px; color: #FFD23F; opacity: 0; }
+.l-env { position: absolute; left: 880px; top: 318px; font-size: 84px; color: #FFD23F; opacity: 0; }
+.l-inbox { position: absolute; left: 72px; top: 1000px; width: 936px; height: 200px; box-sizing: border-box; padding: 30px 40px; opacity: 0; }
+.l-ik { color: #fff; font-size: 32px; position: absolute; left: 40px; top: 78px; }
+.l-icount { position: absolute; right: 60px; top: 10px; font-family: "Anton", sans-serif; font-size: 160px; line-height: 1; color: #fff; }
+.l-fixrow { position: absolute; left: 72px; top: 1250px; width: 936px; display: flex; align-items: center; justify-content: space-between; opacity: 0; }
+.l-mnode { width: 250px; height: 104px; box-sizing: border-box; border-radius: 26px; display: flex; align-items: center; justify-content: center;
+  font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; }
+.l-mnew { background: #FFD23F; }
+.l-marr { width: 60px; height: 9px; background: #fff; position: relative; }
+.l-marr::after { content: ""; position: absolute; right: -14px; top: -11px; border-left: 20px solid #fff; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+
+/* s23-s24 when you need it */
+.l-blk { position: absolute; left: 72px; width: 936px; box-sizing: border-box; border-radius: 30px; display: flex; align-items: center; justify-content: center; font-family: "Anton", sans-serif; opacity: 0; }
+.l-blc { top: 330px; height: 220px; background: #2B3BE0; color: #fff; font-size: 116px; }
+.l-blg { top: 575px; height: 290px; background: #0B1020; color: #FFD23F; font-size: 180px; }
+.l-noreq { position: absolute; left: 72px; top: 900px; font-size: 46px; opacity: 0; }
+.l-dec { position: absolute; left: 72px; top: 990px; width: 936px; box-sizing: border-box; padding: 10px 36px; opacity: 0; }
+.l-drow { padding: 26px 0; border-bottom: 3px solid rgba(11,16,32,0.12); opacity: 0; }
+.l-drow:last-child { border-bottom: 0; }
+.l-dq { display: block; font-size: 48px; font-weight: 900; color: #0B1020; line-height: 1.35; }
+.l-dq b { display: inline-block; margin-right: 12px; padding: 2px 14px; border-radius: 12px; background: #EEF1F6; font-size: 40px; opacity: 0; }
+.l-da { display: block; margin-top: 10px; font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; color: #2B3BE0; }
+.l-dlg { font-size: 52px; }
+
+/* s25 recap */
+.l-rk { position: absolute; left: 72px; width: 936px; height: 200px; box-sizing: border-box; padding: 22px 36px 0 200px; font-family: "Anton", sans-serif; font-size: 92px; line-height: 1; color: #0B1020; opacity: 0; }
+.l-rkn { position: absolute; left: 34px; top: 26px; font-family: "Inter", sans-serif; font-weight: 900; font-size: 120px; letter-spacing: -0.05em; color: #2B3BE0; }
+.l-rks { display: block; margin-top: 14px; font-family: "JetBrains Mono", monospace; font-size: 36px; font-weight: 800; color: rgba(11,16,32,0.6); }
+.l-rmini { left: 900px; top: 236px; }
+.l-rtiles { position: absolute; left: 72px; top: 1000px; display: flex; gap: 18px; }
+.l-rtiles i { display: block; width: 72px; height: 72px; box-sizing: border-box; border-radius: 12px; background: #fff; border: 5px solid #0B1020; opacity: 0; }
+.l-rby3 { position: absolute; left: 72px; top: 1120px; padding: 22px 46px; border-radius: 999px; background: #0B1020; color: #FFD23F; font-family: "JetBrains Mono", monospace; font-size: 50px; font-weight: 900; opacity: 0; }
+#g26 .cta span { margin-right: 0.22em; }

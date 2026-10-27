@@ -1,0 +1,279 @@
+{
+  "slug": "jev-3b1b",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/fresh-focus",
+  "padSeconds": 0.18,
+  "sections": {
+    "board": {
+      "bg": "#1C1C1C",
+      "bg2": "#1C1C1C",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.62)",
+      "accent": "#F7D96F",
+      "accent2": "#58C4DD",
+      "card": "rgba(255,255,255,0.06)",
+      "line": "rgba(255,255,255,0.2)",
+      "danger": "#FC6255",
+      "ok": "#83C167"
+    }
+  },
+  "names": [
+    "Jev",
+    "TypeSafe",
+    "GPT-6",
+    "LLM",
+    "LLMs"
+  ],
+  "keywords": [
+    "Jev",
+    "decisions.",
+    "typed",
+    "tenth",
+    "free.",
+    "21",
+    "68",
+    "both."
+  ],
+  "voice": {
+    "engine": "kokoro",
+    "kokoroVoice": "af_heart",
+    "kokoroSpeed": 0.85,
+    "style": "Genuinely excited but honest, like a developer who just tried it: quick and bright on the demo and the numbers, calm and serious on the catch. Read every word. Never robotic."
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "media",
+      "section": "board",
+      "say": "This AI never writes a single word. It only makes decisions.",
+      "source": "S1",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/a_hook.py",
+          "scene": "HookSpan",
+          "quality": "m",
+          "size": [
+            1000,
+            1260
+          ],
+          "span": [
+            "s02"
+          ]
+        },
+        "box": [
+          40,
+          190,
+          1000,
+          1260
+        ],
+        "clip": "build/clips/s01.webm"
+      }
+    },
+    {
+      "id": "s02",
+      "type": "media",
+      "section": "board",
+      "say": "Meet Jev. You ask questions; it returns typed answers with a confidence score.",
+      "source": "S1",
+      "props": {
+        "of": "s01"
+      }
+    },
+    {
+      "id": "s03",
+      "type": "media",
+      "section": "board",
+      "say": "Here's a support ticket: charged twice this month, refund me or I cancel.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/b_ticket.py",
+          "scene": "TicketSpan",
+          "quality": "m",
+          "size": [
+            1000,
+            1260
+          ],
+          "span": [
+            "s04"
+          ]
+        },
+        "box": [
+          40,
+          190,
+          1000,
+          1260
+        ],
+        "clip": "build/clips/s03.webm"
+      }
+    },
+    {
+      "id": "s04",
+      "type": "media",
+      "section": "board",
+      "say": "One pass, three answers. Billing team. Urgent. High churn risk.",
+      "source": "S1",
+      "props": {
+        "of": "s03"
+      }
+    },
+    {
+      "id": "s05",
+      "type": "media",
+      "section": "board",
+      "say": "TypeSafe says most answers take about a tenth of a second.",
+      "source": "S3",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/c_cost.py",
+          "scene": "CostSpan",
+          "quality": "m",
+          "size": [
+            1000,
+            1260
+          ],
+          "span": [
+            "s06",
+            "s07"
+          ]
+        },
+        "box": [
+          40,
+          190,
+          1000,
+          1260
+        ],
+        "clip": "build/clips/s05.webm"
+      }
+    },
+    {
+      "id": "s06",
+      "type": "media",
+      "section": "board",
+      "say": "Price: 4.2 cents per million input tokens. Output is free.",
+      "source": "S2",
+      "props": {
+        "of": "s05"
+      }
+    },
+    {
+      "id": "s07",
+      "type": "media",
+      "section": "board",
+      "say": "Independent researchers labeled nearly 8,000 items with it for 21 cents. The priciest of 19 LLMs cost about 300 times more.",
+      "source": "S5",
+      "props": {
+        "of": "s05"
+      }
+    },
+    {
+      "id": "s08",
+      "type": "media",
+      "section": "board",
+      "say": "The catch? On TypeSafe's own test, it matched frontier models 68% of the time.",
+      "source": "S4",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/d_catch.py",
+          "scene": "CatchSpan",
+          "quality": "m",
+          "size": [
+            1000,
+            1260
+          ],
+          "span": [
+            "s09"
+          ]
+        },
+        "box": [
+          40,
+          190,
+          1000,
+          1260
+        ],
+        "clip": "build/clips/s08.webm"
+      }
+    },
+    {
+      "id": "s09",
+      "type": "media",
+      "section": "board",
+      "say": "And an answer can fit the format perfectly and still be wrong.",
+      "source": "S8",
+      "pad": 0.5,
+      "props": {
+        "of": "s08"
+      }
+    },
+    {
+      "id": "s10",
+      "type": "media",
+      "section": "board",
+      "say": "So use both. Jev takes the confident calls; unsure ones go to an LLM.",
+      "source": "S6",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/e_route.py",
+          "scene": "RouteSpan",
+          "quality": "m",
+          "size": [
+            1000,
+            1260
+          ],
+          "span": [
+            "s11",
+            "s12",
+            "s13"
+          ]
+        },
+        "box": [
+          40,
+          190,
+          1000,
+          1260
+        ],
+        "clip": "build/clips/s10.webm"
+      }
+    },
+    {
+      "id": "s11",
+      "type": "media",
+      "section": "board",
+      "say": "One university test kept almost all of GPT-6's accuracy at about half the cost.",
+      "source": "S6",
+      "pad": 0.9,
+      "props": {
+        "of": "s10"
+      }
+    },
+    {
+      "id": "s12",
+      "type": "media",
+      "section": "board",
+      "say": "Verdict: Jev decides, the LLM writes. Great for routing and tagging, not for writing.",
+      "pad": 0.6,
+      "props": {
+        "of": "s10"
+      }
+    },
+    {
+      "id": "s13",
+      "type": "media",
+      "section": "board",
+      "say": "What should I explain next? Tell me below.",
+      "pad": 0.8,
+      "props": {
+        "of": "s10"
+      }
+    }
+  ],
+  "flat": true
+}

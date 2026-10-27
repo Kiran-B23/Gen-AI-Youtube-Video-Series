@@ -1,0 +1,399 @@
+{
+  "slug": "dots",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/inventing-flight",
+  "padSeconds": 0.45,
+  "sections": {
+    "night": {
+      "bg": "#0A1024",
+      "bg2": "#070B1A",
+      "text": "#E8F0FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#7C9CFF",
+      "accent2": "#4DF2C2",
+      "card": "rgba(232,240,255,0.07)",
+      "line": "rgba(232,240,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    },
+    "control": {
+      "bg": "#141033",
+      "bg2": "#0E0B26",
+      "text": "#E8F0FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#FFD166",
+      "accent2": "#7C9CFF",
+      "card": "rgba(232,240,255,0.07)",
+      "line": "rgba(232,240,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    },
+    "catch": {
+      "bg": "#1E0E24",
+      "bg2": "#150A1A",
+      "text": "#F4E8FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#FF5C8A",
+      "accent2": "#FFD166",
+      "card": "rgba(232,240,255,0.07)",
+      "line": "rgba(232,240,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    },
+    "dawn": {
+      "bg": "#0E1B2A",
+      "bg2": "#09131F",
+      "text": "#E8F0FF",
+      "dim": "rgba(232,240,255,0.70)",
+      "accent": "#4DF2C2",
+      "accent2": "#7C9CFF",
+      "card": "rgba(232,240,255,0.07)",
+      "line": "rgba(232,240,255,0.22)",
+      "danger": "#FF5C8A",
+      "ok": "#4DF2C2"
+    }
+  },
+  "names": [
+    "dot",
+    "Dots",
+    "ChatGPT",
+    "Slack",
+    "Teams",
+    "Business Premium",
+    "Switzerland"
+  ],
+  "keywords": [
+    "dot.",
+    "computer",
+    "control.",
+    "password,",
+    "catch.",
+    "stays.",
+    "whole",
+    "mistakes.",
+    "ask",
+    "4,000"
+  ],
+  "voice": {
+    "engine": "kokoro",
+    "kokoroVoice": "af_heart",
+    "kokoroSpeed": 0.78,
+    "style": "Genuinely excited but honest, like a creator who just tried it: brisk on the demo, calm and serious on the catch. Read every word. Never robotic."
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "media",
+      "section": "night",
+      "say": "It's three A.M. A bug report lands in Slack. By morning, a fix is waiting.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/a_hook.py",
+          "scene": "NightHook",
+          "quality": "m"
+        },
+        "clip": "build/clips/s01.webm"
+      },
+      "pad": 0.55
+    },
+    {
+      "id": "s02",
+      "type": "title",
+      "section": "night",
+      "kicker": "● YOUR DOT",
+      "say": "That's a dot. An AI agent in ChatGPT that keeps working after you close the chat.",
+      "props": {
+        "lines": [
+          "ALWAYS",
+          "ON"
+        ],
+        "highlight": "ON",
+        "sub": "keeps working after the chat",
+        "chips": [
+          "AI agent",
+          "in ChatGPT"
+        ]
+      },
+      "beats": [
+        {
+          "word": "agent",
+          "target": "chips.0"
+        },
+        {
+          "word": "ChatGPT",
+          "target": "chips.1"
+        },
+        {
+          "word": "working",
+          "target": "sub"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "media",
+      "section": "night",
+      "kicker": "● YOUR DOT",
+      "say": "Each dot gets its own cloud computer and browser, so it can do the work itself.",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/b_work.py",
+          "scene": "WorkSpan",
+          "quality": "m",
+          "span": [
+            "s04"
+          ]
+        },
+        "clip": "build/clips/s03.webm"
+      }
+    },
+    {
+      "id": "s04",
+      "type": "media",
+      "section": "night",
+      "kicker": "● YOUR DOT",
+      "say": "Give it a goal, connect the apps it needs, and it brings back results for review.",
+      "props": {
+        "of": "s03"
+      }
+    },
+    {
+      "id": "s05",
+      "type": "counter",
+      "section": "night",
+      "kicker": "● YOUR DOT",
+      "say": "It plugs into over four thousand apps, and you can message it in Slack or Teams.",
+      "source": "S3",
+      "props": {
+        "value": 4000,
+        "suffix": "+",
+        "label": "apps it can connect to"
+      },
+      "beats": [
+        {
+          "word": "over",
+          "target": "number",
+          "offset": 0.26
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "type": "points",
+      "section": "control",
+      "kicker": "YOU SET THE RULES",
+      "say": "The real difference is control. It can act freely, act if pre-approved, ask first, or hand off to you.",
+      "source": "S4",
+      "props": {
+        "title": "Custom rules",
+        "items": [
+          {
+            "icon": "⚡",
+            "text": "Act freely"
+          },
+          {
+            "icon": "✅",
+            "text": "Act if pre-approved"
+          },
+          {
+            "icon": "✋",
+            "text": "Ask first"
+          },
+          {
+            "icon": "🤝",
+            "text": "Hand off to you"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "control",
+          "target": "items.0"
+        },
+        {
+          "word": "act",
+          "nth": 1,
+          "offset": -0.4,
+          "target": "items.1"
+        },
+        {
+          "word": "ask",
+          "target": "items.2"
+        },
+        {
+          "word": "hand",
+          "target": "items.3"
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "stamp",
+      "section": "control",
+      "kicker": "YOU SET THE RULES",
+      "say": "And some things, like changing a password, always stay with you.",
+      "source": "S5",
+      "props": {
+        "text": "ALWAYS YOU",
+        "sub": "e.g. changing a password"
+      },
+      "beats": [
+        {
+          "word": "things",
+          "target": "stamp"
+        },
+        {
+          "word": "password",
+          "target": "sub"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "media",
+      "section": "catch",
+      "kicker": "THE CATCH",
+      "say": "Now the catch. Disconnect an app, and what your dot already learned still stays.",
+      "source": "S8",
+      "props": {
+        "build": {
+          "tool": "manim",
+          "file": "clips/c_memory.py",
+          "scene": "MemorySpan",
+          "quality": "m",
+          "span": [
+            "s09"
+          ]
+        },
+        "clip": "build/clips/s08.webm"
+      }
+    },
+    {
+      "id": "s09",
+      "type": "media",
+      "section": "catch",
+      "kicker": "THE CATCH",
+      "say": "The only way to wipe it is deleting the whole dot.",
+      "props": {
+        "of": "s08"
+      },
+      "pad": 0.55
+    },
+    {
+      "id": "s10",
+      "type": "points",
+      "section": "catch",
+      "kicker": "BEFORE YOU TRY",
+      "say": "It's only on Pro and Business Premium. Pro isn't available in the EU, the UK or Switzerland. And it can still make mistakes.",
+      "source": "S7, S9",
+      "props": {
+        "title": "Before you try",
+        "items": [
+          {
+            "icon": "🔒",
+            "text": "Pro & Business Premium only"
+          },
+          {
+            "icon": "🌍",
+            "text": "Pro: not in the EU"
+          },
+          {
+            "icon": "🚫",
+            "text": "or the UK, Switzerland"
+          },
+          {
+            "icon": "⚠️",
+            "text": "Can still make mistakes"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "word": "Pro",
+          "target": "items.0"
+        },
+        {
+          "word": "Pro",
+          "nth": 1,
+          "offset": -0.3,
+          "target": "items.1"
+        },
+        {
+          "word": "UK",
+          "target": "items.2"
+        },
+        {
+          "word": "And",
+          "target": "items.3",
+          "nth": 1
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "type": "compare",
+      "section": "dawn",
+      "kicker": "VERDICT",
+      "say": "Verdict: great for repeat jobs you can review. Start on ask first, then loosen up as it earns trust.",
+      "props": {
+        "left": {
+          "title": "Great for",
+          "items": [
+            "Repeat jobs",
+            "you can review"
+          ]
+        },
+        "right": {
+          "title": "How to start",
+          "items": [
+            "Ask first",
+            "then loosen up"
+          ]
+        },
+        "verdict": "EARN TRUST"
+      },
+      "beats": [
+        {
+          "word": "Verdict",
+          "offset": 0.6,
+          "target": "left"
+        },
+        {
+          "word": "Start",
+          "offset": -0.8,
+          "target": "right"
+        },
+        {
+          "word": "earns",
+          "target": "verdict"
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "type": "cta",
+      "section": "dawn",
+      "say": "What should I explain next? Tell me below!",
+      "props": {
+        "question": "What should I explain next? 👇",
+        "follow": "Follow for more AI breakdowns"
+      },
+      "beats": [
+        {
+          "word": "What",
+          "target": "question"
+        },
+        {
+          "word": "Tell",
+          "target": "follow"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+<!-- Jev pilot stage (reference-reel style): one running object, ticket #4821, through 4 numbered steps -->
+
+
+<!-- s01 · hook (dark) -->
+<div class="g" id="g01">
+  <div id="matrix" class="matrix" aria-hidden="true" data-layout-ignore></div>
+  <div class="hook">
+    <div id="h1" class="hl">NEVER<br>WRITES.</div>
+    <div id="h0" class="zero">0 words written</div>
+    <div id="h2" class="hlbox"><span>ONLY DECIDES.</span></div>
+  </div>
+</div>
+
+<!-- s02 · meet Jev (blue) -->
+<div class="g" id="g02">
+  <div id="meet" class="meet">MEET</div>
+  <div id="jevbig" class="jevbig">JEV</div>
+  <div class="qa">
+    <div class="qarow" id="qa1"><span class="q">team?</span><span class="arr" id="ar1">→</span><span class="a" id="an1">billing</span><span class="conf" id="cf1"><i style="width:94%"></i></span></div>
+    <div class="qarow" id="qa2"><span class="q">urgent?</span><span class="arr" id="ar2">→</span><span class="a" id="an2">yes</span><span class="conf" id="cf2"><i style="width:81%"></i></span></div>
+    <div class="qarow" id="qa3"><span class="q">refund?</span><span class="arr" id="ar3">→</span><span class="a" id="an3">no</span><span class="conf" id="cf3"><i style="width:57%"></i></span></div>
+    <div class="qalab"><span id="ql1">QUESTIONS IN</span><span id="ql2">TYPED ANSWERS</span><span id="ql3">CONFIDENCE</span></div>
+  </div>
+</div>
+
+<!-- section cards: a big plain title (Launch reel: no step numbers, per the structure check), then they shrink away -->
+<div class="g chap" id="c1"><div class="chapt">Read the ticket</div></div>
+<div class="g chap" id="c2"><div class="chapt">Check the cost</div></div>
+<div class="g chap" id="c3"><div class="chapt">The catch</div></div>
+<div class="g chap" id="c4"><div class="chapt">Route it</div></div>
+
+<!-- s03-s04 · the ticket (light) -->
+<div class="g" id="g03">
+  <div id="ticket" class="ticket">
+    <div class="tkhead"><span class="tkid">TICKET #4821</span><span class="tkfrom">support inbox</span></div>
+    <div id="tktext" class="tktext"><span id="tkt"></span><span id="cur" class="cur"></span></div>
+    <div id="scan" class="scan"></div>
+  </div>
+  <div id="three" class="three"><div id="threen" class="threen">3</div><div class="threel">ANSWERS · ONE PASS</div></div>
+  <div class="rows">
+    <div class="row" id="r1"><span class="rq">TEAM?</span><span class="ra ok" id="ra1">billing</span></div>
+    <div class="row" id="r2"><span class="rq">URGENT?</span><span class="ra warn" id="ra2">yes</span></div>
+    <div class="row" id="r3"><span class="rq">CHURN RISK?</span><span class="ra bad" id="ra3">high</span></div>
+  </div>
+  <div class="illus dark">illustrative</div>
+</div>
+
+<!-- s05 · speed (blue) -->
+<div class="g" id="g05">
+  <div class="mini" id="mini1"><span>#4821</span><b>billing</b><b>urgent</b><b>high churn</b></div>
+  <svg id="clock" class="clock" viewBox="0 0 400 400"><circle cx="200" cy="200" r="170" class="clk-bg"/><circle id="clkarc" cx="200" cy="200" r="170" class="clk-arc" transform="rotate(-90 200 200)"/></svg>
+  <div class="clocklab" id="clocklab">1 second</div>
+  <div id="speed" class="big wt">~0.1 s</div>
+  <div id="speedl" class="bigl wt">per answer · TypeSafe's claim</div>
+</div>
+
+<!-- s06 · price (blue) -->
+<div class="g" id="g06">
+  <div id="price" class="big wt">$0.042</div>
+  <div id="pricel" class="bigl wt">per million input tokens</div>
+  <div id="outrow" class="outrow"><span>OUTPUT</span><span id="free" class="free">FREE</span></div>
+</div>
+
+<!-- s07 · 7,977 items for 21 cents vs the priciest LLM (yellow) -->
+<div class="g" id="g07">
+  <div class="cnt" id="cntwrap"><div id="cnt" class="cntn">0</div><div class="cntl">items labelled · independent test</div></div>
+  <canvas id="cells" class="cells" width="1000" height="560"></canvas>
+  <div id="cost21" class="cost21">$0.21 <small>total</small></div>
+  <div class="bars" id="bars">
+    <div class="bar"><div class="bval" id="bv1">$0.21</div><div class="btrack"><div class="bfill jev" id="bf1"></div></div><div class="bname">Jev</div></div>
+    <div class="bar"><div class="bval" id="bv2">$62.99</div><div class="btrack"><div class="bfill llm" id="bf2"></div></div><div class="bname">priciest of 19 LLMs</div></div>
+    <div id="x300" class="x300">~300×</div>
+  </div>
+</div>
+
+<!-- s08 · the catch: 68% (dark) -->
+<div class="g" id="g08">
+  <div id="pct" class="big yl">68%</div>
+  <div id="pctl" class="bigl wt">matched frontier models · TypeSafe's own test</div>
+  <div id="waffle" class="waffle"></div>
+</div>
+
+<!-- s09 · valid but wrong (dark) -->
+<div class="g" id="g09">
+  <div id="tk2" class="tk2"><span class="tkid">TICKET #4830</span><div>"My order is three weeks late."</div></div>
+  <div id="json" class="json"><div>{</div><div>&nbsp;&nbsp;"team": <span id="jteam">"billing"</span></div><div>}</div></div>
+  <div id="valid" class="valid">✓ FITS THE FORMAT</div>
+  <div id="wrong" class="wrongst">WRONG</div>
+  <div id="should" class="should">should be: <b>shipping</b></div>
+  <div class="illus">illustrative</div>
+</div>
+
+<!-- s10-s11 · route it (light) -->
+<div class="g" id="g10">
+  <div class="router" id="router">
+    <div id="node" class="node">JEV</div>
+    <svg class="lanes" viewBox="0 0 1000 420"><path id="laneL" d="M500 60 C500 220 220 200 220 380" class="lane ok"/><path id="laneR" d="M500 60 C500 220 780 200 780 380" class="lane llm"/></svg>
+    <div class="bin okbin" id="binL"><b>DONE</b><span>confident</span></div>
+    <div class="bin llmbin" id="binR"><b>LLM</b><span>unsure</span></div>
+    <div class="chip c1" id="chip1">#4821 · 0.97</div>
+    <div class="chip c2" id="chip2">#4822 · 0.52</div>
+    <div class="chip c3" id="chip3">#4823 · 0.95</div>
+    <div class="chip c4" id="chip4">#4824 · 0.91</div>
+  </div>
+  <div class="stats" id="stats">
+    <div class="stat" id="st1"><div class="sn" id="sn1">99.6%</div><div class="sl">of GPT-6's accuracy</div><div class="sb"><i id="sb1"></i></div></div>
+    <div class="stat" id="st2"><div class="sn" id="sn2">47%</div><div class="sl">of its cost</div><div class="sb"><i id="sb2"></i></div></div>
+    <div class="statk" id="statk">ONE UNIVERSITY TEST</div>
+  </div>
+  <div class="illus dark" id="ill10">illustrative</div>
+</div>
+
+<!-- s12 · verdict (blue) -->
+<div class="g" id="g12">
+  <div class="vk">VERDICT</div>
+  <div id="v1" class="vl">JEV DECIDES.</div>
+  <div id="v2" class="vl yl">THE LLM WRITES.</div>
+  <div class="vchips"><span id="vc1" class="vc">routing ✓</span><span id="vc2" class="vc">tagging ✓</span><span id="vc3" class="vc no">writing ✗</span></div>
+</div>
+
+<!-- s13 · CTA (dark) -->
+<div class="g" id="g13">
+  <div class="cta"><span id="cw1">WHAT</span> <span id="cw2">SHOULD</span> <span id="cw3">I</span> <span id="cw4">EXPLAIN</span> <span id="cw5" class="yl">NEXT?</span></div>
+  <div id="ctaf" class="ctaf">+ Follow for more AI breakdowns</div>
+</div>

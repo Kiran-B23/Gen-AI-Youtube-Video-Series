@@ -1,0 +1,70 @@
+{
+ "generated": "2026-10-16",
+ "method": "still/cuts: ffmpeg fps=4,scale=108:-2,gray, band 0.10-0.76 h, moving = mean|diff| >= 0.35, cut = full-frame mean|diff| > 25 (spikes within 0.5 s merged); speech: faster-whisper small.en int8 cpu on ffmpeg 16 kHz mono, pace = words / (last end - first start); loudness: ffmpeg ebur128",
+ "files": {
+  "tokenization-reel": {
+   "duration_s": 194.17,
+   "words": 436,
+   "pace_wps": 2.3,
+   "pauses_over_0_9s": 30,
+   "still_pct": 48.2,
+   "longest_still_s": 4.5,
+   "cuts_per_min": 3.4,
+   "loudness_lufs": -16.8,
+   "true_peak_dbtp": -0.6,
+   "caption_words_per_card": null,
+   "scene_median_s": 16.75,
+   "file": "references/tokenization-reel.mp4",
+   "sha1": "5116c97b93b152faa017c6fab61ef4cff07e1f82",
+   "size": 23431541
+  },
+  "ig/DehL0UdMPw4": {
+   "duration_s": 147.01,
+   "words": 480,
+   "pace_wps": 3.31,
+   "pauses_over_0_9s": 0,
+   "still_pct": 0.2,
+   "longest_still_s": 0.25,
+   "cuts_per_min": 4.5,
+   "loudness_lufs": -14.1,
+   "true_peak_dbtp": -0.5,
+   "caption_words_per_card": null,
+   "scene_median_s": 7.12,
+   "file": "references/ig-reels/DehL0UdMPw4/DehL0UdMPw4.mp4",
+   "sha1": "f5955ad641db5991a5651b889dd381e7f80a6cf4",
+   "size": 51606861
+  },
+  "ig/Dc9lkKjAaX2": {
+   "duration_s": 34.03,
+   "words": 12,
+   "pace_wps": 1.15,
+   "pauses_over_0_9s": 0,
+   "still_pct": 9.6,
+   "longest_still_s": 2.5,
+   "cuts_per_min": 1.8,
+   "loudness_lufs": -14.2,
+   "true_peak_dbtp": 0.7,
+   "caption_words_per_card": null,
+   "scene_median_s": null,
+   "file": "references/ig-reels/Dc9lkKjAaX2/Dc9lkKjAaX2.mp4",
+   "sha1": "3b86f817ebbb36541dcbf0fcc9609ab4912b4607",
+   "size": 1624415
+  },
+  "ig/DeecNSBNplG": {
+   "duration_s": 58.86,
+   "words": 126,
+   "pace_wps": 2.88,
+   "pauses_over_0_9s": 0,
+   "still_pct": 8.1,
+   "longest_still_s": 1.5,
+   "cuts_per_min": 0.0,
+   "loudness_lufs": -14.2,
+   "true_peak_dbtp": 1.7,
+   "caption_words_per_card": null,
+   "scene_median_s": null,
+   "file": "references/ig-reels/DeecNSBNplG/DeecNSBNplG.mp4",
+   "sha1": "7141413c10340c5679e1d7e49a2a4ea060b8d376",
+   "size": 6163876
+  }
+ }
+}

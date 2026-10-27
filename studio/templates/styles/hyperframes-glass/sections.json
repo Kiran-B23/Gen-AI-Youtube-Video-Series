@@ -1,0 +1,6 @@
+{
+ "dark": {"bg": "#070A1C", "bg2": "#1A1450", "text": "#F4F6FF", "dim": "rgba(244,246,255,0.68)", "accent": "#7CF5FF", "accent2": "#B892FF", "card": "rgba(255,255,255,0.08)", "line": "rgba(255,255,255,0.22)", "danger": "#FF5C8A", "ok": "#5CFFB5"},
+ "blue": {"bg": "#0A1240", "bg2": "#1B2C8F", "text": "#F4F6FF", "dim": "rgba(244,246,255,0.70)", "accent": "#7CF5FF", "accent2": "#B892FF", "card": "rgba(255,255,255,0.09)", "line": "rgba(255,255,255,0.24)", "danger": "#FF5C8A", "ok": "#5CFFB5"},
+ "light": {"bg": "#061A22", "bg2": "#0D4A55", "text": "#F2FFFE", "dim": "rgba(242,255,254,0.70)", "accent": "#5CFFB5", "accent2": "#7CF5FF", "card": "rgba(255,255,255,0.09)", "line": "rgba(255,255,255,0.24)", "danger": "#FF5C8A", "ok": "#5CFFB5"},
+ "yellow": {"bg": "#160A2E", "bg2": "#4A1A7A", "text": "#FFF6FF", "dim": "rgba(255,246,255,0.70)", "accent": "#FFC86B", "accent2": "#FF8AD8", "card": "rgba(255,255,255,0.09)", "line": "rgba(255,255,255,0.24)", "danger": "#FF5C8A", "ok": "#5CFFB5"}
+}

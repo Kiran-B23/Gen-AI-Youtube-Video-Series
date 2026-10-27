@@ -1,0 +1,10 @@
+[
+ {
+  "date": "2026-10-16",
+  "slug": "dots-v3",
+  "voice": "Puck",
+  "model": "gemini-2.5-flash-preview-tts",
+  "raw_pace": 2.64,
+  "words": 214
+ }
+]

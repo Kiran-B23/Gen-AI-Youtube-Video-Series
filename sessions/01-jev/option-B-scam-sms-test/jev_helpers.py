@@ -14,7 +14,7 @@ import pandas as pd
 
 __all__ = ["get_api_key", "ask_llm", "load_messages", "race", "scoreboard", "confident_mistakes",
            "threshold_table", "reliability_plot", "launch_app", "load_saved_results",
-           "band_report", "make_checker"]
+           "band_report", "make_checker", "calibration_buckets", "cascade_report"]
 
 OPENROUTER_BASE = "https://openrouter.ai/api"
 JEV_MODEL = "jev-1.13"                  # pinned; "jev-latest" can change without warning
@@ -183,21 +183,23 @@ def scoreboard(results: pd.DataFrame) -> None:
                 "scams caught": f"{(pred & truth).sum()} / {truth.sum()}",
                 "false alarms on genuine messages": f"{(pred & ~truth).sum()} / {(~truth).sum()}",
                 "scam type correct": f"{(scams[f'scam_type_{suffix}'] == scams.scam_type).mean():.0%}"}
-    valid = results[results.valid_llm]
-    board = pd.DataFrame({"Jev": grade("jev", results),
-                          f"Regular LLM (valid answers only, {len(valid)}/100)": grade("llm", valid)})
+    broken = int((~results.valid_llm.astype(bool)).sum())
+    board = pd.DataFrame({"Jev": grade("jev", results),   # a broken chatbot answer has no score, so it counts as "not a scam"
+                          f"Regular LLM (broken answers count as 'not a scam': {broken})": grade("llm", results)})
     return _show(board)
 
 
 def confident_mistakes(results: pd.DataFrame, scam_at: float = SCAM_AT, safe_at: float = SAFE_AT) -> None:
-    """Messages Jev got wrong while being past our thresholds, i.e. sure of itself."""
+    """Every message Jev got wrong; the ones past our thresholds (sure of itself) are ticked and listed first."""
     p = results.p_scam_jev
     wrong = results[(p >= 0.5) != (results.is_scam == 1)]
-    sure = wrong[(wrong.p_scam_jev >= scam_at) | (wrong.p_scam_jev <= safe_at)]
-    print(f"Jev was wrong on {len(wrong)} of 100 messages, and SURE of itself on {len(sure)} of those.")
-    out = sure.assign(truth=sure.is_scam.map({1: "scam", 0: "genuine"}))
-    return _show(out[["message", "truth", "p_scam_jev", "scam_type_jev", "note"]]
-                 .rename(columns={"p_scam_jev": "Jev's scam probability", "scam_type_jev": "Jev's scam type"}))
+    is_sure = (wrong.p_scam_jev >= scam_at) | (wrong.p_scam_jev <= safe_at)
+    print(f"Jev was wrong on {len(wrong)} of {len(results)} messages, and SURE of itself on {int(is_sure.sum())} of those.")
+    out = (wrong.assign(truth=wrong.is_scam.map({1: "scam", 0: "genuine"}), sure=is_sure.map({True: "✓", False: ""}))
+                .sort_values("sure", ascending=False))   # every mistake, the sure ones first
+    return _show(out[["message", "truth", "p_scam_jev", "sure", "scam_type_jev", "note"]]
+                 .rename(columns={"p_scam_jev": "Jev's scam probability", "sure": "sure of itself?",
+                                  "scam_type_jev": "Jev's scam type"}))
 
 
 def threshold_table(results: pd.DataFrame) -> None:
@@ -226,6 +228,46 @@ def reliability_plot(results: pd.DataFrame):
     ax.set_ylabel("What was really true (fraction that were scams)")
     ax.legend()
     plt.show()
+
+
+def calibration_buckets(results: pd.DataFrame) -> None:
+    """Three coarse buckets of Jev's confidence in its own answer, and how often it was right in each.
+    Confidence = how far p_scam is from 0.5 (0.97 and 0.03 are both 97% sure). Coarse on purpose: 100 messages is small."""
+    p = results.p_scam_jev
+    sure = p.where(p >= 0.5, 1 - p)
+    right = (p >= 0.5) == (results.is_scam == 1)
+    bucket = pd.cut(sure, [0.5, 0.7, 0.9, 1.0001], labels=["50–70% sure", "70–90% sure", "90%+ sure"], right=False)   # 0.90 counts as 90%+, like verdict()
+    table = (pd.DataFrame({"bucket": bucket, "right": right}).groupby("bucket", observed=False)
+               .agg(messages=("right", "size"), right=("right", "sum")))
+    table["right %"] = (table.right / table.messages.where(table.messages > 0)).map(
+        lambda x: "—" if pd.isna(x) else f"{x:.0%}")
+    return _show(table)
+
+
+def cascade_report(results: pd.DataFrame, threshold: float = 0.9) -> None:
+    """Chatbot alone vs Jev alone vs Jev + chatbot backup, all from the race results (no new API calls).
+    The backup sees only the messages Jev isn't sure about (between 1 - threshold and threshold)."""
+    truth = results.is_scam == 1
+    p_jev, p_llm = results.p_scam_jev, results.p_scam_llm
+    unsure = (p_jev < threshold) & (p_jev > round(1 - threshold, 6))
+    llm_pred = (p_llm.fillna(-1) >= 0.5)                      # an invalid chatbot answer counts as "not scam"
+    setups = {
+        "Chatbot alone": (llm_pred, results.cost_usd_llm, results.latency_s_llm),
+        "Jev alone": (p_jev >= 0.5, results.cost_usd_jev, results.latency_s_jev),
+        f"Jev + chatbot backup (threshold {threshold:.2f})": (
+            (p_jev >= 0.5).where(~unsure, llm_pred),
+            results.cost_usd_jev + results.cost_usd_llm.where(unsure, 0),
+            results.latency_s_jev + results.latency_s_llm.where(unsure, 0)),
+    }
+    rows = {}
+    for name, (pred, cost, latency) in setups.items():
+        rows[name] = {"accuracy": f"{(pred == truth).mean():.0%}",
+                      "scams caught": f"{(pred & truth).sum()} / {truth.sum()}",
+                      "false alarms": f"{(pred & ~truth).sum()} / {(~truth).sum()}",
+                      "cost per 1,000 messages": f"${cost.sum() * 10:.4f}",
+                      "average time per message": f"{latency.mean():.2f} s"}
+    print(f"The backup checked {int(unsure.sum())} of {len(results)} messages.")
+    return _show(pd.DataFrame(rows))
 
 
 # ---------- the fix: confidence bands ----------

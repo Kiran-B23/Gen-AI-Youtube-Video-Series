@@ -1,0 +1,191 @@
+{
+ "env": {
+  "ram_gb": 31.3,
+  "low_ram_mode": false,
+  "platform": "kaggle",
+  "gpus": [
+   "Tesla T4",
+   "Tesla T4"
+  ],
+  "vram_gb": [
+   14.6,
+   14.6
+  ],
+  "bf16_native": true,
+  "torch": "2.11.0+cu128",
+  "diffusers": "0.41.0.dev0",
+  "transformers": "5.19.0",
+  "python": "3.13.15"
+ },
+ "winner": "flux2-klein-4b",
+ "repo": "black-forest-labs/FLUX.2-klein-4B",
+ "licence": "Apache-2.0",
+ "dtype": "bfloat16",
+ "placement": "balanced",
+ "steps": 4,
+ "guidance": 1.0,
+ "native_size": [
+  720,
+  1280
+ ],
+ "final_size": [
+  1080,
+  1920
+ ],
+ "upscale": "Real-ESRGAN x2plus (BSD-3)",
+ "avg_seconds_per_image": 62.4,
+ "shots": [
+  {
+   "id": "s01",
+   "prompt": "Flat vector illustration, solid colour blocks, electric blue #2B3BE0, bright yellow #FFD23F, off-white #EEF1F6 and deep navy #0B1020 only, clean futuristic tech geometry, crisp edges, minimal, modern, high contrast, vertical 9:16 composition, no gradients, no grain, no glow, no text, no letters, no logos, no people, not cartoon, not pastel, not childish. A sleek smartphone floating over a perspective grid floor, a chat bubble rising from the screen, a question-mark shape glowing.",
+   "seed": 1234,
+   "seconds": 63.4,
+   "black_or_nan": false
+  },
+  {
+   "id": "s02",
+   "prompt": "Flat vector illustration, solid colour blocks, electric blue #2B3BE0, bright yellow #FFD23F, off-white #EEF1F6 and deep navy #0B1020 only, clean futuristic tech geometry, crisp edges, minimal, modern, high contrast, vertical 9:16 composition, no gradients, no grain, no glow, no text, no letters, no logos, no people, not cartoon, not pastel, not childish. A giant blinking text cursor beside a huge abstract glyph block that is turning into a stack of binary bars, camera close-up.",
+   "seed": 1235,
+   "seconds": 61.7,
+   "black_or_nan": false
+  },
+  {
+   "id": "s03",
+   "prompt": "Flat vector illustration, solid colour blocks, electric blue #2B3BE0, bright yellow #FFD23F, off-white #EEF1F6 and deep navy #0B1020 only, clean futuristic tech geometry, crisp edges, minimal, modern, high contrast, vertical 9:16 composition, no gradients, no grain, no glow, no text, no letters, no logos, no people, not cartoon, not pastel, not childish. A tidy 2 by 5 grid of square tiles, each tile flipping from a letter-like shape into a numeric bar pattern, three tiles ringed in yellow.",
+   "seed": 1236,
+   "seconds": 62.2,
+   "black_or_nan": false
+  },
+  {
+   "id": "s04",
+   "prompt": "Flat vector illustration, solid colour blocks, electric blue #2B3BE0, bright yellow #FFD23F, off-white #EEF1F6 and deep navy #0B1020 only, clean futuristic tech geometry, crisp edges, minimal, modern, high contrast, vertical 9:16 composition, no gradients, no grain, no glow, no text, no letters, no logos, no people, not cartoon, not pastel, not childish. A long horizontal ribbon of small tiles scrolling into the distance, endless and overwhelming, deep perspective.",
+   "seed": 1237,
+   "seconds": 62.3,
+   "black_or_nan": false
+  },
+  {
+   "id": "s05",
+   "prompt": "Flat vector illustration, solid colour blocks, electric blue #2B3BE0, bright yellow #FFD23F, off-white #EEF1F6 and deep navy #0B1020 only, clean futuristic tech geometry, crisp edges, minimal, modern, high contrast, vertical 9:16 composition, no gradients, no grain, no glow, no text, no letters, no logos, no people, not cartoon, not pastel, not childish. Tall server-rack shelves filled with thousands of small coloured tiles, like a giant library of pieces, receding into the distance.",
+   "seed": 1238,
+   "seconds": 62.4,
+   "black_or_nan": false
+  },
+  {
+   "id": "s06",
+   "prompt": "Flat vector illustration, solid colour blocks, electric blue #2B3BE0, bright yellow #FFD23F, off-white #EEF1F6 and deep navy #0B1020 only, clean futuristic tech geometry, crisp edges, minimal, modern, high contrast, vertical 9:16 composition, no gradients, no grain, no glow, no text, no letters, no logos, no people, not cartoon, not pastel, not childish. A glowing horizontal scan beam slicing a glass bar into seven pieces with small sparks at each cut.",
+   "seed": 1239,
+   "seconds": 62.3,
+   "black_or_nan": false
+  },
+  {
+   "id": "s07",
+   "prompt": "Flat vector illustration, solid colour blocks, electric blue #2B3BE0, bright yellow #FFD23F, off-white #EEF1F6 and deep navy #0B1020 only, clean futuristic tech geometry, crisp edges, minimal, modern, high contrast, vertical 9:16 composition, no gradients, no grain, no glow, no text, no letters, no logos, no people, not cartoon, not pastel, not childish. A tall glass panel listing rows of data, one single row highlighted in yellow, a pointer arrow aimed at it.",
+   "seed": 1240,
+   "seconds": 62.3,
+   "black_or_nan": false
+  },
+  {
+   "id": "s08",
+   "prompt": "Flat vector illustration, solid colour blocks, electric blue #2B3BE0, bright yellow #FFD23F, off-white #EEF1F6 and deep navy #0B1020 only, clean futuristic tech geometry, crisp edges, minimal, modern, high contrast, vertical 9:16 composition, no gradients, no grain, no glow, no text, no letters, no logos, no people, not cartoon, not pastel, not childish. A glass meter filling with small blue tiles dropping in from above, a gauge needle climbing, futuristic dashboard.",
+   "seed": 1241,
+   "seconds": 62.2,
+   "black_or_nan": false
+  }
+ ],
+ "smoke": [
+  {
+   "model": "z-image-turbo",
+   "repo": "Tongyi-MAI/Z-Image-Turbo",
+   "licence": "Apache-2.0",
+   "attempts": [
+    {
+     "dtype": "bfloat16",
+     "placement": "balanced",
+     "error": "exit 1: .OutOfMemoryError: CUDA out of memory. Tried to allocate 1.46 GiB. GPU 1 has a total capacity of 14.56 GiB of which 932.81 MiB is free. Including non-PyTorch memory, this process has 13.65 GiB memory in use. Of the allocated memory 13.33 GiB is allocated by PyTorch, and 202.60 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+    },
+    {
+     "dtype": "float16",
+     "placement": "balanced",
+     "load_s": 88.0,
+     "seconds_per_image": 23.5,
+     "black_or_nan": true,
+     "peak_vram_gb": 11.95
+    },
+    {
+     "dtype": "bfloat16",
+     "placement": "nf4",
+     "load_s": 87.3,
+     "seconds_per_image": 205.6,
+     "black_or_nan": false,
+     "peak_vram_gb": 10.2,
+     "image": "z-image-turbo.png",
+     "pass": false
+    }
+   ],
+   "result": {
+    "dtype": "bfloat16",
+    "placement": "nf4",
+    "load_s": 87.3,
+    "seconds_per_image": 205.6,
+    "black_or_nan": false,
+    "peak_vram_gb": 10.2,
+    "image": "z-image-turbo.png",
+    "pass": false
+   }
+  },
+  {
+   "model": "flux2-klein-4b",
+   "repo": "black-forest-labs/FLUX.2-klein-4B",
+   "licence": "Apache-2.0",
+   "attempts": [
+    {
+     "dtype": "bfloat16",
+     "placement": "balanced",
+     "load_s": 151.7,
+     "seconds_per_image": 61.5,
+     "black_or_nan": false,
+     "peak_vram_gb": 11.53,
+     "image": "flux2-klein-4b.png",
+     "pass": true
+    }
+   ],
+   "result": {
+    "dtype": "bfloat16",
+    "placement": "balanced",
+    "load_s": 151.7,
+    "seconds_per_image": 61.5,
+    "black_or_nan": false,
+    "peak_vram_gb": 11.53,
+    "image": "flux2-klein-4b.png",
+    "pass": true
+   }
+  },
+  {
+   "model": "flux1-schnell",
+   "repo": "black-forest-labs/FLUX.1-schnell",
+   "licence": "Apache-2.0",
+   "attempts": [
+    {
+     "dtype": "bfloat16",
+     "placement": "balanced",
+     "error": "exit 1: File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1953, in _raise_on_head_call_error |     raise head_call_error | huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6ace3382-0707ac955ea126d55115b859;403e1f18-bc21-4fb0-b6dd-45fbb5b6b06d) | Cannot access gated repo for url https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/741f7c3ce8b383c54771c7003378a50191e9efe9/model_index.json. | Access to model black-forest-labs/FLUX.1-schnell is restricted. You must have access to it and be authenticated to access it. Please log in."
+    },
+    {
+     "dtype": "float16",
+     "placement": "balanced",
+     "error": "exit 1: File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1953, in _raise_on_head_call_error |     raise head_call_error | huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6ace3390-1a8cfd0716921f7f6574398f;09127fbd-ff12-48bd-bc78-14adfd482c94) | Cannot access gated repo for url https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/741f7c3ce8b383c54771c7003378a50191e9efe9/model_index.json. | Access to model black-forest-labs/FLUX.1-schnell is restricted. You must have access to it and be authenticated to access it. Please log in."
+    },
+    {
+     "dtype": "bfloat16",
+     "placement": "nf4",
+     "error": "exit 1: File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1953, in _raise_on_head_call_error |     raise head_call_error | huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6ace339d-545bd20313c081ad4d6fbc82;2d8ba953-da66-4b2c-b71c-3fb31dbf7748) | Cannot access gated repo for url https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/741f7c3ce8b383c54771c7003378a50191e9efe9/model_index.json. | Access to model black-forest-labs/FLUX.1-schnell is restricted. You must have access to it and be authenticated to access it. Please log in."
+    },
+    {
+     "dtype": "float16",
+     "placement": "nf4",
+     "error": "exit 1: File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1953, in _raise_on_head_call_error |     raise head_call_error | huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6ace33ab-3ef670bb081726af69b23a92;650f7829-ae55-4fc7-9877-62d55a2df45c) | Cannot access gated repo for url https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/741f7c3ce8b383c54771c7003378a50191e9efe9/model_index.json. | Access to model black-forest-labs/FLUX.1-schnell is restricted. You must have access to it and be authenticated to access it. Please log in."
+    }
+   ]
+  }
+ ]
+}

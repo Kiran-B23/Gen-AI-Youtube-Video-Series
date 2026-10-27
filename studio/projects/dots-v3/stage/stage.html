@@ -1,0 +1,137 @@
+<!-- Dots reel · house style reference-flat · running object: a vector replica of the dot's ChatGPT window (left rail, bubbles,
+     composer, name chip) with the dot's computer pane under it, carrying the checkout bug. Launch: plain section titles, no numbers.
+     Window native box: x 40-1040, y 240-1120 (1000x880, local coords below); moved/scaled by GSAP. All classes prefixed d-. -->
+
+<!-- the running object: window + pane + cursor, alive from frame 0 to the CTA -->
+<div class="g" id="d-g-win">
+  <div id="d-rig" class="d-rig" data-layout-allow-overlap data-layout-allow-occlusion>
+  <div id="d-clock" class="d-clock" data-beat="s01/clock, s02/roll" data-layout-allow-overlap data-layout-allow-occlusion><span id="d-time" data-layout-allow-overlap data-layout-allow-occlusion>3:00</span><span class="d-ampm"> AM</span></div>
+  <div id="d-sped" class="d-chip d-yel d-sped" data-beat="s02/sped" data-layout-allow-overlap data-layout-allow-occlusion>sped up</div>
+
+  <div id="d-win" class="d-win" data-beat="s17/gone" data-layout-allow-overlap data-layout-allow-occlusion>
+    <div class="d-bar">
+      <i class="d-dot1"></i><i class="d-dot2"></i><i class="d-dot3"></i>
+      <span class="d-wtitle" data-layout-allow-overlap data-layout-allow-occlusion>ChatGPT · your dot</span>
+      <span id="d-clockchip" class="d-chip d-grey d-clockchip" data-layout-allow-overlap data-layout-allow-occlusion>7:00 AM</span>
+      <span id="d-more" class="d-more" data-layout-allow-overlap data-layout-allow-occlusion>•••</span>
+    </div>
+    <div class="d-rail"><i class="d-ic d-ic1"></i><i class="d-ic d-ic2"></i><i class="d-ic d-ic3"></i><i class="d-ic d-ic4"></i><i class="d-ic d-ic5"></i></div>
+
+    <div id="d-col" class="d-col" data-layout-allow-overlap data-layout-allow-occlusion>
+      <i id="d-halo" class="d-halo" data-layout-allow-overlap data-layout-allow-occlusion></i>
+      <div id="d-av" class="d-av" data-beat="s03/avatar" data-layout-allow-overlap data-layout-allow-occlusion></div>
+      <div class="d-chipwrap"><span id="d-chip" class="d-chip d-white d-namechip" data-layout-allow-overlap data-layout-allow-occlusion><i id="d-spin" class="d-spin" data-layout-allow-overlap data-layout-allow-occlusion></i><span id="d-ct1" data-layout-allow-overlap data-layout-allow-occlusion>Dot · idle</span><span id="d-ct2" style="display:none" data-layout-allow-overlap data-layout-allow-occlusion>Dot · Working…</span><span id="d-ct3" style="display:none" data-layout-allow-overlap data-layout-allow-occlusion>Dot · Done</span></span></div>
+
+      <div id="d-goal" class="d-ub" style="top:214px" data-layout-allow-overlap data-layout-allow-occlusion>Goal: keep the checkout bug-free</div>
+      <div id="d-slack" class="d-ab d-slack" data-beat="s01/slack" data-layout-allow-overlap data-layout-allow-occlusion><b>Slack</b> · #bugs — Checkout fails on iOS</div>
+      <div id="d-rev1" class="d-ab d-rev" style="top:404px" data-beat="s02/bubble" data-layout-allow-overlap data-layout-allow-occlusion>The fix is ready for review.<br>
+        <span id="d-link1" class="d-link" data-beat="s02/link" data-layout-allow-overlap data-layout-allow-occlusion>Review the fix<i id="d-ul1" class="d-ul" data-layout-allow-overlap data-layout-allow-occlusion></i></span><span class="d-rcpt" data-layout-allow-overlap data-layout-allow-occlusion>7:02 AM</span></div>
+
+      <div id="d-goal2" class="d-ub" style="top:214px" data-beat="s04/sent" data-layout-allow-overlap data-layout-allow-occlusion>Goal: keep the checkout bug-free</div>
+      <div id="d-inv" class="d-ab" style="top:304px" data-beat="s06/invest" data-layout-allow-overlap data-layout-allow-occlusion>Investigating the iOS checkout <span class="d-dots"><i id="d-td1" data-layout-allow-overlap data-layout-allow-occlusion></i><i id="d-td2" data-layout-allow-overlap data-layout-allow-occlusion></i><i id="d-td3" data-layout-allow-overlap data-layout-allow-occlusion></i></span></div>
+      <div id="d-rev2" class="d-ab d-rev" style="top:394px" data-beat="s08/result" data-layout-allow-overlap data-layout-allow-occlusion>The fix is ready for review.<br>
+        <span id="d-link2" class="d-link" data-beat="s08/click" data-layout-allow-overlap data-layout-allow-occlusion>Review the fix<i id="d-ul2" class="d-ul" data-layout-allow-overlap data-layout-allow-occlusion></i></span><span class="d-rcpt" data-layout-allow-overlap data-layout-allow-occlusion>7:02 AM</span></div>
+
+      <!-- s18-s19: the window returns with a fresh review and the rule in force -->
+      <div id="d-kick" class="d-chip d-yel d-kick" data-beat="s18/kicker, s19/pulse" data-layout-allow-overlap data-layout-allow-occlusion>rule: merging → Ask before taking action</div>
+      <div id="d-rev3" class="d-ab d-rev" style="top:330px" data-layout-allow-overlap data-layout-allow-occlusion>The fix is ready for review.<br>
+        <span id="d-link3" class="d-link" data-layout-allow-overlap data-layout-allow-occlusion>Review the fix<i id="d-ul3" class="d-ul" data-layout-allow-overlap data-layout-allow-occlusion></i></span><span class="d-rcpt" data-layout-allow-overlap data-layout-allow-occlusion>7:02 AM</span></div>
+      <div id="d-diff" class="d-diff" style="top:500px" data-beat="s18/diff" data-layout-allow-overlap data-layout-allow-occlusion><div class="d-dl">  total = price * qty</div><div id="d-dred" class="d-dl d-red" data-layout-allow-overlap data-layout-allow-occlusion>- qty + 1<i id="d-ring" class="d-ring" data-beat="s18/ring" data-layout-allow-overlap data-layout-allow-occlusion></i></div><div class="d-dl d-green">+ qty</div></div>
+      <div id="d-rulebox" class="d-rulebox" data-layout-allow-overlap data-layout-allow-occlusion>
+        <i id="d-rhl" class="d-rhl"></i>
+        <div class="d-rrow" data-layout-allow-overlap data-layout-allow-occlusion style="top:14px"><i class="d-radio"></i>Take action without asking</div>
+        <div class="d-rrow" data-layout-allow-overlap data-layout-allow-occlusion style="top:86px"><i class="d-radio"></i>Take action if pre-approved<span id="d-earned" class="d-chip d-ok d-earned" data-beat="s19/earned" data-layout-allow-overlap data-layout-allow-occlusion>earned ✓</span></div>
+        <div class="d-rrow" data-layout-allow-overlap data-layout-allow-occlusion style="top:158px"><i class="d-radio"></i>Ask before taking action</div>
+        <div class="d-rrow" data-layout-allow-overlap data-layout-allow-occlusion style="top:230px"><i class="d-radio"></i>Hand off to you</div>
+        <i id="d-rdot" class="d-rdot" data-beat="s19/chosen, s19/loosen" data-layout-allow-overlap data-layout-allow-occlusion></i>
+      </div>
+    </div>
+
+    <div id="d-comp" class="d-comp" data-layout-allow-overlap data-layout-allow-occlusion><span class="d-plus" data-layout-allow-overlap data-layout-allow-occlusion>+</span><span id="d-ph" class="d-typed" data-layout-allow-overlap data-layout-allow-occlusion>Send a message</span><span id="d-typed" class="d-typed on" data-beat="s04/typed" data-layout-allow-overlap data-layout-allow-occlusion></span><i id="d-ccaret" class="d-ccaret" data-layout-allow-overlap data-layout-allow-occlusion></i><i class="d-mic"></i><i id="d-send" class="d-send" data-layout-allow-overlap data-layout-allow-occlusion></i></div>
+    <div class="d-pbar"><i id="d-pfill" class="d-pfill" data-beat="s04/working" data-layout-allow-overlap data-layout-allow-occlusion></i></div>
+    <div id="d-dim" class="d-dimveil" data-beat="s04/dim" data-layout-allow-overlap data-layout-allow-occlusion></div>
+    <div id="d-illus" class="d-chip d-illus" data-beat="s01/illus" data-layout-allow-overlap data-layout-allow-occlusion>illustrative</div>
+
+    <!-- sheets open inside the window -->
+    <div id="d-profile" class="d-sheet" data-beat="s09/sheet" data-layout-allow-overlap data-layout-allow-occlusion>
+      <div class="d-tabs"><span>In progress</span><span>Scheduled</span><span>Completed</span><i id="d-tabline" class="d-tabline" data-layout-allow-overlap data-layout-allow-occlusion></i></div>
+      <div id="d-pr1" class="d-prow" style="top:110px" data-layout-allow-overlap data-layout-allow-occlusion>Checkout fix · in review <span class="d-chip d-grey">1</span></div>
+      <div id="d-pr2" class="d-prow" style="top:200px" data-layout-allow-overlap data-layout-allow-occlusion>Release notes · done <span class="d-chip d-grey">2</span></div>
+      <div id="d-calrow" class="d-prow d-calrow" style="top:110px" data-beat="s09/calrow" data-layout-allow-overlap data-layout-allow-occlusion><span id="d-caltxt" data-layout-allow-overlap data-layout-allow-occlusion></span><i id="d-calcaret" class="d-caret d-calcaret" data-layout-allow-overlap data-layout-allow-occlusion></i><span id="d-calclock" class="d-chip d-grey" data-layout-allow-overlap data-layout-allow-occlusion>7:00</span><i id="d-caltoggle" class="d-tg" data-beat="s09/toggle" data-layout-allow-overlap data-layout-allow-occlusion><b></b></i></div>
+    </div>
+
+    <div id="d-rules" class="d-sheet" data-beat="s10/rules" data-layout-allow-overlap data-layout-allow-occlusion>
+      <div class="d-shead" data-layout-allow-overlap data-layout-allow-occlusion>Customize → Custom rules</div>
+      <div id="d-addrule" class="d-addrule" data-layout-allow-overlap data-layout-allow-occlusion>+ Add a rule</div>
+      <div id="d-rulefield" class="d-field" data-beat="s10/rule" data-layout-allow-overlap data-layout-allow-occlusion><span id="d-ruletxt" data-layout-allow-overlap data-layout-allow-occlusion></span><i id="d-rcaret" class="d-caret" data-layout-allow-overlap data-layout-allow-occlusion></i></div>
+      <div id="d-slots" class="d-slots" data-beat="s10/slots, s11/slots4" data-layout-allow-overlap data-layout-allow-occlusion>
+        <i id="d-shl" class="d-shl" data-beat="s11/hl1, s12/hl2, s13/hl3, s14/hl4" data-layout-allow-overlap data-layout-allow-occlusion></i>
+        <div class="d-slot" style="top:0"><i class="d-radio"></i><span id="d-lv1" class="d-lvt" data-beat="s11/lv1" data-layout-allow-overlap data-layout-allow-occlusion>Take action without asking</span></div>
+        <div class="d-slot" style="top:90px"><i class="d-radio"></i><span id="d-lv2" class="d-lvt" data-beat="s12/lv2" data-layout-allow-overlap data-layout-allow-occlusion>Take action if pre-approved<small id="d-lv2sub" class="d-sub" data-beat="s12/lv2sub" data-layout-allow-overlap data-layout-allow-occlusion>pre-approved = you asked for it in your prompt</small></span></div>
+        <div class="d-slot" style="top:180px"><i class="d-radio"></i><span id="d-lv3" class="d-lvt" data-beat="s13/lv3" data-layout-allow-overlap data-layout-allow-occlusion>Ask before taking action<small id="d-wait" class="d-sub" data-beat="s13/wait" data-layout-allow-overlap data-layout-allow-occlusion>waiting for your okay<b class="d-wd">.</b><b class="d-wd">.</b><b class="d-wd">.</b></small></span></div>
+        <div class="d-slot" style="top:270px"><i class="d-radio"></i><span id="d-lv4" class="d-lvt" data-beat="s14/lv4" data-layout-allow-overlap data-layout-allow-occlusion>Hand off to you<small id="d-youdo" class="d-sub d-youdo" data-beat="s14/youdo" data-layout-allow-overlap data-layout-allow-occlusion>you do it</small></span></div>
+      </div>
+      <div id="d-pw" class="d-slot d-pw" data-beat="s15/pw" data-layout-allow-overlap data-layout-allow-occlusion><i id="d-pwradio" class="d-radio d-radiolock" data-layout-allow-overlap data-layout-allow-occlusion></i><i class="d-lock"></i><span class="d-lvt d-pwt">Changing a password</span><span id="d-alwaysyou" class="d-chip d-ink" data-beat="s15/alwaysyou" data-layout-allow-overlap data-layout-allow-occlusion>always you</span></div>
+    </div>
+
+    <div id="d-plugins" class="d-sheet" data-beat="s16/plugins" data-layout-allow-overlap data-layout-allow-occlusion>
+      <div class="d-shead" data-layout-allow-overlap data-layout-allow-occlusion>Customize → Plugins</div>
+      <svg class="d-lines" viewBox="0 0 820 670"><path id="d-l1" class="d-line" d="M 380 128 C 440 128, 440 110, 480 110"/><path id="d-l2" class="d-line" d="M 380 128 C 440 128, 440 210, 480 210"/></svg>
+      <div id="d-prow1" class="d-arow" style="top:90px" data-beat="s16/slackrow" data-layout-allow-overlap data-layout-allow-occlusion>Slack<i id="d-tg1" class="d-tg on" data-beat="s16/off" data-layout-allow-overlap data-layout-allow-occlusion><b></b></i></div>
+      <div class="d-arow" data-layout-allow-overlap data-layout-allow-occlusion style="top:190px">Calendar<i class="d-tg on"><b></b></i></div>
+      <div class="d-arow" data-layout-allow-overlap data-layout-allow-occlusion style="top:290px">Code<i class="d-tg on"><b></b></i></div>
+      <div id="d-notes" class="d-notes" data-beat="s16/notes" data-layout-allow-overlap data-layout-allow-occlusion><span id="d-note1" class="d-note" style="top:90px" data-layout-allow-overlap data-layout-allow-occlusion>deploy day: Thursday</span><span id="d-note2" class="d-note" style="top:190px" data-layout-allow-overlap data-layout-allow-occlusion>iOS build: TestFlight</span></div>
+      <div id="d-stays" class="d-chip d-yel d-stays" data-beat="s16/stays" data-layout-allow-overlap data-layout-allow-occlusion>what it read stays</div>
+    </div>
+
+    <div id="d-menu" class="d-menu" data-beat="s17/menu" data-layout-allow-overlap data-layout-allow-occlusion><div>Pause</div><div id="d-menureset" data-layout-allow-overlap data-layout-allow-occlusion>Reset</div></div>
+    <div id="d-dialog" class="d-dialog" data-beat="s17/dialog" data-layout-allow-overlap data-layout-allow-occlusion>
+      <div class="d-dtitle">Reset your dot?</div>
+      <div class="d-dbody" data-layout-allow-overlap data-layout-allow-occlusion>Reset deletes your dot, including its <span id="d-lit1" class="d-lit" data-beat="s17/lit1" data-layout-allow-overlap data-layout-allow-occlusion>conversations</span>, <span id="d-lit2" class="d-lit" data-beat="s17/lit2" data-layout-allow-overlap data-layout-allow-occlusion>saved memories</span>, and <span id="d-lit3" class="d-lit" data-beat="s17/lit3" data-layout-allow-overlap data-layout-allow-occlusion>scheduled tasks</span>.</div>
+      <div class="d-dbtns"><span class="d-btn d-cancel">Cancel</span><span id="d-resetbtn" class="d-btn d-resetbtn" data-layout-allow-overlap data-layout-allow-occlusion>Reset</span></div>
+    </div>
+  </div>
+
+  <!-- the dot's computer pane (stacked under the chat for 9:16) -->
+  <div id="d-pane" class="d-pane" data-beat="s05/pane" data-layout-allow-overlap data-layout-allow-occlusion>
+    <div class="d-pbarr"><i class="d-dot1"></i><i class="d-dot2"></i><i class="d-dot3"></i>
+      <span id="d-label" class="d-label" data-beat="s07/label" data-layout-allow-overlap data-layout-allow-occlusion></span>
+      <span id="d-url" class="d-url" data-beat="s05/url" data-layout-allow-overlap data-layout-allow-occlusion><span id="d-urltxt" data-layout-allow-overlap data-layout-allow-occlusion></span></span></div>
+    <div class="d-pbar2"><i id="d-pfill2" class="d-pfill" data-beat="s08/bar" data-layout-allow-overlap data-layout-allow-occlusion></i></div>
+    <div class="d-page">
+      <div id="d-example" class="d-chip d-ink d-example" data-beat="s06/example" data-layout-allow-overlap data-layout-allow-occlusion>OpenAI's own example · illustrative</div>
+      <div id="d-form" class="d-form" data-beat="s05/form" data-layout-allow-overlap data-layout-allow-occlusion>
+        <div class="d-ftitle" data-layout-allow-overlap data-layout-allow-occlusion>Checkout</div>
+        <div class="d-frow" data-layout-allow-overlap data-layout-allow-occlusion><span>Card number</span><i id="d-f1" class="d-fbox" data-beat="s07/field" data-layout-allow-overlap data-layout-allow-occlusion><span id="d-f1t" data-layout-allow-overlap data-layout-allow-occlusion></span><i id="d-fcaret" class="d-caret d-fcaret" data-layout-allow-overlap data-layout-allow-occlusion></i></i></div>
+        <div class="d-frow" data-layout-allow-overlap data-layout-allow-occlusion><span>Expiry</span><i class="d-fbox"></i></div>
+        <div class="d-frow" data-layout-allow-overlap data-layout-allow-occlusion><span>Name</span><i class="d-fbox"></i></div>
+        <div id="d-pay" class="d-pay" data-layout-allow-overlap data-layout-allow-occlusion>Pay</div>
+      </div>
+      <div id="d-code" class="d-code" data-beat="s06/code" data-layout-allow-overlap data-layout-allow-occlusion><div class="d-chead">checkout.ts</div><div id="d-c1" class="d-cl" data-layout-allow-overlap data-layout-allow-occlusion></div><div id="d-c2" class="d-cl d-red" data-layout-allow-overlap data-layout-allow-occlusion></div><div id="d-c3" class="d-cl d-green" data-layout-allow-overlap data-layout-allow-occlusion></div></div>
+    </div>
+    <div class="d-term"><div id="d-log" class="d-log" data-layout-allow-overlap data-layout-allow-occlusion></div><span id="d-termtxt" class="d-termtxt" data-layout-allow-overlap data-layout-allow-occlusion></span><i id="d-scan" class="d-scan" data-layout-allow-overlap data-layout-allow-occlusion></i><span id="d-illus2" class="d-chip d-illus2" data-layout-allow-overlap data-layout-allow-occlusion>illustrative</span></div>
+  </div>
+  <div id="d-passed" class="d-chip d-ok d-passed" data-beat="s06/passed" data-layout-allow-overlap data-layout-allow-occlusion></div>
+  <div id="d-sped2" class="d-chip d-yel d-sped2" data-layout-allow-overlap data-layout-allow-occlusion>sped up</div>
+  <i id="d-dotend" class="d-dotend" data-layout-allow-overlap data-layout-allow-occlusion></i>
+  <i id="d-cur" class="d-cur" data-beat="s15/drift, s15/locked" data-layout-allow-overlap data-layout-allow-occlusion></i>
+  </div>
+</div>
+
+<!-- section overlays -->
+<div class="g" id="d-g-what">
+  <div id="d-t3" class="d-title d-ontint" data-layout-allow-overlap data-layout-allow-occlusion>What it is</div>
+  <div id="d-adot" class="d-adot" data-beat="s03/adot" data-layout-allow-overlap data-layout-allow-occlusion>A DOT</div>
+  <div id="d-chip3" class="d-chip d-yel d-chip3" data-beat="s03/chip" data-layout-allow-overlap data-layout-allow-occlusion>always-on agent · in ChatGPT</div>
+</div>
+<div class="g" id="d-g-how"><div id="d-t5" class="d-title d-onlight" data-layout-allow-overlap data-layout-allow-occlusion>How it works</div></div>
+<div class="g" id="d-g-rules"><div id="d-t10" class="d-title d-onlight" data-layout-allow-overlap data-layout-allow-occlusion>You set the rules</div></div>
+<div class="g" id="d-g-catch"><div id="d-t13" class="d-title d-ontint" data-layout-allow-overlap data-layout-allow-occlusion>The catch</div></div>
+<div class="g" id="d-g-take">
+  <div id="d-t15" class="d-title d-ontint" data-layout-allow-overlap data-layout-allow-occlusion>My take</div>
+  <div id="d-askfirst" class="d-askfirst" data-beat="s19/askfirst" data-layout-allow-overlap data-layout-allow-occlusion>ASK FIRST.</div>
+</div>
+<div class="g" id="d-g-cta">
+  <div class="cta" id="d-cta" data-beat="s20/question" data-layout-allow-overlap data-layout-allow-occlusion><span id="d-q1" data-layout-allow-overlap data-layout-allow-occlusion>What</span> <span id="d-q2" data-layout-allow-overlap data-layout-allow-occlusion>should</span> <span id="d-q3" data-layout-allow-overlap data-layout-allow-occlusion>I</span> <span id="d-q4" data-layout-allow-overlap data-layout-allow-occlusion>explain</span> <span id="d-q5" class="yl" data-layout-allow-overlap data-layout-allow-occlusion>next?</span></div>
+  <div id="d-ctaf" class="ctaf" data-beat="s21/follow" data-layout-allow-overlap data-layout-allow-occlusion>Tell me below ↓</div>
+</div>

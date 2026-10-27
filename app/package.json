@@ -1,0 +1,17 @@
+{
+  "name": "studio-app",
+  "private": true,
+  "description": "Owner-only LAN web UI over the studio pipeline (studio/tools/run.sh). See README.md.",
+  "type": "module",
+  "workspaces": ["server", "web"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c blue,magenta \"npm run dev -w server\" \"npm run dev -w web\"",
+    "build": "npm run build -w server && npm run build -w web",
+    "typecheck": "npm run typecheck -w server && npm run typecheck -w web",
+    "start": "npm run start -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}

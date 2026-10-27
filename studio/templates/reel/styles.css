@@ -1,4 +1,4 @@
-/* Reel template · 1080x1920 · grid: tracker y70 · kicker y150 · visual zone x40-1040 y220-1260 (centred) · source tag y1272 (key claims) · captions y1380-1560 · bottom 15% and the lower-right button column clear */
+/* Reel template · 1080x1920 · grid: tracker y70 · kicker y150 · stage zone y 220-1460 · media clip box y 220-1260 (x 40-1040) · captions from y 1555 (--cap-top, set by assemble.py; 81-90% of the height) · the lower-right button column stays clear */
 @font-face { font-family: "Anton"; src: url("fonts/Anton.ttf") format("truetype"); font-weight: 400; }
 @font-face { font-family: "Inter"; src: url("fonts/Inter.ttf") format("truetype"); font-weight: 100 900; }
 @font-face { font-family: "Noto Sans Tamil"; src: url("fonts/NotoSansTamil-Regular.ttf") format("truetype"); font-weight: 400; }
@@ -10,6 +10,8 @@
 #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Inter", "Noto Sans Tamil", "Noto Sans Devanagari", sans-serif; color: var(--text); }  /* Indic fallbacks (OFL) */
 
 .bgfill { position: absolute; inset: 0; background: var(--bg); }
+.stage { position: absolute; inset: 0; }
+#cam { position: absolute; inset: 0; transform-origin: 0 0; }   /* camera: beat "cam": [x, y, zoom] or cam() in stage.js zooms the stage only; captions stay put */
 .secbg { position: absolute; inset: 0; background: var(--bg); overflow: hidden; }   /* section colour; clips are transparent so they sit on these depth layers */
 .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 42%, transparent 55%, rgba(0,0,0,0.28) 100%); }
 .lightspot { position: absolute; left: -10%; top: -8%; width: 70%; height: 45%; background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.16) 0%, transparent 65%); }
@@ -39,12 +41,12 @@
 .acc { color: var(--accent); }
 .sub { font-size: 52px; font-weight: 800; color: var(--dim); line-height: 1.2; }
 .chips { display: flex; flex-wrap: wrap; gap: 16px; }
-.chip { display: block; padding: 12px 22px; border: 3px solid var(--accent); border-radius: 14px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 38px; color: var(--accent); opacity: 0; }
+.chip { display: block; padding: 12px 22px; border: 3px solid var(--accent); border-radius: 14px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 46px; color: var(--accent); opacity: 0; }
 
 .h2 { font-size: 64px; font-weight: 900; line-height: 1.1; }
-.h3 { font-family: "Anton", sans-serif; font-size: 72px; line-height: 1; margin-bottom: 18px; }
+.h3 { font-family: "Anton", sans-serif; font-size: 84px; line-height: 1; margin-bottom: 18px; }
 .rows { display: flex; flex-direction: column; gap: 18px; }
-.row { display: flex; align-items: center; gap: 22px; padding: 24px 28px; border-radius: 24px; background: var(--card); border: 2px solid var(--line); font-size: 46px; font-weight: 800; opacity: 0; }
+.row { display: flex; align-items: center; gap: 22px; padding: 24px 28px; border-radius: 24px; background: var(--card); border: 2px solid var(--line); font-size: 52px; font-weight: 800; opacity: 0; }
 .ico { font-size: 52px; }
 .pill { margin-left: auto; padding: 6px 14px; border-radius: 999px; border: 2px solid var(--line); font-size: 30px; font-weight: 600; color: var(--dim); white-space: nowrap; }
 .pill.big { margin: 0; font-size: 36px; }
@@ -55,7 +57,7 @@
 .card { background: var(--card); border: 2px solid var(--line); border-radius: 28px; padding: 30px 28px; }
 .col { flex: 1; min-height: 460px; opacity: 0; }
 .col.accent { border-color: var(--accent); }
-.li { font-size: 42px; font-weight: 700; line-height: 1.25; margin-top: 14px; }
+.li { font-size: 52px; font-weight: 700; line-height: 1.25; margin-top: 14px; }
 .verdict { font-family: "Anton", sans-serif; font-size: 84px; line-height: 1.05; color: var(--accent); text-align: center; opacity: 0; }
 
 .stamp { display: block; padding: 10px 40px; border: 12px solid var(--danger); border-radius: 26px; font-family: "Anton", sans-serif; font-size: 220px; line-height: 1.05; color: var(--danger); opacity: 0; }
@@ -73,8 +75,8 @@
 .follow { padding: 26px 56px; border-radius: 999px; background: var(--accent); color: var(--bg); font-size: 52px; font-weight: 900; opacity: 0; }
 .kicker { top: 150px; font-size: 34px; }
 
-.caption { position: absolute; left: 72px; top: 1555px; width: 880px; }   /* caption zone: 81-90% of the height (user: lower) */
-.capbox { display: block; font-size: 60px; font-weight: 800; line-height: 1.2; color: var(--text);
+.caption { position: absolute; left: 72px; top: var(--cap-top, 1555px); width: var(--cap-w, 880px); }   /* caption zone: 81-90% of the height (user: lower); one geometry, from assemble.py */
+.capbox { display: block; font-size: var(--cap-px, 60px); font-weight: 800; line-height: 1.2; color: var(--text);
   text-shadow: 0 0 18px var(--bg), 0 0 6px var(--bg), 0 2px 0 var(--bg); }   /* no box: the sentence sits on the section, a halo in the bg colour keeps it legible over visuals */
 .w { opacity: 0.55; display: inline-block; margin: 0 0.06em; transform-origin: 50% 70%; }   /* inline-block + side margin so the kinetic pop never touches its neighbours */
 .w.hot { color: var(--accent); }
@@ -91,3 +93,8 @@
 .recapitem { display: flex; align-items: center; gap: 22px; padding: 18px 34px; border-radius: 26px; background: var(--card); border: 3px solid var(--accent); font-size: 60px; font-weight: 900; opacity: 0; }
 .recapn { font-family: "JetBrains Mono", monospace; font-size: 40px; color: var(--accent); }
 .arrow { font-size: 54px; font-weight: 900; color: var(--accent); line-height: 1; opacity: 0; }
+
+/* Landscape (16:9 long-form, 1920x1080): captions centred low (86-95% of the height), clear of the side columns
+   where the characters stand (x < 460 and x > 1460) */
+#root.landscape .caption { left: 460px; top: 930px; width: 1000px; text-align: center; }
+#root.landscape .capbox { font-size: 46px; }

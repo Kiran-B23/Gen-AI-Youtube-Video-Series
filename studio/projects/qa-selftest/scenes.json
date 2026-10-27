@@ -1,0 +1,98 @@
+{
+  "slug": "qa-selftest",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/fresh-focus",
+  "flat": true,
+  "names": [],
+  "keywords": [
+    "camera"
+  ],
+  "voice": {
+    "engine": "kokoro"
+  },
+  "stage": {
+    "kit": "reference-flat",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "title",
+      "section": "dark",
+      "say": "A tiny self test of the new gates.",
+      "props": {
+        "lines": [
+          "Self",
+          "test"
+        ],
+        "highlight": "test"
+      }
+    },
+    {
+      "id": "s02",
+      "type": "stage",
+      "section": "blue",
+      "say": "The camera zooms to the card, then comes home.",
+      "beats": [
+        {
+          "target": "card",
+          "word": "card",
+          "cam": [
+            300,
+            600,
+            1.8
+          ],
+          "sfx": "blip"
+        },
+        {
+          "target": "home",
+          "word": "home",
+          "check": "none",
+          "cam": [
+            540,
+            840,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "stage",
+      "section": "light",
+      "say": "This scene holds one frame for several seconds without any motion at all, which the checker must flag.",
+      "beats": [
+        {
+          "target": "held",
+          "word": "scene",
+          "check": "visible"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "type": "cta",
+      "section": "dark",
+      "say": "What should I explain next? Tell me below.",
+      "props": {
+        "question": "What should I explain next?"
+      },
+      "beats": [
+        {
+          "target": "question",
+          "word": "What"
+        },
+        {
+          "target": "follow",
+          "word": "Tell"
+        }
+      ]
+    }
+  ]
+}

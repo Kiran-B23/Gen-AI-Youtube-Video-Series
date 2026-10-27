@@ -1,0 +1,17 @@
+{
+  "name": "studio-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Optional Remotion engine for studio projects (personal use; HyperFrames stays the default engine)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@remotion/cli": "4.0.532",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.532"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "typescript": "5.9.3"
+  }
+}

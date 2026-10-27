@@ -1,0 +1,50 @@
+{
+ "dark": {
+  "bg": "#0B1020",
+  "bg2": "#0B1020",
+  "text": "#FFFFFF",
+  "dim": "rgba(255,255,255,0.62)",
+  "accent": "#FFD23F",
+  "accent2": "#7B8CFF",
+  "card": "rgba(255,255,255,0.08)",
+  "line": "rgba(255,255,255,0.22)",
+  "danger": "#FF4D5E",
+  "ok": "#2ED3A0"
+ },
+ "blue": {
+  "bg": "#2B3BE0",
+  "bg2": "#2B3BE0",
+  "text": "#FFFFFF",
+  "dim": "rgba(255,255,255,0.70)",
+  "accent": "#FFD23F",
+  "accent2": "#C9D0FF",
+  "card": "rgba(255,255,255,0.12)",
+  "line": "rgba(255,255,255,0.35)",
+  "danger": "#FF4D5E",
+  "ok": "#2ED3A0"
+ },
+ "light": {
+  "bg": "#EEF1F6",
+  "bg2": "#EEF1F6",
+  "text": "#0B1020",
+  "dim": "rgba(11,16,32,0.55)",
+  "accent": "#2B3BE0",
+  "accent2": "#2B3BE0",
+  "card": "#FFFFFF",
+  "line": "rgba(11,16,32,0.85)",
+  "danger": "#E5364A",
+  "ok": "#14B87A"
+ },
+ "yellow": {
+  "bg": "#FFD23F",
+  "bg2": "#FFD23F",
+  "text": "#0B1020",
+  "dim": "rgba(11,16,32,0.62)",
+  "accent": "#2B3BE0",
+  "accent2": "#0B1020",
+  "card": "#FFFFFF",
+  "line": "rgba(11,16,32,0.85)",
+  "danger": "#E5364A",
+  "ok": "#0B1020"
+ }
+}

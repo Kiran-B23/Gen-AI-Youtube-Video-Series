@@ -1,0 +1,137 @@
+/* Jev pilot · reference-reel look: flat colour blocks, giant display type, mono token chips, one running object */
+.stage { position: absolute; inset: 0; }
+.g { position: absolute; inset: 0; visibility: hidden; opacity: 0; }
+.mono { font-family: "JetBrains Mono", monospace; }
+.wt { color: #fff; } .yl { color: #FFD23F; }   /* not .w/.y: .w is the caption-word class */
+.illus { position: absolute; right: 60px; top: 1440px; font-size: 24px; font-weight: 600; color: rgba(255,255,255,0.5); }
+.illus.dark { color: rgba(11,16,32,0.6); }
+
+/* progress */
+.prog { position: absolute; left: 72px; top: 72px; display: flex; gap: 10px; align-items: center; opacity: 0; }
+.seg { width: 70px; height: 8px; border-radius: 4px; background: currentColor; opacity: 0.22; }
+.proglab { font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700; margin-left: 10px; opacity: 0.7; }
+
+/* s01 hook */
+.matrix { position: absolute; left: 40px; top: 160px; width: 1000px; height: 1280px; display: grid; grid-template-columns: repeat(6, 1fr); row-gap: 26px; overflow: hidden;
+  font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 700; color: rgba(255,255,255,0.10); text-align: center; opacity: 0; }
+.matrix span.hi { color: rgba(255,210,63,0.4); }
+.hl, .hlbox span { text-shadow: 0 0 40px #0B1020, 0 0 16px #0B1020; }
+.hook { position: absolute; left: 72px; top: 330px; width: 936px; }
+.hl { font-family: "Anton", sans-serif; font-size: 230px; line-height: 0.95; color: #fff; text-transform: uppercase; opacity: 0; }
+.zero { display: inline-block; margin-top: 26px; padding: 10px 22px; border: 3px solid #FF4D5E; border-radius: 12px; font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; color: #FF4D5E; opacity: 0; }
+.hlbox { margin-top: 60px; opacity: 0; }
+.hlbox span { display: inline-block; padding: 14px 34px 6px; border: 5px solid #FFD23F; border-radius: 24px; background: rgba(11,16,32,0.85);
+  font-family: "Anton", sans-serif; font-size: 150px; line-height: 1; color: #FFD23F; }
+
+/* s02 meet */
+.meet { position: absolute; left: 72px; top: 250px; font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; letter-spacing: 0.3em; color: rgba(255,255,255,0.75); opacity: 0; }
+.jevbig { position: absolute; left: 60px; top: 300px; font-family: "Anton", sans-serif; font-size: 400px; line-height: 1; color: #fff; opacity: 0; }
+.qa { position: absolute; left: 72px; top: 860px; width: 936px; }
+.qarow { display: flex; align-items: center; gap: 22px; height: 104px; }
+.q, .a { font-family: "JetBrains Mono", monospace; font-size: 46px; font-weight: 800; padding: 12px 24px; border-radius: 16px; opacity: 0; }
+.q { background: #fff; color: #2B3BE0; width: 300px; text-align: center; }
+.a { background: #FFD23F; color: #0B1020; width: 230px; text-align: center; }
+.arr { font-size: 54px; font-weight: 900; color: #fff; opacity: 0; }
+.conf { flex: 1; height: 22px; border-radius: 11px; background: rgba(255,255,255,0.2); overflow: hidden; opacity: 0; }
+.conf i { display: block; height: 100%; background: #fff; border-radius: 11px; transform-origin: 0 50%; }
+.qalab { display: flex; margin-top: 18px; font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 800; letter-spacing: 0.12em; color: rgba(255,255,255,0.7); }
+.qalab span { opacity: 0; } .qalab span:nth-child(1) { width: 322px; } .qalab span:nth-child(2) { width: 330px; padding-left: 70px; }
+
+/* section cards: one big plain title (no step numbers: Launch reel, per the structure check) */
+.chap { color: #2B3BE0; }
+.chapt { position: absolute; left: 72px; top: 300px; width: 936px; font-family: "Anton", sans-serif; font-size: 200px; line-height: 0.95; text-transform: uppercase; color: #0B1020; }
+#c2 .chapt, #c4 .chapt { color: #2B3BE0; } #c2 .chapt { color: #FFD23F; } #c3 .chapt { color: #FFD23F; }
+
+/* s03-s04 ticket */
+.ticket { position: absolute; left: 72px; top: 820px; width: 936px; padding: 34px 40px 40px; background: #fff; border: 4px solid #0B1020; border-radius: 30px; overflow: hidden; opacity: 0; }
+.tkhead { display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 28px; font-weight: 800; }
+.tkid { color: #2B3BE0; } .tkfrom { color: rgba(11,16,32,0.45); }
+.tktext { margin-top: 22px; min-height: 140px; font-size: 58px; font-weight: 800; line-height: 1.2; color: #0B1020; }
+.cur { display: inline-block; width: 5px; height: 58px; margin-left: 4px; vertical-align: -6px; background: #2B3BE0; }
+.scan { position: absolute; top: 0; bottom: 0; left: -40px; width: 30px; background: linear-gradient(90deg, transparent, rgba(43,59,224,0.55), transparent); opacity: 0; }
+.three { position: absolute; left: 0; width: 1080px; top: 580px; text-align: center; color: #2B3BE0; opacity: 0; }
+.threen { font-family: "Inter", sans-serif; font-weight: 900; font-size: 200px; line-height: 1; }
+.threel { font-family: "JetBrains Mono", monospace; font-size: 28px; font-weight: 800; letter-spacing: 0.2em; }
+.rows { position: absolute; left: 72px; top: 860px; width: 936px; }
+.row { display: flex; align-items: center; justify-content: space-between; height: 128px; margin-bottom: 22px; padding: 0 30px; background: #fff; border: 4px solid #0B1020; border-radius: 26px; opacity: 0; }
+.rq { font-family: "JetBrains Mono", monospace; font-size: 44px; font-weight: 800; color: #0B1020; }
+.ra { font-family: "JetBrains Mono", monospace; font-size: 50px; font-weight: 800; padding: 8px 28px; border-radius: 16px; color: #fff; opacity: 0; }
+.ra.ok { background: #14B87A; } .ra.warn { background: #F5A400; } .ra.bad { background: #E5364A; }
+
+/* s05-s06 numbers on blue */
+.mini { position: absolute; left: 72px; top: 250px; display: flex; gap: 14px; align-items: center; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; color: #fff; opacity: 0; }
+.mini b { padding: 8px 16px; border-radius: 12px; background: rgba(255,255,255,0.16); }
+.clock { position: absolute; left: 340px; top: 380px; width: 400px; height: 400px; opacity: 0; }
+.clk-bg { fill: none; stroke: rgba(255,255,255,0.22); stroke-width: 34; }
+.clk-arc { fill: none; stroke: #FFD23F; stroke-width: 34; stroke-linecap: butt; stroke-dasharray: 1068.1; stroke-dashoffset: 1068.1; }
+.clocklab { position: absolute; left: 0; width: 1080px; top: 555px; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; color: rgba(255,255,255,0.75); opacity: 0; }
+.big { position: absolute; left: 0; width: 1080px; top: 860px; text-align: center; font-family: "Anton", sans-serif; font-size: 260px; line-height: 1; opacity: 0; }
+.bigl { position: absolute; left: 90px; width: 900px; top: 1150px; text-align: center; font-size: 50px; font-weight: 800; line-height: 1.2; opacity: 0; }
+#price { top: 420px; } #pricel { top: 710px; }
+.outrow { position: absolute; left: 0; width: 1080px; top: 980px; display: flex; justify-content: center; align-items: center; gap: 40px; font-family: "Anton", sans-serif; font-size: 150px; color: #fff; opacity: 0; }
+.free { display: inline-block; padding: 0 30px; border: 10px solid #FFD23F; border-radius: 22px; color: #FFD23F; transform: rotate(-6deg); opacity: 0; }
+
+/* s07 yellow: counting cells, then the cost bars */
+.cnt { position: absolute; left: 0; width: 1080px; top: 230px; display: flex; flex-direction: column-reverse; justify-content: flex-end; height: 260px; text-align: center; color: #0B1020; opacity: 0; }
+.cntn { font-family: "Inter", sans-serif; font-weight: 900; font-size: 190px; line-height: 1; letter-spacing: -0.04em; }
+.cntl { font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; letter-spacing: 0.08em; }
+.cells { position: absolute; left: 40px; top: 520px; width: 1000px; height: 560px; opacity: 0; }
+.cost21 { position: absolute; left: 290px; top: 690px; width: 500px; padding: 26px 0 18px; text-align: center; background: #0B1020; color: #FFD23F; border-radius: 30px;
+  font-family: "Anton", sans-serif; font-size: 170px; line-height: 1; opacity: 0; }
+.cost21 small { display: block; font-family: "JetBrains Mono", monospace; font-size: 28px; color: #fff; letter-spacing: 0.2em; }
+.bars { position: absolute; left: 120px; top: 520px; width: 840px; height: 880px; display: flex; gap: 80px; align-items: flex-end; opacity: 0; }
+.bar { width: 380px; display: flex; flex-direction: column; align-items: center; }
+.bval { font-family: "Anton", sans-serif; font-size: 96px; line-height: 1; color: #0B1020; margin-bottom: 14px; opacity: 0; }
+.btrack { width: 260px; height: 600px; display: flex; align-items: flex-end; border-bottom: 6px solid #0B1020; }
+.bfill { width: 100%; transform-origin: 50% 100%; border-radius: 18px 18px 0 0; }
+.bfill.jev { height: 14px; background: #14B87A; } .bfill.llm { height: 100%; background: #2B3BE0; }
+.bname { margin-top: 18px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; color: #0B1020; text-align: center; }
+.x300 { position: absolute; left: 0; top: 230px; width: 380px; text-align: center; font-family: "Anton", sans-serif; font-size: 150px; line-height: 1; color: #E5364A; opacity: 0; }
+
+/* s08 waffle */
+#pct { top: 250px; } #pctl { top: 540px; font-size: 44px; }
+.waffle { position: absolute; left: 190px; top: 720px; width: 700px; height: 700px; display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; opacity: 0; }
+.waffle i { border-radius: 10px; border: 3px solid rgba(255,255,255,0.25); }
+
+/* s09 valid but wrong */
+.tk2 { position: absolute; left: 72px; top: 260px; width: 936px; padding: 26px 36px; border-radius: 26px; background: rgba(255,255,255,0.08); border: 3px solid rgba(255,255,255,0.25); font-size: 54px; font-weight: 800; color: #fff; opacity: 0; }
+.tk2 .tkid { display: block; font-family: "JetBrains Mono", monospace; font-size: 28px; color: #9AA6FF; margin-bottom: 12px; }
+.json { position: absolute; left: 72px; top: 600px; width: 936px; padding: 34px 40px; border-radius: 26px; background: #fff; font-family: "JetBrains Mono", monospace; font-size: 62px; font-weight: 800; line-height: 1.35; color: #0B1020; opacity: 0; }
+#jteam { color: #2B3BE0; }
+.valid { position: absolute; left: 72px; top: 940px; padding: 14px 28px; border-radius: 16px; background: #2ED3A0; color: #0B1020; font-family: "JetBrains Mono", monospace; font-size: 44px; font-weight: 800; opacity: 0; }
+.wrongst { position: absolute; left: 210px; top: 1040px; padding: 6px 50px; border: 14px solid #FF4D5E; border-radius: 30px; font-family: "Anton", sans-serif; font-size: 210px; line-height: 1.05; color: #FF4D5E; opacity: 0; }
+.should { position: absolute; left: 0; width: 1080px; top: 1360px; text-align: center; font-size: 46px; font-weight: 700; color: rgba(255,255,255,0.8); opacity: 0; }
+.should b { color: #2ED3A0; }
+
+/* s10 router, s11 stats */
+.router { position: absolute; left: 40px; top: 300px; width: 1000px; height: 1100px; transform-origin: 50% 0; }
+.node { position: absolute; left: 380px; top: 0; width: 240px; height: 240px; border-radius: 50%; background: #2B3BE0; color: #fff; display: flex; align-items: center; justify-content: center;
+  font-family: "Anton", sans-serif; font-size: 100px; opacity: 0; }
+.lanes { position: absolute; left: 0; top: 200px; width: 1000px; height: 420px; overflow: visible; }
+.lane { fill: none; stroke-width: 8; stroke-dasharray: 600; stroke-dashoffset: 600; } .lane.ok { stroke: #14B87A; } .lane.llm { stroke: #7B5CFF; }
+.bin { position: absolute; top: 600px; width: 330px; height: 200px; border-radius: 30px; border: 5px solid; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fff; opacity: 0; }
+.bin b { font-family: "Anton", sans-serif; font-size: 90px; line-height: 1; } .bin span { font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; }
+.okbin { left: 55px; border-color: #0C8F5F; color: #0C8F5F; } .llmbin { left: 615px; border-color: #7B5CFF; color: #7B5CFF; }
+.chip { position: absolute; left: 330px; top: -150px; width: 340px; padding: 14px 0; text-align: center; border-radius: 18px; background: #0B1020; color: #fff; font-family: "JetBrains Mono", monospace; font-size: 38px; font-weight: 800; opacity: 0; }
+.stats { position: absolute; left: 72px; top: 900px; width: 936px; height: 600px; opacity: 0; }
+.statk { position: absolute; left: 0; top: -70px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; letter-spacing: 0.2em; color: #2B3BE0; }
+.stat { position: absolute; top: 0; width: 448px; padding: 34px 30px 36px; background: #fff; border: 4px solid #0B1020; border-radius: 30px; opacity: 0; }
+#st1 { left: 0; } #st2 { left: 488px; }
+.sn { font-family: "Anton", sans-serif; font-size: 128px; line-height: 1; color: #0C8F5F; } #sn2 { color: #2B3BE0; }
+.sl { margin-top: 6px; font-size: 38px; font-weight: 800; color: #0B1020; }
+.sb { margin-top: 26px; height: 26px; border-radius: 13px; background: rgba(11,16,32,0.12); overflow: hidden; }
+.sb i { display: block; height: 100%; border-radius: 13px; transform-origin: 0 50%; transform: scaleX(0); }
+#sb1 { width: 99.6%; background: #14B87A; } #sb2 { width: 47%; background: #2B3BE0; }
+
+/* s12 verdict */
+.vk { position: absolute; left: 72px; top: 300px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; letter-spacing: 0.3em; color: rgba(255,255,255,0.75); }
+.vl { position: absolute; left: 72px; font-family: "Anton", sans-serif; font-size: 150px; line-height: 1; color: #fff; opacity: 0; }
+#v1 { top: 380px; } #v2 { top: 560px; }
+.vchips { position: absolute; left: 72px; top: 860px; display: flex; flex-direction: column; gap: 26px; }
+.vc { display: inline-block; width: fit-content; padding: 16px 34px; border-radius: 20px; background: #fff; color: #0C8F5F; font-family: "JetBrains Mono", monospace; font-size: 54px; font-weight: 800; opacity: 0; }
+.vc.no { color: #E5364A; }
+
+/* s13 CTA */
+.cta { position: absolute; left: 72px; top: 420px; width: 936px; font-family: "Anton", sans-serif; font-size: 190px; line-height: 1.02; color: #fff; }
+.cta span { display: inline-block; opacity: 0; }
+.ctaf { position: absolute; left: 72px; top: 1240px; padding: 26px 52px; border-radius: 999px; background: #FFD23F; color: #0B1020; font-size: 50px; font-weight: 900; opacity: 0; }

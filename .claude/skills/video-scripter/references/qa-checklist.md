@@ -12,7 +12,8 @@
 - [ ] Zero trivia lines (each line passes the viewer-value test)
 - [ ] Every fact has a source tag `[Sx]` that resolves in research.md, with date + label
 - [ ] Company claims are worded as claims; unverified items flagged or removed
-- [ ] At least one honest catch / limitation
+- [ ] Every wording the content plan marks unsafe is gone from the whole folder (brief angle, inspiration, hooks, publish, package), not just the script: grep for it
+- [ ] The catch decision in content-plan.md is followed (included only when material and sourced; no filler catch)
 - [ ] YouTube analysis done: winners and low performers watched (or the reason they couldn't be); winners-vs-low findings written
 - [ ] Differentiated angle stated (inspiration.md) and no copied lines
 
