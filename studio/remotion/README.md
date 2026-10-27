@@ -36,7 +36,7 @@ A React component that draws the whole reel as a pure function of time (no state
   every move lands on the action then returns home, ≤ 1 move per 2.5 s, nothing zoomed below the stage zone.
 - The engine draws section blocks, wipes, camera, captions and audio; the stage draws only the visual, inside the
   stage zone y 220–1460 (captions from y 1555).
-Pilot: `projects/laya/remotion/Stage.tsx` (port of `projects/laya/stage/`); spring style: `projects/jev-spring/`.
+Pilot: `projects/laya/remotion/Stage.tsx` (port of `projects/laya/stage/`); spring style: `projects/_archive/jev-spring/`.
 
 Typecheck: `cd studio/remotion && npx tsc --noEmit` (project stages under `../projects/*/remotion` resolve `react`
 only when run from here).

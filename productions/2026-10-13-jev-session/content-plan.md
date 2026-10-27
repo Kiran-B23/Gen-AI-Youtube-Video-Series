@@ -1,7 +1,7 @@
 # Content plan · Jev session (on-camera teaching session + Colab hands-on)
 
 _Written by the `content-plan` agent on 2026-10-13, after research, before the script. The script follows this plan; the
-`script-review` agent checks it against this file. Format: one instructor, house script format of `reference/scripts/`
+`script-review` agent checks it against this file. Format: one instructor, house script format of `references/archive-2026-10/scripts/`
 (Hook → "Hi everyone, I'm XXXX" + agenda → prose sections → `<<HANDS-ON>>` → Outro), 16–20 min recorded, ~2,300 spoken words._
 
 _Sources re-checked online on 2026-10-13: typesafe.ai, promptfoo provider docs, Layer3 Labs limits + pricing guides, innFactory,

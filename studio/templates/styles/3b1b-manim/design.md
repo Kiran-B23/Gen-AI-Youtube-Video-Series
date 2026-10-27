@@ -2,7 +2,7 @@
 
 The look of a 3Blue1Brown explainer, made the way 3Blue1Brown makes it: with **Manim**. Origin: a reference reel
 (user, 2026-10-12) whose method was "ask Claude to explain the concept as an explainer video in the style of
-3Blue1Brown" — Claude writes Manim. Pilot: `studio/projects/jev-3b1b/` (`shorts/styles/jev-4-3b1b.mp4`).
+3Blue1Brown" — Claude writes Manim. Pilot: `studio/projects/_archive/jev-3b1b/` (`shorts/styles/jev-4-3b1b.mp4`).
 
 ## In one line
 A calm near-black board where shapes **transform into each other** to explain a mechanism; serif type; the visual

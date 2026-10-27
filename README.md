@@ -16,17 +16,21 @@ The topics playbook (`planning/`) was removed from the working tree on 2026-10-0
 
 ```
 ├── app/                          ← studio app: LAN web UI over the build + review steps (app/README.md); app/legacy/ = the older scripter runner
-├── productions/<date>-<slug>/   ← video-scripter packages (research, hooks, script, storyboard, publish kit, QA)
+├── productions/
+│   ├── <date>-<slug>/            ← video-scripter packages (research, content plan, script, reviews, storyboard, publish kit, QA)
+│   └── _scripts/                 ← finished scripts collected in one place (one file per version)
 ├── studio/                       ← the free video engine (HyperFrames + Manim/Playwright/VHS, Gemini TTS); see studio/README.md
-├── shorts/                       ← rendered MP4s (+ play-on-this-pc/ MP3-audio copies)
-├── references/                   ← first-party reference reels and YouTube URLs to learn from
+│   └── projects/                 ← one folder per reel being built; _archive/ = superseded style tests (build output cleared)
+├── shorts/                       ← delivered MP4s (local only, not in git): top level = channel reels, styles/ = style
+│                                    comparisons, personal/ = owner-only renders, archive/ = older versions;
+│                                    play-on-this-pc/ mirrors them as MP3-audio copies
+├── references/                   ← reference reels, YouTube/Instagram links and benchmark numbers to learn from
+│   └── archive-2026-10/          ← NxtWave's own past videos: links, approved scripts (RAG, A2A), transcripts (RAG, MCP, n8n, A2A)
 ├── guidelines/
 │   ├── session-teaching-guidelines.md   ← the teaching rules every session follows (hooks, YouTube style, standalone, code focus)
 │   └── script-vs-video-analysis.md      ← how past scripts were actually delivered, plus script-writing rules W1–W11
-├── reference/
-│   ├── past-videos.md            ← links to earlier NxtWave videos used as references
-│   ├── scripts/                  ← approved scripts of past videos (RAG, A2A)
-│   └── transcripts/              ← auto-caption transcripts of past videos (RAG, MCP, n8n, A2A)
+├── docs/                         ← plans: video-generation-plan.md, studio-app-plan.md
+├── experiments/                  ← one-off model tests (t2i, t2v)
 └── sessions/
     └── 01-jev/
         ├── README.md             ← side-by-side comparison of the two options

@@ -5,9 +5,9 @@
 **Derived from (Sept 29, 2026):**
 | Code | Video | Length | Transcript |
 |---|---|---|---|
-| **RAG** | RAG & Agentic RAG – Simply Explained (Sep 2025) | 33:28 | `../reference/transcripts/01-rag-agentic-rag.txt` |
-| **MCP** | MCP: The Missing Link Between AI and Action (Jun 2025) | 24:41 | `../reference/transcripts/02-mcp-missing-link.txt` |
-| **N8N** | Build your own AI agents – No Code with n8n & Gemini (Jun 2025) | 58:31 | `../reference/transcripts/03-n8n-gemini-ai-agents.txt` |
+| **RAG** | RAG & Agentic RAG – Simply Explained (Sep 2025) | 33:28 | `../references/archive-2026-10/transcripts/01-rag-agentic-rag.txt` |
+| **MCP** | MCP: The Missing Link Between AI and Action (Jun 2025) | 24:41 | `../references/archive-2026-10/transcripts/02-mcp-missing-link.txt` |
+| **N8N** | Build your own AI agents – No Code with n8n & Gemini (Jun 2025) | 58:31 | `../references/archive-2026-10/transcripts/03-n8n-gemini-ai-agents.txt` |
 | **TR** | House TR docs: `~/TR Docs/created_tr_docs/building-llm-applications--build-your-own-mcp-server.md`, `…--33-building-memory-agents-long-term-memory.md` | — | — |
 
 Timestamps like `RAG 05:39` point into the transcripts. **Applies to:** `TR` = the Trainer Reference doc, `SC` = the on-camera script / delivery, `NB` = the notebook / hands-on.

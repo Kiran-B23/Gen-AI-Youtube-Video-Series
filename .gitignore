@@ -56,3 +56,8 @@ studio/projects/*/voice/**/*.mp3
 studio/projects/*/voice/**/*.m4a
 # Claude Code /export transcripts
 /20??-??-??-*.txt
+studio/projects/_archive/*/voice/**/*.wav
+studio/projects/_archive/*/voice/**/*.mp3
+studio/projects/_archive/*/build/
+studio/projects/_archive/*/hf/
+studio/projects/_archive/*/out/

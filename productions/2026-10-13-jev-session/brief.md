@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Topic | Jev by TypeSafe AI: the AI model that makes decisions instead of writing text |
-| Format(s) | session (on camera, one instructor + Colab hands-on), written in the house script format of `reference/scripts/` (rule W12) |
+| Format(s) | session (on camera, one instructor + Colab hands-on), written in the house script format of `references/archive-2026-10/scripts/` (rule W12) |
 | Viewer | students and early-career developers, global and Indian · level: beginner-to-practitioner (can run a Colab cell; no ML background) |
 | **Viewer's question** | "Everyone's talking about Jev. What is it, can I trust its answers, and when should I use it instead of ChatGPT?" |
 | **Archetype** | primary: Launch · secondary (one chapter): Concept (how it decides + calibration) |

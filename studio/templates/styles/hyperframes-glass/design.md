@@ -1,6 +1,6 @@
 # Style · hyperframes-glass
 
-What HyperFrames (HTML + CSS + GSAP in a real browser) does best. Pilot: `studio/projects/jev-glass/stage/`.
+What HyperFrames (HTML + CSS + GSAP in a real browser) does best. Pilot: `studio/projects/_archive/jev-glass/stage/`.
 
 ## In one line
 Deep moving colour, frosted glass, focus pulls: the same running-object story as reference-flat, shot "through glass".

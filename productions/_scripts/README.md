@@ -6,7 +6,7 @@ Finished scripts, collected in one place so you can read them without digging th
   compare them or go back to one.
 - **These are copies.** The working version and everything around it (research, content plan, reviews, production notes,
   publish kit) stays in `productions/<date>-<slug>/`, with frozen older versions in its `versions/` folder.
-- Scripts are in the NxtWave house format of `reference/scripts/` (Hook → Intro → sections → `<<HANDS-ON>>` → Outro).
+- Scripts are in the NxtWave house format of `references/archive-2026-10/scripts/` (Hook → Intro → sections → `<<HANDS-ON>>` → Outro).
   `⟦…⟧` marks a result slot to fill from the notebook run before recording.
 
 | Script | Format | Status | What changed | Package |
@@ -18,4 +18,4 @@ Finished scripts, collected in one place so you can read them without digging th
 **Resources for the Jev session** (notebook, dataset, setup, source URLs): [2026-10-13-jev-session-resources.md](2026-10-13-jev-session-resources.md)
 
 Earlier drafts (kept for the record, not current): `sessions/01-jev/option-A-explainer/script.md`, `sessions/01-jev/option-B-scam-sms-test/script.md` (2026-09-30).
-Reference scripts from published videos: `reference/scripts/`.
+Reference scripts from published videos: `references/archive-2026-10/scripts/`.

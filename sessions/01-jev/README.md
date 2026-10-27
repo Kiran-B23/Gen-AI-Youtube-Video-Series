@@ -25,6 +25,6 @@ Two standalone candidates for **one** Jev session. Review both, then pick one. T
 | A | [TR-doc.md](option-A-explainer/TR-doc.md) | [script.md](option-A-explainer/script.md) | [production-notes.md](option-A-explainer/production-notes.md) |
 | B | [TR-doc.md](option-B-scam-sms-test/TR-doc.md) | [script.md](option-B-scam-sms-test/script.md) | [production-notes.md](option-B-scam-sms-test/production-notes.md) |
 
-- **Scripts** follow the NxtWave house format of the reference scripts (`../../reference/scripts/`): Hook → Intro with agenda → prose sections → `<<HANDS-ON>>` → Outro. They are fully written-out narration, with no cue codes or tables. Option B's hands-on narration is written out under `<<HANDS-ON>>`.
+- **Scripts** follow the NxtWave house format of the reference scripts (`../../references/archive-2026-10/scripts/`): Hook → Intro with agenda → prose sections → `<<HANDS-ON>>` → Outro. They are fully written-out narration, with no cue codes or tables. Option B's hands-on narration is written out under `<<HANDS-ON>>`.
 - **Production notes** hold everything that isn't spoken: runtime, promise ledger, visuals, the hands-on beat sheet (B), checks, cut plan and pre-publish checklist.
 - Both follow the rules in [`../../guidelines/script-vs-video-analysis.md`](../../guidelines/script-vs-video-analysis.md).

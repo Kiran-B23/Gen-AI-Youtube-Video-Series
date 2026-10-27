@@ -1,7 +1,7 @@
 # Script vs Video: How NxtWave Scripts Were Actually Delivered
 
 **What this is:** a comparison of two approved scripts against the videos recorded from them, to learn how presenters use a script and what that means for how future scripts should be written.
-**Inputs:** `../reference/scripts/rag-script.md` ↔ `../reference/transcripts/01-rag-agentic-rag.txt` (33:28) · `../reference/scripts/a2a-script.md` ↔ `../reference/transcripts/04-a2a-explained.txt` (11:13). Word counts use the auto-captions, so they're approximate. Analysed Sep 30, 2026.
+**Inputs:** `../references/archive-2026-10/scripts/rag-script.md` ↔ `../references/archive-2026-10/transcripts/01-rag-agentic-rag.txt` (33:28) · `../references/archive-2026-10/scripts/a2a-script.md` ↔ `../references/archive-2026-10/transcripts/04-a2a-explained.txt` (11:13). Word counts use the auto-captions, so they're approximate. Analysed Sep 30, 2026.
 
 ---
 
@@ -95,4 +95,4 @@
 | W9 | **No references to other videos** (standalone rule S1). Other videos are mentioned only on the end card or in the description | 8 |
 | W10 | **Write the transitions explicitly** (re-hooks), so the presenter doesn't borrow from other sections | 9 |
 | W11 | **Do a table read with the presenter** before recording, to catch the logic gaps they would otherwise fix live | 7 |
-| W12 | **Write in the NxtWave house script format**, like `../reference/scripts/`: `Hook:` → `Intro:` ("Hi everyone! I'm XXXX…" + an agenda bullet list) → prose sections with plain headings and `___` separators → `<<HANDS-ON>>` → `Outro:` (the standard call to action). Every spoken word is written out as conversational prose, with **no cue codes, tables or timestamps**. Put screen cues, the promise ledger, word budgets, checks, the cut plan and the hands-on beat sheet in a separate `production-notes.md` | Reviewer feedback (2026-09-30): "the provided scripts are different from what you created" |
+| W12 | **Write in the NxtWave house script format**, like `../references/archive-2026-10/scripts/`: `Hook:` → `Intro:` ("Hi everyone! I'm XXXX…" + an agenda bullet list) → prose sections with plain headings and `___` separators → `<<HANDS-ON>>` → `Outro:` (the standard call to action). Every spoken word is written out as conversational prose, with **no cue codes, tables or timestamps**. Put screen cues, the promise ledger, word budgets, checks, the cut plan and the hands-on beat sheet in a separate `production-notes.md` | Reviewer feedback (2026-09-30): "the provided scripts are different from what you created" |

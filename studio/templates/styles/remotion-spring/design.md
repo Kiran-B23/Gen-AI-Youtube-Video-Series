@@ -1,7 +1,7 @@
 # Style · remotion-spring (Remotion engine)
 
 Built on what Remotion does best: `spring()` physics and `interpolate()`, as pure functions of the frame.
-First reel: `studio/projects/jev-spring/remotion/Stage.tsx` (kit: `studio/remotion/src/styles/remotion-spring/kit.tsx`).
+First reel: `studio/projects/_archive/jev-spring/remotion/Stage.tsx` (kit: `studio/remotion/src/styles/remotion-spring/kit.tsx`).
 Personal use only (Remotion licence: individuals / companies ≤ 3 people).
 
 ## Look
