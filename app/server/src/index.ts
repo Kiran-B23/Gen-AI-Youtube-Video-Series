@@ -13,6 +13,8 @@ import { registerPreview } from "./preview.js";
 import { GEMINI_VOICES, ScenesError, applyVoicePatch, type VoicePatch } from "./scenes.js";
 import { SettingsError, agents, deliverPreview, expectedEvals, readPaceFile, runEvals, styles, writePace } from "./settings.js";
 import { getProduction, listProductions, productionFile, watchProduction } from "./productions.js";
+import { TREND_STEPS, trendBrief, trends } from "./trends.js";
+import { TRENDS_SLUG } from "./config.js";
 import * as jobs from "./jobs.js";
 import * as agent from "./agent.js";
 
@@ -272,6 +274,20 @@ app.get<{ Params: { folder: string } }>("/api/productions/:folder/events", (req,
   const off = watchProduction(req.params.folder, (files) => io.send("change", { files }));
   if (off) io.onClose(off);
   io.send("ready", { folder: req.params.folder });
+});
+
+// ---------- trend radar (references/trends/): read-only, plus the two allow-listed trends.py jobs ----------
+app.get("/api/trends", async () => trends());
+app.get<{ Params: { date: string } }>("/api/trends/briefs/:date", async (req, reply) => {
+  const text = trendBrief(req.params.date);
+  return text === null ? bad(reply, 404, "no brief for that date") : { date: req.params.date, text };
+});
+app.post<{ Params: { step: string } }>("/api/trends/jobs/:step", async (req, reply) => {
+  const step = req.params.step;
+  if (!Object.hasOwn(TREND_STEPS, step)) return bad(reply, 400, `not allowed: ${step} (snap or run)`);
+  if (jobs.busy(TRENDS_SLUG)) return bad(reply, 409, "a trends job is already queued or running");
+  const job = jobs.enqueue(TRENDS_SLUG, step, {});
+  return reply.code(202).send({ ...job, position: jobs.queuePosition(job.id) });
 });
 
 registerPreview(app);

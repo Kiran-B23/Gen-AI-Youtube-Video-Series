@@ -52,6 +52,10 @@ for generators.
 6. **Library** — every delivered reel with its numbers, side by side; "redo with the current pipeline" action.
 7. **Settings** — pace.json fields (edited through the app, with the one-line "why"), voices, music/sfx levels, the style
    kits (read-only view of each `design.md`), the agents and evals (run the eval suite, see pass/fail).
+8. **Trends** (built 2026-10-28) — the trend radar's latest brief (`references/trends/latest.json` + the dated
+   `<date>.md` list): the top-10 table with evidence links, rising searches, watch list, source status, snapshot times;
+   "Snapshot now" / "Run brief" run the allow-listed `trends.py snap` / `run` as queued jobs (only on a click, streamed
+   like run.sh steps); "Queue as package" creates a Queue item pre-filled with topic, angle, archetype and evidence, not started.
 
 ## How the pieces connect
 - `POST /packages` → the agent runs `/video-scripter <topic>` under the SDK; every tool call streams to the Package view;

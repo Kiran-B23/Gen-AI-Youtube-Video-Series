@@ -21,7 +21,7 @@ export function LogPanel({ lines, job, end, height = "h-72" }: { lines: LogLine[
   return (
     <div className="overflow-hidden rounded-lg border border-line bg-term">
       <div className="flex items-center justify-between gap-2 border-b border-white/10 px-3 py-1.5 text-[11px] text-term-ink/70">
-        <span className="font-mono">{job ? `job #${job.id} · run.sh ${job.slug} ${job.step}${job.flags ? ` · ${job.flags}` : ""}` : "no run yet"}</span>
+        <span className="font-mono">{job ? (job.slug === "_trends" ? `job #${job.id} · trends.py ${job.step}` : `job #${job.id} · run.sh ${job.slug} ${job.step}${job.flags ? ` · ${job.flags}` : ""}`) : "no run yet"}</span>
         <span className="flex items-center gap-2">
           {job?.status === "queued" && job.position != null && <span>{job.position} ahead in the queue</span>}
           {status && <Chip tone={statusTone(status)}>{status}{end && end.exitCode !== null ? ` · exit ${end.exitCode}` : ""}</Chip>}

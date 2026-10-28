@@ -8,3 +8,4 @@ Drop reference videos here (e.g. reels you want to learn from). The `video-scrip
 | `tokenization-reel.mp4` | first-party house benchmark (the reference style) |
 | `faceless-shorts.md` | faceless Shorts the user picked as style references; add rows, then run the research tool with `--urls references/faceless-shorts.md` (any yt-dlp site: YouTube, Instagram, X, TikTok…) |
 | `youtube-urls.md` | earlier topic references |
+| `trends/` | the trend radar: `sources.json` (seed lists), dated briefs `<date>.md`, `latest.json`; run by hand with `studio/tools/trends.py` (see `trends/README.md`) |

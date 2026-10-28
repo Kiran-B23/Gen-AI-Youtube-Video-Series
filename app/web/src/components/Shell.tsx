@@ -25,8 +25,8 @@ function QueueStatus() {
   return (
     <div className="border-t border-line px-3 py-3 text-xs">
       <div className="mb-1 font-semibold uppercase tracking-wide text-muted text-[10.5px]">Queue</div>
-      {running ? <NavLink to={`/p/${running.slug}/build?step=${running.step}`} className="flex items-center gap-1.5 text-ink hover:underline">
-        <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />{running.slug} · {running.step}</NavLink>
+      {running ? <NavLink to={running.slug === "_trends" ? "/trends" : `/p/${running.slug}/build?step=${running.step}`} className="flex items-center gap-1.5 text-ink hover:underline">
+        <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />{running.slug === "_trends" ? "trends" : running.slug} · {running.step}</NavLink>
         : <span className="text-muted">builds idle</span>}
       {queued > 0 && <div className="mt-1"><Chip tone="warn">{queued} queued</Chip></div>}
       <AgentStatus />
@@ -69,7 +69,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <div><div className="text-[14px] font-semibold leading-4">Studio</div><div className="text-[11px] text-muted">video pipeline</div></div>
         </div>
         <nav className="space-y-0.5 px-2">
-          {([["/", "All projects"], ["/queue", "Queue · packages"], ["/library", "Library"], ["/settings", "Settings"]] as const).map(([to, label]) => (
+          {([["/", "All projects"], ["/trends", "Trends"], ["/queue", "Queue · packages"], ["/library", "Library"], ["/settings", "Settings"]] as const).map(([to, label]) => (
             <NavLink key={to} to={to} end={to === "/"} onClick={() => setOpen(false)} className={({ isActive }) => `block rounded-lg px-2.5 py-1.5 text-[13px] ${isActive ? "bg-panel-2 font-medium" : "text-muted hover:bg-panel-2 hover:text-ink"}`}>{label}</NavLink>))}
         </nav>
         <div className="mt-3 px-4 text-[10.5px] font-semibold uppercase tracking-wide text-muted">Projects</div>

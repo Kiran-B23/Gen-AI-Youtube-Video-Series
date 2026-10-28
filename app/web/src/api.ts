@@ -77,6 +77,23 @@ export interface EvalResult { fixture: string; exit: number | null; passed: numb
 export interface Voice { name: string; takes: number; rawPace: number | null; last: { date: string; slug: string; raw_pace: number } | null }
 export interface CmdOut { code: number | null; output: string }
 
+// ---------- trend radar (references/trends/latest.json, written by studio/tools/trends.py) ----------
+export interface TrendEvidence { title: string; url: string; source: string; metric: string; by: string }
+export interface TrendTopic { key: string; name: string; score: number; best_vel: number; families: string[]; n_items: number; fit: number;
+  first_seen: string; fresh: boolean; continuing: boolean; archetype: string; angle: string; why: string; evidence: TrendEvidence[];
+  rank?: number; single?: boolean }
+export interface TrendSourceStatus { ok: boolean | null; n: number; at?: string; secs?: number; note?: string; error?: string; skipped?: string }
+export interface TrendLatest { date: string; generated_at: string;
+  snapshots: { latest: string; previous: string | null; gap_h: number | null; files: string[] };
+  counts: { items: number; excluded: number; topics: number };
+  top: TrendTopic[]; watch: TrendTopic[];
+  rising: { term: string; seed: string; rank: number; url: string }[];
+  rising_trends: { term: string; geo: string; traffic: number; url: string; news: string }[];
+  per_source: Record<string, { title: string; url: string; metric: string; by: string }[]>;
+  status: Record<string, TrendSourceStatus>; briefs: string[] }
+export interface Trends { latest: TrendLatest | null; briefs: string[]; snapshots: string[]; snapshotCount: number;
+  lastJobs: Record<string, Job>; busy: boolean; steps: Record<string, string> }
+
 export class ApiError extends Error { constructor(public status: number, msg: string) { super(msg); } }
 async function call<T>(method: string, url: string, body?: unknown): Promise<T> {
   const r = await fetch(url, { method, headers: body ? { "content-type": "application/json" } : undefined, body: body ? JSON.stringify(body) : undefined });
@@ -117,6 +134,10 @@ export const api = {
   styles: () => call<{ name: string; path: string; text: string }[]>("GET", "/api/settings/styles"),
   agents: () => call<{ name: string; path: string; text: string }[]>("GET", "/api/settings/agents"),
   runEvals: () => call<{ date: string; ok: boolean; results: EvalResult[] }>("POST", "/api/settings/evals"),
+  // trend radar
+  trends: () => call<Trends>("GET", "/api/trends"),
+  trendBrief: (date: string) => call<{ date: string; text: string }>("GET", `/api/trends/briefs/${encodeURIComponent(date)}`),
+  trendJob: (step: "snap" | "run") => call<Job>("POST", `/api/trends/jobs/${step}`),
 };
 export const previewUrl = (slug: string, rel = "index.html") => `/preview/${encodeURIComponent(slug)}/${rel}`;
 export const shortsUrl = (name: string) => `/shorts/${encodeURIComponent(name)}`;

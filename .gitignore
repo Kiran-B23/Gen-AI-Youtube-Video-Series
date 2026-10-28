@@ -61,3 +61,9 @@ studio/projects/_archive/*/voice/**/*.mp3
 studio/projects/_archive/*/build/
 studio/projects/_archive/*/hf/
 studio/projects/_archive/*/out/
+
+# trend radar (studio/tools/trends.py): raw snapshots and caches hold other people's titles in bulk; the dated briefs,
+# latest.json and sources.json are tracked. The optional cron log stays local too.
+references/trends/snapshots/
+references/trends/cache/
+references/trends/*.log

@@ -51,6 +51,11 @@ machine (`claude /login` once; nothing else to configure).
   storyboard, publish, qa, then the rest), re-rendered when a file changes (fs.watch → SSE).
 - **Library**: `shorts/*.mp4` matched to projects with qa and benchmark numbers side by side (plus the reference reel and
   the Instagram median rows); click a thumbnail to play the delivered file.
+- **Trends**: the trend radar's latest brief (`references/trends/latest.json` + the dated `<date>.md` list, from
+  `studio/tools/trends.py`): snapshot times, the top-10 table with evidence links, rising searches, watch list, source
+  status, per-source top 5. "Snapshot now" / "Run brief" queue `trends.py snap` / `run` (allow-listed, on the build
+  queue, one at a time, only on a click; the log streams like a step). "Queue as package" creates a Queue item with the
+  topic, angle, archetype and evidence in its notes and does **not** start the agent.
 - **Settings**: `pace.json` (each field's meaning and which tool reads it; numbers range-checked and cross-checked, a
   one-line "why" is required and appended to the `_` note with the date), Run evals (the linter on each
   `evals/fixtures/*`, compared with the ✗ counts `evals/README.md` expects), the style kits' `design.md` and the four
@@ -109,6 +114,7 @@ machine (`claude /login` once; nothing else to configure).
 | `GET/POST /api/packages` · `GET/DELETE /api/packages/:id` · `POST /api/packages/:id/start\|stop` | the agent queue (`{kind: "package"\|"ask", topic, format, notes, folder?, start?}`) |
 | `POST /api/sessions/:id/messages` · `GET /api/sessions/:id/stream` · `POST /api/approvals/:id` | reply (resume), SSE timeline, `{decision: "allow"\|"deny"}` |
 | `GET /api/productions` · `/:folder` · `/:folder/files/:name` · `/:folder/events` | package folders, their Markdown, change feed (SSE) |
+| `GET /api/trends` · `GET /api/trends/briefs/:date` · `POST /api/trends/jobs/snap\|run` | latest.json + brief/snapshot lists + last jobs · one dated brief (Markdown) · queue a trends.py job (409 while one is queued or running) |
 | `GET /api/library` · `GET /shorts/:name` | delivered reels + numbers · the delivered MP4 |
 | `GET/PUT /api/settings/pace` · `GET /api/settings/styles\|agents` · `GET/POST /api/settings/evals` | pace.json, read-only docs, linter evals |
 | `GET /files/:slug/<path>` · `GET /preview/:slug/<path>` · `GET /preview-runtime.js` | `out/` only · `hf/` only (read-only, runtime injected into HTML) |
@@ -120,7 +126,8 @@ machine (`claude /login` once; nothing else to configure).
 - **Allow-listed steps only.** Only these `run.sh` steps can run: validate, voice, clips, assemble, check, payoffs, stills,
   render, qa, watch, review, benchmark, preview, deliver. The slug must match `[a-z0-9-]` and an existing project, the env
   switches are fixed server-side (RESPLIT / RETAKE for voice, PORT for preview), and nothing from the request reaches a
-  shell. `new` and `remotion*` are not exposed.
+  shell. `new` and `remotion*` are not exposed. The trend radar adds exactly two more: `python studio/tools/trends.py snap`
+  and `… run` (argv only, cwd = the repo), on the same one-at-a-time queue.
 - **The agent** is Claude Code under its own permission system: the app only answers its permission prompts (never
   `bypassPermissions`), with a 10-minute default deny. It gets the repo's project settings only (not `~/.claude` user
   settings or user-scope MCP servers).

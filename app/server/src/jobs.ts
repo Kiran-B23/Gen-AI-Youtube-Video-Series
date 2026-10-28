@@ -2,7 +2,7 @@
 // SQLite (app/data.db). Each job's output lines are stored so a reopened page replays the log, then follows it live.
 import { spawn, type ChildProcess } from "node:child_process";
 import { EventEmitter } from "node:events";
-import { PIPELINE_PATH, RUN_SH, STUDIO } from "./config.js";
+import { PIPELINE_PATH, PYTHON, REPO, RUN_SH, STUDIO, TRENDS_PY, TRENDS_SLUG } from "./config.js";
 import { db, now } from "./db.js";
 
 export type JobStatus = "queued" | "running" | "ok" | "failed" | "cancelled" | "interrupted";
@@ -71,11 +71,16 @@ function pump() {
   q.start.run(now(), job.id);
   const env: Record<string, string> = { ...(process.env as Record<string, string>), PATH: PIPELINE_PATH, FORCE_COLOR: "0", NO_COLOR: "1", PYTHONUNBUFFERED: "1" };
   for (const kv of job.flags.split(" ").filter(Boolean)) { const [k, v] = kv.split("="); env[k] = v; }
-  // argv only, no shell: bash run.sh <slug> <step>. detached → its own process group, so cancel stops the whole tree.
-  const proc = spawn("bash", [RUN_SH, job.slug, job.step], { cwd: STUDIO, env, detached: true, stdio: ["ignore", "pipe", "pipe"] });
+  // argv only, no shell: bash run.sh <slug> <step>, or for the trend radar python trends.py <snap|run> (the step was
+  // allow-listed when it was queued). detached → its own process group, so cancel stops the whole tree.
+  const trends = job.slug === TRENDS_SLUG;
+  const proc = trends
+    ? spawn(PYTHON, [TRENDS_PY, job.step], { cwd: REPO, env, detached: true, stdio: ["ignore", "pipe", "pipe"] })
+    : spawn("bash", [RUN_SH, job.slug, job.step], { cwd: STUDIO, env, detached: true, stdio: ["ignore", "pipe", "pipe"] });
   running = { job: getJob(job.id)!, proc, seq: 0 };
   events.emit(`job:${job.id}`, { type: "status", job: running.job });
-  addLine(running.job, "sys", `$ ${job.flags ? job.flags + " " : ""}studio/tools/run.sh ${job.slug} ${job.step}`);
+  addLine(running.job, "sys", trends ? `$ studio/.venv/bin/python studio/tools/trends.py ${job.step}`
+    : `$ ${job.flags ? job.flags + " " : ""}studio/tools/run.sh ${job.slug} ${job.step}`);
   for (const [stream, src] of [["out", proc.stdout!], ["err", proc.stderr!]] as const) {
     let buf = "";
     src.setEncoding("utf8");

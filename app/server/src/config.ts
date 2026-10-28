@@ -24,6 +24,10 @@ export const SCRIPTER = path.join(REPO, ".claude", "skills", "video-scripter");
 export const LINT_PY = path.join(SCRIPTER, "scripts", "lint_package.py");
 export const EVALS_DIR = path.join(SCRIPTER, "evals");
 export const DELIVER_CHECK_PY = path.join(STUDIO, "tools", "deliver_check.py");
+/** the trend radar (studio/tools/trends.py): its jobs ride the build queue under this pseudo-slug (not a project) */
+export const TRENDS_DIR = path.join(REPO, "references", "trends");
+export const TRENDS_PY = path.join(STUDIO, "tools", "trends.py");
+export const TRENDS_SLUG = "_trends";
 
 /** Minimal KEY=VALUE reader for app/.env (no dependency; real env vars win). */
 function loadEnv(file: string) {

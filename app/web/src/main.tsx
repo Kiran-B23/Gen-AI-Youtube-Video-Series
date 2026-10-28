@@ -11,6 +11,7 @@ import { Queue } from "./pages/Queue";
 import { Package, ProductionView } from "./pages/Package";
 import { Library } from "./pages/Library";
 import { Settings } from "./pages/Settings";
+import { TrendsPage } from "./pages/Trends";
 import "./index.css";
 
 const qc = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: true, retry: 1 } } });
@@ -31,6 +32,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/packages/:id" element={<Package />} />
             <Route path="/productions/:folder" element={<ProductionView />} />
             <Route path="/library" element={<Library />} />
+            <Route path="/trends" element={<TrendsPage />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
