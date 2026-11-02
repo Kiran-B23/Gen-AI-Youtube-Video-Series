@@ -18,6 +18,8 @@ export const REF_BENCHMARK = path.join(REPO, "references", "benchmark.json");
 export const WEB_DIST = path.join(APP, "web", "dist");
 export const DB_FILE = path.join(APP, "data.db");
 export const PRODUCTIONS = path.join(REPO, "productions");
+/** free-GPU model tests (read-only Experiments page) */
+export const EXPERIMENTS = path.join(REPO, "experiments");
 export const AGENTS_DIR = path.join(REPO, ".claude", "agents");
 export const STYLES_DIR = path.join(STUDIO, "templates", "styles");
 export const SCRIPTER = path.join(REPO, ".claude", "skills", "video-scripter");

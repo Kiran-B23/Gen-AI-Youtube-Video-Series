@@ -23,23 +23,20 @@ function useRowEdit(r: ReviewRow, slug: string, onSaved: (out: string) => void) 
     <>
       <div className="flex flex-col gap-1.5">
         <select value={kind} onChange={(e) => setKind(e.target.value as Kind)} aria-label={`status of ${r.id}`}
-          className="w-28 rounded-md border border-line bg-panel px-1.5 py-1 text-xs">
+          className="field field--sm w-32">
           <option value="open">open</option><option value="fixed">fixed</option><option value="accepted">accepted</option>
         </select>
         {kind !== "open"
           ? <textarea value={reason} onChange={(e) => setReason(e.target.value)} rows={Math.min(5, Math.max(1, Math.ceil(reason.length / 34)))} placeholder={kind === "fixed" ? "what changed" : "why it is fine"}
-              className="w-full resize-y rounded-md border border-line bg-panel px-2 py-1 text-xs leading-5" />
+              className="field field--sm w-full" aria-label={`reason for ${r.id}`} />
           : r.status !== "open" && r.kind === "open" ? <span className="text-xs text-muted">note kept in the file: “{r.reason}”</span> : null}
       </div>
-      {r.kind === "open" && !r.countsAsOpen && (
-        <div className="mt-1 text-[11px] text-warn" title="review.py and deliver count a row as open only when its status is exactly “open”">
-          ⚠ “open (…)” is not counted as open by review.py: saving it as open writes plain “open”.</div>)}
       {(dirty || m.isError) && (
-        <div className="mt-1.5 flex items-center gap-2">
+        <div className="mt-2 flex flex-wrap items-center gap-2">
           <Button small kind="primary" disabled={needsReason || m.isPending} onClick={() => m.mutate()}>{m.isPending ? "Saving…" : "Save"}</Button>
           <Button small kind="ghost" onClick={() => { setKind(initKind); setReason(r.reason); m.reset(); }}>Reset</Button>
-          {needsReason && <span className="text-[11px] text-muted">a reason is required</span>}
-          {m.isError && <span className="text-[11px] text-bad">{(m.error as Error).message}</span>}
+          {needsReason && <span className="text-xs text-muted">a reason is required</span>}
+          {m.isError && <span role="alert" className="text-xs text-bad">{(m.error as Error).message}</span>}
         </div>)}
     </>
   );
@@ -54,17 +51,17 @@ export function parseTime(s: string): number | null {
 type Seek = ((t: number) => void) | undefined;
 function TimeCell({ time, onSeek }: { time: string; onSeek: Seek }) {
   const t = parseTime(time);
-  return onSeek && t !== null ? <button className="text-accent hover:underline" title="seek the player here" onClick={() => onSeek(t)}>{time}</button> : <>{time}</>;
+  return onSeek && t !== null ? <button className="link" title="seek the player here" onClick={() => onSeek(t)}>{time}</button> : <>{time}</>;
 }
 
 function Row({ r, slug, onSaved, onSeek }: { r: ReviewRow; slug: string; onSaved: (out: string) => void; onSeek: Seek }) {
   const editor = useRowEdit(r, slug, onSaved);
   return (
-    <tr className={r.countsAsOpen ? "bg-bad/5" : ""}>
-      <td className="break-all font-mono text-[11.5px]">{r.id}</td>
-      <td className="whitespace-nowrap text-muted"><TimeCell time={r.time} onSeek={onSeek} /></td>
+    <tr data-row={r.countsAsOpen ? "bad" : undefined}>
+      <td className="break-all text-xs">{r.id}</td>
+      <td className="break-words text-muted"><TimeCell time={r.time} onSeek={onSeek} /></td>
       <td className="whitespace-nowrap text-muted">{r.scene}</td>
-      <td className="break-words">{r.finding}</td>
+      <td className="break-words text-sm">{r.finding}</td>
       <td>{editor}</td>
     </tr>
   );
@@ -74,9 +71,9 @@ function Row({ r, slug, onSaved, onSeek }: { r: ReviewRow; slug: string; onSaved
 function RowCard({ r, slug, onSaved, onSeek }: { r: ReviewRow; slug: string; onSaved: (out: string) => void; onSeek: Seek }) {
   const editor = useRowEdit(r, slug, onSaved);
   return (
-    <li className={`space-y-2 px-4 py-3 ${r.countsAsOpen ? "bg-bad/5" : ""}`}>
-      <div className="flex flex-wrap items-center gap-x-2 text-[11.5px] text-muted"><span className="break-all font-mono text-ink">{r.id}</span>{r.time && <TimeCell time={r.time} onSeek={onSeek} />}{r.scene && <span>{r.scene}</span>}</div>
-      <div className="text-[13px]">{r.finding}</div>
+    <li className={`space-y-2 py-3 ${r.countsAsOpen ? "bg-bad/5 px-2" : ""}`}>
+      <div className="flex flex-wrap items-center gap-x-2 text-xs text-muted"><span className="break-all text-ink">{r.id}</span>{r.time && <TimeCell time={r.time} onSeek={onSeek} />}{r.scene && <span>{r.scene}</span>}</div>
+      <div className="text-sm">{r.finding}</div>
       {editor}
     </li>
   );
@@ -99,43 +96,44 @@ function AddRow({ slug, onSaved, prefill }: { slug: string; onSaved: (out: strin
     mutationFn: () => api.review(slug, { op: "add", ...f }),
     onSuccess: (d) => { qc.setQueryData(["project", slug], d.project); onSaved(d.check.output); setF({ id: "", time: "", scene: "", finding: "" }); },
   });
-  const inp = "rounded-md border border-line bg-panel px-2 py-1 text-xs";
+  const inp = "field field--sm";
   return (
-    <form ref={form} className={`flex flex-wrap items-center gap-2 border-t border-line px-4 py-3 ${prefill && f.id === prefill.id ? "bg-accent/5" : ""}`} onSubmit={(e) => { e.preventDefault(); m.mutate(); }}>
-      <span className="text-xs font-medium text-muted">Add a finding</span>
-      <input className={`${inp} w-36 font-mono`} placeholder="sheet:s05@23.2" value={f.id} onChange={(e) => setF({ ...f, id: e.target.value })} />
-      <input className={`${inp} w-20`} placeholder="23.2s" value={f.time} onChange={(e) => setF({ ...f, time: e.target.value })} />
-      <input className={`${inp} w-16`} placeholder="s05" value={f.scene} onChange={(e) => setF({ ...f, scene: e.target.value })} />
-      <input ref={finding} className={`${inp} min-w-48 flex-1`} placeholder="what the sheet / the listen shows" value={f.finding} onChange={(e) => setF({ ...f, finding: e.target.value })} />
+    <form ref={form} className={`flex flex-wrap items-end gap-2 border-t-2 border-ink py-3 ${prefill && f.id === prefill.id ? "bg-accent/5" : ""}`} onSubmit={(e) => { e.preventDefault(); m.mutate(); }}>
+      <span className="w-full text-sm font-extrabold">Add a finding</span>
+      <input className={`${inp} w-40`} aria-label="finding id" placeholder="sheet:s05@23.2" value={f.id} onChange={(e) => setF({ ...f, id: e.target.value })} />
+      <input className={`${inp} w-20`} aria-label="time" placeholder="23.2s" value={f.time} onChange={(e) => setF({ ...f, time: e.target.value })} />
+      <input className={`${inp} w-16`} aria-label="scene" placeholder="s05" value={f.scene} onChange={(e) => setF({ ...f, scene: e.target.value })} />
+      <input ref={finding} className={`${inp} min-w-48 flex-1`} aria-label="finding" placeholder="what the sheet / the listen shows" value={f.finding} onChange={(e) => setF({ ...f, finding: e.target.value })} />
       <Button small type="submit" disabled={!f.id.trim() || !f.finding.trim() || m.isPending}>Add (open)</Button>
-      {m.isError && <span className="text-[11px] text-bad">{(m.error as Error).message}</span>}
+      {m.isError && <span role="alert" className="text-xs text-bad">{(m.error as Error).message}</span>}
     </form>
   );
 }
 
 export function ReviewTable({ p, onSeek, prefill }: { p: Project; onSeek?: (t: number) => void; prefill?: Prefill | null }) {
-  const [filter, setFilter] = useState<"all" | Kind>("all");
+  const [filter, setFilter] = useState<"all" | Kind>(() => (p.review?.rows.some((r) => r.kind === "open") ? "open" : "all"));
   const [check, setCheck] = useState<string | null>(null);
   const rv = p.review;
-  if (!rv) return <Card title="Fix list (review.md)"><Empty>No review.md yet: run the review step.</Empty></Card>;
+  if (!rv) return <Card title={<span title="review.md">Fix list</span>}><Empty>No review.md yet: run the review step.</Empty></Card>;
   const counts = { all: rv.rows.length, open: rv.rows.filter((r) => r.kind === "open").length, fixed: rv.rows.filter((r) => r.kind === "fixed").length, accepted: rv.rows.filter((r) => r.kind === "accepted").length };
   const rows = rv.rows.filter((r) => filter === "all" || r.kind === filter);
   return (
-    <Card pad={false} title="Fix list (review.md)" right={<>
-      <Chip tone={rv.open ? "bad" : "ok"} title="rows whose status is exactly “open” (what review.py and deliver count)">{rv.open} open per review.py</Chip>
-      <div className="flex rounded-lg border border-line p-0.5">
+    <Card pad={false} title={<span title="review.md">Fix list</span>} right={<>
+      <Chip tone={rv.open ? "bad" : "ok"} title="rows whose status starts with “open” (what review.py and deliver count)">{rv.open} open</Chip>
+      <div className="seg" role="group" aria-label="filter rows">
         {(["all", "open", "fixed", "accepted"] as const).map((k) => (
-          <button key={k} onClick={() => setFilter(k)} className={`rounded-md px-2 py-0.5 text-xs ${filter === k ? "bg-panel-2 text-ink" : "text-muted hover:text-ink"}`}>{k} {counts[k]}</button>))}
+          <button key={k} aria-pressed={filter === k} onClick={() => setFilter(k)}>{k}&nbsp;<b className="font-extrabold">{counts[k]}</b></button>))}
       </div></>}>
-      {check && <pre className="scroll-thin mx-4 mt-3 max-h-32 overflow-auto whitespace-pre-wrap rounded-md bg-panel-2 p-2 font-mono text-[11px] text-muted">review.py --check: {check}</pre>}
-      <ul className="divide-y divide-line sm:hidden">{rows.map((r) => <RowCard key={r.id + r.status} r={r} slug={p.slug} onSaved={setCheck} onSeek={onSeek} />)}</ul>
-      <div className="scroll-thin hidden max-h-[640px] overflow-auto px-2 pb-2 sm:block">
-        <table className="data min-w-[640px] table-fixed">
-          <colgroup><col className="w-[8rem]" /><col className="w-[4rem]" /><col className="w-[3.25rem]" /><col /><col className="w-[15.5rem]" /></colgroup>
+      {check && <pre role="status" className="out scroll-thin mb-3 max-h-32 overflow-auto">review.py --check: {check}</pre>}
+      <ul className="divide-y divide-rule sm:hidden">{rows.map((r) => <RowCard key={r.id + r.status} r={r} slug={p.slug} onSaved={setCheck} onSeek={onSeek} />)}</ul>
+      {rows.length === 0 && <div className="py-4 sm:hidden"><Empty>No {filter} rows.</Empty></div>}
+      <div className="scroll-thin hidden max-h-[640px] overflow-auto pb-2 sm:block">
+        <table className="data min-w-[680px] table-fixed">
+          <colgroup><col className="w-[9rem]" /><col className="w-[5.5rem]" /><col className="w-[4rem]" /><col /><col className="w-[16rem]" /></colgroup>
           <thead><tr><th>id</th><th>time</th><th>scene</th><th>finding</th><th>status</th></tr></thead>
           <tbody>{rows.map((r) => <Row key={r.id + r.status} r={r} slug={p.slug} onSaved={setCheck} onSeek={onSeek} />)}</tbody>
         </table>
-        {rows.length === 0 && <div className="px-2 py-4"><Empty>No {filter} rows.</Empty></div>}
+        {rows.length === 0 && <div className="py-4"><Empty>No {filter} rows.</Empty></div>}
       </div>
       <AddRow slug={p.slug} onSaved={setCheck} prefill={prefill} />
     </Card>

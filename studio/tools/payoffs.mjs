@@ -21,7 +21,11 @@ const html = fs.readFileSync(index, "utf8");
 const sha1 = crypto.createHash("sha1").update(html).digest("hex");
 const [W, H] = layout.size || [1080, 1920];
 const ZONE_BOTTOM = (layout.stage_zone || [220, 1460])[1], RIGHT = Math.round(W * 0.88);
-const MAX_STILL = 2.5, CAP_MAX_H = Math.round((layout.caption?.px || 60) * 1.2 * 2 + 6);
+const FROZEN = 5.0, CAM_GAP = 2.5, HOOK_AT = 1.5, HOOK_FILL = 0.45, CAP_MAX_H = Math.round((layout.caption?.px || 60) * 1.2 * 2 + 6);
+// opening ceiling: the top faceless explainers open on 1-3 things and ≤ ~5 words, then build the hook with the voice
+// (references/web-shorts-openings-2026-10-30.md). Counted on screen: visual units in the stage + every readable word,
+// captions, chips and labels included.
+const OPENING = [{ at: 0.05, units: 3, words: 6 }, { at: 3.0, units: 5, words: 12 }];
 
 // Stage beats without a data-beat attribute: read the element from stage.js, where `pop('srcc', at('s01/src'))`
 // already says which element the beat reveals (any kit verb with the id first and at('<key>') in the same statement).
@@ -88,6 +92,31 @@ await page.evaluate(({ W, H }) => {
       return { s: tw.startTime(), d: tw.totalDuration(), id: tg[0].id || tg[0].className, top: Math.round(r.top) };
     }).filter(Boolean);
   };
+  // what a viewer has to take in at this moment: visual units (the outermost visible element that draws something: its
+  // own text, media, a fill or a border; full-frame backgrounds skipped) and readable words (stage + captions)
+  window.__opening = () => {
+    const op = el => { let o = 1, e = el; while (e && e !== document.documentElement) { const cs = getComputedStyle(e); if (cs.display === "none" || cs.visibility === "hidden") return 0; o *= +cs.opacity; e = e.parentElement; } return o; };
+    const onScreen = r => r.width * r.height >= 100 && r.right > 0 && r.bottom > 0 && r.left < W && r.top < H;
+    const draws = el => { const cs = getComputedStyle(el);
+      return [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim()) || ["IMG", "VIDEO", "CANVAS", "svg"].includes(el.tagName)
+        || (el.children.length && el.textContent.trim() && [...el.children].every(c => getComputedStyle(c).display.startsWith("inline")))   // a line built from word spans is one thing
+        || cs.backgroundColor !== "rgba(0, 0, 0, 0)" || cs.backgroundImage !== "none" || parseFloat(cs.borderTopWidth) > 0 || parseFloat(cs.borderLeftWidth) > 0; };
+    const stage = document.querySelector("#stage") || document.body, units = [], seen = new Set();
+    for (const el of stage.querySelectorAll("*")) {
+      if (el.closest(".caption") || el.closest("svg") !== null && el.tagName !== "svg") continue;
+      let a = el.parentElement, inside = false; while (a && a !== stage) { if (seen.has(a)) { inside = true; break; } a = a.parentElement; }
+      if (inside || !draws(el) || op(el) < 0.5) continue;
+      const r = el.getBoundingClientRect(); if (!onScreen(r) || r.width * r.height > 0.5 * W * H) continue;
+      seen.add(el); units.push({ id: el.id || el.className || el.tagName, text: el.textContent.trim().replace(/\s+/g, " ").slice(0, 40) });
+    }
+    let words = 0; const said = []; const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    for (let n = tw.nextNode(); n; n = tw.nextNode()) {
+      const el = n.parentElement; if (!el || !n.textContent.trim() || ["SCRIPT", "STYLE"].includes(el.tagName) || op(el) < 0.5) continue;
+      if (!onScreen(el.getBoundingClientRect())) continue;
+      const ws = n.textContent.split(/\s+/).filter(w => /[\p{L}\p{N}]/u.test(w)); words += ws.length; said.push(...ws);
+    }
+    return { units, words, said };
+  };
 }, { W, H });
 
 const seek = t => page.evaluate(t => window.__seek(t), Math.max(0, Math.min(layout.total - 0.02, t)));
@@ -130,7 +159,8 @@ for (const c of layout.captions || []) {
   }
 }
 
-// planned motion: per scene, the longest stretch with no tween on a real element (fillers excluded) must be ≤ 2.5 s
+// planned motion: per scene, the longest stretch with no tween on a real element (fillers excluded) must be ≤ 5 s
+// (a frozen frame; holds of 2.5-5 s to read are fine: references/web-shorts-2026-10-30.md)
 await seek(0);
 const tweens = (await page.evaluate(() => window.__tweens())).filter(t => t.top < ZONE_BOTTOM + 200 || t.top === 0);
 const motion = [];
@@ -140,7 +170,7 @@ for (const sc of (layout.scenes || []).slice(0, -1)) {
   let cur = a, gap = 0, gapAt = a;
   for (const [x, y] of iv) { if (x - cur > gap) { gap = x - cur; gapAt = cur; } cur = Math.max(cur, y); }
   if (b - cur > gap) { gap = b - cur; gapAt = cur; }
-  motion.push({ scene: sc.id, longest_still_s: +gap.toFixed(2), at: +gapAt.toFixed(2), ok: gap <= MAX_STILL });
+  motion.push({ scene: sc.id, longest_still_s: +gap.toFixed(2), at: +gapAt.toFixed(2), ok: gap <= FROZEN });
 }
 
 // edges: every 0.25 s, any visible text inside the stage (captions excluded) whose glyphs leave the frame x 0..W is a crop
@@ -169,27 +199,84 @@ for (const [k, v] of Object.entries(edgeHits)) {
   flush();
 }
 
+// pixels: the same stillness test qa_video.py runs on the rendered MP4, here on the composition before any render, so a
+// static scene or a blank opening costs one payoffs run instead of render + qa. Every 0.25 s: the stage band (y 10-76 %,
+// captions excluded) shrunk to 108 px wide, grey; a step "moves" when the mean change is >= 0.35 (qa's threshold).
+const dec = await browser.newPage();
+const BAND = { x: 0, y: Math.round(H * 0.10), width: W, height: Math.round(H * 0.66) };
+const shot = async t => {
+  await page.evaluate(t => window.__seek(t), t);
+  const png = (await page.screenshot({ clip: BAND, type: "jpeg", quality: 70 })).toString("base64");
+  return dec.evaluate(async b64 => {
+    const bmp = await createImageBitmap(await (await fetch("data:image/jpeg;base64," + b64)).blob());
+    const w = 108, h = Math.round(bmp.height * 108 / bmp.width), c = new OffscreenCanvas(w, h), x = c.getContext("2d");
+    x.drawImage(bmp, 0, 0, w, h); const d = x.getImageData(0, 0, w, h).data, g = new Array(w * h);
+    for (let k = 0; k < w * h; k++) g[k] = 0.299 * d[4 * k] + 0.587 * d[4 * k + 1] + 0.114 * d[4 * k + 2];
+    return g;
+  }, png);
+};
+const grey = [];
+for (let i = 0; i < Math.floor(layout.total * 4); i++) grey.push(await shot(i / 4));
+const moving = grey.slice(1).map((g, k) => g.reduce((a, v, j) => a + Math.abs(v - grey[k][j]), 0) / g.length >= 0.35);
+const pixels = [];
+for (const sc of (layout.scenes || [])) {
+  const a = Math.floor(sc.start * 4), b = Math.floor((sc.start + sc.duration) * 4);
+  let run = 0, best = 0, bestAt = a;
+  for (let k = a; k < Math.min(b, moving.length); k++) { run = moving[k] ? 0 : run + 1; if (run > best) { best = run; bestAt = k - run + 1; } }
+  const o = await shot(sc.start + 0.15);   // exactly 0.15 s in, not the nearest grid step (which can fall in the wipe before)
+  const mean = o.reduce((s1, v) => s1 + v, 0) / o.length;
+  const sd = Math.sqrt(Math.max(0, o.reduce((s2, v) => s2 + v * v, 0) / o.length - mean * mean));
+  pixels.push({ scene: sc.id, longest_still_s: best / 4, at: +(bestAt / 4).toFixed(2), blank_open: sd < 6,
+                ok: (sc === layout.scenes[layout.scenes.length - 1] || best / 4 <= FROZEN) && sd >= 6 });
+}
+const stillPct = moving.length ? +(100 * (1 - moving.filter(Boolean).length / moving.length)).toFixed(1) : 0;
+// still share: reported only (it does not predict reach; the top shorts run 0-94 %)
+
+// hook frame: at 1.5 s the hook question and the running object must fill >= 45 % of the stage band's height (the top
+// explainer shorts open with the question in large type over the object already acting; a small card in the top third
+// over an empty middle fails). A row "has content" when > 2 % of its pixels differ from the background by > 14 grey levels.
+const hg = await shot(HOOK_AT), hw = 108, hh = hg.length / hw;
+const hist = new Array(256).fill(0); for (const v of hg) hist[Math.round(v)]++;
+const bg = hist.indexOf(Math.max(...hist));
+const rowsOn = []; for (let y = 0; y < hh; y++) { let n = 0; for (let x = 0; x < hw; x++) if (Math.abs(hg[y * hw + x] - bg) > 14) n++; if (n / hw > 0.02) rowsOn.push(y); }
+const hookFill = rowsOn.length ? +((rowsOn[rowsOn.length - 1] - rowsOn[0] + 1) / hh).toFixed(2) : 0;
+const hook = { at: HOOK_AT, fill: hookFill, need: HOOK_FILL, ok: hookFill >= HOOK_FILL };
+
+// opening: few things at 0 s, the hook built with the voice by 3 s (a frame that is already complete before the first
+// word reads as clutter; the fill test above alone rewards it)
+const opening = [];
+for (const o of OPENING) {
+  if (o.at >= layout.total) continue;
+  await seek(o.at);
+  const m = await page.evaluate(() => window.__opening());
+  opening.push({ at: o.at, units: m.units.length, max_units: o.units, words: m.words, max_words: o.words,
+                 ok: m.units.length <= o.units && m.words <= o.words, list: m.units.map(u => u.text || u.id), words_seen: m.said });
+}
+
 // camera: moves per scene, never more than one per 2.5 s
 const camera = [];
 for (const sc of layout.scenes || []) {
   const mv = (layout.camera || []).filter(c => c.at >= sc.start && c.at < sc.start + sc.duration);
-  const dense = mv.some((c, k) => k && c.at - mv[k - 1].at < MAX_STILL);
+  const dense = mv.some((c, k) => k && c.at - mv[k - 1].at < CAM_GAP);
   if (mv.length) camera.push({ scene: sc.id, moves: mv.length, ok: !dense, zooms: mv.map(c => c.zoom) });
-  if (dense) warn.push(`${sc.id}: ${mv.length} camera moves closer than ${MAX_STILL} s (every zoom needs a reason; let one land before the next)`);
+  if (dense) warn.push(`${sc.id}: ${mv.length} camera moves closer than ${CAM_GAP} s (every zoom needs a reason; let one land before the next)`);
 }
 await browser.close();
 
 const failed = beats.filter(b => !b.ok), checked = beats.filter(b => !b.skipped);
 const out = { generated: new Date().toISOString(), slug, index_sha1: sha1, settle_default: 0.5, zone_bottom: ZONE_BOTTOM,
   summary: { checked: checked.length, passed: checked.length - failed.length, failed: failed.length, skipped: beats.length - checked.length,
-             below_zone: beats.filter(b => b.below_zone).length, caption_overflow: caps.length, still_scenes: motion.filter(m => !m.ok).length, camera_moves: (layout.camera || []).length, edge_crops: edges.length },
-  beats, captions: caps, motion, camera, edges, warnings: warn, tweens: tweens.map(t => ({ s: +t.s.toFixed(2), d: +t.d.toFixed(2), id: t.id })) };
+             below_zone: beats.filter(b => b.below_zone).length, caption_overflow: caps.length, still_scenes: motion.filter(m => !m.ok).length + pixels.filter(m => !m.ok).length, still_pct: stillPct, hook_fill: hookFill, opening_ok: opening.every(o => o.ok), camera_moves: (layout.camera || []).length, edge_crops: edges.length },
+  beats, captions: caps, motion, pixels, hook, opening, camera, edges, warnings: warn, tweens: tweens.map(t => ({ s: +t.s.toFixed(2), d: +t.d.toFixed(2), id: t.id })) };
 fs.mkdirSync(path.join(P, "out"), { recursive: true });
 fs.writeFileSync(path.join(P, "out", "payoffs.json"), JSON.stringify(out, null, 1));
 for (const b of failed) console.log(`  ✗ ${b.scene} @ ${b.at.toFixed(2)}s "${b.word}" → ${b.target}: ${b.reason}`);
 for (const c of caps) console.log(`  ✗ caption ${c.scene} @ ${c.at}s is ${c.height}px tall (max ${CAP_MAX_H}): "${c.words}"`);
 for (const m of motion.filter(m => !m.ok)) console.log(`  ✗ ${m.scene}: nothing planned moves for ${m.longest_still_s}s from ${m.at}s`);
+for (const m of pixels.filter(m => !m.ok)) console.log(m.blank_open ? `  ✗ ${m.scene}: blank opening (nothing in the stage band 0.15 s in)` : `  ✗ ${m.scene}: the stage band does not change for ${m.longest_still_s}s from ${m.at}s (tweens run, but nothing visible moves)`);
+if (!hook.ok) console.log(`  ✗ hook frame at ${HOOK_AT}s fills ${Math.round(hookFill * 100)}% of the stage band's height (need ≥ ${HOOK_FILL * 100}%): show the hook question large at the top with the running object acting under it`);
+for (const o of opening.filter(o => !o.ok)) console.log(`  ✗ opening at ${o.at}s: ${o.units} things / ${o.words} words on screen (max ${o.max_units} / ${o.max_words}, captions and chips included): ${o.at < 1 ? "open on the question's first words and one object" : "build the hook on its words"}; move the rest to its spoken word or after the hook [${o.list.join(" · ")}]`);
 for (const e of edges) console.log(`  ✗ text cut at the frame edge ${e.from}–${e.to}s: "${e.el}" (x ${e.left}..${e.right}): pull the zoom back or move it inward`);
 for (const w of warn) console.log(`  ⚠ ${w}`);
-console.log(`payoffs: ${out.summary.passed}/${out.summary.checked} beats on screen on their word · ${out.summary.skipped} skipped · ${caps.length} caption overflow · ${out.summary.still_scenes} still scene(s) · ${out.summary.camera_moves} camera moves · ${edges.length} edge crop(s) → out/payoffs.json`);
-process.exit(failed.length || caps.length || edges.length || motion.some(m => !m.ok) ? 1 : 0);
+console.log(`payoffs: ${out.summary.passed}/${out.summary.checked} beats on screen on their word · ${out.summary.skipped} skipped · ${caps.length} caption overflow · ${out.summary.still_scenes} still scene(s) · ${stillPct}% still · hook ${Math.round(hookFill * 100)}% · opening ${opening.map(o => `${o.units}/${o.words}w@${o.at}s`).join(" ")} · ${out.summary.camera_moves} camera moves · ${edges.length} edge crop(s) → out/payoffs.json`);
+process.exit(failed.length || caps.length || edges.length || motion.some(m => !m.ok) || pixels.some(m => !m.ok) || !hook.ok || opening.some(o => !o.ok) ? 1 : 0);

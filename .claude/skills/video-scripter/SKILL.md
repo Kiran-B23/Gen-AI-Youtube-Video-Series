@@ -152,6 +152,10 @@ One row per script beat, starting from its visual tag: time · spoken line · ta
 3 title options, a thumbnail concept (text of 4 words or fewer), the caption or description,
 chapters (long-form), hashtags, a pinned comment that invites replies, and repurposing notes
 (which long-form moments become reels). Use the winners' title patterns as evidence, never their words.
+Then run the `humanizer` skill in file mode on `publish.md` only (titles, caption, pinned comment, notes): it strips
+AI tells from written copy, keeps every fact and number, and leaves hashtags and code alone. **Never run it on the
+read-aloud script or hooks**: they are spoken copy, already gated by `script-comprehension` and `script-review`, and
+a rewrite changes the word count the 2.3 w/s voice gate measures.
 
 ### 8. QA → `qa.md`
 First run the deterministic eval and fix every ✗:

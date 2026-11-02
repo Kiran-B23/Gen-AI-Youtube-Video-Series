@@ -316,6 +316,7 @@ def cap_lines(ws):
     return lines
 MIN_CARD = 0.9   # a card shown for less than this can't be read (qa checks it)
 for i, s in enumerate(scenes):
+    if s.get("captions") is False: continue   # the stage shows the spoken words itself (the hook question typing out with the voice)
     words = tm.get(s["id"], {}).get("words", [])
     cards, cur = [], []
     for k, w in enumerate(words):

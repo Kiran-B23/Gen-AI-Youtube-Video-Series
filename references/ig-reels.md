@@ -134,6 +134,11 @@ In our words, the method that reel describes:
 
 ## Targets for the visual-plan rubric
 
+> **Superseded in part (2026-10-30), `references/web-shorts-2026-10-30.md`:** 12 top explainer shorts run 0–94 % still,
+> so still share is no longer a target (only a frame frozen for more than 5 s fails), and the first-frame row is now
+> "the hook question in large type with the object acting under it, ≥ 45 % of the band at 1.5 s". The rows below
+> stay as background.
+
 Derived from the three reels and our benchmark (`references/tokenization-reel.mp4`: 2.3 w/s, 48 % still by `tools/benchmark.py`; the pace is the benchmark's strength, the stillness is not).
 
 | metric | reels measured | benchmark | target | fail |

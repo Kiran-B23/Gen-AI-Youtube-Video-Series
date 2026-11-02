@@ -1,0 +1,75 @@
+/* The run pet (Pet.tsx). The app's one self-moving element (owner's request, 2026-10-29): every animation is stepped
+   (steps(), sprite-like, matching the steps(1) house motion), nothing eases or glows, and reduced motion stops it all. */
+.pet-track { position: relative; padding-top: 64px; }
+.pet-track__stations { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px;
+  border-top: var(--rule-bar) solid var(--color-ink); }
+.pet-track__stations li { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 2px; text-align: center; }
+.pet-track__pad { display: block; width: 12px; height: 12px; margin-top: -7px; border: 2px solid var(--color-ink); background: var(--color-paper-3); }
+.pet-track__label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.75rem; color: var(--color-muted); }
+.pet-track__count { font-size: 0.6875rem; color: var(--color-muted); font-variant-numeric: tabular-nums; }
+.pet-track li[data-state="done"] .pet-track__pad { background: var(--color-ink); }
+.pet-track li[data-state="here"] .pet-track__pad { background: var(--color-accent); border-color: var(--color-accent); }
+.pet-track li[data-state="here"] .pet-track__label { font-weight: 800; color: var(--color-ink); }
+.pet-track li[data-failed] .pet-track__pad { border-color: var(--color-bad); }
+
+.pet { position: absolute; top: 0; width: 90px; height: 60px; transform: translateX(-36%);
+  transition: left 1.6s steps(12, end); }
+.pet--flip { transform: translateX(-67%) scaleX(-1); }   /* body centre stays on the pad */
+.pet__svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.c-body { fill: var(--color-accent); }
+.c-face { fill: var(--color-paper-3); }
+.c-ink { fill: var(--color-ink); }
+.c-amber { fill: var(--color-accent-2); }
+.c-bad { fill: var(--color-bad); }
+
+.pet__svg g, .pet__svg rect { transform-box: fill-box; }
+.pet__legs-b { visibility: hidden; }
+.pet__eyes { transform-origin: center; animation: pet-blink 4s steps(1) infinite; }
+
+/* walking: legs alternate while the position transition runs */
+.act-walk .pet__legs-a { animation: pet-legs-a .3s steps(1) infinite; }
+.act-walk .pet__legs-b { animation: pet-legs-b .3s steps(1) infinite; }
+.act-walk .pet__whole { animation: pet-bob .3s steps(1) infinite; }
+
+.act-setup .prop--swing, .act-other .prop--swing { transform-origin: 50% 100%; animation: pet-swing .5s steps(2) infinite alternate; }
+.act-load .pet__whole, .act-load .prop { animation: pet-bob .5s steps(1) infinite; }
+.act-wait .pet__legs-a { animation: pet-tap 1s steps(1) infinite; }
+.act-pack .prop--tape { transform-origin: 0 50%; animation: pet-tape 1.2s steps(4) infinite; }
+.act-still .prop--brush { animation: pet-paint .8s steps(3) infinite; }
+.act-still .prop--dot1 { animation: pet-appear 2.4s steps(1) infinite; }
+.act-still .prop--dot2 { animation: pet-appear 2.4s steps(1) .8s infinite; }
+.act-still .prop--dot3 { animation: pet-appear 2.4s steps(1) 1.6s infinite; }
+.act-clip .prop--crank { transform-origin: center; animation: pet-spin .8s steps(4) infinite; }
+.act-voice .prop--waves { transform-origin: 0 50%; animation: pet-waves .6s steps(3) infinite; }
+.act-voice .pet__body { animation: pet-bob .6s steps(1) infinite; }
+.act-build .prop--drop { animation: pet-drop 1.2s steps(4) infinite; }
+.act-check .prop--scan { animation: pet-scan 1.6s steps(4) infinite alternate; }
+.act-read .prop--dot2 { animation: pet-appear 2s steps(1) infinite; }
+.act-read .prop--dot3 { animation: pet-appear 2s steps(1) 1s infinite; }
+.act-sleep .prop--zzz { animation: pet-rise 2s steps(4) infinite; }
+.act-dizzy .prop--stars { transform-origin: center; animation: pet-spin 1.2s steps(6) infinite; }
+.act-dizzy .pet__whole { animation: pet-wobble .6s steps(2) infinite; }
+.act-cheer .pet__whole { animation: pet-hop .5s steps(2) infinite; }
+.act-cheer .prop--confetti { animation: pet-appear .5s steps(1) infinite; }
+
+@keyframes pet-blink { 0%, 94% { transform: scaleY(1); } 95%, 100% { transform: scaleY(.2); } }
+@keyframes pet-legs-a { 0% { visibility: visible; } 50% { visibility: hidden; } }
+@keyframes pet-legs-b { 0% { visibility: hidden; } 50% { visibility: visible; } }
+@keyframes pet-bob { 0% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
+@keyframes pet-swing { from { transform: rotate(-25deg); } to { transform: rotate(20deg); } }
+@keyframes pet-tap { 0% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
+@keyframes pet-tape { from { transform: scaleX(.1); } to { transform: scaleX(1); } }
+@keyframes pet-paint { 0% { transform: translate(0, 0); } 33% { transform: translate(2px, -2px); } 66% { transform: translate(4px, 0); } }
+@keyframes pet-appear { 0% { opacity: 0; } 30% { opacity: 1; } }
+@keyframes pet-spin { to { transform: rotate(360deg); } }
+@keyframes pet-waves { from { transform: scaleX(.3); } to { transform: scaleX(1.4); } }
+@keyframes pet-drop { from { transform: translateY(-8px); } to { transform: translateY(0); } }
+@keyframes pet-scan { from { transform: translateX(-2px); } to { transform: translateX(4px); } }
+@keyframes pet-rise { from { transform: translateY(4px); opacity: 1; } to { transform: translateY(-4px); opacity: .2; } }
+@keyframes pet-wobble { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes pet-hop { 0% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pet { transition: none; }
+  .pet *, .pet__svg * { animation: none !important; }
+}

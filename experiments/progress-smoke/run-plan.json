@@ -1,0 +1,67 @@
+{
+ "slug": "progress-smoke",
+ "stages": [
+  {
+   "key": "setup",
+   "label": "Install",
+   "kind": "setup",
+   "jobs": [
+    {
+     "id": "setup",
+     "expect": 25
+    }
+   ]
+  },
+  {
+   "key": "stills",
+   "label": "Stills",
+   "kind": "still",
+   "load": 15,
+   "jobs": [
+    {
+     "id": "p1",
+     "expect": 20
+    },
+    {
+     "id": "p2",
+     "expect": 20
+    },
+    {
+     "id": "p3",
+     "expect": 20
+    }
+   ]
+  },
+  {
+   "key": "clips",
+   "label": "Clips",
+   "kind": "clip",
+   "load": 15,
+   "jobs": [
+    {
+     "id": "A-p1",
+     "expect": 30
+    },
+    {
+     "id": "A-p2",
+     "expect": 30
+    },
+    {
+     "id": "A-p3",
+     "expect": 30
+    }
+   ]
+  },
+  {
+   "key": "pack",
+   "label": "Pack",
+   "kind": "pack",
+   "jobs": [
+    {
+     "id": "pack",
+     "expect": 10
+    }
+   ]
+  }
+ ]
+}

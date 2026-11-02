@@ -8,7 +8,7 @@ import fastifyStatic from "@fastify/static";
 import { HOST, NO_AUTH, PASSWORD, PORT, SHORTS, VOICE_PACE_JSON, WEB_DIST, productionDir, projectDir, safeFile } from "./config.js";
 import { CONFIRM_STEPS, STEPS, STEP_FLAGS, STEP_IDS, previewPort, stepEnv } from "./steps.js";
 import { getProject, library, listProjects } from "./projects.js";
-import { ReviewError, applyPatch, reviewCheck, type ReviewPatch } from "./review.js";
+import { ReviewError, applyPatch, parseReview, reviewCheck, type ReviewPatch } from "./review.js";
 import { registerPreview } from "./preview.js";
 import { GEMINI_VOICES, ScenesError, applyVoicePatch, type VoicePatch } from "./scenes.js";
 import { SettingsError, agents, deliverPreview, expectedEvals, readPaceFile, runEvals, styles, writePace } from "./settings.js";
@@ -17,6 +17,8 @@ import { TREND_STEPS, trendBrief, trends } from "./trends.js";
 import { TRENDS_SLUG } from "./config.js";
 import * as jobs from "./jobs.js";
 import * as agent from "./agent.js";
+import { getVideo, listVideos } from "./videos.js";
+import { experimentFile, listExperiments } from "./experiments.js";
 
 if (!NO_AUTH && PASSWORD.length < 8) {
   console.error("APP_PASSWORD is missing or shorter than 8 characters: copy app/.env.example to app/.env and set one.");
@@ -124,13 +126,82 @@ app.patch<{ Params: { slug: string }; Body: ReviewPatch & { viewportWidth?: numb
   if (!p) return bad(reply, 404, "no such project");
   const body = req.body;
   if (!body || typeof body !== "object") return bad(reply, 400, "body required");
-  // the phone tick is meant to be given from a phone (the listen on a phone speaker is the point)
-  if (body.op === "tick" && body.which === "listened" && body.checked && !(Number(body.viewportWidth) > 0 && Number(body.viewportWidth) <= 520))
-    return bad(reply, 403, "tick 'Listened on a phone' from a phone-sized screen");
   try { applyPatch(path.join(p, "review.md"), body); }
   catch (e) { if (e instanceof ReviewError) return bad(reply, e.code, e.message); throw e; }
   const check = await reviewCheck(req.params.slug);
   return { ok: true, check, project: getProject(req.params.slug) };
+});
+
+// ---------- the owner's notes → the agent (fix and re-run) ----------
+const AUTO_ROW = /^(qa|beat|cap|edge|still|warn|unclear|watch|my):/;
+function projectAgent(slug: string) {
+  const p = projectDir(slug);
+  if (!p) return null;
+  let folder = "";
+  try { folder = String(JSON.parse(fs.readFileSync(path.join(p, "scenes.json"), "utf8")).package ?? "").replace(/^productions\//, "").replace(/\/$/, ""); } catch { /* none */ }
+  const found = folder ? agent.sessionForFolder(folder) : null;
+  return { dir: p, folder, pkg: found?.pkg ?? null, session: found?.session ?? null };
+}
+app.get<{ Params: { slug: string } }>("/api/projects/:slug/agent", async (req, reply) => {
+  const a = projectAgent(req.params.slug);
+  if (!a) return bad(reply, 404, "no such project");
+  return { folder: a.folder || null, package: a.pkg && { id: a.pkg.id, topic: a.pkg.topic }, session: a.session && { id: a.session.id, status: a.session.status, next: a.session.next } };
+});
+app.post<{ Params: { slug: string }; Body: { text?: string } }>("/api/projects/:slug/agent", async (req, reply) => {
+  const slug = req.params.slug, a = projectAgent(slug);
+  if (!a) return bad(reply, 404, "no such project");
+  const note = String(req.body?.text ?? "").trim();
+  const rf = path.join(a.dir, "review.md");
+  const rows = fs.existsSync(rf) ? parseReview(fs.readFileSync(rf, "utf8")).rows.filter((r) => r.countsAsOpen && !AUTO_ROW.test(r.id)) : [];
+  if (!note && !rows.length) return bad(reply, 400, "write what to change, or add a finding on the video first");
+  const msg = [
+    `The owner reviewed the render of ${slug} and wants changes. Fix them on autopilot.`,
+    note && `The owner's notes:\n${note}`,
+    rows.length && `The owner's open rows in studio/projects/${slug}/review.md:\n${rows.map((r) => `- ${r.id} · ${r.time || "—"} · ${r.scene || "—"}: ${r.finding}`).join("\n")}`,
+    "Change only what the notes ask (plus anything they break); if a note needs a script or voice change, make it and re-run that gate. " +
+      "Loop assemble + payoffs until clean, then check, render, qa, watch (read every sheet), review. Mark each owner row fixed (<what changed>) only once the new render shows it, " +
+      "and re-tick 'Watched end to end' after reading every sheet. Stop with a short before/after per note.",
+  ].filter(Boolean).join("\n\n");
+  try {
+    if (a.session?.sdk_session_id) return { queued: a.session.status === "running" || a.session.status === "queued", session: agent.reply(a.session.id, msg), packageId: a.pkg!.id };
+    // no agent session built this project: start a revision session for it (approved, so run_step works)
+    const pk = agent.createPackage("ask", msg, "reel", "", a.folder || null);
+    return { queued: false, session: agent.start(pk.id), packageId: pk.id };
+  } catch (e) { if (e instanceof agent.AgentError) return bad(reply, e.code, e.message); throw e; }
+});
+
+// ---------- the simple interface: videos (videos.ts) ----------
+app.get("/api/videos", async () => listVideos());
+app.get<{ Params: { key: string } }>("/api/videos/:key", async (req, reply) => getVideo(req.params.key) ?? bad(reply, 404, "no such video"));
+/** one message box per video: before a project exists it goes to the package session; after, with the owner's notes */
+app.post<{ Params: { key: string }; Body: { text?: string } }>("/api/videos/:key/message", async (req, reply) => {
+  const v = getVideo(req.params.key);
+  if (!v) return bad(reply, 404, "no such video");
+  const text = String(req.body?.text ?? "").trim();
+  if (v.slug) return app.inject({ method: "POST", url: `/api/projects/${encodeURIComponent(v.slug)}/agent`, payload: { text } }).then((r) => reply.code(r.statusCode).send(r.json()));
+  if (!text) return bad(reply, 400, "write a message");
+  if (!v.sessionId) return bad(reply, 409, "this video has no agent session");
+  try { const s = agent.reply(v.sessionId, text); return { queued: s.status === "running" && !!s.next, session: s }; }
+  catch (e) { if (e instanceof agent.AgentError) return bad(reply, e.code, e.message); throw e; }
+});
+/** "Approve & deliver": the owner watched and listened. Accept every open row, tick both lines (the listened tick writes
+ *  the owner's seal), then queue deliver; deliver_check.py still refuses a stale qa/payoffs/watch or a changed MP4. */
+app.post<{ Params: { slug: string } }>("/api/projects/:slug/approve-deliver", async (req, reply) => {
+  const slug = req.params.slug, p = projectDir(slug);
+  if (!p) return bad(reply, 404, "no such project");
+  const rf = path.join(p, "review.md");
+  if (!fs.existsSync(rf)) return bad(reply, 409, "no fix list yet: the review step has not run");
+  if (jobs.busy(slug)) return bad(reply, 409, "a step is still running for this video: wait for it");
+  const day = new Date().toLocaleDateString("sv-SE");
+  try {
+    for (const r of parseReview(fs.readFileSync(rf, "utf8")).rows.filter((r) => r.countsAsOpen))
+      applyPatch(rf, { op: "row", id: r.id, status: "accepted", reason: `owner approved after watching and listening, ${day}` });
+    const t = parseReview(fs.readFileSync(rf, "utf8"));
+    if (t.watched && !t.watched.checked) applyPatch(rf, { op: "tick", which: "watched", checked: true });
+    if (t.listened && !t.listened.checked) applyPatch(rf, { op: "tick", which: "listened", checked: true });
+  } catch (e) { if (e instanceof ReviewError) return bad(reply, e.code, e.message); throw e; }
+  const job = jobs.enqueue(slug, "deliver", stepEnv(slug, "deliver"));
+  return reply.code(202).send({ job });
 });
 
 // ---------- deliver pre-check (read-only: deliver_check.py + review.py --check) ----------
@@ -165,6 +236,15 @@ app.get("/api/library", async () => library());
 app.get<{ Params: { name: string } }>("/shorts/:name", (req, reply) => {
   const real = safeFile(SHORTS, req.params.name, new Set([".mp4"]));
   if (!real || path.dirname(real) !== fs.realpathSync(SHORTS)) return bad(reply, 404, "not found");
+  reply.header("Cache-Control", "no-cache");
+  return reply.sendFile(path.basename(real), path.dirname(real));
+});
+
+// ---------- experiments (read-only: experiments/<name>/{out,results,images}/ media) ----------
+app.get("/api/experiments", async () => listExperiments());
+app.get<{ Params: { name: string; "*": string } }>("/exp/:name/*", (req, reply) => {
+  const real = experimentFile(req.params.name, req.params["*"] ?? "");
+  if (!real) return bad(reply, 404, "not found");
   reply.header("Cache-Control", "no-cache");
   return reply.sendFile(path.basename(real), path.dirname(real));
 });
@@ -232,6 +312,13 @@ app.post<{ Params: { id: string } }>("/api/packages/:id/start", async (req, repl
 app.post<{ Params: { id: string } }>("/api/packages/:id/stop", async (req, reply) => {
   const s = agent.sessionOf(Number(req.params.id));
   return s && agent.stop(s.id) ? pkgView(Number(req.params.id)) : bad(reply, 409, "not queued or running");
+});
+app.post<{ Params: { id: string } }>("/api/packages/:id/approve-script", async (req, reply) => {
+  const id = Number(req.params.id);
+  const p = agent.getPkg(id);
+  if (!p || p.kind !== "package") return bad(reply, 404, "no such package");
+  try { agent.approveScript(id); } catch (e) { return bad(reply, e instanceof agent.AgentError ? e.code : 500, (e as Error).message); }
+  return pkgView(id);
 });
 app.delete<{ Params: { id: string } }>("/api/packages/:id", async (req, reply) =>
   agent.deletePackage(Number(req.params.id)) ? { ok: true } : bad(reply, 409, "stop it first"));
@@ -314,7 +401,7 @@ app.get<{ Params: { slug: string; "*": string } }>("/files/:slug/*", (req, reply
 if (fs.existsSync(path.join(WEB_DIST, "index.html"))) {
   app.get("/assets/*", (req, reply) => reply.sendFile(path.join("assets", (req.params as any)["*"]), WEB_DIST));
   app.setNotFoundHandler((req, reply) => {
-    if (req.method !== "GET" || /^\/(api|files|preview|shorts)\//.test(req.url)) return bad(reply, 404, "not found");
+    if (req.method !== "GET" || /^\/(api|files|preview|shorts|exp)\//.test(req.url)) return bad(reply, 404, "not found");
     const f = req.url.split("?")[0].replace(/^\/+/, "");
     if (f && !f.includes("..") && fs.existsSync(path.join(WEB_DIST, f)) && fs.statSync(path.join(WEB_DIST, f)).isFile()) return reply.sendFile(f, WEB_DIST);
     return reply.sendFile("index.html", WEB_DIST); // client-side routes

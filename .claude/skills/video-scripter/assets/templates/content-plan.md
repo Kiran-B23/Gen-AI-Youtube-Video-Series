@@ -9,6 +9,12 @@ _One line, in the viewer's words._
 ## Core message
 _One sentence (≤ 20 words) the viewer can repeat after watching._
 
+## Length
+**Reel: 45–75 s** | **Long reel:** _reason (only when a Depth point can't fit in 75 s)_
+
+## Hook question
+_≤ 8 words, as a viewer would ask it. Types out large in the first seconds as it is spoken, over the one running object, then pinned at the top for the whole video._
+
 ## Must include
 | # | Point (concrete fact / mechanism / example) | Source | Label |
 |---|---|---|---|

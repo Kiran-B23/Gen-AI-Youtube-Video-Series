@@ -1,0 +1,154 @@
+/* Harness reel v2 stage · on top of the reference-flat kit · all ids/classes prefixed k- (never the engine's preset names).
+   Stage 1080 x 1920, one background #EEF1F6. Content inside x 60-950, y 220-1320. Non-hero text >= 34 px. */
+
+.k-q, .k-qh, .k-sec, .k-chip, .k-c0t, .k-tag0, .k-row0, .k-ct, .k-cl, .k-rtxt, .k-st, .k-leg, .k-slab, .k-fn, .k-rl, .k-cmd, .k-asks,
+.k-err, .k-mini, .k-ready, .k-blab, .k-bench, .k-pts, .k-five, .k-same, .k-proj, .k-mis, .k-neq, .k-ai, .k-cta, .k-rl1, .k-dollar, .k-okc,
+.k-itag, .k-ctag, .k-bug, .k-aip, .k-aif, .k-pill, .k-tp { box-sizing: border-box; white-space: nowrap; }
+
+/* ---------- pinned top layer (moved outside #cam by stage.js; an opaque band so the pushed diagram passes under it) ---------- */
+#k-g-top { z-index: 5; }
+#k-g-top::before { content: ""; position: absolute; left: 0; top: 0; width: 1080px; height: 410px; background: #EEF1F6; opacity: var(--band, 0); }
+.k-q { position: absolute; left: 90px; top: 230px; width: 840px; font-family: "Anton", sans-serif; font-size: 112px; line-height: 1.0; color: #0B1020; white-space: normal; transform-origin: 0 0; }
+.k-qh { position: absolute; left: 90px; top: 232px; width: 860px; font-family: "Inter", sans-serif; font-size: 42px; font-weight: 800; line-height: 1.18; color: #0B1020; white-space: normal; opacity: 0; }
+.k-sec { position: absolute; left: 90px; top: 350px; font-family: "Inter", sans-serif; font-size: 38px; font-weight: 800; color: #2B3BE0; opacity: 0; }
+.k-sec::before { content: ""; display: inline-block; width: 14px; height: 30px; margin-right: 14px; background: #2B3BE0; border-radius: 4px; vertical-align: -3px; }
+.k-chip { position: absolute; left: 90px; top: 1196px; height: 60px; padding: 0 22px; border-radius: 30px; background: #0B1020; color: #fff;
+  font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 60px; }
+#k-chip1 { display: none; }
+
+/* ---------- frame 0 ---------- */
+.k-card0 { position: absolute; left: 90px; top: 640px; width: 840px; height: 380px; box-sizing: border-box; background: #fff; border: 5px solid #0B1020; border-radius: 30px; }
+.k-c0t { position: absolute; left: 34px; top: 30px; font-family: "JetBrains Mono", monospace; font-size: 44px; font-weight: 800; color: #0B1020; }
+.k-tag0 { position: absolute; left: 34px; top: 98px; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 600; color: rgba(11,16,32,0.55); }
+.k-stamp0 { position: absolute; left: 300px; top: 790px; width: 560px; height: 190px; box-sizing: border-box; border: 12px solid #0E9461; border-radius: 30px;
+  color: #0E9461; background: rgba(255,255,255,0.92); font-family: "Anton", sans-serif; font-size: 150px; line-height: 162px; text-align: center; transform: rotate(-8deg); }
+.k-row0 { position: absolute; left: 90px; top: 1060px; width: 840px; height: 120px; background: #FDE4E7; border-left: 18px solid #E5364A; border-radius: 18px;
+  box-shadow: 0 0 0 4px #E5364A inset; padding-left: 28px; font-family: "JetBrains Mono", monospace; font-size: 44px; font-weight: 800; line-height: 120px; color: #0B1020; }
+.k-xm { display: inline-block; color: #E5364A; }
+.k-wf { position: absolute; right: 18px; top: 26px; height: 68px; padding: 0 18px; border-radius: 14px; background: #E5364A; color: #fff; font-size: 34px; line-height: 68px; }
+
+/* ---------- workbench: the task card ---------- */
+.k-card { position: absolute; left: 90px; top: 420px; width: 840px; height: 240px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 28px; overflow: hidden; opacity: 0; }
+.k-ct { position: absolute; left: 26px; top: 30px; font-family: "JetBrains Mono", monospace; font-size: 44px; font-weight: 800; color: #0B1020; }
+.k-cl { opacity: 0; position: absolute; left: 26px; height: 40px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 600; line-height: 40px; color: #0B1020; white-space: pre; padding-right: 8px; }
+#k-cl1 { top: 92px; } #k-cl2 { top: 134px; } #k-cl3 { top: 176px; }
+.k-cscan { position: absolute; left: 0; top: 88px; width: 560px; height: 6px; background: #2B3BE0; opacity: 0; }
+.k-code0 { position: absolute; left: 116px; top: 500px; width: 10px; height: 10px; opacity: 0; }
+.k-ctag { position: absolute; left: 700px; top: 410px; height: 44px; padding: 0 14px; border-radius: 12px; background: #EEF1F6; border: 3px solid #0B1020;
+  font-family: "Inter", sans-serif; font-size: 34px; font-weight: 600; line-height: 38px; color: rgba(11,16,32,0.7); opacity: 0; }
+.k-proj { position: absolute; left: 116px; top: 410px; height: 44px; padding: 0 16px; border-radius: 12px; background: #0B1020; color: #fff;
+  font-family: "Inter", sans-serif; font-size: 34px; font-weight: 800; line-height: 44px; opacity: 0; }
+.k-stamp, .k-stampE { position: absolute; left: 640px; top: 540px; width: 260px; height: 96px; box-sizing: border-box; border: 8px solid #0E9461; border-radius: 18px;
+  color: #0E9461; background: rgba(255,255,255,0.92); font-family: "Anton", sans-serif; font-size: 66px; line-height: 80px; text-align: center; transform: rotate(-8deg); opacity: 0; }
+.k-stampE { background: #0E9461; color: #fff; }
+.k-bug { position: absolute; left: 470px; top: 548px; height: 44px; padding: 0 14px; border-radius: 12px; background: #E5364A; color: #fff; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 44px; opacity: 0; }
+.k-mis { position: absolute; left: 116px; top: 596px; height: 52px; padding: 0 18px; border-radius: 14px; background: #E5364A; color: #fff; font-family: "JetBrains Mono", monospace; font-size: 36px; font-weight: 800; line-height: 52px; opacity: 0; }
+
+/* ---------- workbench: the ring, the MODEL pill, the slots ---------- */
+.k-ring { position: absolute; left: 60px; top: 700px; width: 890px; height: 310px; box-sizing: border-box; border: 6px solid #2B3BE0; border-radius: 44px; opacity: 0; }
+.k-glow { position: absolute; left: 60px; top: 700px; width: 890px; height: 310px; box-sizing: border-box; border: 12px solid #0E9461; border-radius: 50px; opacity: 0; }
+.k-leg { position: absolute; left: 88px; top: 676px; height: 50px; padding: 0 12px; background: #EEF1F6; font-family: "Inter", sans-serif; font-size: 40px; font-weight: 800; line-height: 50px; color: #2B3BE0; }
+.k-leg span { display: inline-block; opacity: 0; }
+.k-leg2 { opacity: 0; }
+.k-itag { position: absolute; left: 718px; top: 680px; height: 44px; padding: 0 8px; background: #EEF1F6; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 600; line-height: 44px; color: rgba(11,16,32,0.6); opacity: 0; }
+.k-dash { position: absolute; left: 0; top: 0; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 13px; background: #2B3BE0; opacity: 0; }
+.k-slot { position: absolute; top: 740px; width: 265px; height: 266px; box-sizing: border-box; border: 4px dashed rgba(11,16,32,0.4); border-radius: 22px; opacity: 0; }
+.k-slotL { left: 80px; } .k-slotR { left: 665px; }
+.k-slab { position: absolute; left: 0; top: -2px; width: 100%; text-align: center; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 800; color: rgba(11,16,32,0.45); opacity: 0; transform-origin: 50% 50%; }
+.k-rule { position: absolute; left: 92px; top: 784px; width: 241px; opacity: 0; }
+.k-fn { font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; color: #2B3BE0; }
+.k-rl { position: relative; margin-top: 4px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 700; line-height: 42px; color: #0B1020; white-space: nowrap; }
+.k-rt { position: relative; }
+.k-mark { position: absolute; left: -6px; top: 2px; width: 200px; height: 82px; background: #FFD23F; transform: scaleX(0); transform-origin: 0 50%; }
+.k-add { opacity: 0; color: #0E9461; }
+.k-asks { position: absolute; left: 196px; top: 1006px; height: 46px; padding: 0 14px; border-radius: 23px; background: #fff; border: 3px solid #0B1020;
+  font-family: "Inter", sans-serif; font-size: 34px; font-weight: 700; line-height: 40px; color: #0B1020; opacity: 0; }
+.k-aconn { position: absolute; left: 330px; top: 978px; width: 0; height: 64px; border-left: 5px dashed rgba(11,16,32,0.55); transform-origin: 50% 0; opacity: 0; }
+.k-hook { position: absolute; left: 677px; top: 784px; width: 241px; height: 180px; box-sizing: border-box; padding: 10px 12px; border-radius: 16px; background: #0B1020; opacity: 0; }
+.k-cmd { font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 700; line-height: 40px; color: #fff; }
+.k-cmd.k-add { color: #2ED3A0; }
+.k-conn { position: absolute; left: 788px; top: 964px; width: 6px; height: 96px; background: #2B3BE0; transform-origin: 50% 0; opacity: 0; }
+.k-plus { position: absolute; left: 478px; top: 925px; width: 54px; height: 70px; font-family: "Anton", sans-serif; font-size: 64px; line-height: 70px; text-align: center; color: #0E9461; opacity: 0; }
+.k-pill { position: absolute; left: 355px; top: 795px; width: 300px; height: 120px; border-radius: 60px; background: #0B1020; color: #fff; text-align: center;
+  font-family: "Inter", sans-serif; font-size: 56px; font-weight: 900; line-height: 120px; opacity: 0; }
+.k-pring { position: absolute; left: 335px; top: 775px; width: 340px; height: 160px; box-sizing: border-box; border: 6px solid #2B3BE0; border-radius: 80px; opacity: 0; }
+.k-path { position: absolute; left: 418px; top: 920px; width: 8px; height: 270px; background: #E5364A; transform-origin: 50% 100%; transform: scaleY(0); opacity: 0; }
+.k-dot, .k-edot { position: absolute; left: 0; top: 0; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 15px; background: #2B3BE0; opacity: 0; }
+.k-edot { background: #E5364A; }
+
+/* ---------- workbench: the test row and its states ---------- */
+.k-row { position: absolute; left: 160px; top: 1060px; width: 660px; height: 110px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 20px; overflow: hidden; opacity: 0; }
+.k-rtxt { position: absolute; left: 20px; top: 0; font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; line-height: 102px; color: #0B1020; }
+.k-rscan { position: absolute; left: 0; top: 0; width: 12px; height: 102px; background: #2B3BE0; opacity: 0; }
+.k-st { position: absolute; right: 10px; top: 18px; height: 66px; width: 156px; border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 66px; text-align: center; opacity: 0; }
+.k-st-nr { background: #C9CDD6; color: #0B1020; } .k-st-x { background: #E5364A; color: #fff; } .k-st-ok { background: #0E9461; color: #fff; }
+.k-nr { position: absolute; left: 210px; top: 1052px; width: 560px; height: 126px; box-sizing: border-box; border: 8px solid #E5364A; border-radius: 22px; background: rgba(255,255,255,0.94);
+  color: #E5364A; font-family: "Anton", sans-serif; font-size: 92px; line-height: 110px; text-align: center; transform: rotate(-4deg); opacity: 0; }
+.k-says { position: absolute; left: 640px; top: 540px; width: 260px; height: 96px; opacity: 0; }
+.k-err { position: absolute; left: 260px; top: 1196px; height: 64px; padding: 0 20px; border-radius: 14px; background: #E5364A; color: #fff;
+  font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 64px; opacity: 0; }
+.k-neq { position: absolute; left: 600px; top: 1012px; height: 46px; padding: 0 12px; border-radius: 12px; background: #FFD23F; color: #0B1020;
+  font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 46px; opacity: 0; }
+.k-row13 { position: absolute; left: 160px; top: 1060px; width: 660px; height: 110px; opacity: 0; }
+.k-green { position: absolute; left: 154px; top: 1054px; width: 672px; height: 122px; box-sizing: border-box; border: 8px solid #0E9461; border-radius: 24px; opacity: 0; }
+.k-verdict { position: absolute; left: 90px; top: 690px; width: 840px; height: 300px; box-sizing: border-box; background: #fff; border: 5px solid #0B1020; border-radius: 30px; text-align: center; opacity: 0; }
+.k-v1 { font-family: "Anton", sans-serif; font-size: 112px; line-height: 132px; color: #0E9461; margin-top: 12px; }
+.k-v2 { font-family: "Anton", sans-serif; font-size: 112px; line-height: 132px; color: #0B1020; }
+.k-v2 span { background: linear-gradient(transparent 18%, #FFD23F 18%, #FFD23F 88%, transparent 88%); padding: 0 16px; }
+.k-ai { position: absolute; left: 90px; top: 1196px; width: 840px; height: 76px; box-sizing: border-box; padding-left: 18px; border-radius: 16px; background: #fff; border: 4px solid #0B1020; opacity: 0; overflow: hidden; }
+.k-ait { position: relative; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 700; line-height: 68px; color: #0B1020; white-space: pre; }
+.k-revm { position: absolute; left: 10px; top: 12px; width: 560px; height: 46px; background: #FFD23F; transform: scaleX(0); transform-origin: 0 50%; }
+.k-aitag { position: absolute; right: 98px; top: 11px; height: 46px; padding: 0 10px; border-radius: 10px; background: #0B1020; color: #fff; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 700; line-height: 46px; }
+.k-aip, .k-aif { position: absolute; left: 836px; top: 1206px; width: 84px; height: 56px; border-radius: 12px; background: #0E9461; color: #fff; text-align: center;
+  font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 56px; opacity: 0; }
+.k-aif { left: 760px; width: 160px; background: #E5364A; }
+.k-chk { position: absolute; left: 154px; top: 1054px; width: 672px; height: 122px; opacity: 0; }
+
+/* ---------- the study ---------- */
+.k-mini { position: absolute; left: 90px; top: 412px; height: 62px; padding: 0 20px; border-radius: 16px; background: #fff; border: 4px solid #0B1020;
+  font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 54px; color: #0B1020; opacity: 0; }
+.k-mini b { color: #0E9461; }
+.k-ready { position: absolute; left: 676px; top: 728px; height: 52px; padding: 0 16px; border-radius: 12px; border: 4px solid #2B3BE0; background: #fff; color: #2B3BE0;
+  font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 44px; transform: rotate(-4deg); opacity: 0; }
+.k-price { position: absolute; left: 760px; top: 830px; width: 96px; height: 96px; border-radius: 18px 48px 48px 18px; background: #FFD23F; border: 4px solid #0B1020;
+  font-family: "Anton", sans-serif; font-size: 60px; line-height: 88px; text-align: center; color: #0B1020; transform-origin: 0 50%; opacity: 0; }
+.k-qm { position: absolute; left: 878px; top: 812px; font-family: "Anton", sans-serif; font-size: 100px; line-height: 110px; color: #2B3BE0; opacity: 0; }
+.k-rings { position: absolute; left: 0; top: 0; width: 1080px; height: 1px; opacity: 0; }
+.k-tr { position: absolute; top: 500px; width: 270px; height: 220px; box-sizing: border-box; border: 6px dashed #2B3BE0; border-radius: 34px; }
+#k-tr1 { left: 60px; } #k-tr2 { left: 370px; } #k-tr3 { left: 680px; }
+.k-tp { position: absolute; left: 49px; top: 72px; width: 160px; height: 64px; border-radius: 32px; background: #0B1020; color: #fff; text-align: center;
+  font-family: "Inter", sans-serif; font-size: 34px; font-weight: 900; line-height: 64px; }
+.k-same { position: absolute; left: 290px; top: 582px; height: 70px; padding: 0 24px; border-radius: 14px; background: #FFD23F; border: 4px solid #0B1020;
+  font-family: "Inter", sans-serif; font-size: 44px; font-weight: 900; line-height: 62px; color: #0B1020; transform: rotate(-3deg); opacity: 0; }
+.k-blab { position: absolute; left: 160px; top: 736px; font-family: "Inter", sans-serif; font-size: 38px; font-weight: 800; line-height: 46px; color: #0B1020; opacity: 0; }
+.k-tclab { top: 1016px; }
+.k-bench { position: absolute; left: 380px; top: 734px; height: 50px; padding: 0 14px; border-radius: 12px; background: #0B1020; color: #fff; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 50px; opacity: 0; }
+.k-pts { position: absolute; left: 740px; width: 190px; top: 734px; text-align: right; font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; line-height: 50px; color: #0E9461; opacity: 0; }
+.k-sbars { position: absolute; left: 0; top: 0; width: 1080px; height: 1px; opacity: 0; }
+.k-sb { position: absolute; left: 160px; height: 52px; border-radius: 0 14px 14px 0; background: #0E9461; transform-origin: 0 50%; }
+#k-sb1 { top: 800px; width: 600px; } #k-sb2 { top: 870px; width: 612px; } #k-sb3 { top: 940px; width: 620px; }
+.k-base { position: absolute; left: 776px; top: 790px; width: 5px; height: 212px; background-color: rgba(11,16,32,0.25); background-image: repeating-linear-gradient(#0B1020 0 14px, transparent 14px 24px); transform-origin: 50% 0; opacity: 0; }
+.k-ghost { position: absolute; left: 308px; top: 1068px; width: 0; height: 104px; border-left: 5px dashed rgba(11,16,32,0.5); opacity: 0; }
+.k-cbar { position: absolute; left: 160px; top: 1076px; width: 750px; height: 90px; border-radius: 0 18px 18px 0; background: #2B3BE0; transform-origin: 0 50%; transform: scaleX(0.2); opacity: 0; }
+.k-vary { position: absolute; left: 160px; top: 1076px; width: 10px; height: 10px; opacity: 0; }
+.k-five { position: absolute; left: 560px; width: 350px; top: 1180px; text-align: right; font-family: "Anton", sans-serif; font-size: 92px; line-height: 104px; color: #2B3BE0; opacity: 0; }
+.k-study { position: absolute; left: 160px; top: 800px; width: 10px; height: 10px; opacity: 0; }
+
+/* ---------- recap ---------- */
+.k-rmini { top: 420px; }
+.k-rdone { display: inline-block; margin-left: 12px; padding: 0 12px; border-radius: 10px; background: #0E9461; color: #fff; }
+.k-rl1 { position: absolute; left: 90px; top: 640px; width: 840px; font-family: "Anton", sans-serif; font-size: 124px; line-height: 140px; color: #0B1020; opacity: 0; }
+.k-rl2 { top: 880px; color: #0E9461; }
+.k-dollar { position: absolute; left: 90px; top: 566px; height: 58px; padding: 0 18px; border-radius: 12px 29px 29px 12px; background: #FFD23F; border: 4px solid #0B1020;
+  font-family: "JetBrains Mono", monospace; font-size: 36px; font-weight: 800; line-height: 50px; color: #0B1020; transform-origin: 0 50%; opacity: 0; }
+.k-okc { position: absolute; left: 90px; top: 806px; height: 58px; padding: 0 18px; border-radius: 12px; background: #0E9461; color: #fff;
+  font-family: "JetBrains Mono", monospace; font-size: 36px; font-weight: 800; line-height: 58px; opacity: 0; }
+.k-cta { position: absolute; left: 90px; top: 1100px; width: 840px; font-family: "Inter", sans-serif; font-size: 48px; font-weight: 800; color: #2B3BE0; opacity: 0; }
+
+/* watch 2026-10-30: Anton has no "≠" (rendered "="); the glyph comes from the mono font */
+.k-neqg { font-family: "JetBrains Mono", monospace; font-style: normal; font-weight: 800; font-size: 100px; vertical-align: 6px; }
+/* watch 2026-10-30: fill the empty lower stage during the fast pass (the test slot waits) and under the three rings (the scoreboard waits) */
+.k-rghost { position: absolute; left: 160px; top: 1060px; width: 660px; height: 110px; box-sizing: border-box; border: 4px dashed rgba(11,16,32,0.35); border-radius: 20px;
+  font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; line-height: 102px; padding-left: 20px; color: rgba(11,16,32,0.35); opacity: 0; }
+.k-trk { position: absolute; left: 160px; width: 760px; box-sizing: border-box; border: 4px dashed rgba(11,16,32,0.25); border-radius: 0 18px 18px 0; opacity: 0; }
+.k-trk1 { top: 792px; height: 210px; } .k-trk2 { top: 1072px; height: 96px; }

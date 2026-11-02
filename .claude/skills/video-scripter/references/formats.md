@@ -4,11 +4,12 @@ Spoken pace ≈ **2.7 words/second** (162 wpm) for budgeting; reels are delivere
 
 ## 1. Reel / Short (faceless)
 _The beat table below is the generic shape. Use the archetype's own beat sheet for the actual script._
-**Length:** default **30–60 s** (80–160 words). When the content genuinely needs it (a multi-step mechanism, a full
-comparison, a build), go up to **2:50–3:00** (~450–480 words). YouTube Shorts and Instagram Reels both allow up to 3 minutes.
+**Length:** default **45–75 s** (≤ 180 read-aloud words; one idea). The top explainer shorts measured on 2026-10-30
+run a median 57 s (`references/web-shorts-2026-10-30.md`). Go longer, up to **2:50–3:00** (~450–480 words), only when
+`content-plan.md` says `Long reel: <reason>` (a Depth point can't be shown in 75 s). Both platforms allow 3 minutes.
 Length must be earned: every extra beat carries new value, never padding. The house benchmark (`references/tokenization-reel.mp4`, 3:14) shows the target depth: every step shown on one running example. Vertical 9:16.
-Long Shorts (> 60 s) need a **re-hook every 30–40 s** ("but here's the weird part…", a new open loop, a section colour
-change), a progress tracker, and a recap before the CTA.
+Long Shorts (> 60 s) need a **re-hook every 30–40 s** ("but here's the weird part…", a new open loop, a new section title),
+the hook question pinned at the top, a progress tracker, and a recap before the CTA.
 Voiceover + motion graphics / screen recordings / captions. No presenter.
 
 | Beat | Time | Job |

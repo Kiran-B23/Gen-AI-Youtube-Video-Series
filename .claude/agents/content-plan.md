@@ -36,6 +36,13 @@ the archetype file `.claude/skills/video-scripter/references/archetypes/<archety
    unsafe and the safe rewording (e.g. "never writes a word" is safe only because the docs say "No text generation").
    Verify against official docs where the claim is the product's own behaviour.
 7. **Depth**: the 2–4 mechanism points the viewer must *see* to understand it (not just hear named).
+8. **Length**: `Reel: 45–75 s` (the default: one idea, ≤ 180 read-aloud words) or `Long reel: <reason>` (up to 3 min)
+   only when the core message can't be shown in 75 s without dropping a Depth point. The top explainer shorts measured
+   on 2026-10-30 run a median 57 s (8 of 12 under 60 s; `references/web-shorts-2026-10-30.md`); our reels ran 114 s.
+   When in doubt, narrow the topic, don't lengthen the reel.
+9. **Hook question**: the viewer's question rewritten as the on-screen question for the first frame (≤ 8 words, the way
+   a viewer would ask it: "Why does your agent say Done when tests fail?", "How does a folder get compressed?"). It
+   stays pinned at the top of the frame for the whole video.
 
 ## Output
 Write/overwrite `content-plan.md`, then print:

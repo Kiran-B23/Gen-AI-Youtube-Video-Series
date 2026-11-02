@@ -6,6 +6,6 @@ import tailwindcss from "@tailwindcss/vite";
 const api = `http://127.0.0.1:${process.env.APP_PORT ?? 4310}`;
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  server: { host: true, port: 5173, proxy: { "/api": { target: api }, "/files": { target: api } } },
+  server: { host: true, port: 5173, proxy: { "/api": { target: api }, "/files": { target: api }, "/shorts": { target: api }, "/exp": { target: api } } },
   build: { outDir: "dist", emptyOutDir: true },
 });

@@ -7,7 +7,7 @@ _Written by the `content-plan` agent; saved by the main session because the agen
 "What is harness engineering, and what would I actually do differently with my coding agent?"
 
 ## Core message
-Harness engineering is building the rules and checks around your agent's model, so "Done" has to pass a check. _(19 words)_
+Harness engineering is building the rules and checks around your agent's model, so "Done" has to pass a check.
 
 ## Must include
 | # | Point | Source | Label |
@@ -70,3 +70,4 @@ Harness engineering is building the rules and checks around your agent's model, 
 - [x] Content plan ready (2026-10-19)
 
 _Owner approved this plan on 2026-10-19 (reply "Approve")._
+_Runtime: ~105–112 s (240 words at 2.3 w/s, + pauses), above the 75–90 s band; accepted by the owner on 2026-10-29, who approved the script at that length (script review 2026-10-28: every beat carries a must-include, the catch or the recap)._

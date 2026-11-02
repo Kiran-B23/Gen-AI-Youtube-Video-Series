@@ -10,20 +10,28 @@ Not a preset card per sentence.
 ## Rules
 - **One running object** through every step: the sentence, the ticket, the request. It is typed, cut, checked,
   routed, counted. Every step changes *that object*; nothing just labels the voice line.
-- **Sections**: every video is split into 3–6 sections with a section card and a colour change. The card is a
-  section header (numbered only when the structure-check agent allows: Tutorial / Concept mechanism); every other
-  archetype uses plain section titles ("The catch") with no numbers or progress bar.
-  Hook before the first section, verdict + CTA after the last.
-- **Flat colour blocks**, one per chapter, changed at every chapter (the change is the pattern break):
-  electric blue `#2B3BE0` · yellow `#FFD23F` · off-white `#EEF1F6` · navy `#0B1020`. No vignette, glow or grain
-  (`"flat": true`). Palette: `sections.json` here. A topic may swap one accent, never go dark-and-moody throughout.
+- **The hook question, pinned**: the first frame shows the content plan's "Hook question" in hook type at the top of
+  the zone with the running object already acting under it (by 1.5 s the two fill ≥ 45 % of the zone's height;
+  `payoffs` checks it). After the hook the question shrinks to a pinned header (Inter 800, 40–48 px, y 220–360) and
+  stays for the whole reel.
+- **Sections**: 2–4 sections for a 45–75 s reel. A section change is the section title sliding in under the pinned
+  question (numbered only when the structure-check agent allows: Tutorial / Concept mechanism; every other archetype
+  uses plain titles such as "The catch"). Hook before the first section, verdict + CTA after the last.
+- **One background for the whole reel** (2026-10-30, measured against the top explainer shorts: they keep one
+  background and grow one diagram): set `"section"` once at the top of `scenes.json` (off-white `#EEF1F6` or navy
+  `#0B1020`; blue `#2B3BE0` and yellow `#FFD23F` are accents for chips, stamps and the verdict, not backgrounds).
+  With one section the engine draws no colour wipes. `validate` warns on a per-scene colour change. No vignette,
+  glow or grain (`"flat": true`). Palette: `sections.json` here.
+- **One diagram that grows**: the running object and its diagram stay on screen and gain parts section by section;
+  never clear the stage for a new section. ≤ 5 boxes or cards at once; non-hero text ≥ 34 px so it reads on a phone.
 - **Giant type**: hook and verdict in Anton 150–230 px; numbers 200–330 px; chapter numerals Inter 900 at 330 px.
 - **Mono chips** (JetBrains Mono 38–50 px) for tokens, labels, answers. White cards with a 4 px ink border on light
   sections; translucent cards on dark/blue.
 - **Something changes on almost every spoken word**: typing, a scan line, a highlight, a stamp, a count-up, a connector.
   Beats are keyed to words in `scenes.json` (`at("s04/team")`); nothing fades in on a timer.
 - **Fill the frame**: dense where the reference is dense (grids of tokens, cell grids, tables), never three chips in
-  an empty screen. Non-hero type stays ≤ 3 % of the frame height so the diagram can fill the zone.
+  an empty screen. **Except the opening**: frame 0 is the question's first words + one big object (≤ 3 things, ≤ 6
+  words), and the hook builds on the voice to ≤ 5 things / ≤ 12 words by 3 s; the density comes later, as the diagram grows. Non-hero type stays 34–58 px (≤ 3 % of the frame height) so the diagram can fill the zone and still reads on a phone.
 - Numbers are hidden until they count (`count()`); never a "0" on screen.
 - **Geometry** (the one sentence every tool reads from `layout.json`): stage zone y 220–1460; media clip box
   y 220–1260 (x 40–1040); captions from y 1555 (81–90 %), bottom and lower-right button column clear. Captions stay
@@ -31,7 +39,7 @@ Not a preset card per sentence.
 
 ## Motion vocabulary (name it in the animation plan)
 TYPES OUT · SCANS · SLICES · STAMPS · COUNTS UP · FILLS (cell grid / waffle) · ROUTES (chip down a lane) ·
-RACES (bars) · SHRINKS AWAY (to make room) · BUILDS WORD BY WORD · PUSH IN · WIPE (section change).
+RACES (bars) · SHRINKS AWAY (to make room) · BUILDS WORD BY WORD · PUSH IN · SLIDES IN (section title).
 
 ## Camera
 The stage sits inside `#cam`; the camera is the motion-design method's second actor (`references/ig-reels.md`).

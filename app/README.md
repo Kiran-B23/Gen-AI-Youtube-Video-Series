@@ -56,6 +56,19 @@ machine (`claude /login` once; nothing else to configure).
   status, per-source top 5. "Snapshot now" / "Run brief" queue `trends.py snap` / `run` (allow-listed, on the build
   queue, one at a time, only on a click; the log streams like a step). "Queue as package" creates a Queue item with the
   topic, angle, archetype and evidence in its notes and does **not** start the agent.
+- **Experiments**: read-only view of `experiments/<name>/` (the free-GPU model tests): README title, the verdict and
+  `RESULTS.md`, and every `.mp4`/`.png`/`.jpg` under its `out/`, `results/` and `images/`, grouped by folder; click to
+  play or enlarge. Files are served from `/exp/<name>/…` (only those three folders, media extensions only). Nothing here
+  runs a step, and experiment clips never go to `shorts/`.
+- **Run pet** (`web/src/components/Pet.tsx`): instead of a progress bar, a pixel pet walks a long job's stations and acts
+  out the current step (hammering for setup, a microphone for voice, stacking blocks for scenes, a magnifier for checks,
+  a film camera for render, a clipboard for the fix list; asleep in the queue, dizzy on a failure, cheering at the end).
+  On the Video page it follows the script stage first (Facts → Shorts → Plan → Script → Check → Look → Pack: each done
+  when the scripter's file for it exists in the package folder, `writing` in `/api/videos/:key`, files older than the
+  package left out), then the build line from the job queue (`progress.steps`). On
+  Experiments it follows a Kaggle run: the notebook posts each step to a random ntfy.sh topic, `experiments/kaggle.sh
+  watch` (started by `push`) merges them into `experiments/<name>/progress.json` (git-ignored, holds the topic, which the
+  API never returns), and the page polls every 10 s while a run is live or unfetched. Still under reduced motion.
 - **Settings**: `pace.json` (each field's meaning and which tool reads it; numbers range-checked and cross-checked, a
   one-line "why" is required and appended to the `_` note with the date), Run evals (the linter on each
   `evals/fixtures/*`, compared with the ✗ counts `evals/README.md` expects), the style kits' `design.md` and the four
@@ -88,13 +101,35 @@ machine (`claude /login` once; nothing else to configure).
 - **Auth: the owner's Claude Code login, no API key.** The app strips `ANTHROPIC_API_KEY` / `ANTHROPIC_AUTH_TOKEN` /
   Bedrock / Vertex switches from the agent's environment, and refuses the session if the CLI's init message reports any
   `apiKeySource` other than `none` (= claude.ai login).
-- **Approvals**: `canUseTool` → an approval card (tool, a one-line summary, the reason Claude Code gives, the full input)
-  over SSE; POST `/api/approvals/:id` allow (once) or deny; **denied by default after 10 minutes**; stopping the session or
-  a server restart expires it. Every decision is kept in the `approvals` table (who/when). Claude Code still auto-allows
-  what its default mode treats as safe (reads inside the repo, read-only commands such as `ls` or `sleep`); writes,
-  edits, network and other commands ask.
+- **Autopilot (owner, 2026-10-28).** A package session runs `/video-scripter` then `/video-studio` end to end. **Your one
+  checkpoint is the script**: the session stops with the hook, the read-aloud script and anything it is unsure of; press
+  **Approve script** on the Package page (`POST /api/packages/:id/approve-script`) or reply with changes. Until then
+  `run_step` is refused. After it, everything runs without cards (art direction, plans and their gates, storyboard,
+  voice, render, qa, watch, review) and the session stops at review; deliver stays yours after the phone check.
+  The boundary is the sandbox, not a list of commands:
+  - **The agent's shell** always runs in a bubblewrap sandbox with no way out (`allowUnsandboxedCommands: false`) and
+    needs no approval. It can write only inside `productions/` and `studio/projects/`, can't read `.env` files, `~/.ssh`
+    or browser profiles, has no API keys in its environment, and reaches only free research and build sites
+    (`policy.RESEARCH_DOMAINS`: GitHub, Hugging Face, HN, arXiv, npm, PyPI). Other hosts are refused, no card.
+  - **YouTube research** goes through the `research` tool: `yt_research.py` outside the sandbox (yt-dlp hangs behind the
+    sandbox proxy), argv only, a 20-minute hard stop, never browser cookies.
+  - **Pipeline steps** go through `run_step(slug, step)` (`server/src/studio-tools.ts`): it queues `run.sh <slug> <step>`
+    on the same build queue as the Build page (outside the sandbox, with the key, Chrome and ffmpeg), waits, and returns
+    the exit and log tail. Run caps per step until your next reply (`policy.maxRuns`): voice and render 4, the quick
+    checks 8, assemble none; past a cap the step is refused and the agent stops and reports. `deliver`, `preview`,
+    `remotion` and `all` aren't offered.
+  - **Write/Edit** are held to the same folders (and `/tmp`) by `server/src/policy.ts`. Anything else is refused with a
+    reason (logged as `refused` in `approvals`), never a card.
+  - **Two ticks in review.md.** "Watched end to end" is the reviewer's (the agent ticks it after reading every sheet of
+    the current render). "Listened on a phone with sound" is yours: ticking it on the Review page (phone-sized screen only)
+    also writes a seal, `studio/watched/<slug>.json`, the sha1 of the MP4 you heard (terminal: `review.py <slug>
+    --listened`). The agent can't write that folder and can't tick "Listened" with Write/Edit, and `deliver`
+    (`deliver_check.py`) refuses without a seal for that exact MP4, so an agent can never deliver on its own.
+  - No claude.ai connectors or other MCP servers load on autopilot (`strictMcpConfig`, `ENABLE_CLAUDEAI_MCP_SERVERS=false`).
+  Cards remain only for a policy `ask` (none on autopilot today): tool, summary, reason, full input, over SSE; POST
+  `/api/approvals/:id` allow (once) or deny; **denied by default after 10 minutes**; stopping the session or a restart expires it.
 - **Follow-ups**: a reply queues a new `query()` with `resume: <sdk session id>`, so the conversation continues
-  ("Approve, hook A"). A session is `queued → running → idle` (waiting for you) and can be stopped (abort) at any time.
+  ("Use hook B instead"). A session is `queued → running → idle` (waiting for you) and can be stopped (abort) at any time.
 - **Lock: one agent turn at a time, separate from the build queue.** A session spends most of its life waiting for the
   model or for the owner, and it must not block a render (or wait behind one). Idle sessions hold no lock. The agent can
   still run cheap commands itself (lint_package.py) through approvals.

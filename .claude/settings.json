@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(**/.env)",
+      "Edit(**/.env)",
+      "Write(**/.env)",
+      "Read(~/.ssh/**)",
+      "Read(~/.config/google-chrome/**)",
+      "Read(~/.agent-reach/browser/**)"
+    ]
+  }
+}

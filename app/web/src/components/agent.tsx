@@ -5,20 +5,21 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api, ago, type AgentMsg, type FileGate, type Gate, type Session } from "../api";
 import { Markdown } from "./Markdown";
-import { Button, Chip, Empty, type Tone } from "./ui";
+import { Button, Chip, Empty, ErrorLine, Gate as GateTag, Icon, Skeleton, type GateState, type Tone } from "./ui";
 
 export const sessionTone = (s?: string | null): Tone =>
   s === "running" ? "accent" : s === "queued" ? "warn" : s === "idle" ? "ok" : s === "failed" || s === "interrupted" ? "bad" : "muted";
 export const verdictTone = (v: string): Tone => (v === "PASS" || v === "READY" ? "ok" : "bad");
-const fileGateTone: Record<FileGate["state"], Tone> = { todo: "muted", done: "accent", open: "warn", pass: "ok", bad: "bad" };
+/** the scripter gates in the stepper language: todo = not run, done = written, open = waiting on its gate, pass, bad = failed */
+const fileGateState: Record<FileGate["state"], GateState> = { todo: "pending", done: "done", open: "waiting", pass: "pass", bad: "fail" };
 
 export function GateChips({ gates, files }: { gates?: Gate[]; files?: FileGate[] }) {
   return (
-    <div className="flex flex-wrap gap-1.5">
-      {files?.map((g) => <Chip key={g.id} tone={fileGateTone[g.state]} title={g.verdict ? `${g.verdict.verdict}${g.verdict.scores ? ` · ${g.verdict.scores}` : ""}` : g.state}>
-        {g.label}{g.state === "pass" ? " ✓" : g.state === "bad" ? " ✗" : g.state === "open" ? " …" : g.state === "done" ? " ·" : ""}{g.detail ? ` ${g.detail}` : ""}</Chip>)}
-      {gates?.map((g) => <Chip key={g.gate} tone={verdictTone(g.verdict)} title={g.scores ?? undefined}>{g.gate}: {g.verdict}</Chip>)}
-    </div>
+    <ol className="flex flex-wrap gap-1" aria-label="package gates, in order">
+      {files?.map((g) => <li key={g.id} className="contents"><GateTag state={fileGateState[g.state]} title={g.verdict ? `${g.verdict.verdict}${g.verdict.scores ? `: ${g.verdict.scores}` : ""}` : g.state}>
+        {g.label}{g.detail ? <b>{g.detail}</b> : null}</GateTag></li>)}
+      {gates?.map((g) => <li key={g.gate} className="contents"><GateTag state={verdictTone(g.verdict) === "ok" ? "pass" : "fail"} title={g.scores ?? undefined}>{g.gate}: {g.verdict}</GateTag></li>)}
+    </ol>
   );
 }
 
@@ -61,7 +62,7 @@ function build(msgs: AgentMsg[]): { entries: Entry[]; done: Map<string, AgentMsg
 
 function Verdicts({ v }: { v?: { verdict: string; scores: string | null }[] }) {
   if (!v?.length) return null;
-  return <div className="mt-1.5 flex flex-wrap gap-1.5">{v.map((x, i) => <Chip key={i} tone={verdictTone(x.verdict)} title={x.scores ?? undefined}>VERDICT {x.verdict}{x.scores ? ` · ${x.scores.slice(0, 80)}` : ""}</Chip>)}</div>;
+  return <div className="mt-1.5 flex flex-wrap gap-1.5">{v.map((x, i) => <Chip key={i} tone={verdictTone(x.verdict)} title={x.scores ?? undefined}>verdict {x.verdict}{x.scores ? `: ${x.scores.slice(0, 80)}` : ""}</Chip>)}</div>;
 }
 
 function ApprovalCard({ m, done, live }: { m: AgentMsg; done?: AgentMsg; live: boolean }) {
@@ -73,22 +74,22 @@ function ApprovalCard({ m, done, live }: { m: AgentMsg; done?: AgentMsg; live: b
   const left = Math.max(0, Math.round((d.expiresAt - now) / 1000));
   const outcome = done?.data.decision ?? (pending ? null : "expired");
   return (
-    <div className={`rounded-lg border px-3 py-2.5 ${pending ? "border-warn bg-warn/10" : "border-line bg-panel-2"}`} role={pending ? "alertdialog" : undefined} aria-label="approval">
-      <div className="flex flex-wrap items-center gap-2 text-[12.5px]">
-        <span className="font-semibold">{pending ? "Approval needed" : "Approval"}</span>
-        <Chip tone="accent">{d.tool}</Chip>
+    <div className={`border-2 px-3 py-2.5 ${pending ? "border-accent-2" : "border-rule bg-paper-2"}`} role={pending ? "alertdialog" : undefined} aria-label="approval">
+      <div className="flex flex-wrap items-center gap-2 text-sm">
+        {pending ? <GateTag state="waiting"><b>Approval needed</b></GateTag> : <span className="font-extrabold">Approval</span>}
+        <Chip>{d.tool}</Chip>
         {outcome && <Chip tone={outcome === "allowed" ? "ok" : "bad"}>{outcome}{done?.data.by && done.data.by !== "owner" ? ` (${done.data.by})` : ""}</Chip>}
-        {pending && <span className="ml-auto text-[11px] text-muted">denied by default in {Math.floor(left / 60)}:{String(left % 60).padStart(2, "0")}</span>}
+        {pending && <span className="ml-auto text-xs text-muted" title="denied by default when the time runs out">{Math.floor(left / 60)}:{String(left % 60).padStart(2, "0")}</span>}
       </div>
-      <div className="mt-1.5 break-all font-mono text-[11.5px]">{d.summary}</div>
-      {(d.description || d.reason) && <div className="mt-1 text-[11.5px] text-muted">{d.reason ?? d.description}</div>}
-      <details className="mt-1"><summary className="cursor-pointer text-[11px] text-muted">full input</summary>
-        <pre className="scroll-thin mt-1 max-h-48 overflow-auto whitespace-pre-wrap rounded bg-term p-2 font-mono text-[11px] text-term-ink">{d.input}</pre></details>
+      <div className="mt-1.5 break-all text-xs">{d.summary}</div>
+      {(d.description || d.reason) && <div className="mt-1 text-xs text-muted">{d.reason ?? d.description}</div>}
+      <details className="mt-1"><summary className="cursor-pointer text-xs text-muted">full input</summary>
+        <pre className="plate scroll-thin mt-1 max-h-48 overflow-auto whitespace-pre-wrap p-2 text-xs">{d.input}</pre></details>
       {pending && (
         <div className="mt-2 flex items-center gap-2">
           <Button small kind="primary" disabled={act.isPending} onClick={() => act.mutate("allow")}>Allow once</Button>
           <Button small kind="danger" disabled={act.isPending} onClick={() => act.mutate("deny")}>Deny</Button>
-          {act.isError && <span className="text-[11px] text-bad">{(act.error as Error).message}</span>}
+          {act.isError && <span role="alert" className="text-xs text-bad">{(act.error as Error).message}</span>}
         </div>)}
     </div>
   );
@@ -102,25 +103,25 @@ function ToolCard({ e, done, live, depth }: { e: Entry & { type: "tool" }; done:
   const show = open || pendingApproval;
   const status = !r ? (live ? "running" : "no result") : r.isError ? "error" : "ok";
   return (
-    <div className={`rounded-lg border ${pendingApproval ? "border-warn" : "border-line"} bg-panel`}>
-      <button onClick={() => setOpen(!open)} className="flex w-full items-start gap-2 px-3 py-2 text-left">
-        <span className={`mt-0.5 text-[11px] ${status === "ok" ? "text-ok" : status === "error" ? "text-bad" : "text-accent"}`}>{status === "ok" ? "✓" : status === "error" ? "✗" : status === "running" ? "●" : "–"}</span>
+    <div className={`border-t ${pendingApproval ? "border-t-2 border-accent-2" : "border-rule"}`}>
+      <button onClick={() => setOpen(!open)} aria-expanded={show} className="flex min-h-11 w-full items-start gap-2 py-2 text-left hover:bg-paper-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+        <span className={`mt-0.5 ${status === "ok" ? "text-ok" : status === "error" ? "text-bad" : status === "running" ? "text-accent" : "text-muted"}`}><Icon name={status === "ok" ? "check" : status === "error" ? "cross" : status === "running" ? "running" : "pending"} size={14} label={status} /></span>
         <span className="min-w-0 flex-1">
-          <span className="flex flex-wrap items-center gap-1.5"><span className="text-[12.5px] font-semibold">{isAgent ? `Agent · ${u.gate ?? "agent"}` : u.name}</span>
-            {isAgent && e.children.length > 0 && <span className="text-[11px] text-muted">{e.children.length} steps</span>}
+          <span className="flex flex-wrap items-center gap-1.5"><span className="text-sm font-extrabold">{isAgent ? `Agent: ${u.gate ?? "agent"}` : u.name}</span>
+            {isAgent && e.children.length > 0 && <span className="text-xs text-muted">{e.children.length} steps</span>}
             {r?.verdicts?.map((v: any, i: number) => <Chip key={i} tone={verdictTone(v.verdict)} title={v.scores ?? undefined}>{v.verdict}</Chip>)}</span>
-          <span className="block truncate font-mono text-[11.5px] text-muted">{u.summary}</span>
+          <span className="block truncate text-xs text-muted" title={u.summary}>{u.summary.length > 120 ? `${u.summary.slice(0, 119)}…` : u.summary}</span>
         </span>
-        <span className="text-[11px] text-muted">{show ? "▾" : "▸"}</span>
+        <span className="text-muted"><Icon name={show ? "chevron-down" : "chevron-right"} size={14} /></span>
       </button>
-      {e.approvals.length > 0 && <div className="space-y-2 px-3 pb-2">{e.approvals.map((a) => <ApprovalCard key={a.seq} m={a} done={done.get(a.data.id)} live={live} />)}</div>}
+      {e.approvals.length > 0 && <div className="space-y-2 pb-2">{e.approvals.map((a) => <ApprovalCard key={a.seq} m={a} done={done.get(a.data.id)} live={live} />)}</div>}
       {show && (
-        <div className="space-y-2 border-t border-line px-3 py-2">
-          <details><summary className="cursor-pointer text-[11px] text-muted">input</summary>
-            <pre className="scroll-thin mt-1 max-h-56 overflow-auto whitespace-pre-wrap rounded bg-term p-2 font-mono text-[11px] text-term-ink">{u.input}</pre></details>
-          {e.children.length > 0 && <div className={`space-y-2 border-l-2 border-line pl-3 ${depth > 2 ? "" : ""}`}><Entries entries={e.children} done={done} live={live} depth={depth + 1} /></div>}
-          {r && <div><div className="text-[11px] text-muted">result{r.isError ? " (error)" : ""}</div>
-            <pre className={`scroll-thin mt-1 max-h-72 overflow-auto whitespace-pre-wrap rounded bg-panel-2 p-2 font-mono text-[11px] ${r.isError ? "text-bad" : ""}`}>{r.text || "(empty)"}</pre></div>}
+        <div className="space-y-2 pb-2 pl-6">
+          <details><summary className="cursor-pointer text-xs text-muted">input</summary>
+            <pre className="plate scroll-thin mt-1 max-h-56 overflow-auto whitespace-pre-wrap p-2 text-xs">{u.input}</pre></details>
+          {e.children.length > 0 && <div className="space-y-0 border-l-2 border-ink pl-3"><Entries entries={e.children} done={done} live={live} depth={depth + 1} /></div>}
+          {r && <div><div className="text-xs text-muted">result{r.isError ? " (error)" : ""}</div>
+            <pre className={`out scroll-thin mt-1 max-h-72 overflow-auto ${r.isError ? "text-bad" : ""}`}>{r.text || "(empty)"}</pre></div>}
         </div>)}
     </div>
   );
@@ -129,12 +130,12 @@ function ToolCard({ e, done, live, depth }: { e: Entry & { type: "tool" }; done:
 function MsgCard({ m }: { m: AgentMsg }) {
   const d = m.data;
   switch (m.kind) {
-    case "user": return <div className="ml-auto max-w-[92%] rounded-xl rounded-br-sm bg-accent/12 px-3 py-2 text-[13px]"><div className="mb-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-muted">{d.resume ? "you" : "prompt"}</div><div className="whitespace-pre-wrap break-words">{d.text}</div></div>;
-    case "text": return <div className="rounded-lg px-1 text-[13px]"><Markdown text={d.text} /><Verdicts v={d.verdicts} /></div>;
-    case "init": return <div className="text-[11px] text-muted">session started · {d.model} · {d.apiKeySource === "none" ? "Claude Code login (no API key)" : `key: ${d.apiKeySource}`} · permissions {d.permissionMode} · Claude Code {d.version} · {d.tools} tools</div>;
-    case "result": return <div className={`rounded-md border px-3 py-1.5 text-[11.5px] ${d.isError ? "border-bad/40 text-bad" : "border-line text-muted"}`}>turn ended · {d.subtype} · {d.turns} turns · {(d.durationMs / 1000).toFixed(0)} s{d.denials ? ` · ${d.denials} denied` : ""}<Verdicts v={d.verdicts} /></div>;
-    case "error": return <div className="rounded-md border border-bad/40 bg-bad/10 px-3 py-2 text-[12.5px] text-bad">{d.text}</div>;
-    case "system": return <div className="text-[11.5px] text-muted">· {d.text}</div>;
+    case "user": return <div className="ml-auto max-w-[92%] border-2 border-ink bg-paper-3 px-3 py-2 text-sm"><div className="mb-0.5 text-xs font-medium text-muted">{d.resume ? "you" : "prompt"}</div><div className="whitespace-pre-wrap break-words">{d.text}</div></div>;
+    case "text": return <div className="px-1 text-sm"><Markdown text={d.text} /><Verdicts v={d.verdicts} /></div>;
+    case "init": return <dl className="flex flex-wrap gap-x-4 gap-y-0.5 text-xs text-muted"><dt className="font-extrabold text-ink">session started</dt><dd>{d.model}</dd><dd>{d.apiKeySource === "none" ? "Claude Code login (no API key)" : `key: ${d.apiKeySource}`}</dd><dd>permissions {d.permissionMode}</dd><dd>Claude Code {d.version}</dd><dd>{d.tools} tools</dd></dl>;
+    case "result": return <div className={`border-t-2 py-1.5 text-xs ${d.isError ? "border-bad text-bad" : "border-ink text-muted"}`}><div className="flex flex-wrap gap-x-4"><span className="font-extrabold text-ink">turn ended</span><span>{d.subtype}</span><span>{d.turns} turns</span><span>{(d.durationMs / 1000).toFixed(0)} s</span>{d.denials ? <span>{d.denials} denied</span> : null}</div><Verdicts v={d.verdicts} /></div>;
+    case "error": return <div role="alert" className="border-2 border-bad px-3 py-2 text-sm text-bad">{d.text}</div>;
+    case "system": return <div className="text-xs text-muted">{d.text}</div>;
     default: return null;
   }
 }
@@ -145,12 +146,105 @@ function Entries({ entries, done, live, depth = 0 }: { entries: Entry[]; done: M
     : e.m.kind === "approval" ? <ApprovalCard key={e.m.seq} m={e.m} done={done.get(e.m.data.id)} live={live} /> : <MsgCard key={e.m.seq} m={e.m} />)}</>;
 }
 
+/** an approval the owner still has to answer, or one that ended without an allow (denied, expired) */
+const approvalMatters = (a: AgentMsg, done: Map<string, AgentMsg>) => {
+  const d = done.get(a.data.id);
+  return !d || d.data.decision !== "allowed"; // no answer: pending, or expired (denied by default)
+};
+
+const STEP_KIND: Record<string, string> = { Read: "read", Grep: "read", Glob: "read", LS: "read", NotebookRead: "read", Write: "wrote", Edit: "wrote", MultiEdit: "wrote", NotebookEdit: "wrote",
+  Bash: "ran", BashOutput: "ran", KillShell: "ran", WebFetch: "web", WebSearch: "web", Skill: "skill", TodoWrite: "planned" };
+const stepKind = (name: string) => STEP_KIND[name] ?? (name.startsWith("mcp__") ? "tools" : name.toLowerCase());
+
+type ToolEntry = Entry & { type: "tool" };
+const isAgentCall = (e: ToolEntry) => e.use.data.name === "Agent" || e.use.data.name === "Task";
+type Row = { type: "entry"; e: Entry } | { type: "steps"; tools: ToolEntry[] };
+
+/** the summary rows: consecutive plain tool calls fold into one "steps" row; a gate agent, an approval that matters, a message stay rows of their own */
+function summarize(entries: Entry[], done: Map<string, AgentMsg>): Row[] {
+  const rows: Row[] = [];
+  for (const e of entries) {
+    const plain = e.type === "tool" && !isAgentCall(e) && !e.approvals.some((a) => approvalMatters(a, done));
+    if (plain) { const last = rows[rows.length - 1]; if (last?.type === "steps") last.tools.push(e as ToolEntry); else rows.push({ type: "steps", tools: [e as ToolEntry] }); continue; }
+    if (e.type === "msg" && e.m.kind === "approval" && !approvalMatters(e.m, done)) continue;
+    rows.push({ type: "entry", e });
+  }
+  return rows;
+}
+
+function StepsRow({ tools, done, live }: { tools: ToolEntry[]; done: Map<string, AgentMsg>; live: boolean }) {
+  const [open, setOpen] = useState(false);
+  const counts = new Map<string, number>();
+  for (const t of tools) { const k = stepKind(t.use.data.name); counts.set(k, (counts.get(k) ?? 0) + 1); }
+  const failed = tools.filter((t) => t.result?.data.isError).length;
+  const running = live && tools.some((t) => !t.result);
+  const what = [...counts].map(([k, n]) => `${k} ${n}`).join(", ");
+  return (
+    <div className="border-t border-rule">
+      <button onClick={() => setOpen(!open)} aria-expanded={open} title={tools.map((t) => t.use.data.name).join(", ")}
+        className="flex min-h-11 w-full items-center gap-2 py-2 text-left text-xs text-muted hover:bg-paper-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+        <Icon name={open ? "chevron-down" : "chevron-right"} size={14} />
+        <span className="min-w-0 flex-1"><b className="text-ink-2">{tools.length} step{tools.length > 1 ? "s" : ""}</b>: {what}</span>
+        {failed > 0 && <span className="inline-flex items-center gap-1 text-bad"><Icon name="cross" size={12} label="failed" />{failed} failed</span>}
+        {running && <span className="inline-flex items-center gap-1 text-accent"><Icon name="running" size={12} label="running" />running</span>}
+      </button>
+      {open && <div className="border-l-2 border-rule pl-3"><Entries entries={tools} done={done} live={live} /></div>}
+    </div>
+  );
+}
+
+/** a gate agent (Agent/Task call) in one line: "script-review: PASS", its scores in the tooltip; click for its full card */
+function GateLine({ e, done, live }: { e: ToolEntry; done: Map<string, AgentMsg>; live: boolean }) {
+  const [open, setOpen] = useState(false);
+  const u = e.use.data, r = e.result?.data;
+  const childVerdicts = e.children.flatMap((c) => (c.type === "msg" ? c.m.data?.verdicts ?? [] : []));
+  const v: { verdict: string; scores: string | null } | undefined = r?.verdicts?.[r.verdicts.length - 1] ?? childVerdicts[childVerdicts.length - 1];
+  const state: GateState = v ? (verdictTone(v.verdict) === "ok" ? "pass" : "fail") : !r ? (live ? "running" : "pending") : r.isError ? "fail" : "done";
+  const name = u.gate ?? "agent";
+  const matters = e.approvals.filter((a) => approvalMatters(a, done));
+  return (
+    <div className="border-t border-rule">
+      <button onClick={() => setOpen(!open)} aria-expanded={open} title={v?.scores ?? u.summary}
+        className="flex min-h-11 w-full items-center gap-2 py-2 text-left hover:bg-paper-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+        <GateTag state={state} title={v?.scores ?? undefined}><b>{name}</b>{v ? `: ${v.verdict}` : state === "running" ? ": working" : r?.isError ? ": error" : ""}</GateTag>
+        {e.children.length > 0 && <span className="text-xs text-muted">{e.children.length} steps</span>}
+        <span className="ml-auto text-muted"><Icon name={open ? "chevron-down" : "chevron-right"} size={14} /></span>
+      </button>
+      {!open && matters.length > 0 && <div className="space-y-2 pb-2">{matters.map((a) => <ApprovalCard key={a.seq} m={a} done={done.get(a.data.id)} live={live} />)}</div>}
+      {open && <div className="border-l-2 border-rule pl-3"><ToolCard e={e} done={done} live={live} depth={0} /></div>}
+    </div>
+  );
+}
+
+function SummaryMsg({ m }: { m: AgentMsg }) {
+  const d = m.data;
+  if (m.kind === "init") return <div className="text-xs text-muted" title={`${d.model} · permissions ${d.permissionMode} · Claude Code ${d.version} · ${d.tools} tools`}>started</div>;
+  if (m.kind === "result") {
+    const s = Math.round((d.durationMs ?? 0) / 1000);
+    const took = s < 60 ? `${s} s` : `${Math.round(s / 60)} min`;
+    return <div className={`border-t-2 py-1.5 text-xs ${d.isError ? "border-bad text-bad" : "border-ink text-muted"}`}>
+      <span title={`${d.subtype} · ${d.turns} turns${d.denials ? ` · ${d.denials} denied` : ""}`}>{d.isError ? <><Icon name="cross" size={12} label="error" /> Turn ended with an error after {took}</> : <>Turn finished in {took}</>}</span>
+      <Verdicts v={d.verdicts} /></div>;
+  }
+  return <MsgCard m={m} />;
+}
+
+const VIEW_KEY = "studio-timeline-every-step";
 export function Timeline({ msgs, session }: { msgs: AgentMsg[]; session: Session | null }) {
   const { entries, done } = useMemo(() => build(msgs), [msgs]);
   const live = session?.status === "running";
+  const [all, setAll] = useState(() => { try { return localStorage.getItem(VIEW_KEY) === "1"; } catch { return false; } });
+  const toggle = (v: boolean) => { setAll(v); try { localStorage.setItem(VIEW_KEY, v ? "1" : "0"); } catch { /* private mode */ } };
+  const rows = useMemo(() => summarize(entries, done), [entries, done]);
   if (!msgs.length) return <Empty>{session ? (session.status === "queued" ? "Queued: starts when the agent is free." : "No messages yet.") : "Not started."}</Empty>;
-  return <div className="space-y-2.5"><Entries entries={entries} done={done} live={live} />
-    {live && <div className="flex items-center gap-2 text-[12px] text-muted"><span className="h-2 w-2 animate-pulse rounded-full bg-accent" />working…</div>}</div>;
+  return <div className="space-y-2">
+    <label className="flex min-h-8 items-center gap-2 text-xs text-muted"><input type="checkbox" checked={all} onChange={(e) => toggle(e.target.checked)} />Show every step</label>
+    {all ? <Entries entries={entries} done={done} live={live} />
+      : rows.map((r) => r.type === "steps" ? <StepsRow key={`s${r.tools[0].use.seq}`} tools={r.tools} done={done} live={live} />
+        : r.e.type === "tool" ? (isAgentCall(r.e) ? <GateLine key={r.e.use.seq} e={r.e} done={done} live={live} /> : <ToolCard key={r.e.use.seq} e={r.e} done={done} live={live} depth={0} />)
+        : r.e.m.kind === "approval" ? <ApprovalCard key={r.e.m.seq} m={r.e.m} done={done.get(r.e.m.data.id)} live={live} />
+        : <SummaryMsg key={r.e.m.seq} m={r.e.m} />)}
+    {live && <div role="status" className="flex items-center gap-2 text-xs text-muted"><GateTag state="running">working…</GateTag></div>}</div>;
 }
 
 export function Composer({ session }: { session: Session }) {
@@ -159,13 +253,13 @@ export function Composer({ session }: { session: Session }) {
   const can = session.status !== "running" && session.status !== "queued" && !!session.sdk_session_id;
   return (
     <form className="space-y-1.5" onSubmit={(e) => { e.preventDefault(); if (text.trim() && can) send.mutate(); }}>
-      <textarea value={text} onChange={(e) => setText(e.target.value)} rows={2} placeholder={can ? "Reply to the agent, e.g. “Approve, hook A” (resumes the session)" : session.status === "running" ? "the agent is working: reply when its turn ends" : "start the session first"}
+      <textarea value={text} onChange={(e) => setText(e.target.value)} rows={2} placeholder={can ? "Reply to the agent, e.g. “Use hook B instead” (resumes the session)" : session.status === "running" ? "the agent is working: reply when its turn ends" : "start the session first"}
         onKeyDown={(e) => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); if (text.trim() && can) send.mutate(); } }}
-        className="w-full resize-y rounded-lg border border-line bg-panel px-3 py-2 text-[13px]" disabled={!can} />
+        className="field w-full" aria-label="reply to the agent" disabled={!can} />
       <div className="flex items-center gap-2">
         <Button small kind="primary" type="submit" disabled={!can || !text.trim() || send.isPending}>Send</Button>
-        <span className="text-[11px] text-muted">ctrl+enter · one agent turn runs at a time</span>
-        {send.isError && <span className="text-[11px] text-bad">{(send.error as Error).message}</span>}
+        <span className="text-xs text-muted" title="one agent turn runs at a time">ctrl+enter sends</span>
+        {send.isError && <span role="alert" className="text-xs text-bad">{(send.error as Error).message}</span>}
       </div>
     </form>
   );
@@ -183,7 +277,7 @@ export function ArtifactTabs({ folder }: { folder: string }) {
       const { files } = JSON.parse((e as MessageEvent).data) as { files: string[] };
       qc.invalidateQueries({ queryKey: ["production", folder] });
       for (const f of files) qc.invalidateQueries({ queryKey: ["prodfile", folder, f] });
-      setChanged(`${files.join(", ")} · ${new Date().toLocaleTimeString()}`);
+      setChanged(`${files.join(", ")} at ${new Date().toLocaleTimeString()}`);
     });
     return () => es.close();
   }, [folder, qc]);
@@ -191,25 +285,25 @@ export function ArtifactTabs({ folder }: { folder: string }) {
   const tabs = p ? [...p.tabs.filter((t) => t.file), ...p.others.map((o) => ({ id: o, label: o.replace(/\.md$/, ""), file: o }))] : [];
   const cur = tabs.find((t) => t.id === tab) ?? tabs[0];
   const file = useQuery({ queryKey: ["prodfile", folder, cur?.file], queryFn: () => api.productionFile(folder, cur!.file!), enabled: !!cur?.file });
-  if (prod.error) return <Empty>{(prod.error as Error).message}</Empty>;
-  if (!p) return <Empty>Loading…</Empty>;
+  if (prod.error) return <ErrorLine error={prod.error} what="Could not read the package folder." todo="Check productions/ on disk, or reload." />;
+  if (!p) return <Skeleton rows={6} label="Loading the package files" />;
   const meta = p.files.find((f) => f.name === cur?.file);
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap gap-1">
-        {p.tabs.map((t) => <button key={t.id} disabled={!t.file} onClick={() => setTab(t.id)} title={t.file ?? "not written yet"}
-          className={`rounded-md border px-2 py-0.5 text-[12px] ${cur?.id === t.id ? "border-accent bg-accent/10 text-ink" : t.file ? "border-line text-muted hover:text-ink" : "border-dashed border-line text-muted/50"}`}>{t.label}</button>)}
-        {p.others.map((o) => <button key={o} onClick={() => setTab(o)} className={`rounded-md border px-2 py-0.5 text-[12px] ${cur?.id === o ? "border-accent bg-accent/10" : "border-line text-muted hover:text-ink"}`}>{o.replace(/\.md$/, "")}</button>)}
+      <div className="seg gap-y-1" role="group" aria-label="package files">
+        {p.tabs.map((t) => <button key={t.id} disabled={!t.file} onClick={() => setTab(t.id)} title={t.file ?? "not written yet"} aria-pressed={cur?.id === t.id}
+          className={t.file ? "" : "is-missing"}>{t.label}</button>)}
+        {p.others.map((o) => <button key={o} onClick={() => setTab(o)} aria-pressed={cur?.id === o}>{o.replace(/\.md$/, "")}</button>)}
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-muted">
-        <span className="font-mono">productions/{folder}/{cur?.file ?? ""}{meta ? ` · ${ago(meta.mtime)}` : ""}</span>
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
+        <span className="break-all">productions/{folder}/{cur?.file ?? ""}{meta ? <span className="text-ink-2">, {ago(meta.mtime)}</span> : ""}</span>
         {changed && <span title="fs.watch on the folder">changed: {changed}</span>}
       </div>
-      {!cur ? <Empty>No Markdown files yet.</Empty> : file.data ? <Markdown text={file.data.text} /> : <Empty>Loading…</Empty>}
+      {!cur ? <Empty>No Markdown files yet.</Empty> : file.error ? <ErrorLine error={file.error} what={`Could not read ${cur.file}.`} /> : file.data ? <Markdown text={file.data.text} /> : <Skeleton rows={8} label={`Loading ${cur.file}`} />}
     </div>
   );
 }
 
 export const Section = ({ title, right, children }: { title: string; right?: ReactNode; children: ReactNode }) => (
-  <section className="space-y-2"><div className="flex items-center justify-between gap-2"><h3 className="text-[11px] font-semibold uppercase tracking-wide text-muted">{title}</h3>{right}</div>{children}</section>
+  <section className="panel"><div className="panel__head"><h2>{title}</h2>{right}</div><div className="panel__body">{children}</div></section>
 );

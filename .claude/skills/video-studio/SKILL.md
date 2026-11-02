@@ -56,7 +56,7 @@ the structure check said steps are justified (Tutorial, or a real Concept mechan
    never reuse the engine's preset class names (`.w`, `.y` captions; `.chip`, `.bubble`, `.follow`, `.row`, `.card`, `.stamp`, `.verdict`, `.code`, `.cline`, and the glass kit's `.big`: they carry opacity 0 or borders; the kits reset `.chip`. Prefix stage classes per project, e.g. `.d-…`); deterministic randomness only (`rnd()`).
    Geometry: stage zone y 220–1460; media clip box y 220–1260 (x 40–1040); captions from y 1555 (81–90 %), bottom and
    lower-right button column clear. The motion check (`qa`) only sees the band y 10–60 % (≈ 190–1150 px): a beat whose
-   only motion sits lower reads as a still frame, so give every 2.5 s of speech one in-band change tied to its word.
+   only motion sits lower reads as a still frame, so give the speech in-band changes tied to their words (a hold to read is fine; > 5 s frozen fails).
    Tiny moving dots don't register; pulse a card or highlight a word instead. Body text inside stage cards stays
    ≥ 30 px (names ≥ 40 px); non-hero type ≤ 3 % of the frame height; the stage fills the zone (MCP reel, 2026-10-13).
 3. **data-beat convention:** every stage beat's element carries `data-beat="sNN/target"` in `stage.html` (or the beat
@@ -83,8 +83,9 @@ the structure check said steps are justified (Tutorial, or a real Concept mechan
   the changed lines; `kokoroVoice` default `af_heart`, `kokoroSpeed` default 0.85). Use Kokoro for drafts and when the
   Gemini quota is used up; a final take stays Gemini or the user's own recording unless the user approves Kokoro.
 - **Names:** the script's pronunciation notes go into `names` (proper nouns, so Whisper spells them right).
-- **Sections:** give each scene a `section` (`dark` / `blue` / `light` / `yellow`) and change it at each section
-  break of the script (setup, mechanism, reveal, why it matters, recap). Clips take the section colours automatically.
+- **Sections:** one background for the whole reel (2026-10-30): set `"section"` once at the top of `scenes.json`
+  (`light` or `dark`) and leave it off the scenes, so the engine draws no colour wipes; a section break is the section
+  title sliding in under the pinned hook question (`reference-flat/design.md`). `validate` warns on a per-scene change.
 - **Progress:** only when the structure check allows numbered steps: set `steps` (3–5 short labels) and `step` on the
   scenes inside each step.
 - **Pace:** `padSeconds` is the hold after each line (code default 0.3); per-scene `"pad": 0.65` at section ends
@@ -143,9 +144,17 @@ tools/run.sh <slug> preview         # optional: HyperFrames Studio for the user 
                                     # `npx hyperframes@0.8.143 preview --selection --json` (in hf/) tells you exactly which one
 ```
 - `payoffs` (before render, always): seeks the GSAP timeline in Chrome and asserts each beat's element is visible
-  `settle` s after its word (`reveal` must not be visible 0.15 s before), captions ≤ 2 lines, nothing planned sits
-  still > 2.5 s, ≤ 1 camera move per 2.5 s. Fix the beat word / `offset` / `data-beat` / markup, re-run. `qa` refuses
-  a stale `payoffs.json`.
+  `settle` s after its word (`reveal` must not be visible 0.15 s before), captions ≤ 2 lines, nothing planned frozen
+  > 5 s, ≤ 1 camera move per 2.5 s. It also runs qa's pixel test on the composition (a frame every 0.25 s: no scene's
+  stage band frozen > 5 s, no blank opening 0.15 s in) and the **hook frame** check: at 1.5 s the hook question and the
+  running object fill ≥ 45 % of the stage band's height (all 12 top shorts measured on 2026-10-30 fill 48–100 %;
+  `references/web-shorts-2026-10-30.md`), and the **opening ceiling**: at 0 s ≤ 3 things and ≤ 6 words on screen, at
+  3 s ≤ 5 things and ≤ 12 words (captions, chips and tags counted; `references/web-shorts-openings-2026-10-30.md`).
+  Build the hook on the voice: the question types out as it is spoken (that scene sets `"captions": false`, so the
+  question is the caption), the object acts on its word, tags and chips arrive after 3 s. The still share is reported, not a target: it does not predict reach, so
+  don't spend fix rounds lowering it. All of this is fixed here, not after a render (~40 s). Fix the beat word / `offset` / `data-beat` / markup, re-run. `qa` refuses a stale
+  `payoffs.json`. qa's "audio = script" speaks digits, `%` and file names out before comparing ("52.8%" = "fifty two
+  point eight percent", "AGENTS.md" = "agents dot M D"), so what remains in its diff is worth a listen.
 - Read `out/stills.png` (2 frames per scene, safe-zone guides): nothing in the right 12 % or below the zone except
   captions; every text readable at phone size; no clipped words; clips fill their box, no letterbox, no visible box,
   no blank tail > 1 s; zero `OVERLAP` lines from the clip build; `check` 0 errors, contrast passes
@@ -167,13 +176,15 @@ Fix, re-run `assemble check payoffs stills`, look again.
 5. `review` merges every ✗ from `qa.json`, `payoffs.json` and `watch.json` into `projects/<slug>/review.md` (the fix
    list, committed): one finding per row with a timestamp and scene; add your own rows from the sheets; status
    `open` → `fixed (<what changed>)` or `accepted (<why it is fine>)`. A finding that disappears from the next run is
-   marked fixed automatically. Tick "- [x] Watched end to end" only after step 4.
+   marked fixed automatically (an unclear word Whisper now hears clearly says so; unclear rows are keyed by scene and
+   word, not time). Tick "- [x] Watched end to end" only after step 4. "Listened on a phone with sound" is the user's
+   tick: never tick it; it writes the user's seal in `studio/watched/<slug>.json` that `deliver` requires.
 6. Design: every visual is built from the design system (solid chips, display headlines, `motion_kit` illustrations),
    not raw text; the art direction's metaphor is actually on screen; no sources on screen (the description lists them);
    no two boxes touch.
 7. `tools/run.sh <slug> deliver`: copies to `shorts/` (+ MP3-audio copy in `shorts/play-on-this-pc/`) only when
-   `qa.json` is clean for this MP4, `payoffs.json` is clean for this composition, `watch.json` exists and `review.md`
-   has no open row and is ticked. Fix → re-render → `qa watch review` → tick → `deliver`. Every revision changes the one
+   `qa.json` is clean for this MP4, `payoffs.json` is clean for this composition, `watch.json` exists, `review.md`
+   has no open row and both ticks, and the user's seal matches this MP4. Fix → re-render → `qa watch review` → tick → `deliver`. Every revision changes the one
    thing the note names (beat words / `offset` / per-scene `pad` / markup) and keeps everything else the same.
 8. Say **"ready for your review"** only after `deliver`, never "ready": the user watches and listens (voice, music,
    feel); I can't hear audio or feel motion. Report the path, duration and anything left unverified.

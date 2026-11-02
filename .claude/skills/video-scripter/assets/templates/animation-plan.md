@@ -9,8 +9,17 @@ own 4–10 s piece, from the standalone brief in the last column._
 
 ## First frame (frame 0, before a word is spoken)
 _≥ 15 words, the same frame as hooks.md "First frame (described):": what is where (y zones), its size and colour, the
-hook's claim readable on mute. Never empty or near-empty (a lone cursor, a blank card). The s01 row repeats it as "frame 0: …"._
+hook's claim readable on mute. The s01 row repeats it as "frame 0: …"._
+_**Few things, then build** (the top faceless explainers, `references/web-shorts-openings-2026-10-30.md`):
+frame 0 = the hook question's first words (or the whole question) + the one running object: **≤ 3 things, ≤ 6 words**,
+captions, chips and labels counted. The question TYPES OUT with the voice and the object acts on its spoken word.
+By 3 s the hook is complete: **≤ 5 things, ≤ 12 words**. While the question types in, the scene sets `"captions": false`
+(the question is the caption). "illustrative" tags, speed chips and status chips arrive after the hook, never in it.
+Empty space around one big object is fine; a frame that is already complete before the first word is not. `payoffs`
+fails both: over the ceiling, and under 45 % fill at 1.5 s (the question at the top, the object under it)._
 _
+
+**First seconds:** _0 s: … · on "<word>": … · by 3 s: … (what arrives on which spoken word)_
 
 ## Hook direction (pick one, or write your own)
 - **A (default):** _

@@ -1,691 +1,696 @@
 {
- "slug": "rea-reel",
- "format": "reel",
- "size": [
-  1080,
-  1920
- ],
- "music": "cc0/beat-one",
- "padSeconds": 0.3,
- "names": [
-  "REA",
-  "DX-Ball",
-  "decompiler",
-  "decompilers"
- ],
- "keywords": [
-  "REA",
-  "source",
-  "incomplete",
-  "input",
-  "position",
-  "formula",
-  "match",
-  "evidence"
- ],
- "voice": {
-  "engine": "gemini",
-  "model": "gemini-2.5-flash-preview-tts",
-  "name": "Sadaltager",
-  "style": "You are a developer who just watched a tool do something genuinely impressive, explaining it to a curious friend: what the viral open-source tool REA really does. Talk, don't read: excited but honest, with real pitch movement, about two and a half words per second, short natural pauses between ideas. Open punchy: 'No source code.' then a beat, 'Just a game file from 1996.' Land 'It matched the original in all three thousand two hundred and five tests' with quiet pride. Say REA as the letters R, E, A. Keep the trace brisk. Lean in with real surprise on 'The decompiler's first draft... was incomplete. It showed no input at all.' Read the formula slowly and clearly: 'Position, times one point five six two five, minus five hundred.' Say 'Left edge, minus 500. Centre, zero. Right edge, plus 500.' like moving a slider. Be proud on 'the same 63 bytes'. Take a short breath before 'Now, the catch' and say the catch calmly and seriously, never scary, never preachy. Warm and practical on the verdict. Clear, global English. Never hyped, never robotic. Read every word exactly as written."
- },
- "sections": {
-  "dark": {
-   "bg": "#0B1020",
-   "bg2": "#0B1020",
-   "text": "#FFFFFF",
-   "dim": "rgba(255,255,255,0.62)",
-   "accent": "#FFD23F",
-   "accent2": "#7B8CFF",
-   "card": "rgba(255,255,255,0.08)",
-   "line": "rgba(255,255,255,0.22)",
-   "danger": "#FF4D5E",
-   "ok": "#2ED3A0"
+  "slug": "rea-reel",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/beat-one",
+  "padSeconds": 0.3,
+  "names": [
+    "REA",
+    "DX-Ball",
+    "decompiler",
+    "decompilers"
+  ],
+  "keywords": [
+    "REA",
+    "source",
+    "incomplete",
+    "input",
+    "position",
+    "formula",
+    "match",
+    "evidence"
+  ],
+  "voice": {
+    "engine": "gemini",
+    "model": "gemini-2.5-flash-preview-tts",
+    "name": "Sadaltager",
+    "style": "You are a developer who just watched a tool do something genuinely impressive, explaining it to a curious friend: what the viral open-source tool REA really does. Talk, don't read: excited but honest, with real pitch movement, about two and a half words per second, short natural pauses between ideas. Open punchy: 'No source code.' then a beat, 'Just a game file from 1996.' Land 'It matched the original in all three thousand two hundred and five tests' with quiet pride. Say REA as the letters R, E, A. Keep the trace brisk. Lean in with real surprise on 'The decompiler's first draft... was incomplete. It showed no input at all.' Read the formula slowly and clearly: 'Position, times one point five six two five, minus five hundred.' Say 'Left edge, minus 500. Centre, zero. Right edge, plus 500.' like moving a slider. Be proud on 'the same 63 bytes'. Take a short breath before 'Now, the catch' and say the catch calmly and seriously, never scary, never preachy. Warm and practical on the verdict. Clear, global English. Never hyped, never robotic. Read every word exactly as written."
   },
-  "blue": {
-   "bg": "#2B3BE0",
-   "bg2": "#2B3BE0",
-   "text": "#FFFFFF",
-   "dim": "rgba(255,255,255,0.70)",
-   "accent": "#FFD23F",
-   "accent2": "#C9D0FF",
-   "card": "rgba(255,255,255,0.12)",
-   "line": "rgba(255,255,255,0.35)",
-   "danger": "#FF4D5E",
-   "ok": "#2ED3A0"
-  },
-  "light": {
-   "bg": "#EEF1F6",
-   "bg2": "#EEF1F6",
-   "text": "#0B1020",
-   "dim": "rgba(11,16,32,0.55)",
-   "accent": "#2B3BE0",
-   "accent2": "#2B3BE0",
-   "card": "#FFFFFF",
-   "line": "rgba(11,16,32,0.85)",
-   "danger": "#E5364A",
-   "ok": "#14B87A"
-  },
-  "yellow": {
-   "bg": "#FFD23F",
-   "bg2": "#FFD23F",
-   "text": "#0B1020",
-   "dim": "rgba(11,16,32,0.62)",
-   "accent": "#2B3BE0",
-   "accent2": "#0B1020",
-   "card": "#FFFFFF",
-   "line": "rgba(11,16,32,0.85)",
-   "danger": "#E5364A",
-   "ok": "#0B1020"
-  }
- },
- "flat": true,
- "stage": {
-  "kit": "reference-flat",
-  "html": "stage/stage.html",
-  "css": "stage/stage.css",
-  "js": "stage/stage.js"
- },
- "scenes": [
-  {
-   "id": "s01",
-   "type": "stage",
-   "section": "dark",
-   "say": "No source code. Just a game file from 1996.",
-   "beats": [
-    {
-     "target": "src",
-     "word": "source",
-     "offset": -0.05,
-     "sfx": "stamp"
+  "sections": {
+    "dark": {
+      "bg": "#0B1020",
+      "bg2": "#0B1020",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.62)",
+      "accent": "#FFD23F",
+      "accent2": "#7B8CFF",
+      "card": "rgba(255,255,255,0.08)",
+      "line": "rgba(255,255,255,0.22)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
     },
-    {
-     "target": "code",
-     "word": "code",
-     "sfx": "tick"
+    "blue": {
+      "bg": "#2B3BE0",
+      "bg2": "#2B3BE0",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.70)",
+      "accent": "#FFD23F",
+      "accent2": "#C9D0FF",
+      "card": "rgba(255,255,255,0.12)",
+      "line": "rgba(255,255,255,0.35)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
     },
-    {
-     "target": "file",
-     "word": "file",
-     "offset": -0.05,
-     "sfx": "pop"
+    "light": {
+      "bg": "#EEF1F6",
+      "bg2": "#EEF1F6",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.55)",
+      "accent": "#2B3BE0",
+      "accent2": "#2B3BE0",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#14B87A"
+    },
+    "yellow": {
+      "bg": "#FFD23F",
+      "bg2": "#FFD23F",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.62)",
+      "accent": "#2B3BE0",
+      "accent2": "#0B1020",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#0B1020"
     }
-   ],
-   "source": "S6"
   },
-  {
-   "id": "s02",
-   "type": "stage",
-   "section": "dark",
-   "say": "An AI agent rebuilt one of its functions. It matched the original in all 3,205 tests.",
-   "beats": [
-    {
-     "target": "agent",
-     "word": "agent",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "funcs",
-     "word": "functions",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "matched",
-     "word": "matched",
-     "sfx": "ding"
-    },
-    {
-     "target": "tests",
-     "word": "tests"
-    }
-   ],
-   "source": "S6",
-   "pad": 0.65
+  "flat": true,
+  "stage": {
+    "kit": "reference-flat",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
   },
-  {
-   "id": "s03",
-   "type": "stage",
-   "section": "blue",
-   "say": "That's from the showcase of REA, the viral open-source tool called Reverse Engineer Anything.",
-   "beats": [
+  "scenes": [
     {
-     "target": "show",
-     "word": "showcase",
-     "offset": -0.1
+      "id": "s01",
+      "type": "stage",
+      "section": "dark",
+      "say": "No source code. Just a game file from 1996.",
+      "beats": [
+        {
+          "target": "src",
+          "word": "source",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "code",
+          "word": "code",
+          "sfx": "tick"
+        },
+        {
+          "target": "file",
+          "word": "file",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "hex",
+          "word": "1996",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S6"
     },
     {
-     "target": "rea",
-     "word": "viral",
-     "offset": -0.45,
-     "sfx": "stamp"
+      "id": "s02",
+      "type": "stage",
+      "section": "dark",
+      "say": "An AI agent rebuilt one of its functions. It matched the original in all 3,205 tests.",
+      "beats": [
+        {
+          "target": "agent",
+          "word": "agent",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "funcs",
+          "word": "functions",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "matched",
+          "word": "matched",
+          "sfx": "ding"
+        },
+        {
+          "target": "tests",
+          "word": "tests"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65
     },
     {
-     "target": "open",
-     "word": "open",
-     "offset": -0.05,
-     "sfx": "pop"
+      "id": "s03",
+      "type": "stage",
+      "section": "blue",
+      "say": "That's from the showcase of REA, the viral open-source tool called Reverse Engineer Anything.",
+      "beats": [
+        {
+          "target": "show",
+          "word": "showcase",
+          "offset": -0.1
+        },
+        {
+          "target": "rea",
+          "word": "viral",
+          "offset": -0.45,
+          "sfx": "stamp"
+        },
+        {
+          "target": "open",
+          "word": "open",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "rev",
+          "word": "Reverse",
+          "offset": -0.05
+        }
+      ],
+      "source": "S1"
     },
     {
-     "target": "rev",
-     "word": "Reverse",
-     "offset": -0.05
+      "id": "s04",
+      "type": "stage",
+      "section": "blue",
+      "say": "It lets your coding agent look inside a program without its source code.",
+      "beats": [
+        {
+          "target": "agent",
+          "word": "coding",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "inside",
+          "word": "inside",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "without",
+          "word": "without"
+        }
+      ],
+      "source": "S1"
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "section": "blue",
+      "say": "Your agent asks a question. REA runs existing decompilers, which turn compiled code back into readable code. Then it hands back the evidence.",
+      "beats": [
+        {
+          "target": "q",
+          "word": "question",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "dec",
+          "word": "decompilers",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "compiled",
+          "word": "compiled"
+        },
+        {
+          "target": "readable",
+          "word": "readable",
+          "sfx": "tick"
+        },
+        {
+          "target": "evidence",
+          "word": "evidence",
+          "offset": -0.1,
+          "sfx": "pop"
+        }
+      ],
+      "source": "S2",
+      "pad": 0.65
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "section": "light",
+      "say": "Here's their question. Hit a brick on the left, and you hear it on the left. How?",
+      "beats": [
+        {
+          "target": "question",
+          "word": "question",
+          "offset": -0.1
+        },
+        {
+          "target": "hit",
+          "word": "Hit",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "left",
+          "word": "left",
+          "sfx": "tick"
+        },
+        {
+          "target": "hear",
+          "word": "hear"
+        },
+        {
+          "target": "left2",
+          "word": "left",
+          "nth": 1,
+          "sfx": "tick"
+        },
+        {
+          "target": "how",
+          "word": "How",
+          "offset": -0.05,
+          "sfx": "pop"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "section": "dark",
+      "say": "The decompiler's first draft of the sound function was incomplete. It showed no input at all.",
+      "beats": [
+        {
+          "target": "draft",
+          "word": "draft",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "sound",
+          "word": "sound"
+        },
+        {
+          "target": "incomplete",
+          "word": "incomplete",
+          "sfx": "stamp"
+        },
+        {
+          "target": "input",
+          "word": "input",
+          "offset": -0.05,
+          "sfx": "tick"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "section": "dark",
+      "say": "But the raw instructions take a number in. The agent spotted the mismatch, and kept digging.",
+      "beats": [
+        {
+          "target": "instr",
+          "word": "instructions",
+          "offset": -0.15,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "number",
+          "word": "number",
+          "sfx": "tick"
+        },
+        {
+          "target": "mismatch",
+          "word": "mismatch",
+          "sfx": "stamp"
+        },
+        {
+          "target": "digging",
+          "word": "digging"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "section": "dark",
+      "say": "It followed the call back to the brick. That number is the brick's position on screen.",
+      "beats": [
+        {
+          "target": "call",
+          "word": "call",
+          "offset": -0.05
+        },
+        {
+          "target": "brick",
+          "word": "brick",
+          "sfx": "tick"
+        },
+        {
+          "target": "position",
+          "word": "position",
+          "sfx": "pop"
+        },
+        {
+          "target": "screen",
+          "word": "screen"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Then it read the constants and rebuilt the formula. Position, times 1.5625, minus 500.",
+      "beats": [
+        {
+          "target": "constants",
+          "word": "constants",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "formula",
+          "word": "formula"
+        },
+        {
+          "target": "pos",
+          "word": "Position",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "times",
+          "word": "times",
+          "sfx": "tick"
+        },
+        {
+          "target": "minus",
+          "word": "minus",
+          "sfx": "tick"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Times the pan scale, which starts at one. Left edge, minus 500. Centre, zero. Right edge, plus 500.",
+      "beats": [
+        {
+          "target": "scale",
+          "word": "scale",
+          "offset": -0.1,
+          "sfx": "tick"
+        },
+        {
+          "target": "left",
+          "word": "Left",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "centre",
+          "word": "cent",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "right",
+          "word": "Right",
+          "offset": -0.1,
+          "sfx": "pop"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "section": "blue",
+      "say": "Then the rebuilt function was tested against the original.",
+      "beats": [
+        {
+          "target": "rebuilt",
+          "word": "rebuilt",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "tested",
+          "word": "tested"
+        },
+        {
+          "target": "original",
+          "word": "original",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s13",
+      "type": "stage",
+      "section": "blue",
+      "say": "Every position, at five pan scales. All 3,205 cases match.",
+      "beats": [
+        {
+          "target": "every",
+          "word": "Every",
+          "offset": -0.05
+        },
+        {
+          "target": "scales",
+          "word": "scales",
+          "offset": -0.1
+        },
+        {
+          "target": "all",
+          "word": "All",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "match",
+          "word": "match",
+          "sfx": "ding"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s14",
+      "type": "stage",
+      "section": "blue",
+      "say": "And compiled the old way, it makes the same 63 bytes as the original function.",
+      "beats": [
+        {
+          "target": "compiled",
+          "word": "compiled",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "same",
+          "word": "same"
+        },
+        {
+          "target": "bytes",
+          "word": "bytes",
+          "sfx": "ding"
+        },
+        {
+          "target": "original",
+          "word": "original"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65
+    },
+    {
+      "id": "s15",
+      "type": "stage",
+      "section": "light",
+      "say": "So it's not a clone button. It recovers how a feature works, not the original code.",
+      "beats": [
+        {
+          "target": "clone",
+          "word": "clone",
+          "offset": -0.15,
+          "sfx": "stamp"
+        },
+        {
+          "target": "recovers",
+          "word": "recovers",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "original",
+          "word": "original",
+          "offset": -0.05,
+          "sfx": "tick"
+        }
+      ],
+      "source": "S9"
+    },
+    {
+      "id": "s16",
+      "type": "stage",
+      "section": "light",
+      "say": "It hands back the evidence with each answer, so you can check it.",
+      "beats": [
+        {
+          "target": "evidence",
+          "word": "evidence",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "answer",
+          "word": "answer"
+        },
+        {
+          "target": "check",
+          "word": "check",
+          "sfx": "ding"
+        }
+      ],
+      "source": "S8",
+      "pad": 0.65
+    },
+    {
+      "id": "s17",
+      "type": "stage",
+      "section": "dark",
+      "say": "Now, the catch. Only use it on software you own, or are allowed to examine.",
+      "beats": [
+        {
+          "target": "catch",
+          "word": "catch",
+          "offset": -0.1
+        },
+        {
+          "target": "only",
+          "word": "Only",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "own",
+          "word": "own",
+          "sfx": "pop"
+        },
+        {
+          "target": "allowed",
+          "word": "allowed",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S9"
+    },
+    {
+      "id": "s18",
+      "type": "stage",
+      "section": "dark",
+      "say": "Licences and local laws can forbid reverse engineering. And the output gives you no rights to the original.",
+      "beats": [
+        {
+          "target": "lic",
+          "word": "licen",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "laws",
+          "word": "laws",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "rights",
+          "word": "rights",
+          "offset": -0.1,
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S9",
+      "pad": 0.65
+    },
+    {
+      "id": "s19",
+      "type": "stage",
+      "section": "yellow",
+      "say": "It's built for learning, security work and preserving old software. Ask one focused question, then check the evidence.",
+      "beats": [
+        {
+          "target": "learning",
+          "word": "learning",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "security",
+          "word": "security",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "preserving",
+          "word": "preserving",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "ask",
+          "word": "Ask",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "evidence",
+          "word": "evidence",
+          "offset": -0.05,
+          "sfx": "ding"
+        }
+      ],
+      "source": "S9",
+      "pad": 0.65
+    },
+    {
+      "id": "s20",
+      "type": "stage",
+      "section": "dark",
+      "say": "What should I explain next? Tell me below.",
+      "beats": [
+        {
+          "target": "what",
+          "word": "What"
+        },
+        {
+          "target": "tell",
+          "word": "Tell",
+          "offset": -0.05,
+          "sfx": "pop"
+        }
+      ]
     }
-   ],
-   "source": "S1"
-  },
-  {
-   "id": "s04",
-   "type": "stage",
-   "section": "blue",
-   "say": "It lets your coding agent look inside a program without its source code.",
-   "beats": [
-    {
-     "target": "agent",
-     "word": "coding",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "inside",
-     "word": "inside",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "without",
-     "word": "without"
-    }
-   ],
-   "source": "S1"
-  },
-  {
-   "id": "s05",
-   "type": "stage",
-   "section": "blue",
-   "say": "Your agent asks a question. REA runs existing decompilers, which turn compiled code back into readable code. Then it hands back the evidence.",
-   "beats": [
-    {
-     "target": "q",
-     "word": "question",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "dec",
-     "word": "decompilers",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "compiled",
-     "word": "compiled"
-    },
-    {
-     "target": "readable",
-     "word": "readable",
-     "sfx": "tick"
-    },
-    {
-     "target": "evidence",
-     "word": "evidence",
-     "offset": -0.1,
-     "sfx": "pop"
-    }
-   ],
-   "source": "S2",
-   "pad": 0.65
-  },
-  {
-   "id": "s06",
-   "type": "stage",
-   "section": "light",
-   "say": "Here's their question. Hit a brick on the left, and you hear it on the left. How?",
-   "beats": [
-    {
-     "target": "question",
-     "word": "question",
-     "offset": -0.1
-    },
-    {
-     "target": "hit",
-     "word": "Hit",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "left",
-     "word": "left",
-     "sfx": "tick"
-    },
-    {
-     "target": "hear",
-     "word": "hear"
-    },
-    {
-     "target": "left2",
-     "word": "left",
-     "nth": 1,
-     "sfx": "tick"
-    },
-    {
-     "target": "how",
-     "word": "How",
-     "offset": -0.05,
-     "sfx": "pop"
-    }
-   ],
-   "source": "S6",
-   "pad": 0.65
-  },
-  {
-   "id": "s07",
-   "type": "stage",
-   "section": "dark",
-   "say": "The decompiler's first draft of the sound function was incomplete. It showed no input at all.",
-   "beats": [
-    {
-     "target": "draft",
-     "word": "draft",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "sound",
-     "word": "sound"
-    },
-    {
-     "target": "incomplete",
-     "word": "incomplete",
-     "sfx": "stamp"
-    },
-    {
-     "target": "input",
-     "word": "input",
-     "offset": -0.05,
-     "sfx": "tick"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s08",
-   "type": "stage",
-   "section": "dark",
-   "say": "But the raw instructions take a number in. The agent spotted the mismatch, and kept digging.",
-   "beats": [
-    {
-     "target": "instr",
-     "word": "instructions",
-     "offset": -0.15,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "number",
-     "word": "number",
-     "sfx": "tick"
-    },
-    {
-     "target": "mismatch",
-     "word": "mismatch",
-     "sfx": "stamp"
-    },
-    {
-     "target": "digging",
-     "word": "digging"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s09",
-   "type": "stage",
-   "section": "dark",
-   "say": "It followed the call back to the brick. That number is the brick's position on screen.",
-   "beats": [
-    {
-     "target": "call",
-     "word": "call",
-     "offset": -0.05
-    },
-    {
-     "target": "brick",
-     "word": "brick",
-     "sfx": "tick"
-    },
-    {
-     "target": "position",
-     "word": "position",
-     "sfx": "pop"
-    },
-    {
-     "target": "screen",
-     "word": "screen"
-    }
-   ],
-   "source": "S6",
-   "pad": 0.65
-  },
-  {
-   "id": "s10",
-   "type": "stage",
-   "section": "yellow",
-   "say": "Then it read the constants and rebuilt the formula. Position, times 1.5625, minus 500.",
-   "beats": [
-    {
-     "target": "constants",
-     "word": "constants",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "formula",
-     "word": "formula"
-    },
-    {
-     "target": "pos",
-     "word": "Position",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "times",
-     "word": "times",
-     "sfx": "tick"
-    },
-    {
-     "target": "minus",
-     "word": "minus",
-     "sfx": "tick"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s11",
-   "type": "stage",
-   "section": "yellow",
-   "say": "Times the pan scale, which starts at one. Left edge, minus 500. Centre, zero. Right edge, plus 500.",
-   "beats": [
-    {
-     "target": "scale",
-     "word": "scale",
-     "offset": -0.1,
-     "sfx": "tick"
-    },
-    {
-     "target": "left",
-     "word": "Left",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "centre",
-     "word": "cent",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "right",
-     "word": "Right",
-     "offset": -0.1,
-     "sfx": "pop"
-    }
-   ],
-   "source": "S6",
-   "pad": 0.65
-  },
-  {
-   "id": "s12",
-   "type": "stage",
-   "section": "blue",
-   "say": "Then the rebuilt function was tested against the original.",
-   "beats": [
-    {
-     "target": "rebuilt",
-     "word": "rebuilt",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "tested",
-     "word": "tested"
-    },
-    {
-     "target": "original",
-     "word": "original",
-     "sfx": "pop"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s13",
-   "type": "stage",
-   "section": "blue",
-   "say": "Every position, at five pan scales. All 3,205 cases match.",
-   "beats": [
-    {
-     "target": "every",
-     "word": "Every",
-     "offset": -0.05
-    },
-    {
-     "target": "scales",
-     "word": "scales",
-     "offset": -0.1
-    },
-    {
-     "target": "all",
-     "word": "All",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "match",
-     "word": "match",
-     "sfx": "ding"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s14",
-   "type": "stage",
-   "section": "blue",
-   "say": "And compiled the old way, it makes the same 63 bytes as the original function.",
-   "beats": [
-    {
-     "target": "compiled",
-     "word": "compiled",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "same",
-     "word": "same"
-    },
-    {
-     "target": "bytes",
-     "word": "bytes",
-     "sfx": "ding"
-    },
-    {
-     "target": "original",
-     "word": "original"
-    }
-   ],
-   "source": "S6",
-   "pad": 0.65
-  },
-  {
-   "id": "s15",
-   "type": "stage",
-   "section": "light",
-   "say": "So it's not a clone button. It recovers how a feature works, not the original code.",
-   "beats": [
-    {
-     "target": "clone",
-     "word": "clone",
-     "offset": -0.15,
-     "sfx": "stamp"
-    },
-    {
-     "target": "recovers",
-     "word": "recovers",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "original",
-     "word": "original",
-     "offset": -0.05,
-     "sfx": "tick"
-    }
-   ],
-   "source": "S9"
-  },
-  {
-   "id": "s16",
-   "type": "stage",
-   "section": "light",
-   "say": "It hands back the evidence with each answer, so you can check it.",
-   "beats": [
-    {
-     "target": "evidence",
-     "word": "evidence",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "answer",
-     "word": "answer"
-    },
-    {
-     "target": "check",
-     "word": "check",
-     "sfx": "ding"
-    }
-   ],
-   "source": "S8",
-   "pad": 0.65
-  },
-  {
-   "id": "s17",
-   "type": "stage",
-   "section": "dark",
-   "say": "Now, the catch. Only use it on software you own, or are allowed to examine.",
-   "beats": [
-    {
-     "target": "catch",
-     "word": "catch",
-     "offset": -0.1
-    },
-    {
-     "target": "only",
-     "word": "Only",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "own",
-     "word": "own",
-     "sfx": "pop"
-    },
-    {
-     "target": "allowed",
-     "word": "allowed",
-     "sfx": "pop"
-    }
-   ],
-   "source": "S9"
-  },
-  {
-   "id": "s18",
-   "type": "stage",
-   "section": "dark",
-   "say": "Licences and local laws can forbid reverse engineering. And the output gives you no rights to the original.",
-   "beats": [
-    {
-     "target": "lic",
-     "word": "licen",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "laws",
-     "word": "laws",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "rights",
-     "word": "rights",
-     "offset": -0.1,
-     "sfx": "stamp"
-    }
-   ],
-   "source": "S9",
-   "pad": 0.65
-  },
-  {
-   "id": "s19",
-   "type": "stage",
-   "section": "yellow",
-   "say": "It's built for learning, security work and preserving old software. Ask one focused question, then check the evidence.",
-   "beats": [
-    {
-     "target": "learning",
-     "word": "learning",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "security",
-     "word": "security",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "preserving",
-     "word": "preserving",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "ask",
-     "word": "Ask",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "evidence",
-     "word": "evidence",
-     "offset": -0.05,
-     "sfx": "ding"
-    }
-   ],
-   "source": "S9",
-   "pad": 0.65
-  },
-  {
-   "id": "s20",
-   "type": "stage",
-   "section": "dark",
-   "say": "What should I explain next? Tell me below.",
-   "beats": [
-    {
-     "target": "what",
-     "word": "What"
-    },
-    {
-     "target": "tell",
-     "word": "Tell",
-     "offset": -0.05,
-     "sfx": "pop"
-    }
-   ]
-  }
- ]
+  ]
 }

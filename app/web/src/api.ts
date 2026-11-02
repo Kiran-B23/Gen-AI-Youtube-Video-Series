@@ -59,6 +59,7 @@ export interface Session { id: number; package_id: number; sdk_session_id: strin
   model: string | null; api_key_source: string | null; error: string | null; created_at: string }
 export interface Gate { gate: string; verdict: string; scores: string | null; seq: number }
 export interface Pkg { id: number; kind: "package" | "ask"; topic: string; format: string; notes: string; folder: string | null; created_at: string;
+  script_approved_at: string | null;
   session: Session | null; gates: Gate[] }
 export interface FileGate { id: string; label: string; state: "todo" | "done" | "open" | "pass" | "bad"; verdict?: { verdict: string; scores: string | null } | null; detail?: string | null }
 export interface Production { folder: string; files: { name: string; size: number; mtime: string }[]; gates: FileGate[];
@@ -67,6 +68,14 @@ export interface PkgView extends Pkg { production: Production | null; prompt: st
 export interface AgentMsg { seq: number; kind: string; data: any; t: number }
 
 // ---------- Phase C ----------
+export interface ExpFile { path: string; kind: "video" | "image"; size: number; mtime: string }
+export interface RunEvent { t: number; stage: string; state: "start" | "done" | "error"; job: string | null; secs?: number; vram_gb?: number; note?: string; error?: string }
+export interface RunStage { key: string; label: string; kind: string; load?: number; jobs: { id: string; expect: number }[] }
+export interface RunInfo { plan: { slug: string; stages: RunStage[] };
+  progress: { pushed_at: string; status: string; status_at: string; checked_at: string; message?: string; events: RunEvent[] } | null;
+  fetched: boolean; reviewed: boolean }
+export interface Experiment { name: string; title: string; verdict: string | null; updated: string; results: string | null;
+  videos: ExpFile[]; images: ExpFile[]; run: RunInfo | null }
 export interface LibraryItem { file: string; slug: string; engine: string; project: boolean; size: number; deliveredAt: string; current: boolean; hasSheets: boolean;
   qa: { passed: number; total: number; warnings: number; date: string | null; forThisFile: boolean | null; duration: number | null } | null;
   benchmark: { date: string; metrics: Record<string, number | null>; reference: Record<string, number | null>; ig: Record<string, number | null> } | null;
@@ -93,6 +102,18 @@ export interface TrendLatest { date: string; generated_at: string;
   status: Record<string, TrendSourceStatus>; briefs: string[] }
 export interface Trends { latest: TrendLatest | null; briefs: string[]; snapshots: string[]; snapshotCount: number;
   lastJobs: Record<string, Job>; busy: boolean; steps: Record<string, string> }
+
+// ---------- the simple interface: one card per video (server/src/videos.ts) ----------
+export type VideoStage = "script" | "your-script" | "building" | "your-review" | "delivered" | "stopped";
+export interface Video { key: string; title: string; packageId: number | null; sessionId: number | null; sessionStatus: SessionStatus | null;
+  next: string | null; slug: string | null; folder: string | null; personal: boolean; hasVideo: boolean; stage: VideoStage; stageText: string;
+  why: string; updated: string; cost: number | null; created: string | null }
+export interface VideoDetail extends Video { messages: { text: string; t: number }[];
+  progress: { step: string; words: string; status: string; index: number; of: number;
+    steps: Record<string, { status: string; started_at: string | null; finished_at: string | null }> } | null; script: string | null;
+  /** while the script is written: the package's files made so far, oldest first ("yt/" = the YouTube analysis folder) */
+  writing: { name: string; mtime: string }[] | null }
+export interface VideoSend { queued: boolean; session?: Session; packageId?: number }
 
 export class ApiError extends Error { constructor(public status: number, msg: string) { super(msg); } }
 async function call<T>(method: string, url: string, body?: unknown): Promise<T> {
@@ -121,14 +142,22 @@ export const api = {
   createPkg: (b: { kind: "package" | "ask"; topic: string; format?: string; notes?: string; folder?: string; start?: boolean }) => call<PkgView>("POST", "/api/packages", b),
   startPkg: (id: number) => call<PkgView>("POST", `/api/packages/${id}/start`),
   stopPkg: (id: number) => call<PkgView>("POST", `/api/packages/${id}/stop`),
+  approveScript: (id: number) => call<PkgView>("POST", `/api/packages/${id}/approve-script`),
   deletePkg: (id: number) => call<{ ok: boolean }>("DELETE", `/api/packages/${id}`),
   send: (sid: number, text: string) => call<Session>("POST", `/api/sessions/${sid}/messages`, { text }),
   approve: (id: string, decision: "allow" | "deny") => call<{ ok: boolean }>("POST", `/api/approvals/${id}`, { decision }),
   productions: () => call<{ folder: string; files: number; mtime: string; gates: FileGate[] }[]>("GET", "/api/productions"),
   production: (folder: string) => call<Production>("GET", `/api/productions/${encodeURIComponent(folder)}`),
   productionFile: (folder: string, name: string) => call<{ name: string; text: string }>("GET", `/api/productions/${encodeURIComponent(folder)}/files/${encodeURIComponent(name)}`),
+  // the simple interface
+  videos: () => call<Video[]>("GET", "/api/videos"),
+  video: (key: string) => call<VideoDetail>("GET", `/api/videos/${encodeURIComponent(key)}`),
+  videoMessage: (key: string, text: string) => call<VideoSend>("POST", `/api/videos/${encodeURIComponent(key)}/message`, { text }),
+  approveDeliver: (slug: string) => call<{ job: Job }>("POST", `/api/projects/${encodeURIComponent(slug)}/approve-deliver`),
+  job: (id: number) => call<Job>("GET", `/api/jobs/${id}`),
   // library + settings
   library: () => call<LibraryItem[]>("GET", "/api/library"),
+  experiments: () => call<Experiment[]>("GET", "/api/experiments"),
   pace: () => call<{ note: string; fields: PaceField[] }>("GET", "/api/settings/pace"),
   savePace: (values: Record<string, number>, why: string) => call<{ ok: boolean; changes: string[]; pace: { note: string; fields: PaceField[] } }>("PUT", "/api/settings/pace", { values, why }),
   styles: () => call<{ name: string; path: string; text: string }[]>("GET", "/api/settings/styles"),
@@ -141,6 +170,7 @@ export const api = {
 };
 export const previewUrl = (slug: string, rel = "index.html") => `/preview/${encodeURIComponent(slug)}/${rel}`;
 export const shortsUrl = (name: string) => `/shorts/${encodeURIComponent(name)}`;
+export const expUrl = (name: string, rel: string) => `/exp/${encodeURIComponent(name)}/${rel.split("/").map(encodeURIComponent).join("/")}`;
 /** seconds → "12.3s" (the review.md time format) */
 export const secs = (t: number, d = 1) => `${t.toFixed(d)}s`;
 export function sceneAt(tl: Timeline | null | undefined, t: number) {

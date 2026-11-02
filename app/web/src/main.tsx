@@ -4,14 +4,19 @@ import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Shell } from "./components/Shell";
 import { Projects } from "./pages/Projects";
+import { Videos } from "./pages/Videos";
+import { VideoPage } from "./pages/Video";
 import { Build } from "./pages/Build";
 import { Review } from "./pages/Review";
 import { Preview } from "./pages/Preview";
 import { Queue } from "./pages/Queue";
 import { Package, ProductionView } from "./pages/Package";
 import { Library } from "./pages/Library";
+import { Experiments } from "./pages/Experiments";
 import { Settings } from "./pages/Settings";
 import { TrendsPage } from "./pages/Trends";
+import "@fontsource-variable/chivo-mono";
+import "@fontsource-variable/chivo-mono/wght-italic.css";
 import "./index.css";
 
 const qc = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: true, retry: 1 } } });
@@ -23,7 +28,9 @@ createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <Shell>
           <Routes>
-            <Route path="/" element={<Projects />} />
+            <Route path="/" element={<Videos />} />
+            <Route path="/v/:key" element={<VideoPage />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/p/:slug" element={<ToBuild />} />
             <Route path="/p/:slug/build" element={<Build />} />
             <Route path="/p/:slug/review" element={<Review />} />
@@ -32,6 +39,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/packages/:id" element={<Package />} />
             <Route path="/productions/:folder" element={<ProductionView />} />
             <Route path="/library" element={<Library />} />
+            <Route path="/experiments" element={<Experiments />} />
             <Route path="/trends" element={<TrendsPage />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Navigate to="/" replace />} />

@@ -1,0 +1,183 @@
+/* FDE reel stage · on top of the reference-flat kit · all classes prefixed f- (never the engine's preset names).
+   Stage coordinates 1080 x 1920; content inside x 60-950, y 222-1460. Body text >= 30 px in cards, non-hero type <= 58 px. */
+.f-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+.f-wb, .f-cw { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+
+/* ---------- hook ---------- */
+.f-htext { position: absolute; left: 90px; top: 360px; width: 840px; height: 300px; }
+.f-hl { position: absolute; left: 0; top: 0; width: 840px; text-align: center; font-family: "Anton", sans-serif; font-size: 140px; line-height: 1.02; color: #fff; white-space: nowrap; }
+.f-h2 { color: #FF4D5E; opacity: 0; }
+.f-houtline { position: absolute; left: 70px; top: 1040px; width: 880px; height: 405px; box-sizing: border-box; border: 5px solid rgba(255,255,255,0.75); border-radius: 26px; opacity: 0; }
+.f-hlocks { position: absolute; left: 0; top: 0; opacity: 0; }
+#f-hl1 { left: 250px; top: 1352px; } #f-hl2 { left: 710px; top: 1352px; }
+
+/* locks (CSS shapes): shackle + body */
+.f-lock { position: absolute; width: 60px; height: 70px; }
+.f-shk { position: absolute; left: 12px; top: 0; width: 36px; height: 40px; box-sizing: border-box; border: 8px solid currentColor; border-bottom: 0; border-radius: 20px 20px 0 0; }
+.f-lbody { position: absolute; left: 0; top: 28px; width: 60px; height: 42px; border-radius: 10px; background: currentColor; }
+.f-grey { color: #9AA2B4; } .f-red { color: #E5364A; } .f-green { color: #14B87A; }
+.f-locks { position: absolute; left: 0; top: 0; opacity: 0; }
+#f-ll { left: 250px; top: 842px; } #f-lr { left: 710px; top: 842px; }
+.f-okl, .f-okr { opacity: 0; } .f-okl { left: 250px; top: 842px; } .f-okr { left: 710px; top: 842px; }
+.f-okl .f-shk, .f-okr .f-shk { transform: translate(14px, -10px) rotate(18deg); transform-origin: 0 100%; }
+
+/* ---------- the claims card (workbench geometry; frame 0 sits 260 px lower via #f-cw) ---------- */
+.f-card { position: absolute; left: 90px; top: 300px; width: 840px; height: 400px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 28px; color: #0B1020; overflow: hidden; }
+.f-chead { position: absolute; left: 26px; top: 20px; font-family: "JetBrains Mono", monospace; font-size: 36px; font-weight: 800; white-space: nowrap; }
+.f-model { position: absolute; left: 600px; top: 14px; width: 210px; height: 58px; border-radius: 29px; background: #0B1020; color: #fff; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 900; line-height: 58px; text-align: center; opacity: 0; }
+.f-mring { position: absolute; left: -10px; top: -10px; width: 222px; height: 70px; border: 5px solid #14B87A; border-radius: 40px; opacity: 0; }
+.f-live { position: absolute; left: 404px; top: 18px; height: 50px; padding: 0 18px; border-radius: 12px; background: #14B87A; color: #fff; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; line-height: 50px; opacity: 0; }
+.f-q { position: absolute; right: 26px; top: 92px; height: 66px; padding: 0 26px; border-radius: 33px 33px 6px 33px; background: #2B3BE0; color: #fff; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 700; line-height: 66px; white-space: nowrap; }
+.f-ans { position: absolute; left: 26px; top: 178px; height: 72px; padding: 0 26px; border-radius: 33px 33px 33px 6px; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 700; line-height: 72px; white-space: nowrap; }
+.f-ansok { background: #DDF5EA; color: #0B6B47; } .f-ansbad { background: #FDE2E5; color: #B3172B; }
+#f-ansr, #f-ans3, #f-ansg { opacity: 0; } #f-ans3:empty, #f-ansg:empty { padding: 0; }
+.f-ptag { position: absolute; left: 30px; top: 258px; font-family: "JetBrains Mono", monospace; font-size: 26px; font-weight: 700; color: rgba(11,16,32,0.6); opacity: 0; }
+.f-strip { position: absolute; left: 0; top: 300px; width: 832px; height: 92px; font-family: "Inter", sans-serif; font-size: 42px; font-weight: 900; line-height: 92px; text-align: center; color: #fff; }
+.f-stripbad { background: #E5364A; } .f-stripok { background: #14B87A; opacity: 0; }
+.f-tiles { position: absolute; left: 26px; top: 304px; width: 790px; height: 80px; display: flex; gap: 14px; opacity: 0; }
+.f-tile { position: relative; width: 146px; height: 76px; box-sizing: border-box; border: 3px solid #0B1020; border-radius: 12px; background: #F4F6FA;
+  font-family: "JetBrains Mono", monospace; font-size: 22px; font-weight: 700; line-height: 70px; padding-left: 10px; }
+.f-tk { position: absolute; right: 6px; top: 10px; width: 40px; height: 50px; border-radius: 10px; background: #14B87A; color: #fff; font-style: normal; font-size: 32px; font-weight: 900; line-height: 50px; text-align: center; opacity: 0; }
+.f-tag { position: absolute; left: 330px; top: 708px; width: 380px; text-align: center; font-family: "Inter", sans-serif; font-size: 26px; font-weight: 600; color: var(--f-dim, rgba(255,255,255,0.7)); white-space: nowrap; }
+.f-ins { opacity: 0; }
+.f-demo { position: absolute; left: 640px; top: 266px; width: 270px; height: 96px; box-sizing: border-box; border: 7px solid #2ED3A0; border-radius: 18px; background: #0B1020; color: #2ED3A0;
+  font-family: "Anton", sans-serif; font-size: 66px; line-height: 80px; text-align: center; transform: rotate(-6deg); }
+.f-crk { fill: none; stroke: #E5364A; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+#f-cr2 { opacity: 0; }
+
+/* ---------- the company: outline, label, tracker ---------- */
+.f-outline { position: absolute; left: 60px; top: 250px; width: 890px; height: 1170px; box-sizing: border-box; border: 4px solid #fff; border-radius: 30px; opacity: 0; }
+.f-clab { position: absolute; left: 80px; top: 228px; height: 44px; padding: 0 12px; background: #2B3BE0; color: #fff; font-family: "Inter", sans-serif; font-size: 32px; font-weight: 800; line-height: 44px; white-space: nowrap; opacity: 0; }
+.f-trk { position: absolute; left: 560px; top: 230px; width: 370px; height: 42px; display: flex; gap: 6px; opacity: 0; }
+.f-tc { height: 42px; padding: 0 6px; border-radius: 10px; border: 3px solid currentColor; box-sizing: border-box; font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 800; line-height: 36px; white-space: nowrap; opacity: 0.45; }
+.f-tc.f-on { background: #0B1020; color: #fff; border-color: #0B1020; opacity: 1; }
+
+/* ---------- boxes, wires ---------- */
+.f-box { position: absolute; top: 880px; width: 380px; height: 370px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 24px; overflow: hidden; opacity: 0; }
+.f-pdf { left: 90px; } .f-old { left: 550px; }
+.f-page { position: absolute; width: 110px; height: 150px; box-sizing: border-box; background: repeating-linear-gradient(0deg, #F1F2F5 0 14px, #C9CDD6 14px 18px); border: 3px solid #8A90A0; border-radius: 6px; }
+.f-scan { position: absolute; left: 0; top: 24px; width: 380px; height: 8px; background: #2B3BE0; opacity: 0; }
+.f-blab { position: absolute; left: 0; top: 296px; width: 372px; text-align: center; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 800; color: #0B1020; white-space: nowrap; }
+.f-old .f-blab { font-size: 31px; }
+.f-ill { position: absolute; right: 14px; top: 258px; font-family: "Inter", sans-serif; font-style: normal; font-size: 22px; font-weight: 600; color: rgba(11,16,32,0.55); }
+.f-scr { position: absolute; left: 26px; top: 30px; width: 320px; height: 220px; border-radius: 12px; background: #2A2F3A; }
+.f-oldtxt { position: absolute; left: 22px; top: 40px; width: 280px; font-family: "JetBrains Mono", monospace; font-size: 38px; font-weight: 800; line-height: 64px; color: #9BE7B8; white-space: pre; opacity: 0; }
+.f-wL { left: 275px; } .f-wR { left: 735px; }
+.f-dash { position: absolute; top: 702px; width: 10px; height: 70px; background: repeating-linear-gradient(180deg, #E5364A 0 14px, rgba(0,0,0,0) 14px 24px); opacity: 0; }
+.f-solid { position: absolute; top: 702px; width: 10px; height: 146px; border-radius: 5px; background: #14B87A; transform-origin: 50% 0%; opacity: 0; }
+.f-dlh { position: absolute; left: 510px; top: 1345px; width: 180px; height: 0; border-top: 7px dashed #FFD23F; transform-origin: 100% 50%; opacity: 0; }
+.f-dlv { position: absolute; left: 507px; top: 868px; width: 0; height: 484px; border-left: 7px dashed #FFD23F; transform-origin: 50% 100%; opacity: 0; }
+.f-gaps { position: absolute; left: 0; top: 0; opacity: 0; }
+.f-gaps i { position: absolute; top: 772px; width: 50px; height: 72px; border-radius: 12px; background: #FFD23F; }
+.f-slot { position: absolute; left: 390px; top: 768px; width: 240px; height: 80px; box-sizing: border-box; border: 5px dashed #FFD23F; border-radius: 40px; opacity: 0; }
+.f-pulse { position: absolute; left: 0; top: 0; opacity: 0; }
+.f-pulse i, .f-pd0 { position: absolute; width: 28px; height: 28px; border-radius: 14px; background: #2ED3A0; box-shadow: 0 0 0 6px rgba(46,211,160,0.35); }
+#f-pd1 { left: 266px; top: 834px; } #f-pd2 { left: 726px; top: 834px; }
+.f-pd0 { left: 266px; top: 834px; opacity: 0; }
+
+/* ---------- people as chips, the engineer's badge ---------- */
+.f-team { position: absolute; left: 90px; top: 1300px; width: 280px; height: 96px; box-sizing: border-box; border: 4px solid #0B1020; border-radius: 22px; background: #fff; color: #0B1020;
+  font-family: "Inter", sans-serif; font-size: 34px; font-weight: 800; line-height: 88px; text-align: center; opacity: 0; }
+.f-badge { position: absolute; left: 410px; top: 1300px; width: 260px; height: 96px; box-sizing: border-box; border: 4px solid #fff; border-radius: 48px; background: #0B1020; color: #fff;
+  font-family: "Inter", sans-serif; font-size: 46px; font-weight: 900; line-height: 88px; text-align: center; opacity: 0; }
+.f-badge span { color: #FFD23F; font-family: "JetBrains Mono", monospace; font-size: 38px; }
+.f-code { position: absolute; left: 700px; top: 1318px; font-family: "JetBrains Mono", monospace; font-size: 32px; font-weight: 800; color: #fff; white-space: nowrap; opacity: 0; }
+.f-ring { position: absolute; left: 0; top: 0; width: 150px; height: 150px; box-sizing: border-box; border: 9px solid #2B3BE0; border-radius: 75px; opacity: 0; }
+.f-blk { position: absolute; left: 345px; top: 752px; width: 330px; height: 104px; box-sizing: border-box; border: 8px solid #E5364A; border-radius: 18px; background: #fff; color: #E5364A;
+  font-family: "Anton", sans-serif; font-size: 72px; line-height: 88px; text-align: center; transform: rotate(-5deg); opacity: 0; }
+
+/* ---------- s04 title ---------- */
+.f-title { position: absolute; left: 90px; top: 262px; width: 840px; text-align: center; font-family: "Anton", sans-serif; font-size: 140px; line-height: 1.0; color: #fff; opacity: 0; }
+#f-tl3 { position: relative; display: inline-block; }
+.f-tline { position: absolute; left: 0; bottom: -6px; width: 100%; height: 12px; background: #FFD23F; transform: scaleX(0); transform-origin: 0 50%; opacity: 0; }
+
+/* ---------- s09 product team ---------- */
+.f-prod { position: absolute; left: 670px; top: 640px; width: 270px; height: 230px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 22px; color: #0B1020; opacity: 0; }
+.f-prod b { position: absolute; left: 0; top: 16px; width: 262px; text-align: center; font-family: "Inter", sans-serif; font-size: 30px; font-weight: 900; }
+.f-notet { position: absolute; left: 18px; top: 74px; width: 230px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 700; line-height: 42px; color: #B3172B; white-space: normal; opacity: 0; }
+.f-note { position: absolute; left: 700px; top: 1300px; width: 220px; height: 96px; box-sizing: border-box; background: #FFF6D6; border: 4px solid #0B1020; border-radius: 14px; opacity: 0; }
+.f-note i { display: block; margin: 16px 0 0 18px; width: 150px; height: 8px; background: #8A90A0; } .f-note i + i { margin-top: 10px; width: 120px; } .f-note i + i + i { width: 90px; }
+.f-note span { position: absolute; right: 8px; bottom: 4px; font-family: "Inter", sans-serif; font-size: 18px; font-weight: 600; color: rgba(11,16,32,0.6); }
+
+/* ---------- docked running object ---------- */
+.f-dock { position: absolute; left: 90px; top: 230px; height: 60px; padding: 0 22px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 16px; color: #0B1020;
+  font-family: "JetBrains Mono", monospace; font-size: 32px; font-weight: 800; line-height: 52px; white-space: nowrap; opacity: 0; }
+.f-dock b { color: #14B87A; }
+.f-tchip { position: absolute; left: 600px; top: 230px; height: 60px; padding: 0 20px; box-sizing: border-box; background: #0B1020; color: #FFD23F; border-radius: 16px;
+  font-family: "JetBrains Mono", monospace; font-size: 32px; font-weight: 800; line-height: 60px; white-space: nowrap; opacity: 0; }
+
+/* ---------- s10-s11 demand ---------- */
+.f-grid { position: absolute; left: 90px; top: 340px; width: 840px; height: 960px; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(8, 1fr); gap: 16px; opacity: 0; }
+.f-ghost { z-index: 0; } .f-gh { border: 3px dashed rgba(11,16,32,0.35); border-radius: 12px; opacity: 0; }
+.f-gt { background: #fff; border: 3px solid #0B1020; border-radius: 12px; opacity: 0; }
+.f-gt b { display: block; margin: 22px 0 0 14px; width: 70px; height: 9px; background: #C9CDD6; } .f-gt b + b { margin-top: 12px; width: 46px; }
+.f-arrow { position: absolute; left: 62px; top: 340px; width: 22px; height: 960px; opacity: 0; transform-origin: 50% 100%; }
+.f-arrow i { position: absolute; left: 7px; top: 24px; width: 8px; height: 936px; background: #0B1020; }
+.f-arrow::before { content: ""; position: absolute; left: -4px; top: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 30px solid #0B1020; }
+.f-num { position: absolute; left: 90px; top: 680px; width: 840px; text-align: center; font-family: "Anton", sans-serif; font-size: 200px; line-height: 1.1; color: #0B1020; opacity: 0; }
+.f-yr { position: absolute; left: 400px; top: 920px; width: 240px; height: 60px; border-radius: 16px; background: #0B1020; color: #fff; font-family: "JetBrains Mono", monospace; font-size: 32px; font-weight: 800; line-height: 60px; text-align: center; opacity: 0; }
+.f-bar1 { position: absolute; left: 140px; top: 540px; width: 300px; height: 760px; border-radius: 16px 16px 0 0; background: #0B1020; transform-origin: 50% 100%; opacity: 0; }
+.f-bar2 { position: absolute; left: 600px; top: 540px; width: 300px; height: 760px; box-sizing: border-box; border: 5px dashed rgba(11,16,32,0.45); border-radius: 16px 16px 0 0; opacity: 0; }
+.f-race { position: absolute; left: 600px; top: 1260px; width: 300px; height: 40px; border-radius: 8px 8px 0 0; background: #2B3BE0; transform-origin: 50% 100%; opacity: 0; }
+.f-blab2 { position: absolute; top: 1316px; width: 300px; text-align: center; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 900; color: #0B1020; white-space: nowrap; opacity: 0; }
+.f-bl1 { left: 140px; } .f-bl2 { left: 600px; }
+.f-n13 { position: absolute; left: 590px; top: 1080px; width: 320px; text-align: center; white-space: nowrap; font-family: "Anton", sans-serif; font-size: 140px; line-height: 1.1; color: #2B3BE0; opacity: 0; }
+
+/* ---------- s12-s13 fit check ---------- */
+.f-hd { position: absolute; left: 90px; top: 330px; font-family: "Inter", sans-serif; font-size: 56px; font-weight: 900; color: #0B1020; white-space: nowrap; opacity: 0; }
+.f-hdw { color: #fff; }
+.f-name { position: absolute; top: 480px; width: 380px; height: 84px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 18px; color: #0B1020;
+  font-family: "Inter", sans-serif; font-size: 44px; font-weight: 900; line-height: 76px; text-align: center; opacity: 0; }
+.f-pal { left: 90px; } .f-ant { left: 550px; }
+.f-ink { fill: none; stroke: #0B1020; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.f-brk { position: absolute; left: 280px; top: 572px; width: 460px; height: 28px; box-sizing: border-box; border: 6px solid #0B1020; border-top: 0; transform-origin: 50% 50%; opacity: 0; }
+.f-brk2 { position: absolute; left: 507px; top: 600px; width: 6px; height: 50px; background: #0B1020; transform-origin: 50% 0%; opacity: 0; }
+.f-tlab { position: absolute; left: 90px; top: 664px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; color: #0B1020; opacity: 0; }
+.f-strp { position: absolute; left: 90px; top: 710px; width: 832px; height: 140px; display: flex; gap: 8px; opacity: 0; }
+.f-cell { width: 76px; height: 140px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 10px; flex: none; }
+.f-f25 { position: absolute; left: 0; top: 0; width: 208px; height: 140px; border-radius: 10px 0 0 10px; background: #0B1020; transform: scaleX(0); transform-origin: 0 50%; }
+.f-f50 { position: absolute; left: 208px; top: 0; width: 208px; height: 140px; background: repeating-linear-gradient(45deg, #2B3BE0 0 14px, #8A96F2 14px 28px); transform: scaleX(0); transform-origin: 0 50%; }
+.f-suit { position: absolute; left: 812px; top: 732px; width: 104px; height: 96px; opacity: 0; }
+.f-suit i { position: absolute; left: 0; top: 22px; width: 104px; height: 74px; box-sizing: border-box; border: 6px solid #0B1020; border-radius: 12px; background: #FFD23F; }
+.f-suit::before { content: ""; position: absolute; left: 32px; top: 2px; width: 40px; height: 28px; box-sizing: border-box; border: 6px solid #0B1020; border-bottom: 0; border-radius: 10px 10px 0 0; }
+.f-big120 { position: absolute; left: 90px; top: 900px; width: 840px; text-align: center; font-family: "Anton", sans-serif; font-size: 120px; line-height: 1.15; color: #0B1020; white-space: nowrap; opacity: 0; }
+.f-elab { position: absolute; left: 90px; top: 600px; width: 840px; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; letter-spacing: 0.1em; color: #0B1020; opacity: 0; }
+.f-xbar { position: absolute; left: 90px; top: 664px; width: 840px; height: 14px; border-radius: 7px; background: #0B1020; transform: scaleX(0); transform-origin: 0 50%; opacity: 0; }
+.f-xn { position: absolute; top: 710px; width: 380px; text-align: center; font-family: "Anton", sans-serif; font-size: 150px; line-height: 1.05; color: #2B3BE0; opacity: 0; }
+.f-sixn { left: 90px; } .f-fourn { left: 550px; }
+.f-xu { position: absolute; top: 930px; width: 380px; text-align: center; font-family: "Inter", sans-serif; font-size: 46px; font-weight: 900; color: #0B1020; opacity: 0; }
+.f-mo { left: 90px; } .f-yrs { left: 550px; }
+
+/* ---------- s14-s15 want in ---------- */
+.f-lbl { position: absolute; left: 90px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; color: #fff; white-space: nowrap; opacity: 0; }
+.f-blabel { top: 428px; } .f-tst { top: 950px; } .f-exp { top: 1070px; }
+.f-app { position: absolute; left: 90px; top: 480px; width: 530px; height: 420px; box-sizing: border-box; background: #fff; border: 5px dashed #0B1020; border-radius: 26px; color: #0B1020; opacity: 0; transform-origin: 0 0; }
+.f-apph { position: absolute; left: 26px; top: 22px; font-family: "JetBrains Mono", monospace; font-size: 38px; font-weight: 800; white-space: nowrap; }
+.f-eb { position: absolute; display: block; height: 66px; border-radius: 33px; background: #E7EAF0; }
+.f-eb1 { right: 26px; top: 110px; width: 300px; }
+.f-eb2 { left: 26px; top: 210px; min-width: 330px; padding: 0 22px; box-sizing: border-box; font-family: "Inter", sans-serif; font-size: 32px; font-weight: 700; line-height: 66px; color: #4A5163; white-space: nowrap; }
+.f-stk { position: absolute; left: 650px; top: 560px; width: 300px; height: 260px; opacity: 0; transform: scale(0.82); transform-origin: 0 0; }
+.f-awire { position: absolute; left: 620px; top: 686px; width: 62px; height: 8px; background: #fff; transform: scaleX(0); transform-origin: 100% 50%; }
+.f-trow { position: absolute; left: 260px; top: 930px; width: 360px; height: 76px; display: flex; gap: 8px; opacity: 0; }
+.f-tile2 { position: relative; width: 66px; height: 76px; box-sizing: border-box; background: #fff; border: 3px solid #0B1020; border-radius: 12px; flex: none; }
+.f-tile2 .f-tk { right: 10px; top: 12px; width: 40px; }
+.f-ncc { position: absolute; left: 650px; top: 1056px; width: 280px; height: 84px; box-sizing: border-box; background: #fff; border: 5px solid #0B1020; border-radius: 20px; color: #0B1020;
+  font-family: "Inter", sans-serif; font-size: 38px; font-weight: 900; line-height: 74px; text-align: center; opacity: 0; }
+.f-bub { position: absolute; left: 330px; top: 860px; width: 110px; height: 70px; border-radius: 35px; background: #FFD23F; opacity: 0; }
+.f-bub i { position: absolute; left: 22px; top: 50px; border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 24px solid #FFD23F; }
+
+/* ---------- s16 recap ---------- */
+.f-mini { position: absolute; left: 240px; top: 260px; width: 600px; height: 250px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 24px; color: #0B1020; overflow: hidden; opacity: 0; transform-origin: 0 0; }
+.f-mh { position: absolute; left: 22px; top: 16px; font-family: "JetBrains Mono", monospace; font-size: 32px; font-weight: 800; }
+.f-ma { position: absolute; left: 22px; top: 74px; height: 64px; padding: 0 20px; border-radius: 30px; background: #DDF5EA; color: #0B6B47; font-family: "Inter", sans-serif; font-size: 30px; font-weight: 700; line-height: 64px; white-space: nowrap; }
+.f-ms { position: absolute; left: 0; top: 166px; width: 592px; height: 76px; background: #14B87A; color: #fff; font-family: "Inter", sans-serif; font-size: 34px; font-weight: 900; line-height: 76px; text-align: center; }
+.f-cc { position: absolute; top: 660px; height: 104px; padding: 0 24px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 18px; color: #0B1020;
+  font-family: "JetBrains Mono", monospace; font-size: 54px; font-weight: 800; line-height: 96px; white-space: nowrap; opacity: 0; }
+#f-c1 { left: 90px; } #f-c2 { left: 340px; } #f-c3 { left: 652px; } #f-c4 { left: 300px; top: 900px; background: #0B1020; color: #FFD23F; }
+.f-arr { opacity: 0; }
+
+/* ---------- s17 CTA ---------- */
+.f-cta { position: absolute; left: 90px; top: 420px; width: 840px; font-family: "Anton", sans-serif; font-size: 130px; line-height: 1.05; color: #fff; }
+.f-cw2 { display: inline-block; opacity: 0; }
+#f-w3 { color: #FFD23F; }
+.f-fol { position: absolute; left: 90px; top: 980px; padding: 22px 44px; border-radius: 999px; background: #FFD23F; color: #0B1020; font-family: "Inter", sans-serif; font-size: 44px; font-weight: 900; white-space: nowrap; opacity: 0; }

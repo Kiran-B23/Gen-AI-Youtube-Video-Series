@@ -238,3 +238,36 @@ remembered, no lost term the core depends on); the linter fails a missing or sta
 good-reel fixture lost the viewer on the unframed myth opener and the missing "why tokens hide the r's" link, and the
 approved Dots script packed its four permission levels (a must-include) into one breath. Keep: one new idea per sentence,
 frame a myth as a myth, say the mechanism's link out loud.
+
+## 2026-10-30 · Measured against the top explainer shorts (user: "review and compare against the real reels … what needs to be improved", then "Go ahead")
+**What:** 12 top AI and dev explainer shorts (ByteByteGo, Fireship, KodeKloud, codebasics, bycloud, IBM,
+LearnThatStack, Under the Hood AI, 9x) measured next to our 7 latest renders (`references/web-shorts-2026-10-30.md`).
+**Found:**
+- Ours are twice as long (median 114 s vs 57 s).
+- Ours are slower, with dead air: 2.5 vs 3.3 words/s, and 9 pauses over 0.9 s vs 0.
+- Ours open weaker: Harness fills 32 % of the band at 1.5 s; every reference fills 48–100 %.
+- Ours change the background every section; the references keep one background and grow one diagram under a
+  pinned question.
+- Still share doesn't predict reach (references 0–94 %), and fix rounds spent lowering it were wasted money.
+**Now:**
+- 45–75 s by default; a `Long reel: <reason>` line in the content plan unlocks more.
+- The content plan writes a Hook question, shown large over the acting object by 1.5 s (`payoffs` fails < 45 % fill).
+- One background with the question pinned.
+- Only a frozen frame over 5 s fails.
+- Pace stays 2.3 until the owner decides.
+
+
+## 2026-10-30 · Openings are cluttered (user: "the opening scene or frame cluttered … dig this out", then "Plan and proceed")
+**What:** our reels opened with the whole hook already on screen: Harness v2 had 5 things and 24 words at 0 s, the
+same at 3 s. The first seconds of 12 top shorts (`references/web-shorts-openings-2026-10-30.md`) open on 1–3
+things and ≤ ~5 words, then build the hook as it is spoken.
+**Why ours did it:** every opening rule set a minimum and none set a maximum. "Never empty", "≥ 45 % fill at 1.5 s"
+and "fill the frame" were read as "put more in"; the fill test measures span, so clutter passed it; the 12-word rule
+skipped card titles, chips, tags and the caption; disclosure tags had no time, so they sat on frame 0.
+**Now:**
+- Frame 0: the hook question's first words + one object, ≤ 3 things and ≤ 6 words, everything readable counted.
+- The question types out with the voice; the object acts on its word.
+- By 3 s: ≤ 5 things and ≤ 12 words.
+- While the question types, the scene sets `"captions": false`.
+- "illustrative" tags and chips arrive after 3 s.
+- `payoffs` fails over the ceiling; the 45 % fill test stays.

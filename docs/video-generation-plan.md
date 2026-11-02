@@ -1,7 +1,8 @@
 # Plan: free, code-generated videos (reels + long-form)
 
 _Drafted 2026-10-09 · revised after your answers: **no paid models**, video generated from **code**,
-best-of-breed tools combined, presenter = **you on camera or an AI avatar**, voice = **Gemini TTS**._
+best-of-breed tools combined, presenter = **you on camera or an AI avatar**, voice = **Gemini TTS**.
+Engine, voice and pipeline sections brought in line with the code on 2026-10-30; the long-form section (phase 4) is not yet._
 
 ## Goal
 Turn a `video-scripter` package (research → script → storyboard) into a **finished video built
@@ -11,14 +12,14 @@ real screen demos), plus optional free stock and a presenter, all assembled on t
 ## Key finding: the engine licence
 | Engine | Licence | Free for a company like NxtWave? |
 |---|---|---|
-| **Remotion** (what `shorts-studio` uses) | Source-available; **free only for individuals/companies ≤3 people**. Companies of 4+ need a Company Licence (from ~$100/mo) | ❌ **No.** It conflicts with "no paid" |
+| **Remotion** (the engine of the deleted `shorts-studio`) | Source-available; **free only for individuals/companies ≤3 people**. Companies of 4+ need a Company Licence (from ~$100/mo) | ❌ **No.** It conflicts with "no paid" |
 | **HyperFrames** (HeyGen, open source) | **Apache-2.0**: "no per-render fees or commercial-use thresholds" | ✅ Yes |
 | **Manim Community** | MIT | ✅ Yes |
 | **Motion Canvas** | MIT | ✅ Yes |
 
-→ **Move the master timeline to HyperFrames** and port the proven pieces from `shorts-studio`.
-A `remotion-to-hyperframes` skill is already installed to help with the port. Keep `shorts-studio`
-only for personal or evaluation use.
+→ **The master timeline moved to HyperFrames** (`studio/`), with the proven pieces ported from `shorts-studio`.
+`shorts-studio` was deleted on 2026-10-12 (recoverable from git history). Remotion remains only as the optional
+second engine `studio/remotion/` (`run.sh <slug> remotion`), for the owner's personal use.
 
 ## The free toolkit (each tool does what it's best at)
 | Job | Best free tool | Why |
@@ -32,9 +33,9 @@ only for personal or evaluation use.
 | **Charts / numbers** | HyperFrames chart blocks / D3 | Counters, bars, race charts |
 | **Icons / illustrations / motion assets** | Lucide icons, unDraw/Open Peeps illustrations, free LottieFiles (check each licence) | Generic, logo-free visuals |
 | **Free stock footage (optional)** | Pexels / Pixabay video APIs (free key) | Real-world B-roll where code can't help |
-| **Voice** | **Gemini TTS, single take** per section (free tier ≈10 requests/day/model) | Already proven; one request per section keeps the voice consistent |
+| **Voice** | `studio/tools/voice.py`: **one Gemini TTS take of the whole script**, split at the pauses between scenes (free tier ≈10 requests/day/model); or **Kokoro-82M** locally (`voice.engine "kokoro"`, no key, no quota); or your own recordings in `projects/<slug>/voice/` | One request per video keeps the voice consistent; `RETAKE=1` asks for a new take, `RESPLIT=1` re-splits the saved one for free |
 | **Timing / captions** | faster-whisper word timestamps (local) | Already proven (voice leads, captions and beats follow speech) |
-| **Music / SFX** | Synthesised beds + SFX (existing `make-audio.py`) or CC0 libraries | No licensing risk |
+| **Music / SFX** | Synthesised beds + SFX (existing `make_audio.py`, `sfx_synth.py`) or CC0 libraries | No licensing risk |
 | **Presenter (option A): you on camera** | Phone/webcam recording + **local background removal** (`hyperframes remove-background`) to composite over visuals | Free; most authentic |
 | **Presenter (option B): AI avatar** | **LivePortrait + MuseTalk / LatentSync** from one photo + the TTS audio, run on **Google Colab's free GPU** (this PC has no GPU) | Free but experimental: quality, Colab limits and render time to be proven |
 
@@ -42,28 +43,35 @@ AI video models (Veo, Kling…) are left out by choice. The pipeline has a slot 
 added later if a budget appears.
 
 ## Pipeline
+The real pipeline is `studio/tools/run.sh <slug> <step>` (`all` = validate … review); the comment at the top of
+`run.sh` is the source of truth for each step.
 ```
-video-scripter package
-   └─► 1 Scene planner ──► 2 Asset builders (parallel) ──► 3 Voice + timings ──► 4 Assembly ──► 5 QA ──► 6 Render + publish
-                              ├ Manim clips
-                              ├ Playwright / VHS recordings
-                              ├ diagrams / charts / code
-                              ├ stock B-roll (optional)
-                              └ presenter (camera or avatar)
+video-scripter package (gates: content-plan, script-comprehension + script-review, visual-plan, structure-check, lint_package.py)
+   └─► /video-studio writes studio/projects/<slug>/scenes.json (+ stage/ for a bespoke stage)
+         └─► validate ─► voice ─► clips ─► assemble ─► check ─► payoffs ─► render ─► qa ─► watch ─► review ─► deliver
+                                    ├ Manim
+                                    ├ Playwright
+                                    └ VHS
 ```
-1. **Scene planner** *(new skill)*: storyboard → `scenes.json`. One entry per beat with a
-   **render type** (`hyperframes`, `manim`, `playwright`, `vhs`, `stock`, `presenter`), props and
-   word-triggered beats. It picks the best tool per beat automatically.
-2. **Asset builders** *(new skills/scripts)*: one per render type. Each turns its scene specs into
-   clips in `build/clips/` (e.g. a Manim scene file → MP4; a Playwright spec → WebM → MP4;
-   a `.tape` → MP4).
-3. **Voice + timings**: the Gemini TTS single take per section, cleanup, Whisper alignment
-   (the existing `voice_pipeline.py` / `single_take.py` logic, kept).
-4. **Assembly**: HyperFrames composition per video (9:16 reel, 16:9 long-form). Clips placed
-   on the voice timeline, captions, chapter cards, source pills, music ducking, transitions.
-5. **QA**: stills at every scene and transition, safe zones, text size, sync within 2 frames,
-   loudness −14 LUFS (the existing QA scripts, ported).
-6. **Render + publish**: MP4s to `outputs/`, plus the publish kit from `video-scripter`.
+1. **Scene plan**: the `video-studio` skill turns the storyboard into `scenes.json`. Scene types are
+   defined in `studio/tools/validate.py`: HyperFrames types `title`, `points`, `counter`, `compare`, `stamp`,
+   `code`, `media` (stock footage or images go here), `cta`, `duel`, `recap`, `stage` (the project's
+   bespoke stage), plus clip tools `manim`, `playwright`, `vhs`. There is no `presenter` type yet (phase 4).
+2. **validate**: static check of `scenes.json` (types, props, beat words, clip files, length), before any voice request.
+3. **voice**: `voice.py` (see the toolkit table), clean-up, Whisper word timings → `build/timings.json`, and the
+   pace gate (house 2.3 w/s from `studio/templates/reel/pace.json`).
+4. **clips**: `build_clips.py` renders the Manim / Playwright / VHS clips the scenes ask for.
+5. **assemble**: `assemble.py` builds the HyperFrames project (`hf/`) on the voice timeline: captions, source pills,
+   music ducking, SFX, transitions, and the audio mix.
+6. **check** (HyperFrames lint/layout/contrast) and **payoffs** (`payoffs.mjs`: every beat's element on screen on its
+   word, captions ≤ 2 lines, nothing planned sits still > 2.5 s), both before any render.
+7. **render** → `projects/<slug>/out/<slug>.mp4` only.
+8. **qa** (`qa_video.py`: format, timing, loudness −14 LUFS, pace, payoffs, captions, music bed → `out/qa.json`),
+   **watch** (2 fps contact sheets + transcript → `out/watch.json`), **review** (every ✗ merged into
+   `projects/<slug>/review.md`, the fix list).
+9. **deliver**: the only step that copies to `shorts/`, and only when qa, payoffs and watch are clean for this MP4,
+   `review.md` has no open row and is ticked "Watched end to end", and the owner's seal is in `studio/watched/<slug>.json`.
+   The publish kit (`publish.md`) comes from `video-scripter`.
 
 ## Long-form specifics
 - **Chapters as separate compositions** (2–3 min each), rendered independently and joined with

@@ -3,13 +3,19 @@
   const pulse = (id, t, s = 1.06) => tl.fromTo('#' + id, { scale: 1 }, { scale: s, duration: 0.15, yoyo: true, repeat: 1, ease: 'power2.out' }, t);
   const laneColour = (sid, c) => tl.set('#lanes', { color: c }, S[sid] - 0.05);
 
-  // ---------- s01 hook (dark): the answered chat is on screen from frame 0 ----------
+  // ---------- s01 hook (dark): built on the voice (openings rule, 2026-10-30) ----------
+  // 0 s: the user's question alone; the claim grows on "can't" / "check" / "weather" ("captions": false: the claim and the
+  // chat carry the line); the model's confident answer lands on "how" (after 3 s), its "?" right after.
   group('g01', 0, S.s02);
-  tl.set(['#h1q', '#h1a'], { opacity: 1 }, 0);
+  tl.set('#h1q', { opacity: 1 }, 0);
+  tl.set(['#h1w2', '#h1w3'], { opacity: 0 }, 0);
   tl.fromTo('#h1q', { x: 40 }, { x: 0, duration: 0.6, ease: 'power3.out' }, 0);
-  slam('h1h', 0.15, -2);   // the claim is on screen from the first second
-  pulse('h1h', at('s01/weather'), 1.05);
-  tl.fromTo('#h1x', { opacity: 0, scale: 2.2, rotation: -20 }, { opacity: 1, scale: 1, rotation: 8, duration: 0.3, ease: 'back.out(2)' }, at('s01/how'));
+  slam('h1h', at('s01/cant'), -2);
+  tl.fromTo('#h1w2', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.2, ease: 'power2.out', immediateRender: false }, at('s01/check'));
+  tl.fromTo('#h1w3', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.2, ease: 'power2.out', immediateRender: false }, at('s01/weather'));
+  pulse('h1h', at('s01/weather') + 0.25, 1.05);
+  tl.fromTo('#h1a', { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, ease: 'power3.out', immediateRender: false }, at('s01/how') - 0.1);
+  tl.fromTo('#h1x', { opacity: 0, scale: 2.2, rotation: -20 }, { opacity: 1, scale: 1, rotation: 8, duration: 0.3, ease: 'back.out(2)', immediateRender: false }, at('s01/how') + 0.25);
   tl.fromTo('#h1a', { x: 0 }, { x: 10, duration: 0.06, yoyo: true, repeat: 5 }, at('s01/rain'));
 
   // ---------- s02-s03 the question meets the model alone (blue) ----------

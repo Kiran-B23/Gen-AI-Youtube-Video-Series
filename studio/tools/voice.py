@@ -90,7 +90,7 @@ missing = [s["id"] for s in scenes if not recording(s["id"])]
 take_dir = os.path.join(RAW, "_take"); os.makedirs(take_dir, exist_ok=True)
 saved = sorted(glob.glob(os.path.join(take_dir, "take-*.wav")))
 if resplit and not saved: sys.exit("--resplit: no saved take in voice/_take/")
-if resplit or (missing and (retake or len(missing) == len(scenes))):
+if resplit or retake or (missing and len(missing) == len(scenes)):   # --retake always asks for a new take
   v = spec.get("voice", {})
   model, voice = v.get("model", "gemini-2.5-flash-preview-tts"), v.get("name", "Laomedeia")
   if v.get("speakers"): voice = "+".join(x["name"] for x in v["speakers"].values())   # the take is named after the cast

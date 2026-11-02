@@ -1,0 +1,807 @@
+{
+  "slug": "fde-reel",
+  "package": "productions/2026-10-30-forward-deployed-engineer-reel",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/inventing-flight",
+  "flat": true,
+  "padSeconds": 0.3,
+  "names": [
+    "Palantir",
+    "Anthropic",
+    "PDFs",
+    "FDE",
+    "forward deployed",
+    "thirteen percent"
+  ],
+  "keywords": [
+    "forward",
+    "deployed",
+    "demo",
+    "blocker",
+    "thousand",
+    "thirteen",
+    "travel",
+    "PDFs"
+  ],
+  "voice": {
+    "engine": "gemini",
+    "model": "gemini-2.5-flash-preview-tts",
+    "name": "Puck",
+    "style": "You are a friend who just figured out what a forward deployed engineer really does, explaining it to a curious developer: curious and delighted, warm, clear global English. Calm pace, about 2.3 words per second, never rushed; a real pause at every full stop and a short breath at every comma. Brisk and a little wry on the broken demo: 'This AI assistant works in the demo.' then a beat, 'Inside a real company, it breaks.' Slow and clear on 'The model's fine. Nobody connected it.' and land 'That's the job of a forward deployed engineer' with quiet emphasis. Steady and concrete on the three steps: 'First... Then... They ship it.' A small smile on 'Now it answers inside the company.' Lean in on 'Why care?' and say 'over a thousand percent' clearly, then a beat before 'Tech jobs overall? Up thirteen percent.' Straight and calm, never alarmed, on 'Is it for you?' and the travel line; say Palantir as PAL-an-teer and Anthropic as an-THROP-ic. Encouraging on 'Want in?'. Warm on the recap and smile on the last line. Read every word exactly as written. Never hyped, never robotic.",
+    "minPause": {
+      "sentence": 0.75,
+      "comma": 0.3
+    },
+    "slow": true
+  },
+  "stage": {
+    "kit": "reference-flat",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
+  },
+  "sections": {
+    "dark": {
+      "bg": "#0B1020",
+      "bg2": "#0B1020",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.62)",
+      "accent": "#FFD23F",
+      "accent2": "#7B8CFF",
+      "card": "rgba(255,255,255,0.08)",
+      "line": "rgba(255,255,255,0.22)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
+    },
+    "blue": {
+      "bg": "#2B3BE0",
+      "bg2": "#2B3BE0",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.70)",
+      "accent": "#FFD23F",
+      "accent2": "#C9D0FF",
+      "card": "rgba(255,255,255,0.12)",
+      "line": "rgba(255,255,255,0.35)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
+    },
+    "light": {
+      "bg": "#EEF1F6",
+      "bg2": "#EEF1F6",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.55)",
+      "accent": "#2B3BE0",
+      "accent2": "#2B3BE0",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#14B87A"
+    },
+    "yellow": {
+      "bg": "#FFD23F",
+      "bg2": "#FFD23F",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.62)",
+      "accent": "#2B3BE0",
+      "accent2": "#0B1020",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#0B1020"
+    }
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "stage",
+      "section": "dark",
+      "say": "This AI assistant works in the demo. Inside a real company, it breaks.",
+      "beat": 1,
+      "beats": [
+        {
+          "word": "assistant",
+          "target": "ans",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "demo",
+          "target": "demo",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "Inside",
+          "target": "houtline",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "company",
+          "target": "hlocks",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "breaks",
+          "target": "strip",
+          "check": "motion",
+          "sfx": "stamp"
+        },
+        {
+          "word": "works",
+          "target": "hw1",
+          "check": "reveal",
+          "sfx": "none"
+        },
+        {
+          "word": "in",
+          "target": "hw2",
+          "check": "reveal",
+          "sfx": "none"
+        },
+        {
+          "word": "demo",
+          "target": "hw3",
+          "check": "reveal",
+          "sfx": "none"
+        }
+      ],
+      "pad": 0.65,
+      "captions": false
+    },
+    {
+      "id": "s02",
+      "type": "stage",
+      "section": "light",
+      "say": "Take an insurance company's claims assistant.",
+      "beat": 2,
+      "beats": [
+        {
+          "word": "insurance",
+          "target": "ins",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "claims",
+          "target": "q",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "type": "stage",
+      "section": "light",
+      "say": "Inside, the policies are scanned PDFs. Claims sit in an old system the assistant can't reach.",
+      "beat": 3,
+      "beats": [
+        {
+          "word": "policies",
+          "target": "pdf",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "scanned",
+          "target": "scan",
+          "check": "reveal",
+          "sfx": "tick",
+          "cam": [
+            540,
+            900,
+            1.15
+          ]
+        },
+        {
+          "word": "Claims",
+          "target": "old",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "system",
+          "target": "oldtxt",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "reach",
+          "target": "locks",
+          "check": "reveal",
+          "sfx": "stamp"
+        }
+      ],
+      "pad": 0.65
+    },
+    {
+      "id": "s04",
+      "type": "stage",
+      "section": "blue",
+      "say": "The model's fine. Nobody connected it. That's the job of a forward deployed engineer.",
+      "beat": 4,
+      "beats": [
+        {
+          "word": "fine",
+          "target": "model",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            840,
+            1
+          ]
+        },
+        {
+          "word": "connected",
+          "target": "gaps",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "job",
+          "target": "slot",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "forward",
+          "target": "title",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "engineer",
+          "target": "tline",
+          "check": "reveal",
+          "sfx": "none"
+        }
+      ],
+      "source": "S1"
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "section": "blue",
+      "say": "They work inside the customer's company, writing the code that makes the AI work there.",
+      "beat": 5,
+      "beats": [
+        {
+          "word": "inside",
+          "target": "outline",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "company",
+          "target": "clab",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "code",
+          "target": "code",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "AI",
+          "target": "badge",
+          "check": "motion",
+          "sfx": "pop"
+        },
+        {
+          "word": "there",
+          "target": "dline",
+          "check": "reveal",
+          "sfx": "tick"
+        }
+      ],
+      "source": "S2",
+      "pad": 0.65,
+      "pauseAfter": [
+        "company"
+      ]
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "section": "yellow",
+      "say": "First, they sit with the claims team and find the real blocker.",
+      "beat": 6,
+      "beats": [
+        {
+          "word": "First",
+          "target": "trk",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "sit",
+          "target": "badge",
+          "check": "motion",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "claims",
+          "target": "team",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "find",
+          "target": "ring",
+          "check": "reveal",
+          "sfx": "tick",
+          "cam": [
+            540,
+            900,
+            1.15
+          ]
+        },
+        {
+          "word": "blocker",
+          "target": "blk",
+          "check": "reveal",
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S3",
+      "pad": 0.65,
+      "pauseAfter": [
+        "First",
+        "team"
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "section": "light",
+      "say": "Then they connect the assistant to the PDFs and the old system. They test it on real claims.",
+      "beat": 7,
+      "beats": [
+        {
+          "word": "connect",
+          "target": "wl",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            840,
+            1
+          ]
+        },
+        {
+          "word": "PDFs",
+          "target": "okl",
+          "check": "reveal",
+          "sfx": "ding"
+        },
+        {
+          "word": "system",
+          "target": "okr",
+          "check": "reveal",
+          "sfx": "ding"
+        },
+        {
+          "word": "test",
+          "target": "tiles",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "real",
+          "target": "ticks",
+          "check": "reveal",
+          "sfx": "tick"
+        }
+      ],
+      "source": "S2",
+      "pad": 0.65,
+      "pauseAfter": [
+        "system",
+        "PDFs"
+      ]
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "section": "dark",
+      "say": "They ship it. Now it answers inside the company.",
+      "beat": 8,
+      "beats": [
+        {
+          "word": "ship",
+          "target": "live",
+          "check": "reveal",
+          "sfx": "stamp",
+          "cam": [
+            540,
+            900,
+            1.15
+          ]
+        },
+        {
+          "word": "Now",
+          "target": "pulse",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "answers",
+          "target": "ansg",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "company",
+          "target": "stripok",
+          "check": "reveal",
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S3"
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "section": "dark",
+      "say": "And they tell the product team where the model fell short.",
+      "beat": 9,
+      "beats": [
+        {
+          "word": "tell",
+          "target": "note",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            840,
+            1
+          ]
+        },
+        {
+          "word": "product",
+          "target": "prod",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "model",
+          "target": "model",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "short",
+          "target": "notet",
+          "check": "reveal",
+          "sfx": "key"
+        }
+      ],
+      "source": "S3",
+      "pad": 0.65,
+      "pauseAfter": [
+        "tell",
+        "team"
+      ]
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Why care? Job posts for this role rose over a thousand percent this year.",
+      "beat": 10,
+      "beats": [
+        {
+          "word": "care",
+          "target": "dock",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "posts",
+          "target": "grid",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "rose",
+          "target": "arrow",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "thousand",
+          "target": "num",
+          "check": "reveal",
+          "sfx": "ding",
+          "cam": [
+            510,
+            790,
+            1.2
+          ]
+        },
+        {
+          "word": "year",
+          "target": "yr",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S4",
+      "pauseAfter": [
+        "care",
+        "role"
+      ]
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Tech jobs overall? Up thirteen percent.",
+      "beat": 11,
+      "beats": [
+        {
+          "word": "Tech",
+          "target": "bar2",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            840,
+            1
+          ]
+        },
+        {
+          "word": "Up",
+          "target": "race",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "thirteen",
+          "target": "n13",
+          "check": "reveal",
+          "sfx": "ding"
+        }
+      ],
+      "source": "S4",
+      "pad": 0.65
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "section": "light",
+      "say": "Is it for you? Palantir and Anthropic hire them. Both expect you to travel a quarter to half your time.",
+      "beat": 12,
+      "beats": [
+        {
+          "word": "you",
+          "target": "hd",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "Palantir",
+          "target": "pal",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "Anthropic",
+          "target": "ant",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "Both",
+          "target": "brk",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "travel",
+          "target": "strip",
+          "check": "reveal",
+          "sfx": "whoosh",
+          "cam": [
+            510,
+            800,
+            1.15
+          ]
+        },
+        {
+          "word": "quarter",
+          "target": "q25",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "half",
+          "target": "verd",
+          "check": "reveal",
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S1",
+      "pauseAfter": [
+        "them",
+        "travel"
+      ]
+    },
+    {
+      "id": "s13",
+      "type": "stage",
+      "section": "light",
+      "say": "And the bar varies. Palantir asks for six months' experience. Anthropic, four years.",
+      "beat": 13,
+      "beats": [
+        {
+          "word": "varies",
+          "target": "bar",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            840,
+            1
+          ]
+        },
+        {
+          "word": "six",
+          "target": "six",
+          "check": "reveal",
+          "sfx": "ding"
+        },
+        {
+          "word": "four",
+          "target": "four",
+          "check": "reveal",
+          "sfx": "ding"
+        }
+      ],
+      "source": "S1",
+      "pad": 0.65
+    },
+    {
+      "id": "s14",
+      "type": "stage",
+      "section": "blue",
+      "say": "Want in? Build a small AI app on messy PDFs.",
+      "beat": 14,
+      "beats": [
+        {
+          "word": "Want",
+          "target": "hd",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "Build",
+          "target": "app",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "app",
+          "target": "apph",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "PDFs",
+          "target": "stk",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S2"
+    },
+    {
+      "id": "s15",
+      "type": "stage",
+      "section": "blue",
+      "say": "Test its answers. Then explain it to a non-coder.",
+      "beat": 15,
+      "beats": [
+        {
+          "word": "Test",
+          "target": "tst",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "explain",
+          "target": "exp",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "non-coder",
+          "target": "bub",
+          "check": "reveal",
+          "sfx": "whoosh"
+        }
+      ],
+      "source": "S3",
+      "pad": 0.65,
+      "pauseAfter": [
+        "answers"
+      ]
+    },
+    {
+      "id": "s16",
+      "type": "stage",
+      "section": "yellow",
+      "say": "That's the job: find, build, ship, report back.",
+      "beat": 16,
+      "beats": [
+        {
+          "word": "job",
+          "target": "mini",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "find",
+          "target": "c1",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "build",
+          "target": "c2",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "ship",
+          "target": "c3",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "report",
+          "target": "c4",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "source": "S3",
+      "pad": 0.65
+    },
+    {
+      "id": "s17",
+      "type": "stage",
+      "section": "dark",
+      "say": "What should I explain next?",
+      "beat": 17,
+      "beats": [
+        {
+          "word": "explain",
+          "target": "cq",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "next",
+          "target": "fol",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ]
+    }
+  ],
+  "musicLevel": {
+    "speech": -38,
+    "gap": -38
+  },
+  "sfxLevel": 0.45
+}

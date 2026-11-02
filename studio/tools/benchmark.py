@@ -18,7 +18,7 @@ usage:
                                                 (cached by sha1 + size; FORCE=1 recomputes everything)
   python tools/benchmark.py <slug> [file.mp4]   measure a render (default projects/<slug>/out/<slug>.mp4), print
                                                 metric | this render | benchmark | IG median | delta, warn on
-                                                still_pct > 35, pace > delivery_max (pace.json), cuts/min > 6;
+                                                pace > delivery_max (pace.json), cuts/min > 6 (still_pct reported only);
                                                 -> projects/<slug>/out/benchmark.json
 """
 import hashlib, json, os, re, statistics, subprocess, sys, time
@@ -36,7 +36,7 @@ METHOD = ("still/cuts: ffmpeg fps=4,scale=108:-2,gray, band 0.10-0.76 h, moving 
           "loudness: ffmpeg ebur128")
 METRICS = ["duration_s", "words", "pace_wps", "pauses_over_0_9s", "still_pct", "longest_still_s", "cuts_per_min",
            "loudness_lufs", "true_peak_dbtp", "caption_words_per_card", "scene_median_s"]
-STILL_WARN, CUTS_WARN = 35.0, 6.0
+CUTS_WARN = 6.0
 PACE_WARN = PACE["delivery_max"]          # 2.6 in templates/reel/pace.json (house target 2.3)
 
 _whisper = None
@@ -163,11 +163,10 @@ def project(slug, f=None):
         d = f"{a - b:+.2f}".rstrip("0").rstrip(".") if isinstance(a, (int, float)) and isinstance(b, (int, float)) else "–"
         print(f"{k:24}{fmt(a):>14}{fmt(b):>14}{fmt(igmed[k]):>12}{d:>10}")
     warns = []
-    if m["still_pct"] > STILL_WARN: warns.append(f"still_pct {m['still_pct']} > {STILL_WARN:g} (benchmark {fmt(tok.get('still_pct', 28))}, IG ≤ 10): the stage sits still too long")
     if m["pace_wps"] > PACE_WARN: warns.append(f"pace {m['pace_wps']} w/s > {PACE_WARN} (house {PACE['target']}): add pauses or cut words, never speed the voice")
     if m["cuts_per_min"] > CUTS_WARN: warns.append(f"cuts_per_min {m['cuts_per_min']} > {CUTS_WARN:g}: hard cuts are flashing; the house style moves inside the scene")
     for w in warns: print(f"  ⚠ {w}")
-    if not warns: print("  nothing flagged (still_pct ≤ 35, pace ≤ {}, cuts/min ≤ 6)".format(PACE_WARN))
+    if not warns: print("  nothing flagged (pace ≤ {}, cuts/min ≤ 6; still_pct is reported only, it does not predict reach)".format(PACE_WARN))
     os.makedirs(os.path.join(P, "out"), exist_ok=True)
     row = {"file": os.path.relpath(f, STUDIO), "sha1": sha1_of(f), "date": time.strftime("%Y-%m-%d %H:%M"), "metrics": m,
            "benchmark": {k: tok.get(k) for k in METRICS}, "ig_median": igmed, "warnings": warns, "method": METHOD}

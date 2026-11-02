@@ -3,25 +3,32 @@ import { ago, type Project } from "../api";
 import { StatusChips } from "./StatusChips";
 
 export function ProjectHeader({ p }: { p: Project }) {
-  const tab = ({ isActive }: { isActive: boolean }) => `rounded-md px-3 py-1 text-[13px] ${isActive ? "bg-panel text-ink shadow-sm" : "text-muted hover:text-ink"}`;
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3">
-      <div className="min-w-0">
-        <div className="flex flex-wrap items-baseline gap-x-2">
-          <h1 className="break-all text-lg font-semibold">{p.slug}</h1>
-          <span className="text-xs text-muted">{p.format} · {p.engine}{p.spec.stage ? ` · ${p.spec.stage}` : ""} · updated {ago(p.mtime)}</span>
+    <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
+      <div className="min-w-0 space-y-1.5">
+        <h1 className="max-w-none break-all text-xl font-extrabold leading-tight">{p.slug}</h1>
+        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-0.5 text-xs text-muted">
+          <span>updated <span className="text-ink-2">{ago(p.mtime)}</span></span>
+          {p.package && <div className="min-w-0 truncate"><span className="sr-only">package </span><span>
+            <span className={p.package.exists ? "text-ink-2" : "text-bad line-through"} title={p.package.exists ? p.package.path : `${p.package.path} (missing)`}>{p.package.path.replace(/^productions\//, "")}</span></span></div>}
+          <details className="disclose open:basis-full">
+            <summary>Details</summary>
+            <dl className="mt-1 grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5">
+              <dt>format</dt><dd className="text-ink-2">{p.format}</dd>
+              <dt>engine</dt><dd className="text-ink-2">{p.engine}</dd>
+              {p.spec.stage && <><dt>stage</dt><dd className="text-ink-2">{p.spec.stage}</dd></>}
+              {p.spec.voice && <><dt>voice</dt><dd className="text-ink-2">{p.spec.voice.name ?? p.spec.voice.engine}</dd></>}
+              {!p.package && <><dt>package</dt><dd>none linked in scenes.json</dd></>}
+            </dl>
+          </details>
         </div>
-        <div className="mt-0.5 truncate text-xs text-muted">
-          {p.package ? <>package <span className={`font-mono ${p.package.exists ? "" : "text-bad line-through"}`}>{p.package.path}</span></> : "no package linked in scenes.json"}
-          {p.spec.voice && <> · voice {p.spec.voice.name ?? p.spec.voice.engine}</>}
-        </div>
-        <div className="mt-2"><StatusChips s={{ ...p, ...p.status }} /></div>
+        <StatusChips s={{ ...p, ...p.status }} />
       </div>
-      <div className="flex rounded-lg border border-line bg-panel-2 p-0.5">
-        <NavLink to={`/p/${p.slug}/build`} className={tab}>Build</NavLink>
-        <NavLink to={`/p/${p.slug}/preview`} className={tab}>Preview</NavLink>
-        <NavLink to={`/p/${p.slug}/review`} className={tab}>Review</NavLink>
-      </div>
+      <nav className="seg" aria-label="Project views">
+        <NavLink to={`/p/${p.slug}/build`}>Build</NavLink>
+        <NavLink to={`/p/${p.slug}/preview`}>Preview</NavLink>
+        <NavLink to={`/p/${p.slug}/review`}>Review</NavLink>
+      </nav>
     </div>
   );
 }

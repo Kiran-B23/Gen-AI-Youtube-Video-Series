@@ -1,0 +1,654 @@
+{
+  "slug": "harness-reel-v2",
+  "package": "productions/2026-10-29-harness-engineering-reel",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/fresh-focus",
+  "flat": true,
+  "section": "light",
+  "padSeconds": 0.3,
+  "names": [],
+  "keywords": [
+    "Done",
+    "harness",
+    "rule",
+    "hook",
+    "Green",
+    "fivefold",
+    "checks",
+    "price"
+  ],
+  "voice": {
+    "engine": "gemini",
+    "model": "gemini-2.5-flash-preview-tts",
+    "name": "Puck",
+    "style": "You are a senior engineer replaying a bug for a curious developer friend: curious and delighted, warm, clear global English. Calm pace, about 2.3 words per second, never rushed; a real pause at every full stop and a short breath at every comma. Open with gentle irony: 'Your coding agent says, Done.' then a beat, 'Your test would say no.' then a curious 'Why?'. Brisk and light on the quick failure: 'The agent writes a password-reset button, re-reads it, stops.' Land 'Your test? Never ran.' dry and quiet. Slow down and get clear on 'The harness is everything around the model'. Plain on the rule and the hook. Crisp on 'Red.' and pleased on 'Green.' Raise an eyebrow on 'Should you shop for a better one?' Slow and clear on the study: 'On two benchmarks, success moved a few points between tools.' then a beat, 'Token cost varied up to fivefold.' Take a breath before 'One catch' and say it calmly. Say 'AI-written' as A-I written. Warm and practical on the last line, smile on 'Done'. Read every word exactly as written. Never hyped, never robotic.",
+    "minPause": {
+      "sentence": 0.75,
+      "comma": 0.3
+    }
+  },
+  "stage": {
+    "kit": "reference-flat",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "stage",
+      "say": "Your coding agent says, \"Done.\" Your test would say no. Why?",
+      "beats": [
+        {
+          "word": "Done",
+          "target": "done",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "test",
+          "target": "xm",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "Why",
+          "target": "q",
+          "check": "motion",
+          "sfx": "pop"
+        },
+        {
+          "word": "agent",
+          "target": "q2",
+          "check": "reveal",
+          "sfx": "none"
+        },
+        {
+          "word": "says",
+          "target": "q3",
+          "check": "reveal",
+          "sfx": "none"
+        },
+        {
+          "word": "Done",
+          "target": "q4",
+          "check": "reveal",
+          "sfx": "none"
+        },
+        {
+          "word": "no",
+          "target": "q5",
+          "check": "reveal",
+          "sfx": "none"
+        }
+      ],
+      "beat": 1,
+      "source": "S5",
+      "captions": false
+    },
+    {
+      "id": "s02",
+      "type": "stage",
+      "say": "The agent writes a password-reset button, re-reads it, stops. Your test? Never ran.",
+      "beats": [
+        {
+          "word": "writes",
+          "target": "code",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "re-reads",
+          "target": "scan",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "stops",
+          "target": "stamp2",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "test",
+          "target": "row",
+          "check": "reveal",
+          "sfx": "whoosh",
+          "cam": [
+            511,
+            1115,
+            1.2
+          ]
+        },
+        {
+          "word": "Never",
+          "target": "nrchip",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "ran",
+          "target": "nr",
+          "check": "reveal",
+          "sfx": "stamp"
+        }
+      ],
+      "beat": 2,
+      "source": "S5",
+      "pad": 0.65
+    },
+    {
+      "id": "s03",
+      "type": "stage",
+      "say": "The harness is everything around the model: what it reads, what checks its work.",
+      "beats": [
+        {
+          "word": "harness",
+          "target": "ring",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            840,
+            1
+          ]
+        },
+        {
+          "word": "everything",
+          "target": "dash",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "model",
+          "target": "pring",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "reads",
+          "target": "reads",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "checks",
+          "target": "checks",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "beat": 3,
+      "source": "S6"
+    },
+    {
+      "id": "s04",
+      "type": "stage",
+      "say": "A rule like \"run tests first\" only asks.",
+      "beats": [
+        {
+          "word": "rule",
+          "target": "rule",
+          "check": "reveal",
+          "sfx": "key",
+          "cam": [
+            511,
+            860,
+            1.2
+          ]
+        },
+        {
+          "word": "run",
+          "target": "mark",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "asks",
+          "target": "asks",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "beat": 4,
+      "source": "S3"
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "say": "A hook is a command that runs your test whenever the agent says done.",
+      "beats": [
+        {
+          "word": "hook",
+          "target": "hook",
+          "check": "reveal",
+          "sfx": "pop",
+          "pauseAfter": [
+            "test"
+          ]
+        },
+        {
+          "word": "command",
+          "target": "cmd",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "runs",
+          "target": "conn",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "says",
+          "target": "says",
+          "check": "motion",
+          "sfx": "stamp"
+        },
+        {
+          "word": "done",
+          "target": "fire",
+          "check": "motion",
+          "sfx": "whoosh",
+          "cam": [
+            511,
+            1115,
+            1.2
+          ]
+        }
+      ],
+      "beat": 5,
+      "source": "S7"
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "say": "Red. The error goes back. The agent fixes it. Green. Now \"Done\" means something.",
+      "beats": [
+        {
+          "word": "Red",
+          "target": "fail",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "error",
+          "target": "err",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "back",
+          "target": "path",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "fixes",
+          "target": "fix",
+          "check": "motion",
+          "sfx": "key",
+          "cam": [
+            540,
+            840,
+            1
+          ]
+        },
+        {
+          "word": "Green",
+          "target": "pass",
+          "check": "reveal",
+          "sfx": "ding"
+        },
+        {
+          "word": "Done",
+          "target": "earned",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "means",
+          "target": "glow",
+          "check": "motion",
+          "sfx": "tick"
+        }
+      ],
+      "beat": 6,
+      "source": "S3",
+      "pad": 0.65
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "say": "Your agent tool is a ready-made harness. Should you shop for a better one?",
+      "beats": [
+        {
+          "word": "agent",
+          "target": "mini",
+          "check": "reveal",
+          "sfx": "whoosh",
+          "pauseAfter": [
+            "tool",
+            "shop"
+          ]
+        },
+        {
+          "word": "tool",
+          "target": "leg2",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "ready-made",
+          "target": "ready",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "shop",
+          "target": "price",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "better",
+          "target": "qm",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "beat": 7,
+      "source": "S8"
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "say": "Researchers ran the same models in three popular tools.",
+      "beats": [
+        {
+          "word": "Researchers",
+          "target": "rings",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "same",
+          "target": "same",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "three",
+          "target": "three",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "tools",
+          "target": "tools",
+          "check": "motion",
+          "sfx": "tick"
+        }
+      ],
+      "beat": 8,
+      "source": "S8"
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "say": "On two benchmarks, success moved a few points between tools.",
+      "beats": [
+        {
+          "word": "two",
+          "target": "bench",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "success",
+          "target": "sbars",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "few",
+          "target": "pts",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "points",
+          "target": "base",
+          "check": "reveal",
+          "sfx": "tick"
+        }
+      ],
+      "beat": 9,
+      "source": "S8"
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "say": "Token cost varied up to fivefold.",
+      "beats": [
+        {
+          "word": "Token",
+          "target": "tclab",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "cost",
+          "target": "cbar",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "varied",
+          "target": "vary",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "fivefold",
+          "target": "five",
+          "check": "reveal",
+          "sfx": "ding"
+        }
+      ],
+      "beat": 10,
+      "source": "S8",
+      "pad": 0.65
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "say": "No ready-made harness knows your project. Your checks do.",
+      "beats": [
+        {
+          "word": "harness",
+          "target": "study",
+          "check": "motion",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "knows",
+          "target": "card",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "project",
+          "target": "proj",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "checks",
+          "target": "chk",
+          "check": "motion",
+          "sfx": "ding"
+        }
+      ],
+      "beat": 11,
+      "source": "S3"
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "say": "Turn every mistake into a rule, plus a check.",
+      "beats": [
+        {
+          "word": "mistake",
+          "target": "mis",
+          "check": "reveal",
+          "sfx": "pop",
+          "pauseAfter": [
+            "rule"
+          ]
+        },
+        {
+          "word": "rule",
+          "target": "rule2",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "plus",
+          "target": "plus",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "check",
+          "target": "chk2",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "beat": 12,
+      "source": "S1"
+    },
+    {
+      "id": "s13",
+      "type": "stage",
+      "say": "One catch: green only means your checks passed.",
+      "beats": [
+        {
+          "word": "catch",
+          "target": "row13",
+          "check": "motion",
+          "sfx": "whoosh",
+          "cam": [
+            511,
+            1115,
+            1.2
+          ]
+        },
+        {
+          "word": "green",
+          "target": "green",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "only",
+          "target": "neq",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "passed",
+          "target": "verdict",
+          "check": "reveal",
+          "sfx": "stamp",
+          "cam": [
+            540,
+            840,
+            1
+          ]
+        }
+      ],
+      "beat": 13,
+      "source": "S3"
+    },
+    {
+      "id": "s14",
+      "type": "stage",
+      "say": "AI-written tests can pass bad code. Review the test yourself.",
+      "beats": [
+        {
+          "word": "tests",
+          "target": "ait",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "pass",
+          "target": "aip",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "bad",
+          "target": "bug",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "Review",
+          "target": "rev",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "yourself",
+          "target": "fixt",
+          "check": "motion",
+          "sfx": "key"
+        }
+      ],
+      "beat": 14,
+      "source": "S3",
+      "pad": 0.65
+    },
+    {
+      "id": "s15",
+      "type": "stage",
+      "say": "Pick a harness for price. Build checks for \"Done.\"",
+      "beats": [
+        {
+          "word": "harness",
+          "target": "r1",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "price",
+          "target": "dollar",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "checks",
+          "target": "r2",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "Done",
+          "target": "cta",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "beat": 15,
+      "source": "S8",
+      "pad": 0.8
+    }
+  ]
+}

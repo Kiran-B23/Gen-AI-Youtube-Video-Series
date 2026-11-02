@@ -7,16 +7,24 @@
   const hit = (k, t) => { tl.to('#' + N[cur], { backgroundColor: '#FFFFFF', duration: 0.2 }, t); tl.to('#' + N[k], { backgroundColor: '#FFD23F', duration: 0.2 }, t + 0.15); pulse(N[k], t + 0.15, 1.05); cur = k; };
   const mv = (k, t, d = 0.45) => { tl.to('#chip', { x: P[k][0], y: P[k][1], duration: d, ease: 'power2.inOut' }, t); hit(k, t + d - 0.15); };
 
-  // ---------- s01 hook (dark): the refund card is on screen from frame 0 ----------
+  // ---------- s01 hook (dark), built on the voice (openings rule, 2026-10-30) ----------
+  // 0 s: "YOUR" + the empty AGENT ACTION card (2 things, 3 words). The line grows word by word with the voice (s01 has
+  // "captions": false), the refund fills the card on "refunded"; on "Nobody" the line becomes NOBODY APPROVED IT.,
+  // the "approved by" slot shows up empty and turns red; the "illustrative" tag after the hook.
   group('g01', 0, S.s02);
+  tl.set(['#l-w2', '#l-w3', '#l-w4', '#l-w5', '#l-w6', '#rt0', '#rby0', '#il0'], { opacity: 0 }, 0);
   tl.set('#rc0', { opacity: 1 }, 0);
-  tl.fromTo('#rc0', { y: -30 }, { y: 0, duration: 0.6, ease: 'power3.out' }, 0);
-  slam('hh', 0.15, -2);
-  tl.fromTo('#slot', { opacity: 1 }, { opacity: 0.25, duration: 0.3, yoyo: true, repeat: Math.max(1, Math.floor(D.s01 / 0.3)), ease: 'none' }, 0);   // the empty slot blinks
-  pulse('rc0', at('s01/refund'), 1.03);
-  tl.to('#slot', { backgroundColor: 'rgba(255,77,94,0.55)', borderColor: '#FF4D5E', duration: 0.2 }, at('s01/nobody'));
-  pulse('hh', at('s01/nobody'), 1.05);
+  tl.fromTo('#rc0', { y: 30 }, { y: 0, duration: 0.6, ease: 'power3.out' }, 0);
+  const word = (id, t) => tl.fromTo('#' + id, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.18, ease: 'power2.out', immediateRender: false }, t);
+  word('l-w2', at('s01/w2')); word('l-w3', at('s01/w3')); word('l-w4', at('s01/w4')); word('l-w5', at('s01/refund')); word('l-w6', at('s01/w6'));
+  tl.fromTo('#rt0', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.25, ease: 'power3.out', immediateRender: false }, at('s01/refund') + 0.1);
+  pulse('rc0', at('s01/refund') + 0.35, 1.03);
+  tl.to('#l-say', { opacity: 0, duration: 0.12 }, at('s01/nobody') - 0.05);
+  slam('hh', at('s01/nobody'), -2);
+  tl.fromTo('#rby0', { opacity: 0 }, { opacity: 1, duration: 0.2, immediateRender: false }, at('s01/nobody') + 0.05);
+  tl.to('#slot', { backgroundColor: 'rgba(255,77,94,0.55)', borderColor: '#FF4D5E', duration: 0.2 }, at('s01/approved'));
   tl.fromTo('#hh', { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 5 }, at('s01/approved'));
+  tl.to('#il0', { opacity: 1, duration: 0.3 }, at('s01/nobody') + 0.4);
 
   // ---------- s02-s04 the email meets a plain loop (blue) ----------
   group('g02', S.s02, S.s05);

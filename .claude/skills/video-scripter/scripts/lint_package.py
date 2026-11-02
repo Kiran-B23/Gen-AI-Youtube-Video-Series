@@ -116,7 +116,12 @@ for f in scripts:
         text = ra[1].strip() if len(ra) > 1 else ""
         words = len(text.split())
         check(f"{name}: read-aloud present", words > 0, f"{words} words ≈ {words / WPS:.0f}s")
-        check(f"{name}: runtime 30 s–3 min", 70 <= words <= 486, f"{words} words ≈ {words / WPS:.0f}s" + (" (long Short: needs re-hooks every 30–40 s)" if words > 162 else ""))
+        cp = os.path.join(os.path.dirname(f), "content-plan.md")
+        long_ok = os.path.exists(cp) and re.search(r"\*\*Long reel:\*\*\s*\S{3,}", open(cp, encoding="utf-8").read()) and "_reason" not in re.search(r"\*\*Long reel:\*\*([^\n]*)", open(cp, encoding="utf-8").read()).group(1)
+        _pd = re.match(r"(\d{4}-\d{2}-\d{2})", os.path.basename(os.path.dirname(os.path.abspath(f))))
+        cap = 486 if long_ok or not (_pd and _pd.group(1) >= "2026-10-30") else 180   # the 45–75 s default: packages from 2026-10-30 on
+        check(f"{name}: runtime " + ("30 s–3 min" + (" (Long reel)" if long_ok else "") if cap == 486 else "≤ 180 words (45–75 s; content-plan has no 'Long reel: <reason>')"), 70 <= words <= cap,
+              f"{words} words ≈ {words / WPS:.0f}s" + (" (long Short: needs re-hooks every 30–40 s)" if words > 180 and long_ok else ""))
         dirty = re.findall(r"\[[^\]]*\]|→|~|https?://|[\U0001F300-\U0001FAFF]|\*\*|\|", text)
         check(f"{name}: read-aloud is clean", not dirty, "found: " + " ".join(sorted(set(dirty)))[:80] if dirty else "no cues/tags/symbols")
         first = re.split(r"(?<=[.!?])\s", text)[0].lower() if text else ""

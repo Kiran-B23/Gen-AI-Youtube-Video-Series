@@ -5,7 +5,7 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import { previewUrl, sceneAt, type Timeline } from "../api";
 import { Scrubber, fmtTime, type BeatMark } from "./Scrubber";
-import { Button, Chip } from "./ui";
+import { Button, Chip, Icon } from "./ui";
 import type { PlayerApi } from "./Player";
 
 interface Info { duration: number | null; clips: number; videos: number; videosNotLoaded: number; videosBlocked: number; timelines: string[];
@@ -107,41 +107,41 @@ export function CompositionPreview({ slug, tl, version, beats, apiRef, onTime }:
   const src = `${previewUrl(slug)}${version ? `?v=${Math.round(version)}` : ""}`;
 
   return (
-    <div className="space-y-2.5">
-      <div className="rounded-lg border border-warn/40 bg-warn/10 px-3 py-2 text-[12px] leading-5 text-warn">
+    <div className="space-y-3">
+      <div className="notice" data-tone="warn">
         <b>Approximation of the render.</b> This is hf/index.html in a frame with the HyperFrames runtime emulated (clip windows + the GSAP timeline
         seeked to t, as payoffs does), not the renderer. Timing, fonts and most motion match; video clips, filters and anything the runtime adds can
         differ. The MP4 is the truth.
       </div>
       <div ref={box} className="relative w-full">
-        <div className="relative mx-auto overflow-hidden rounded-lg bg-black" style={{ width: W * scale, height: H * scale }} onClick={() => (playing ? pause() : play())}>
+        <div className="relative mx-auto overflow-hidden border-2 border-ink bg-plate" style={{ width: W * scale, height: H * scale }} onClick={() => (playing ? pause() : play())}>
           <iframe ref={frame} src={src} title={`${slug} composition`} onLoad={onLoad} tabIndex={-1}
             style={{ width: W, height: H, transform: `scale(${scale})`, transformOrigin: "0 0", border: 0, pointerEvents: "none", display: "block" }} />
-          {state !== "ready" && <div className="absolute inset-0 grid place-items-center bg-black/60 text-sm text-white">
+          {state !== "ready" && <div className="absolute inset-0 grid place-items-center bg-scrim text-sm text-plate-ink">
             {state === "loading" ? "loading the composition…" : "the composition has no window.__timelines.main (see the notes below)"}</div>}
-          {state === "ready" && !playing && <span className="pointer-events-none absolute inset-0 m-auto grid h-12 w-12 place-items-center rounded-full bg-black/50 text-xl text-white">▶</span>}
+          {state === "ready" && !playing && <span aria-hidden="true" className="pointer-events-none absolute inset-0 m-auto grid h-12 w-12 place-items-center bg-accent text-accent-ink"><Icon name="play" size={20} /></span>}
         </div>
         <audio ref={audio} src={previewUrl(slug, "assets/mix.wav")} preload="auto" onError={() => { setAudioErr(true); setClock("wall"); }} />
       </div>
       <Scrubber tl={tl} t={t} onSeek={(x) => { if (playing) { seek(x); wall.current = { t0: x, at: performance.now() }; } else seek(x); }} beats={beats} />
       <div className="flex flex-wrap items-center gap-1.5">
         <Button small onClick={() => step(-fps)}>−1s</Button>
-        <Button small onClick={() => step(-1)}>◀ 1f</Button>
+        <Button small onClick={() => step(-1)} title="previous frame"><Icon name="prev" size={12} />1f</Button>
         <Button small kind="primary" disabled={state !== "ready"} onClick={() => (playing ? pause() : play())}>{playing ? "Pause" : "Play"}</Button>
-        <Button small onClick={() => step(1)}>1f ▶</Button>
+        <Button small onClick={() => step(1)} title="next frame">1f<Icon name="next" size={12} /></Button>
         <Button small onClick={() => step(fps)}>+1s</Button>
-        <span className="ml-1 font-mono text-[11.5px] tabular-nums text-muted">{fmtTime(t)} / {fmtTime(tl.total)} · f{Math.floor(t * fps + 1e-6)}{sc ? ` · ${sc.id}` : ""}</span>
+        <span className="ml-1 flex gap-2 text-xs tabular-nums text-muted"><span><b className="font-extrabold text-ink">{fmtTime(t)}</b> / {fmtTime(tl.total)}</span><span>f<b className="font-extrabold text-ink">{Math.floor(t * fps + 1e-6)}</b></span>{sc && <span className="text-ink">{sc.id}</span>}</span>
         <span className="ml-auto flex flex-wrap gap-1.5">
           <Chip tone={clock === "audio" && !audioErr ? "ok" : "warn"} title="what drives playback">clock: {audioErr ? "wall (no mix.wav)" : clock === "audio" ? "mix.wav" : "wall"}</Chip>
           <Button small kind="ghost" onClick={() => { pause(); frame.current?.contentWindow?.location.reload(); }} title="reload hf/ (after assemble)">reload</Button>
         </span>
       </div>
       {info && (
-        <div className="flex flex-wrap gap-1.5 text-[11px]">
+        <div className="flex flex-wrap gap-1.5 text-xs">
           <Chip>{info.clips} clips</Chip>
-          <Chip tone={info.videos && info.videosNotLoaded ? "warn" : "muted"} title="video clips (seeked to t − start; they play muted while previewing)">{info.videos} video clips{info.videosNotLoaded ? ` · ${info.videosNotLoaded} not decoded yet` : ""}</Chip>
-          <Chip tone={info.fontsFailed.length ? "bad" : "ok"} title={info.fontsLoaded.join(", ")}>fonts {info.fonts}{info.fontsFailed.length ? ` · failed: ${info.fontsFailed.join(", ")}` : ` · ${new Set(info.fontsLoaded).size} loaded`}</Chip>
-          <Chip tone={info.duration && Math.abs(info.duration - tl.total) > 0.5 ? "warn" : "muted"} title="the GSAP timeline's own length vs layout.json">timeline {info.duration?.toFixed(1) ?? "–"} s</Chip>
+          <Chip tone={info.videos && info.videosNotLoaded ? "warn" : "muted"} title="video clips (seeked to t − start; they play muted while previewing)">{info.videos} video clips{info.videosNotLoaded ? `, ${info.videosNotLoaded} not decoded yet` : ""}</Chip>
+          <Chip tone={info.fontsFailed.length ? "bad" : "ok"} title={info.fontsLoaded.join(", ")}>fonts {info.fonts}{info.fontsFailed.length ? `, failed: ${info.fontsFailed.join(", ")}` : `, ${new Set(info.fontsLoaded).size} loaded`}</Chip>
+          <Chip tone={info.duration && Math.abs(info.duration - tl.total) > 0.5 ? "warn" : "muted"} title="the GSAP timeline's own length vs layout.json">timeline {info.duration?.toFixed(1) ?? "unknown"} s</Chip>
           {info.errors.length > 0 && <Chip tone="bad" title={info.errors.join("\n")}>{info.errors.length} page error(s)</Chip>}
         </div>)}
     </div>

@@ -1,0 +1,211 @@
+/* Harness reel stage · on top of the reference-flat kit · all classes prefixed h- (never the engine's preset names).
+   Stage coordinates: 1080 x 1920; content inside x 60-950, y 220-1460. Body text >= 30 px, non-hero type <= 58 px. */
+
+/* ---------- shared bits ---------- */
+.h-chip { position: absolute; display: inline-block; padding: 6px 22px; border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 1.3; white-space: nowrap; opacity: 0; }
+.h-ink { background: #0B1020; color: #fff; } .h-bad { background: #E5364A; color: #fff; } .h-yel { background: #FFD23F; color: #0B1020; }
+.h-illus { position: absolute; right: 10px; bottom: -40px; font-family: "Inter", sans-serif; font-size: 22px; font-weight: 600; opacity: 0.6; white-space: nowrap; }
+
+/* ---------- the task card (workbench geometry; frame 0 geometry is set by stage.js) ---------- */
+.h-card { position: absolute; left: 90px; top: 310px; width: 840px; height: 260px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 28px; color: #0B1020; overflow: hidden; }
+.h-ctitle { position: absolute; left: 26px; top: 20px; font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; white-space: nowrap; }
+.h-tag { position: absolute; right: 22px; top: 26px; font-family: "Inter", sans-serif; font-size: 24px; font-weight: 600; color: rgba(11,16,32,0.55); }
+.h-code { position: absolute; left: 26px; top: 82px; width: 780px; height: 164px; opacity: 0; }
+.h-cl { height: 40px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 600; line-height: 40px; color: #0B1020; white-space: pre; }
+.h-cl.h-clhl { background: rgba(255,210,63,0.75); }
+.h-cscan { position: absolute; left: -10px; top: 0; width: 800px; height: 6px; background: #2B3BE0; opacity: 0; }
+.h-caret { position: absolute; left: 28px; top: 90px; width: 4px; height: 34px; background: #2B3BE0; opacity: 0; }
+.h-fine { left: 330px; top: 590px; }   /* visual-plan 2026-10-29: at 600 the s03 cam [400,470,1.3] put it at screen x 800-1122 */
+.h-stamp { position: absolute; left: 680px; top: 470px; width: 250px; height: 90px; box-sizing: border-box; border: 7px solid #14B87A; border-radius: 18px; color: #14B87A; background: rgba(255,255,255,0.9);
+  font-family: "Anton", sans-serif; font-size: 62px; line-height: 76px; text-align: center; transform: rotate(-8deg); transform-origin: 50% 50%; }
+
+/* hook row + hook slot (frame 0) */
+.h-row0 { position: absolute; left: 162px; top: 630px; width: 756px; height: 120px; box-sizing: border-box; background: #fff; border-left: 18px solid #E5364A; border-radius: 16px;
+  font-family: "Inter", sans-serif; font-size: 52px; font-weight: 800; line-height: 120px; padding-left: 34px; color: #0B1020; box-shadow: 0 0 0 4px #E5364A inset; }
+.h-x0 { display: inline-block; color: #E5364A; margin-right: 10px; }
+.h-slot0 { position: absolute; left: 355px; top: 800px; width: 300px; height: 120px; box-sizing: border-box; border: 5px dashed rgba(11,16,32,0.45); border-radius: 60px; opacity: 0; }
+.h-smart { left: 680px; top: 830px; }
+
+/* the workbench test row */
+.h-row { position: absolute; left: 90px; top: 1040px; width: 840px; height: 120px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 20px; overflow: hidden; opacity: 0; transform-origin: 50% 50%; }
+.h-rtxt { position: absolute; left: 30px; top: 0; font-family: "JetBrains Mono", monospace; font-size: 44px; font-weight: 800; line-height: 112px; color: #0B1020; }
+.h-mk2 { position: absolute; left: 22px; top: 30px; width: 470px; height: 54px; background: #FFD23F; transform: scaleX(0); transform-origin: 0 50%; }
+.h-ul { position: absolute; left: 30px; top: 86px; width: 450px; height: 6px; background: #0B1020; transform: scaleX(0); transform-origin: 0 50%; }
+.h-st { position: absolute; right: 16px; top: 22px; height: 68px; min-width: 120px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 800; line-height: 68px; text-align: center; opacity: 0; }
+.h-st-nr { background: #C9CDD6; color: #0B1020; } .h-st-x { background: #E5364A; color: #fff; font-size: 44px; } .h-st-ok { background: #14B87A; color: #fff; font-size: 44px; }
+.h-rscan { position: absolute; left: 0; top: 0; width: 10px; height: 112px; background: #2B3BE0; opacity: 0; }
+.h-nr { position: absolute; left: 230px; top: 1042px; width: 620px; height: 116px; box-sizing: border-box; border: 6px solid #FFD23F; border-radius: 22px; background: #0B1020; color: #FFD23F;
+  font-family: "Anton", sans-serif; font-size: 96px; line-height: 104px; text-align: center; opacity: 0; transform: rotate(-3deg); }
+
+/* ---------- the workbench ---------- */
+.h-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+.h-ln { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.h-loop { stroke: #E5364A; stroke-width: 6; stroke-dasharray: 16 12; opacity: 0; }
+.h-leg { position: absolute; top: 598px; height: 46px; padding: 0 14px; font-family: "Inter", sans-serif; font-size: 40px; font-weight: 900; line-height: 46px; color: #fff; background: #2B3BE0; white-space: nowrap; opacity: 0; }
+.h-legA { left: 90px; } .h-legH { left: 690px; }
+
+.h-slot { position: absolute; top: 670px; width: 260px; height: 240px; box-sizing: border-box; border: 4px dashed rgba(255,255,255,0.55); border-radius: 22px; color: #fff; opacity: 0; }   /* hidden until s06 pops them (frame 0 shows no slots) */
+.h-gslot { left: 80px; } .h-cslot { left: 670px; }
+.h-slab { position: absolute; left: 14px; top: 6px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; letter-spacing: 0.08em; opacity: 0; }
+.h-doc { position: absolute; left: 86px; top: 46px; width: 76px; height: 84px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 10px; opacity: 0; }
+.h-toc i { display: block; margin: 12px 0 0 10px; width: 46px; height: 6px; background: #2B3BE0; opacity: 0; }
+.h-stack { position: absolute; left: 70px; top: 40px; width: 150px; height: 100px; opacity: 0; }
+.h-stack i { position: absolute; width: 76px; height: 84px; box-sizing: border-box; background: #fff; border: 3px solid rgba(11,16,32,0.5); border-radius: 10px; }
+.h-stack i:nth-child(1) { left: 48px; top: 0; } .h-stack i:nth-child(2) { left: 36px; top: 6px; } .h-stack i:nth-child(3) { left: 24px; top: 12px; } .h-stack i:nth-child(4) { left: 12px; top: 18px; }
+.h-stack span { position: absolute; left: 100px; top: 60px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; white-space: nowrap; color: #E5364A; }
+.h-fname { position: absolute; left: 0; top: 134px; width: 252px; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; white-space: nowrap; }
+.h-fname span { opacity: 0; }
+.h-nl { position: absolute; left: 8px; top: 172px; width: 240px; font-family: "JetBrains Mono", monospace; font-size: 29px; font-weight: 700; line-height: 31px; white-space: nowrap; letter-spacing: -0.03em; }
+.h-nl span { position: relative; }
+.h-mk { position: absolute; left: -4px; top: 0; width: 244px; height: 64px; background: #fff; transform: scaleX(0); transform-origin: 0 50%; }
+.h-nr2 { opacity: 0; }
+.h-q { position: absolute; left: 192px; top: 990px; font-family: "Anton", sans-serif; font-size: 50px; line-height: 50px; color: #E5364A; opacity: 0; }
+
+.h-hook { position: absolute; left: 14px; top: 46px; width: 226px; height: 112px; box-sizing: border-box; border-radius: 14px; background: #0B1020; opacity: 0; }
+.h-htxt { position: absolute; left: 16px; top: 14px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 700; line-height: 42px; color: #fff; white-space: nowrap; }
+.h-play { position: absolute; right: 12px; top: 8px; font-size: 32px; line-height: 32px; color: #FFD23F; opacity: 0; transform-origin: 50% 50%; }
+.h-nc2 { top: 170px; opacity: 0; }
+
+.h-pill { position: absolute; left: 355px; top: 730px; width: 300px; height: 120px; box-sizing: border-box; border-radius: 60px; background: #0B1020; border: 4px solid #fff;
+  color: #fff; font-family: "Inter", sans-serif; font-size: 56px; font-weight: 900; line-height: 112px; text-align: center; letter-spacing: 0.04em; opacity: 0; }
+.h-ring { position: absolute; left: 333px; top: 708px; width: 344px; height: 164px; box-sizing: border-box; border: 8px solid #FFD23F; border-radius: 82px; opacity: 0; }
+.h-gh { position: absolute; left: 690px; top: 440px; width: 240px; height: 100px; opacity: 0; }
+.h-gh span { position: absolute; left: 20px; top: 0; font-family: "Anton", sans-serif; font-size: 56px; color: rgba(20,184,122,0.55); transform: rotate(-8deg); opacity: 0; }
+.h-edot { position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%; background: #E5364A; border: 4px solid #fff; opacity: 0; }
+.h-mc { left: 365px; top: 866px; font-size: 30px; }
+
+/* error callout (s11) */
+.h-err { position: absolute; left: 90px; top: 1180px; width: 840px; height: 56px; box-sizing: border-box; border-radius: 12px; background: #E5364A; color: #fff; padding-left: 20px;
+  font-family: "JetBrains Mono", monospace; font-size: 32px; font-weight: 700; line-height: 56px; white-space: nowrap; opacity: 0; }
+.h-hint { position: absolute; left: 90px; top: 1246px; width: 840px; height: 50px; padding-left: 20px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 700; line-height: 50px; color: #0B1020; white-space: nowrap; opacity: 0; }
+
+/* section titles: a full-zone panel in the section colour, gone after ~1 s */
+.h-sect { position: absolute; left: 0; top: 220px; width: 1080px; height: 1240px; opacity: 0; }
+.h-on-yellow { background: #FFD23F; color: #0B1020; } .h-on-light { background: #EEF1F6; color: #0B1020; }
+.h-sk { position: absolute; left: 0; top: 400px; width: 1080px; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; letter-spacing: 0.3em; color: #2B3BE0; }
+.h-st1 { position: absolute; left: 0; top: 460px; width: 1080px; text-align: center; font-family: "Anton", sans-serif; font-size: 230px; line-height: 1; }
+
+/* ---------- the proof (dark) ---------- */
+.h-lc { position: absolute; left: 60px; top: 352px; width: 890px; text-align: center; font-family: "Inter", sans-serif; font-size: 44px; font-weight: 800; color: #fff; opacity: 0; white-space: nowrap; }
+.h-lc span { opacity: 0; color: rgba(255,255,255,0.7); }
+.h-pr { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+.h-cp { position: absolute; top: 430px; width: 420px; height: 320px; }
+.h-cpL { left: 60px; } .h-cpR { left: 520px; }
+.h-oth { position: absolute; inset: 0; box-sizing: border-box; border: 4px solid rgba(255,255,255,0.5); border-radius: 30px; }
+.h-onew { position: absolute; inset: -6px; box-sizing: border-box; border: 10px solid #FFD23F; border-radius: 34px; opacity: 0; }
+.h-dsl { position: absolute; left: 22px; top: 100px; width: 80px; height: 120px; box-sizing: border-box; border: 3px dashed rgba(255,255,255,0.5); border-radius: 12px; }
+.h-fill { position: absolute; top: 100px; width: 80px; height: 120px; box-sizing: border-box; border-radius: 12px; opacity: 0; font-style: normal; font-size: 0; }
+.h-fd { left: 22px; background: #fff; border: 4px solid #FFD23F; } .h-fh { right: 22px; background: #0B1020; border: 4px solid #FFD23F; }
+.h-fd::after { content: ""; position: absolute; left: 14px; top: 22px; width: 44px; height: 6px; background: #2B3BE0; box-shadow: 0 16px 0 #2B3BE0, 0 32px 0 #2B3BE0; }
+.h-fh::after { content: "▶"; position: absolute; left: 0; top: 38px; width: 72px; text-align: center; font-size: 34px; color: #FFD23F; }
+.h-mp { position: absolute; left: 125px; top: 125px; width: 170px; height: 70px; box-sizing: border-box; border-radius: 35px; background: #0B1020; border: 4px solid #fff;
+  color: #fff; font-family: "Inter", sans-serif; font-size: 32px; font-weight: 900; line-height: 62px; text-align: center; }
+.h-cleg { position: absolute; left: 26px; top: -22px; padding: 0 12px; background: #0B1020; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 800; color: #fff; line-height: 40px; opacity: 0; }
+.h-mring { position: absolute; top: 545px; width: 200px; height: 100px; box-sizing: border-box; border: 6px solid #FFD23F; border-radius: 50px; opacity: 0; }
+.h-rL { left: 170px; } .h-rR { left: 630px; }
+.h-same { position: absolute; left: 0; top: 780px; width: 1080px; text-align: center; font-family: "Anton", sans-serif; font-size: 96px; line-height: 1; color: #FFD23F; opacity: 0; }
+.h-n { position: absolute; text-align: center; font-family: "Anton", sans-serif; line-height: 1; opacity: 0; }
+.h-n1 { left: 60px; top: 945px; width: 420px; font-size: 130px; color: #fff; }   /* 360 px wide: x 90-450 */
+.h-n2 { left: 490px; top: 915px; width: 450px; font-size: 160px; color: #FFD23F; }   /* 443 px wide: x 494-937 (190 px was 526 wide: x 467-993, over 950 and into 52.8%) */
+.h-ts { position: absolute; left: 0; top: 1130px; width: 1010px; text-align: center; font-family: "Inter", sans-serif; font-size: 40px; font-weight: 700; color: rgba(255,255,255,0.8); opacity: 0; }
+.h-own { left: 380px; top: 1214px; }
+
+/* ---------- the catch (blue) ---------- */
+.h-eq { position: absolute; left: 0; top: 930px; width: 1010px; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 40px; font-weight: 800; color: #fff; white-space: nowrap; opacity: 0; }
+.h-verd { position: absolute; left: 0; top: 1000px; width: 1010px; text-align: center; font-family: "Anton", sans-serif; font-size: 96px; line-height: 1.05; color: #FFD23F; opacity: 0; }
+.h-pen { position: absolute; left: 160px; top: 640px; font-size: 76px; line-height: 76px; color: #FFD23F; opacity: 0; }
+
+/* ---------- recap (yellow) ---------- */
+.h-rl { position: absolute; left: 90px; width: 840px; height: 170px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 28px; opacity: 0; }
+.h-r1 { top: 360px; } .h-r2 { top: 630px; } .h-r3 { top: 900px; }
+.h-ri { position: absolute; left: 30px; top: 30px; width: 110px; height: 110px; box-sizing: border-box; border-radius: 18px; font-family: "Anton", sans-serif; font-size: 80px; line-height: 104px; text-align: center; }
+.h-ri-doc { border: 4px solid #0B1020; background: #fff; } .h-ri-doc i { display: block; margin: 20px 0 0 18px; width: 66px; height: 8px; background: #2B3BE0; }
+.h-ri-ok { background: #14B87A; color: #fff; } .h-ri-plus { background: #2B3BE0; color: #fff; }
+.h-rt { position: absolute; left: 170px; top: 0; font-family: "Anton", sans-serif; font-size: 96px; line-height: 162px; color: #0B1020; white-space: nowrap; }
+.h-ra { position: absolute; left: 490px; width: 0; height: 0; border-left: 30px solid transparent; border-right: 30px solid transparent; border-top: 40px solid #0B1020; opacity: 0; }
+.h-ra1 { top: 560px; } .h-ra2 { top: 830px; }
+.h-r3m { left: 560px; top: 950px; }
+.h-mini { position: absolute; left: 700px; top: 380px; padding: 2px 18px; border: 5px solid #14B87A; border-radius: 12px; background: #fff; color: #14B87A; font-family: "Anton", sans-serif; font-size: 44px; line-height: 56px; transform: rotate(-6deg); opacity: 0; white-space: nowrap; }
+
+/* ---------- CTA (dark) ---------- */
+.h-cta { top: 560px; font-size: 150px; }
+.h-mini2 { left: 430px; top: 330px; }
+
+.h-ctitleT { opacity: 0; } .h-l4b { position: absolute; left: 0; top: 120px; opacity: 0; }
+#h-nl, #h-htxt, .h-toc, #h-tct { opacity: 0; }
+.h-toc i { opacity: 1; }
+
+/* workbench lines as HTML (payoffs can see them) */
+.h-outline { position: absolute; left: 60px; top: 620px; width: 890px; height: 320px; box-sizing: border-box; border: 7px solid #fff; border-radius: 40px; opacity: 0; }
+.h-dash { position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%; background: #FFD23F; border: 4px solid #0B1020; opacity: 0; }
+.h-arr { position: absolute; top: 770px; font-size: 34px; line-height: 40px; color: #fff; opacity: 0; }
+.h-ain { left: 332px; } .h-aout { left: 652px; }
+.h-con { position: absolute; width: 0; border-left: 5px dashed #fff; transform-origin: 50% 0; opacity: 0; }
+.h-c1 { left: 208px; top: 914px; height: 72px; } .h-c2 { left: 842px; top: 828px; height: 208px; }
+.h-slot { opacity: 0; }
+.h-pr { top: 400px; height: 400px; } .h-cp { top: 30px; } .h-mring { top: 145px; }
+.h-ts { left: 60px; width: 890px; }
+.h-smart.h-off { text-decoration: line-through; }
+.h-err, .h-hint { box-sizing: border-box; width: 760px; }
+.h-ts { left: 200px; width: 610px; }
+.h-fd { color: #0B1020; }
+.h-ri-ok { background: #0E8F5E; }
+.h-mini { color: #0E8F5E; border-color: #0E8F5E; }
+.h-n1 { left: 60px; width: 400px; font-size: 120px; top: 950px; }
+.h-n2 { left: 540px; width: 400px; font-size: 150px; top: 925px; }
+.h-mini { left: 770px; }
+.h-verd { font-size: 84px; }
+.h-ring { opacity: 0; }
+.h-mini { left: 815px; font-size: 38px; }
+.h-mini2 { left: 430px; }
+
+/* ===== revision 2026-10-29: hook card, agent log, engine palette, wipe layering, grids ===== */
+/* the stage sits above the engine's section-wipe layer: the colour sweeps BEHIND the running object, never over it */
+#stage { z-index: 4; }
+/* engine palette (layout.json "sections"): panels and legends must match the real section colours */
+.h-on-yellow { background: #FFC145; } .h-on-light { background: #F4F5FA; }
+/* hook card (frame 0 only): title above the stamp, the code under it, x 90-950 */
+.h-card0 { position: absolute; left: 90px; top: 250px; width: 860px; height: 470px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 30px; color: #0B1020; transform-origin: 50% 50%; }
+.h-c0t { position: absolute; left: 30px; top: 26px; font-family: "JetBrains Mono", monospace; font-size: 48px; font-weight: 800; white-space: nowrap; }
+.h-c0tag { position: absolute; right: 26px; top: 96px; font-family: "Inter", sans-serif; font-size: 24px; font-weight: 600; color: rgba(11,16,32,0.55); }
+.h-c0code { position: absolute; left: 30px; top: 104px; font-family: "JetBrains Mono", monospace; font-size: 32px; font-weight: 600; line-height: 44px; white-space: pre; color: rgba(11,16,32,0.75); }
+.h-row0 { left: 90px; top: 750px; width: 860px; }
+.h-slot0 { top: 1240px; } .h-smart { top: 1270px; }
+/* the agent log: the running record of what the agent claims and does (workbench geometry; the hook moves it up) */
+.h-log { position: absolute; left: 90px; top: 1185px; width: 840px; height: 255px; box-sizing: border-box; border-radius: 18px; background: #0B1020; border: 3px solid rgba(255,255,255,0.28); overflow: hidden; }
+.h-loghd { position: absolute; right: 18px; top: 10px; font-family: "JetBrains Mono", monospace; font-size: 22px; font-weight: 700; color: rgba(255,255,255,0.45); z-index: 2; }
+.h-login { position: absolute; left: 22px; top: 18px; width: 790px; }
+.h-ll { height: 42px; font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 700; line-height: 42px; color: #fff; white-space: pre; opacity: 0; }
+.h-ll.h-on { opacity: 1; } .h-ll.h-red { color: #FF6B7C; } .h-ll.h-ok { color: #2ED3A0; }
+/* the manual stack: no label (it ran into the MODEL pill), a red ✗ instead */
+.h-stack span { display: none; }
+.h-stack b { position: absolute; left: 40px; top: 6px; font-family: "Anton", sans-serif; font-size: 80px; line-height: 80px; color: #E5364A; opacity: 0; }
+/* task grids (89 tasks), filled as the numbers count */
+.h-grid { position: absolute; top: 1140px; width: 280px; height: 252px; opacity: 0; font-size: 0; }
+.h-gridL { left: 130px; } .h-gridR { left: 590px; }
+.h-grid i { display: inline-block; width: 24px; height: 24px; margin: 2px; border-radius: 5px; background: rgba(255,255,255,0.14); }
+.h-ts { top: 1085px; } .h-own { top: 1400px; }
+
+/* the DONE claim gets struck on "isn't"; the 1,000-page manual; the pass sweep; captions stay above the stage */
+.h-strike { position: absolute; left: -12px; top: 36px; width: 274px; height: 12px; border-radius: 6px; background: #E5364A; transform: scaleX(0) rotate(-2deg); transform-origin: 0 50%; }
+.h-manual { position: absolute; left: 640px; top: 590px; width: 300px; height: 370px; opacity: 0; }
+.h-manual i { position: absolute; width: 260px; height: 330px; box-sizing: border-box; background: #fff; border: 4px solid #0B1020; border-radius: 16px; }
+.h-manual i:nth-child(1) { left: 36px; top: 0; } .h-manual i:nth-child(2) { left: 18px; top: 18px; } .h-manual i:nth-child(3) { left: 0; top: 36px; }
+.h-mant { position: absolute; left: 0; top: 120px; width: 260px; text-align: center; font-family: "Anton", sans-serif; font-size: 50px; line-height: 1.05; color: #0B1020; }
+.h-manual b { position: absolute; left: 0; top: 60px; width: 260px; text-align: center; font-family: "Anton", sans-serif; font-size: 240px; line-height: 240px; color: #E5364A; opacity: 0; }
+.h-rgo { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(20,184,122,0.30); transform: scaleX(0); transform-origin: 0 50%; }
+.clip.caption { z-index: 6 !important; }
+
+/* s06: a page flies into the model (reads first); a check flies out to the AFTER slot */
+.h-fly { position: absolute; left: 0; top: 0; width: 100px; height: 110px; box-sizing: border-box; border-radius: 14px; opacity: 0; font-style: normal; }
+.h-fly1 { background: #fff; border: 5px solid #0B1020; }
+.h-fly1::after { content: ""; position: absolute; left: 16px; top: 22px; width: 58px; height: 8px; background: #2433D9; box-shadow: 0 20px 0 #2433D9, 0 40px 0 #2433D9; }
+.h-fly2 { background: #14B87A; border: 5px solid #fff; color: #fff; font-family: "Anton", sans-serif; font-size: 72px; line-height: 100px; text-align: center; }
+
+/* the log's top padding masks the half-line left by a scroll */
+.h-log::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 18px; background: #0B1020; z-index: 1; }
+
+/* owner note 2026-10-29 (cluttered opening): the hook card holds only the task title and the DONE claim */
+.h-card0 { top: 300px; height: 380px; }
+.h-c0code { display: none; }
+.h-slot0 { top: 920px; } .h-smart { top: 950px; }

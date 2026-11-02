@@ -1,0 +1,64 @@
+/* Wayfind tokens for the studio app (Hallmark scaffold, app scope), split for Tailwind v4:
+   @theme static = every colour, face, text size, radius, shadow and easing (each a utility and a variable);
+   :root = space, motion, layers. Light is the `platform` colourway with the channel blue as the cobalt;
+   dark is `night`; `.plate` puts the night colours on an ink plate in either mode. */
+@theme static {
+  --color-paper: oklch(95.5% 0.006 250); --color-paper-2: oklch(91% 0.009 250); --color-paper-3: oklch(99.5% 0.005 250);
+  --color-ink: oklch(16% 0.014 262); --color-ink-2: oklch(29% 0.014 262); --color-muted: oklch(47% 0.016 260);
+  --color-rule: oklch(80% 0.011 250); --color-ink-rule: oklch(34% 0.014 262);
+  /* the channel blue #2B3BE0 = oklch(47% 0.244 268.8): what is live, the primary action, the current selection */
+  --color-accent: oklch(47% 0.244 268.8); --color-accent-2: oklch(81% 0.16 82); --color-accent-ink: oklch(99.5% 0.003 250); --color-focus: oklch(47% 0.244 268.8);
+  /* gate states: pass, stale, fail (each also carries a glyph and a word, never colour alone) */
+  --color-ok: oklch(47% 0.12 150); --color-warn: oklch(51% 0.12 62); --color-bad: oklch(50% 0.19 27);
+  --color-error: var(--color-bad); --color-success: var(--color-ok);
+  /* the ink plate (shell, logs): always dark, its own ink */
+  --color-plate: oklch(16% 0.014 262); --color-plate-ink: oklch(93% 0.006 250);
+  --color-scrim: oklch(10% 0.012 262 / 0.72);
+  --font-display: "Chivo Mono Variable", "Chivo Mono", ui-monospace, monospace; --font-body: var(--font-display); --font-outlier: var(--font-body);
+  --font-sans: var(--font-display); --font-mono: var(--font-display);
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.2rem; --text-xl: 1.44rem; --text-2xl: 1.728rem; --text-3xl: 2.074rem;
+  --text-display-s: 1.44rem; --text-display: 1.728rem; --text-section: 1rem; --text-title: 0.875rem; --text-lead: 1rem;
+  --radius-card: 0; --radius-pill: 999px;
+  --radius-xs: 0; --radius-sm: 0; --radius-md: 0; --radius-lg: 0; --radius-xl: 0; --radius-2xl: 0; --radius-3xl: 0;
+  --shadow-card: 0 24px 40px -24px oklch(8% 0.01 260 / 0.6);
+  --tracking-display: -0.02em;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+:root {
+  color-scheme: light;
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --container: 1440px; --gutter: 24px; --gap-columns: 24px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+  --rule-hair: 1px; --rule-bar: 2px; --display-weight: 800;
+}
+/* night: the same roles re-derived (hue never moves; elevation is lighter; the cobalt lifts and loses chroma) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-paper: oklch(15% 0.012 262); --color-paper-2: oklch(19.5% 0.013 262); --color-paper-3: oklch(18% 0.013 262);
+    --color-ink: oklch(95% 0.005 250); --color-ink-2: oklch(84% 0.008 250); --color-muted: oklch(71% 0.014 255);
+    --color-rule: oklch(34% 0.014 262); --color-ink-rule: oklch(44% 0.014 262);
+    --color-accent: oklch(63% 0.19 268.8); --color-accent-ink: oklch(13% 0.02 268); --color-focus: oklch(63% 0.19 268.8);
+    --color-ok: oklch(74% 0.14 150); --color-warn: oklch(78% 0.13 75); --color-bad: oklch(70% 0.16 25);
+    --color-plate: oklch(10.5% 0.012 262);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: oklch(15% 0.012 262); --color-paper-2: oklch(19.5% 0.013 262); --color-paper-3: oklch(18% 0.013 262);
+  --color-ink: oklch(95% 0.005 250); --color-ink-2: oklch(84% 0.008 250); --color-muted: oklch(71% 0.014 255);
+  --color-rule: oklch(34% 0.014 262); --color-ink-rule: oklch(44% 0.014 262);
+  --color-accent: oklch(63% 0.19 268.8); --color-accent-ink: oklch(13% 0.02 268); --color-focus: oklch(63% 0.19 268.8);
+  --color-ok: oklch(74% 0.14 150); --color-warn: oklch(78% 0.13 75); --color-bad: oklch(70% 0.16 25);
+  --color-plate: oklch(10.5% 0.012 262);
+}
+/* an ink plate: the night roles inside it, in either mode, so every utility under it reads on ink */
+.plate {
+  --color-paper: var(--color-plate); --color-paper-2: oklch(22% 0.014 262); --color-paper-3: oklch(20% 0.014 262);
+  --color-ink: var(--color-plate-ink); --color-ink-2: oklch(84% 0.008 250); --color-muted: oklch(72% 0.012 255);
+  --color-rule: oklch(34% 0.014 262); --color-ink-rule: oklch(44% 0.014 262);
+  --color-accent: oklch(63% 0.19 268.8); --color-accent-ink: oklch(13% 0.02 268); --color-focus: oklch(63% 0.19 268.8);
+  --color-ok: oklch(74% 0.14 150); --color-warn: oklch(78% 0.13 75); --color-bad: oklch(70% 0.16 25);
+  background-color: var(--color-plate); color: var(--color-plate-ink);
+}

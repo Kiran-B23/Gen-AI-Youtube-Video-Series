@@ -1,143 +1,159 @@
 {
- "date": "2026-10-28",
- "generated_at": "2026-10-28T11:13:23+05:30",
+ "date": "2026-10-29",
+ "generated_at": "2026-10-29T17:34:07+05:30",
  "snapshots": {
-  "latest": "2026-10-28T10:59:11+05:30",
-  "previous": "2026-10-28T10:50:58+05:30",
-  "gap_h": 0.14,
+  "latest": "2026-10-29T17:30:48+05:30",
+  "previous": "2026-10-28T16:58:29+05:30",
+  "gap_h": 24.54,
   "files": [
-   "2026-10-28T1050.json",
-   "2026-10-28T1059.json"
+   "2026-10-28T1658.json",
+   "2026-10-29T1730.json"
   ]
  },
  "counts": {
-  "items": 547,
-  "excluded": 11,
-  "topics": 82
+  "items": 571,
+  "excluded": 9,
+  "topics": 77
  },
  "top": [
   {
    "key": "claude code",
    "name": "Claude Code",
-   "score": 95.6,
-   "best_vel": 0.889,
+   "score": 107.3,
+   "best_vel": 0.984,
    "families": [
     "github",
+    "hn",
     "search",
     "youtube"
    ],
-   "n_items": 14,
+   "n_items": 13,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
+   "fresh": false,
+   "continuing": true,
    "archetype": "tutorial",
    "angle": "Use Claude Code in 60 seconds: the three steps, on one real example",
-   "why": "YouTube channels: 1.0k views/h (8.6× Dave Ebbelaar's usual), 34k views; YouTube autocomplete: autocomplete rank 2 for 'claude'",
+   "why": "Hacker News: 429 pts (50/h), 161 comments; YouTube search: 4.6k views/h, 55k views",
    "evidence": [
     {
-     "title": "This Free Repo Lets Claude Code Build Any Mac App",
-     "url": "https://www.youtube.com/watch?v=gN6wl-OX8-Q",
-     "source": "YouTube channels",
-     "metric": "1.0k views/h (8.6× Dave Ebbelaar's usual), 34k views",
-     "by": "Dave Ebbelaar"
+     "title": "Claude Code regularly sends each background agent’s transcript to its model",
+     "url": "https://news.ycombinator.com/item?id=50284255",
+     "source": "Hacker News",
+     "metric": "429 pts (50/h), 161 comments",
+     "by": ""
+    },
+    {
+     "title": "[Aula 3] Claude Code: Como ter um exército de pessoas trabalhando pra você",
+     "url": "https://www.youtube.com/watch?v=uP9YgtuOZow",
+     "source": "YouTube search (today)",
+     "metric": "4.6k views/h, 55k views",
+     "by": "Hashtag No Code & IA"
+    },
+    {
+     "title": "Donchitos/Claude-Code-Game-Studios",
+     "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+     "source": "GitHub trending",
+     "metric": "538★ today (22/h), 29k★",
+     "by": "Shell"
     },
     {
      "title": "claude code",
      "url": "https://www.youtube.com/results?search_query=claude+code",
      "source": "YouTube autocomplete",
-     "metric": "autocomplete rank 2 for 'claude'",
+     "metric": "autocomplete rank 1 for 'claude'",
      "by": ""
-    },
-    {
-     "title": "garrytan/gstack",
-     "url": "https://github.com/garrytan/gstack",
-     "source": "GitHub trending",
-     "metric": "127★ today (5.3/h), 138k★",
-     "by": "TypeScript"
     }
    ],
    "rank": 1
   },
   {
-   "key": "claude",
-   "name": "Claude",
-   "score": 95.3,
-   "best_vel": 0.882,
+   "key": "ai agent",
+   "name": "AI Agent",
+   "score": 102.8,
+   "best_vel": 0.87,
    "families": [
     "github",
     "hn",
+    "ph",
     "youtube"
    ],
-   "n_items": 22,
+   "n_items": 11,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "comparison",
-   "angle": "Claude vs the tool you already use: which to pick for a college project",
-   "why": "YouTube search: 11k views/h, 137k views; Hacker News: 498 pts (7.4/h), 269 comments",
+   "fresh": false,
+   "continuing": true,
+   "archetype": "launch",
+   "angle": "What AI Agent just shipped, and the one thing a student can try with it today",
+   "why": "YouTube search: 8.3k views/h, 100k views; Hacker News: 244 pts (12/h), 154 comments",
    "evidence": [
     {
-     "title": "HUGE ANTHROPIC BOMBSHELL! Claude REA UNBANNED?! GPT-6.1 Terra, Qwen 4 27B, & Fable 5.5! AI NEWS",
-     "url": "https://www.youtube.com/watch?v=SyUjFWgqDNo",
+     "title": "How to Build an AI Agent for Every Part of Your Life",
+     "url": "https://www.youtube.com/watch?v=SJywU4UQryQ",
      "source": "YouTube search (today)",
-     "metric": "11k views/h, 137k views",
-     "by": "WorldofAI"
+     "metric": "8.3k views/h, 100k views",
+     "by": "Dan Martell"
     },
     {
-     "title": "Anthropic trained Claude on illegally obtained Stanford professors' books",
-     "url": "https://news.ycombinator.com/item?id=50260814",
+     "title": "Dayjob: Tax – evaluating AI agents on 50 professional tax assignments",
+     "url": "https://news.ycombinator.com/item?id=50275626",
      "source": "Hacker News",
-     "metric": "498 pts (7.4/h), 269 comments",
+     "metric": "244 pts (12/h), 154 comments",
      "by": ""
     },
     {
-     "title": "thedotmack/claude-mem",
-     "url": "https://github.com/thedotmack/claude-mem",
+     "title": "Donchitos/Claude-Code-Game-Studios",
+     "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
      "source": "GitHub trending",
-     "metric": "338★ today (15/h), 104k★",
-     "by": "TypeScript"
+     "metric": "538★ today (22/h), 29k★",
+     "by": "Shell"
+    },
+    {
+     "title": "Dedica",
+     "url": "https://www.producthunt.com/products/dedica",
+     "source": "Product Hunt",
+     "metric": "launched on Product Hunt",
+     "by": ""
     }
    ],
    "rank": 2
   },
   {
-   "key": "ai agent",
-   "name": "AI Agent",
-   "score": 93.8,
-   "best_vel": 0.846,
+   "key": "gemini",
+   "name": "Gemini",
+   "score": 91.8,
+   "best_vel": 0.971,
    "families": [
-    "github",
+    "hn",
     "ph",
     "youtube"
    ],
-   "n_items": 14,
+   "n_items": 23,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
+   "fresh": false,
+   "continuing": true,
    "archetype": "launch",
-   "angle": "What AI Agent just shipped, and the one thing a student can try with it today",
-   "why": "GitHub trending: 1.5k★ today (45/h), 7.6k★; YouTube search: 463 views/h, 18k views",
+   "angle": "What Gemini just shipped, and the one thing a student can try with it today",
+   "why": "YouTube channels: 10k views/h (33.4× Prompt Engineering's usual), 175k views; Hacker News: 955 pts (50/h), 763 comments",
    "evidence": [
     {
-     "title": "makecindy/cindy",
-     "url": "https://github.com/makecindy/cindy",
-     "source": "GitHub trending",
-     "metric": "1.5k★ today (45/h), 7.6k★",
-     "by": "TypeScript"
+     "title": "Gemini 4 Carbon: The New Frontier",
+     "url": "https://www.youtube.com/watch?v=kMpTBy3g1N0",
+     "source": "YouTube channels",
+     "metric": "10k views/h (33.4× Prompt Engineering's usual), 175k views",
+     "by": "Prompt Engineering"
     },
     {
-     "title": "How To Be More Productive With AI Agents. 4 Principles I Use.",
-     "url": "https://www.youtube.com/watch?v=NIRFVjttNvA",
-     "source": "YouTube search (today)",
-     "metric": "463 views/h, 18k views",
-     "by": "AI News & Strategy Daily | Nate B Jones"
+     "title": "Gemini 4 Carbon",
+     "url": "https://news.ycombinator.com/item?id=50276792",
+     "source": "Hacker News",
+     "metric": "955 pts (50/h), 763 comments",
+     "by": ""
     },
     {
-     "title": "PulseDev",
-     "url": "https://www.producthunt.com/products/pulsedev",
+     "title": "Gemini 4 Carbon",
+     "url": "https://www.producthunt.com/products/gemini-4-carbon",
      "source": "Product Hunt",
      "metric": "launched on Product Hunt",
      "by": ""
@@ -146,68 +162,84 @@
    "rank": 3
   },
   {
-   "key": "deepseek",
-   "name": "DeepSeek",
-   "score": 85.0,
-   "best_vel": 1.0,
+   "key": "chatgpt",
+   "name": "ChatGPT",
+   "score": 89.0,
+   "best_vel": 0.9,
    "families": [
-    "hf",
+    "ph",
+    "search",
     "youtube"
    ],
-   "n_items": 13,
+   "n_items": 9,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "comparison",
-   "angle": "DeepSeek vs the tool you already use: which to pick for a college project",
-   "why": "YouTube channels: 3.2k views/h (19.1× Matthew Berman's usual), 7.7k views; Hugging Face: trending 955, 3.4k likes (+7.4/h)",
+   "fresh": false,
+   "continuing": true,
+   "archetype": "risk",
+   "angle": "ChatGPT: what went wrong, and how to stay safe when you use it",
+   "why": "YouTube search: 278k views/h, 3.3M views; YouTube autocomplete: autocomplete rank 3 for 'deepseek' · new",
    "evidence": [
     {
-     "title": "Deepseek crushed everyone",
-     "url": "https://www.youtube.com/watch?v=DDZ-a6bAn3Y",
-     "source": "YouTube channels",
-     "metric": "3.2k views/h (19.1× Matthew Berman's usual), 7.7k views",
-     "by": "Matthew Berman"
+     "title": "ChatGPT | The Notice : A short film by Reema Kagti",
+     "url": "https://www.youtube.com/watch?v=LG3XQDVIMvg",
+     "source": "YouTube search (today)",
+     "metric": "278k views/h, 3.3M views",
+     "by": "ChatGPT India"
     },
     {
-     "title": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
-     "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
-     "source": "Hugging Face",
-     "metric": "trending 955, 3.4k likes (+7.4/h)",
+     "title": "deepseek vs chatgpt",
+     "url": "https://www.youtube.com/results?search_query=deepseek+vs+chatgpt",
+     "source": "YouTube autocomplete",
+     "metric": "autocomplete rank 3 for 'deepseek' · new",
+     "by": ""
+    },
+    {
+     "title": "Floot in ChatGPT",
+     "url": "https://www.producthunt.com/products/floot",
+     "source": "Product Hunt",
+     "metric": "launched on Product Hunt",
      "by": ""
     }
    ],
    "rank": 4
   },
   {
-   "key": "gpt",
-   "name": "GPT",
-   "score": 80.3,
-   "best_vel": 0.882,
+   "key": "claude",
+   "name": "Claude",
+   "score": 87.6,
+   "best_vel": 0.866,
    "families": [
+    "github",
     "ph",
     "youtube"
    ],
-   "n_items": 6,
+   "n_items": 15,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "comparison",
-   "angle": "GPT vs the tool you already use: which to pick for a college project",
-   "why": "YouTube search: 11k views/h, 137k views; Product Hunt: launched on Product Hunt",
+   "fresh": false,
+   "continuing": true,
+   "archetype": "tutorial",
+   "angle": "Use Claude in 60 seconds: the three steps, on one real example",
+   "why": "YouTube search: 6.4k views/h, 77k views; GitHub trending: 581★ today (29/h), 24k★",
    "evidence": [
     {
-     "title": "HUGE ANTHROPIC BOMBSHELL! Claude REA UNBANNED?! GPT-6.1 Terra, Qwen 4 27B, & Fable 5.5! AI NEWS",
-     "url": "https://www.youtube.com/watch?v=SyUjFWgqDNo",
+     "title": "Claude 2.0 is insane (all new features explained)",
+     "url": "https://www.youtube.com/watch?v=nZaOSQffA8M",
      "source": "YouTube search (today)",
-     "metric": "11k views/h, 137k views",
-     "by": "WorldofAI"
+     "metric": "6.4k views/h, 77k views",
+     "by": "Xavier Mitjana"
     },
     {
-     "title": "GPT-6.1 Terra",
-     "url": "https://www.producthunt.com/products/openai",
+     "title": "AgriciDaniel/claude-seo",
+     "url": "https://github.com/AgriciDaniel/claude-seo",
+     "source": "GitHub trending",
+     "metric": "581★ today (29/h), 24k★",
+     "by": "Python"
+    },
+    {
+     "title": "Our Silly Games",
+     "url": "https://www.producthunt.com/products/our-silly-games",
      "source": "Product Hunt",
      "metric": "launched on Product Hunt",
      "by": ""
@@ -216,592 +248,645 @@
    "rank": 5
   },
   {
-   "key": "cursor",
-   "name": "Cursor",
-   "score": 78.8,
-   "best_vel": 0.546,
+   "key": "deepseek",
+   "name": "DeepSeek",
+   "score": 76.8,
+   "best_vel": 1.0,
    "families": [
-    "github",
-    "search",
+    "hf",
     "youtube"
    ],
-   "n_items": 3,
-   "fit": 1.0,
+   "n_items": 12,
+   "fit": 0.92,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "tutorial",
-   "angle": "Use Cursor in 60 seconds: the three steps, on one real example",
-   "why": "YouTube search: 75 views/h, 72 views; GitHub trending: 165★ today (7.4/h), 14k★",
+   "fresh": false,
+   "continuing": true,
+   "archetype": "risk",
+   "angle": "DeepSeek: what went wrong, and how to stay safe when you use it",
+   "why": "Hugging Face: trending 884, 3.7k likes (+8.5/h); YouTube channels: 2.7k views/h (17.5× Matthew Berman's usual), 128k views",
    "evidence": [
     {
-     "title": "Setup for Cursor AI to use Power Surfacing.",
-     "url": "https://www.youtube.com/watch?v=017PYINBepo",
-     "source": "YouTube search (today)",
-     "metric": "75 views/h, 72 views",
-     "by": "nPower Software"
-    },
-    {
-     "title": "cursor/plugins",
-     "url": "https://github.com/cursor/plugins",
-     "source": "GitHub trending",
-     "metric": "165★ today (7.4/h), 14k★",
-     "by": "TypeScript"
-    },
-    {
-     "title": "vibe coding cursor",
-     "url": "https://www.youtube.com/results?search_query=vibe+coding+cursor",
-     "source": "YouTube autocomplete",
-     "metric": "autocomplete rank 6 for 'vibe coding'",
+     "title": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+     "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+     "source": "Hugging Face",
+     "metric": "trending 884, 3.7k likes (+8.5/h)",
      "by": ""
+    },
+    {
+     "title": "Deepseek crushed everyone",
+     "url": "https://www.youtube.com/watch?v=DDZ-a6bAn3Y",
+     "source": "YouTube channels",
+     "metric": "2.7k views/h (17.5× Matthew Berman's usual), 128k views",
+     "by": "Matthew Berman"
     }
    ],
    "rank": 6
   },
   {
-   "key": "qwen",
-   "name": "Qwen",
-   "score": 73.6,
-   "best_vel": 0.882,
+   "key": "codex",
+   "name": "Codex",
+   "score": 73.2,
+   "best_vel": 0.879,
    "families": [
-    "hf",
+    "ph",
     "youtube"
    ],
-   "n_items": 9,
-   "fit": 0.56,
+   "n_items": 7,
+   "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
+   "fresh": false,
+   "continuing": true,
    "archetype": "launch",
-   "angle": "What Qwen just shipped, and the one thing a student can try with it today",
-   "why": "YouTube search: 11k views/h, 137k views; Hugging Face: trending 325, 19k likes",
+   "angle": "What Codex just shipped, and the one thing a student can try with it today",
+   "why": "YouTube search: 12k views/h, 147k views; Product Hunt: launched on Product Hunt",
    "evidence": [
     {
-     "title": "HUGE ANTHROPIC BOMBSHELL! Claude REA UNBANNED?! GPT-6.1 Terra, Qwen 4 27B, & Fable 5.5! AI NEWS",
-     "url": "https://www.youtube.com/watch?v=SyUjFWgqDNo",
+     "title": "\"มัจจุราชในคราบเอเลี่ยน\" เปิดข้อมูล Whitespike ใน The Tomorrow War | The Codex",
+     "url": "https://www.youtube.com/watch?v=XE3xUYvUpac",
      "source": "YouTube search (today)",
-     "metric": "11k views/h, 137k views",
-     "by": "WorldofAI"
+     "metric": "12k views/h, 147k views",
+     "by": "The Codex"
     },
     {
-     "title": "Qwen/Qwen3.8-27B",
-     "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
-     "source": "Hugging Face",
-     "metric": "trending 325, 19k likes",
+     "title": "Arco",
+     "url": "https://www.producthunt.com/products/arco-4",
+     "source": "Product Hunt",
+     "metric": "launched on Product Hunt",
      "by": ""
     }
    ],
    "rank": 7
   },
   {
-   "key": "mcp",
-   "name": "MCP",
-   "score": 73.4,
-   "best_vel": 0.786,
+   "key": "openai",
+   "name": "OpenAI",
+   "score": 72.5,
+   "best_vel": 0.862,
    "families": [
-    "github",
+    "hn",
     "youtube"
    ],
-   "n_items": 3,
+   "n_items": 10,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "launch",
-   "angle": "What MCP just shipped, and the one thing a student can try with it today",
-   "why": "YouTube search: 598 views/h, 7.7k views; GitHub trending: 72★ today (7.4/h), 54k★",
+   "fresh": false,
+   "continuing": true,
+   "archetype": "risk",
+   "angle": "OpenAI: what went wrong, and how to stay safe when you use it",
+   "why": "YouTube search: 6.1k views/h, 73k views; Hacker News: 217 pts (3.5/h), 118 comments",
    "evidence": [
     {
-     "title": "MCP 2.0 Is Here: What Changed in Model Context Protocol",
-     "url": "https://www.youtube.com/watch?v=mawskzieSbg",
+     "title": "OpenAI Says It Solved Half a $1M Problem. No One Can Read It.",
+     "url": "https://www.youtube.com/watch?v=3R0C8koZmNI",
      "source": "YouTube search (today)",
-     "metric": "598 views/h, 7.7k views",
-     "by": "Aishwarya Srinivasan"
+     "metric": "6.1k views/h, 73k views",
+     "by": "Adem B10"
     },
     {
-     "title": "ChromeDevTools/chrome-devtools-mcp",
-     "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
-     "source": "GitHub trending",
-     "metric": "72★ today (7.4/h), 54k★",
-     "by": "TypeScript"
+     "title": "OpenAI's agents talked to each other through the CPU Cache",
+     "url": "https://news.ycombinator.com/item?id=50251200",
+     "source": "Hacker News",
+     "metric": "217 pts (3.5/h), 118 comments",
+     "by": ""
     }
    ],
    "rank": 8
   },
   {
-   "key": "nvidia",
-   "name": "Nvidia",
-   "score": 68.9,
-   "best_vel": 0.672,
+   "key": "sql",
+   "name": "SQL",
+   "score": 70.9,
+   "best_vel": 0.747,
    "families": [
-    "hf",
-    "hn"
+    "hn",
+    "youtube"
    ],
-   "n_items": 3,
+   "n_items": 2,
    "fit": 1.0,
-   "first_seen": "2026-10-28T10:50:00+05:30",
+   "first_seen": "2026-10-29T17:30:00+05:30",
    "fresh": true,
    "continuing": false,
-   "archetype": "launch",
-   "angle": "What Nvidia just shipped, and the one thing a student can try with it today",
-   "why": "Hacker News: 130 pts (0/h), 28 comments; Hugging Face: trending 187, 195 likes",
+   "archetype": "trend",
+   "angle": "Why everyone is talking about SQL this week, and whether it matters for you",
+   "why": "YouTube search: 1.6k views/h, 20k views; Hacker News: 36 pts (0.8/h), 5 comments",
    "evidence": [
     {
-     "title": "Nvidia and Micron Make Up 34% of America's Earnings Boom",
-     "url": "https://news.ycombinator.com/item?id=50236073",
-     "source": "Hacker News",
-     "metric": "130 pts (0/h), 28 comments",
-     "by": ""
+     "title": "AI Agent Memory Architecture: Structured SQL, Semantic Vector Search & Memory Bank",
+     "url": "https://www.youtube.com/watch?v=8C4bh59FtsI",
+     "source": "YouTube search (today)",
+     "metric": "1.6k views/h, 20k views",
+     "by": "Google Cloud Tech"
     },
     {
-     "title": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
-     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
-     "source": "Hugging Face",
-     "metric": "trending 187, 195 likes",
+     "title": "MiniLake Is a Local Databricks API Emulator with SQL, Delta Lake and Spark",
+     "url": "https://news.ycombinator.com/item?id=50259697",
+     "source": "Hacker News",
+     "metric": "36 pts (0.8/h), 5 comments",
      "by": ""
     }
    ],
    "rank": 9
   },
   {
-   "key": "chatgpt",
-   "name": "ChatGPT",
-   "score": 65.1,
-   "best_vel": 0.878,
+   "key": "nvidia",
+   "name": "Nvidia",
+   "score": 68.7,
+   "best_vel": 0.817,
    "families": [
-    "youtube"
+    "hf",
+    "hn"
    ],
-   "n_items": 11,
+   "n_items": 4,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "comparison",
-   "angle": "ChatGPT vs the tool you already use: which to pick for a college project",
-   "why": "YouTube search: 8.1k views/h, 60k views; YouTube search: 1.5k views/h, 7.1k views",
+   "fresh": false,
+   "continuing": true,
+   "archetype": "launch",
+   "angle": "What Nvidia just shipped, and the one thing a student can try with it today",
+   "why": "Hugging Face: trending 316, 325 likes; Hacker News: 125 pts (6.0/h), 21 comments",
    "evidence": [
     {
-     "title": "Modi Ji Talking With AI Of Swami Chinmayanand vs My ConversationWith ChatGPT (Gandhi Ji Avatar)!",
-     "url": "https://www.youtube.com/watch?v=VOgjih5idE4",
-     "source": "YouTube search (today)",
-     "metric": "8.1k views/h, 60k views",
-     "by": "RJ Raffat"
+     "title": "nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
+     "source": "Hugging Face",
+     "metric": "trending 316, 325 likes",
+     "by": ""
     },
     {
-     "title": "OpenAI's First AI Robot Is Finally Happening (ChatGPT Gets a Body)",
-     "url": "https://www.youtube.com/watch?v=BhdPuzza7i0",
-     "source": "YouTube search (today)",
-     "metric": "1.5k views/h, 7.1k views",
-     "by": "MACHINEKIND and AI Revolution"
+     "title": "Nvidia Nemotron 3.5 Transcribe: open ASR for 40 languages",
+     "url": "https://news.ycombinator.com/item?id=50275128",
+     "source": "Hacker News",
+     "metric": "125 pts (6.0/h), 21 comments",
+     "by": ""
     }
    ],
-   "single": true,
    "rank": 10
   }
  ],
  "watch": [
   {
-   "key": "hallmark",
-   "name": "hallmark",
-   "score": 64.0,
-   "best_vel": 0.974,
+   "key": "hindsight",
+   "name": "hindsight",
+   "score": 61.1,
+   "best_vel": 0.903,
    "families": [
     "github"
    ],
    "n_items": 1,
    "fit": 1.0,
-   "first_seen": "2026-10-28T10:50:00+05:30",
+   "first_seen": "2026-10-29T17:30:00+05:30",
    "fresh": true,
    "continuing": false,
    "archetype": "trend",
-   "angle": "Why everyone is talking about hallmark this week, and whether it matters for you",
-   "why": "GitHub trending: 2.8k★ today (67/h), 39k★",
+   "angle": "Why everyone is talking about hindsight this week, and whether it matters for you",
+   "why": "GitHub trending: 1.4k★ today (56/h), 56k★",
    "evidence": [
     {
-     "title": "Nutlope/hallmark",
-     "url": "https://github.com/Nutlope/hallmark",
+     "title": "vectorize-io/hindsight",
+     "url": "https://github.com/vectorize-io/hindsight",
      "source": "GitHub trending",
-     "metric": "2.8k★ today (67/h), 39k★",
-     "by": "CSS"
+     "metric": "1.4k★ today (56/h), 56k★",
+     "by": "Python"
     }
    ]
   },
   {
-   "key": "openai",
-   "name": "OpenAI",
-   "score": 63.2,
-   "best_vel": 0.83,
-   "families": [
-    "youtube"
-   ],
-   "n_items": 15,
-   "fit": 1.0,
-   "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "launch",
-   "angle": "What OpenAI just shipped, and the one thing a student can try with it today",
-   "why": "YouTube search: 1.5k views/h, 7.1k views; YouTube search: 941 views/h, 7.7k views",
-   "evidence": [
-    {
-     "title": "OpenAI's First AI Robot Is Finally Happening (ChatGPT Gets a Body)",
-     "url": "https://www.youtube.com/watch?v=BhdPuzza7i0",
-     "source": "YouTube search (today)",
-     "metric": "1.5k views/h, 7.1k views",
-     "by": "MACHINEKIND and AI Revolution"
-    },
-    {
-     "title": "OpenAI's 3 Huge Claims, Checked",
-     "url": "https://www.youtube.com/watch?v=YHfSZtGXGx0",
-     "source": "YouTube search (today)",
-     "metric": "941 views/h, 7.7k views",
-     "by": "HexaValuation"
-    }
-   ]
-  },
-  {
-   "key": "gemini",
-   "name": "Gemini",
-   "score": 61.9,
-   "best_vel": 0.797,
-   "families": [
-    "youtube"
-   ],
-   "n_items": 15,
-   "fit": 1.0,
-   "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "launch",
-   "angle": "What Gemini just shipped, and the one thing a student can try with it today",
-   "why": "YouTube search: 687 views/h, 5.0k views; YouTube search: 560 views/h, 5.4k views",
-   "evidence": [
-    {
-     "title": "GEMINI: You Two Are Going To Be A POWER COUPLE, Get Ready For The ROYAL Treatment 👑",
-     "url": "https://www.youtube.com/watch?v=B6s4rcVAIrk",
-     "source": "YouTube search (today)",
-     "metric": "687 views/h, 5.0k views",
-     "by": "Spiritually Goldie"
-    },
-    {
-     "title": "Gemini Omni and Kling 4.0 Just Lost to This AI Video Model!",
-     "url": "https://www.youtube.com/watch?v=ihUSk1z9YGg",
-     "source": "YouTube search (today)",
-     "metric": "560 views/h, 5.4k views",
-     "by": "Universe of AI"
-    }
-   ]
-  },
-  {
-   "key": "ecc",
-   "name": "ECC",
-   "score": 61.9,
-   "best_vel": 0.923,
+   "key": "impeccable",
+   "name": "impeccable",
+   "score": 58.0,
+   "best_vel": 1.0,
    "families": [
     "github"
    ],
    "n_items": 1,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "risk",
-   "angle": "ECC: what went wrong, and how to stay safe when you use it",
-   "why": "GitHub trending: 1.2k★ today (59/h), 291k★",
+   "fresh": false,
+   "continuing": true,
+   "archetype": "trend",
+   "angle": "Why everyone is talking about impeccable this week, and whether it matters for you",
+   "why": "GitHub trending: 2.9k★ today (119/h), 94k★",
    "evidence": [
     {
-     "title": "affaan-m/ECC",
-     "url": "https://github.com/affaan-m/ECC",
+     "title": "pbakaus/impeccable",
+     "url": "https://github.com/pbakaus/impeccable",
      "source": "GitHub trending",
-     "metric": "1.2k★ today (59/h), 291k★",
-     "by": "JavaScript"
+     "metric": "2.9k★ today (119/h), 94k★",
+     "by": "Rust"
+    }
+   ]
+  },
+  {
+   "key": "grok",
+   "name": "Grok",
+   "score": 52.8,
+   "best_vel": 0.871,
+   "families": [
+    "github"
+   ],
+   "n_items": 1,
+   "fit": 1.0,
+   "first_seen": "2026-10-28T10:50:00+05:30",
+   "fresh": false,
+   "continuing": true,
+   "archetype": "comparison",
+   "angle": "Grok vs the tool you already use: which to pick for a college project",
+   "why": "GitHub trending: 1.2k★ today (50/h), 7.0k★",
+   "evidence": [
+    {
+     "title": "milind-soni/OpenMausBot",
+     "url": "https://github.com/milind-soni/OpenMausBot",
+     "source": "GitHub trending",
+     "metric": "1.2k★ today (50/h), 7.0k★",
+     "by": "TypeScript"
     }
    ]
   },
   {
    "key": "ai-design-skills",
    "name": "ai-design-skills",
-   "score": 60.9,
-   "best_vel": 0.897,
+   "score": 51.5,
+   "best_vel": 0.839,
    "families": [
     "github"
    ],
    "n_items": 1,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
+   "fresh": false,
+   "continuing": true,
    "archetype": "trend",
    "angle": "Why everyone is talking about ai-design-skills this week, and whether it matters for you",
-   "why": "GitHub trending: 1.4k★ today (52/h), 9.8k★",
+   "why": "GitHub trending: 1.2k★ today (49/h), 12k★",
    "evidence": [
     {
      "title": "elayadesign/ai-design-skills",
      "url": "https://github.com/elayadesign/ai-design-skills",
      "source": "GitHub trending",
-     "metric": "1.4k★ today (52/h), 9.8k★",
+     "metric": "1.2k★ today (49/h), 12k★",
      "by": ""
     }
    ]
   },
   {
-   "key": "voicestudio",
-   "name": "VoiceStudio",
-   "score": 60.9,
-   "best_vel": 0.897,
-   "families": [
-    "github"
-   ],
-   "n_items": 1,
-   "fit": 1.0,
-   "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "comparison",
-   "angle": "VoiceStudio vs the tool you already use: which to pick for a college project",
-   "why": "GitHub trending: 2.6k★ today (52/h), 92k★",
-   "evidence": [
-    {
-     "title": "debpalash/VoiceStudio",
-     "url": "https://github.com/debpalash/VoiceStudio",
-     "source": "GitHub trending",
-     "metric": "2.6k★ today (52/h), 92k★",
-     "by": "Python"
-    }
-   ]
-  },
-  {
-   "key": "kimi",
-   "name": "Kimi",
-   "score": 58.8,
-   "best_vel": 0.845,
+   "key": "anthropic",
+   "name": "Anthropic",
+   "score": 49.6,
+   "best_vel": 0.765,
    "families": [
     "youtube"
    ],
-   "n_items": 1,
+   "n_items": 2,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
-   "archetype": "comparison",
-   "angle": "Kimi vs the tool you already use: which to pick for a college project",
-   "why": "YouTube search: 2.4k views/h, 8.6k views",
+   "fresh": false,
+   "continuing": true,
+   "archetype": "risk",
+   "angle": "Anthropic: what went wrong, and how to stay safe when you use it",
+   "why": "YouTube channels: 1.2k views/h (6.0× AI Engineer's usual), 15k views; YouTube channels: 810 views/h (2.1× Krish Naik's usual), 27k views",
    "evidence": [
     {
-     "title": "I Tested China's New Model vs Claude Opus 5.5 (Kimi K3.1)",
-     "url": "https://www.youtube.com/watch?v=OBzWl3Bw1JY",
-     "source": "YouTube search (today)",
-     "metric": "2.4k views/h, 8.6k views",
-     "by": "Nick Saraev"
+     "title": "How Anthropic Merges 30,000 Code Changes a Day - Manish Kapur, Sonar & Addy Osmani, Anthropic",
+     "url": "https://www.youtube.com/watch?v=AnsXWH2_EBU",
+     "source": "YouTube channels",
+     "metric": "1.2k views/h (6.0× AI Engineer's usual), 15k views",
+     "by": "AI Engineer"
+    },
+    {
+     "title": "Anthropic IPO Reveals 7 Shocking AI Risks|Is AI Getting Out of Control",
+     "url": "https://www.youtube.com/watch?v=r3EvmbmOuGc",
+     "source": "YouTube channels",
+     "metric": "810 views/h (2.1× Krish Naik's usual), 27k views",
+     "by": "Krish Naik"
     }
    ]
   },
   {
-   "key": "hyperframes",
-   "name": "hyperframes",
-   "score": 58.8,
-   "best_vel": 0.846,
+   "key": "superpowers",
+   "name": "superpowers",
+   "score": 49.0,
+   "best_vel": 0.774,
    "families": [
     "github"
    ],
    "n_items": 1,
    "fit": 1.0,
    "first_seen": "2026-10-28T10:50:00+05:30",
-   "fresh": true,
-   "continuing": false,
+   "fresh": false,
+   "continuing": true,
    "archetype": "trend",
-   "angle": "Why everyone is talking about hyperframes this week, and whether it matters for you",
-   "why": "GitHub trending: 934★ today (45/h), 74k★",
+   "angle": "Why everyone is talking about superpowers this week, and whether it matters for you",
+   "why": "GitHub trending: 1.0k★ today (41/h), 308k★",
    "evidence": [
     {
-     "title": "heygen-com/hyperframes",
-     "url": "https://github.com/heygen-com/hyperframes",
+     "title": "obra/superpowers",
+     "url": "https://github.com/obra/superpowers",
      "source": "GitHub trending",
-     "metric": "934★ today (45/h), 74k★",
-     "by": "TypeScript"
+     "metric": "1.0k★ today (41/h), 308k★",
+     "by": "Shell"
+    }
+   ]
+  },
+  {
+   "key": "langchain",
+   "name": "LangChain",
+   "score": 47.0,
+   "best_vel": 0.75,
+   "families": [
+    "youtube"
+   ],
+   "n_items": 3,
+   "fit": 1.0,
+   "first_seen": "2026-10-28T10:50:00+05:30",
+   "fresh": false,
+   "continuing": false,
+   "archetype": "concept",
+   "angle": "What LangChain actually is, shown on one running example",
+   "why": "YouTube channels: 217 views/h (5.7× LangChain's usual), 4.8k views; YouTube search: 263 views/h, 3.2k views",
+   "evidence": [
+    {
+     "title": "What is LangChain?",
+     "url": "https://www.youtube.com/watch?v=rfhhhmajCKc",
+     "source": "YouTube channels",
+     "metric": "217 views/h (5.7× LangChain's usual), 4.8k views",
+     "by": "LangChain"
+    },
+    {
+     "title": "Do QA Testers Need LangChain & LangGraph in 2026? | AI Agents Explained",
+     "url": "https://www.youtube.com/watch?v=xWaWoFYy0DE",
+     "source": "YouTube search (today)",
+     "metric": "263 views/h, 3.2k views",
+     "by": "The Testing Academy"
     }
    ]
   }
  ],
  "rising": [
   {
-   "term": "ai agent tutorial",
-   "seed": "ai agent",
-   "rank": 4,
-   "url": "https://www.youtube.com/results?search_query=ai+agent+tutorial"
-  },
-  {
-   "term": "mcpe texture pack",
+   "term": "mcpro24fps best settings",
    "seed": "mcp",
-   "rank": 8,
-   "url": "https://www.youtube.com/results?search_query=mcpe+texture+pack"
+   "rank": 2,
+   "url": "https://www.youtube.com/results?search_query=mcpro24fps+best+settings"
   },
   {
-   "term": "claude duet",
+   "term": "chatgpt prompt",
+   "seed": "chatgpt",
+   "rank": 3,
+   "url": "https://www.youtube.com/results?search_query=chatgpt+prompt"
+  },
+  {
+   "term": "ai agents tutorial",
+   "seed": "ai agent",
+   "rank": 3,
+   "url": "https://www.youtube.com/results?search_query=ai+agents+tutorial"
+  },
+  {
+   "term": "deepseek vs chatgpt",
+   "seed": "deepseek",
+   "rank": 3,
+   "url": "https://www.youtube.com/results?search_query=deepseek+vs+chatgpt"
+  },
+  {
+   "term": "cursor not showing on laptop",
+   "seed": "cursor",
+   "rank": 4,
+   "url": "https://www.youtube.com/results?search_query=cursor+not+showing+on+laptop"
+  },
+  {
+   "term": "how to use ai for trading",
+   "seed": "how to use ai",
+   "rank": 4,
+   "url": "https://www.youtube.com/results?search_query=how+to+use+ai+for+trading"
+  },
+  {
+   "term": "claude gameplay",
+   "seed": "claude",
+   "rank": 6,
+   "url": "https://www.youtube.com/results?search_query=claude+gameplay"
+  },
+  {
+   "term": "deepseek v3.2",
+   "seed": "deepseek",
+   "rank": 7,
+   "url": "https://www.youtube.com/results?search_query=deepseek+v3.2"
+  },
+  {
+   "term": "claude youtube agent skill",
+   "seed": "claude",
+   "rank": 8,
+   "url": "https://www.youtube.com/results?search_query=claude+youtube+agent+skill"
+  },
+  {
+   "term": "deepseek ai use in hindi",
+   "seed": "deepseek",
+   "rank": 8,
+   "url": "https://www.youtube.com/results?search_query=deepseek+ai+use+in+hindi"
+  },
+  {
+   "term": "claude cowork",
+   "seed": "claude",
+   "rank": 9,
+   "url": "https://www.youtube.com/results?search_query=claude+cowork"
+  },
+  {
+   "term": "ai agent n8n",
+   "seed": "ai agent",
+   "rank": 9,
+   "url": "https://www.youtube.com/results?search_query=ai+agent+n8n"
+  },
+  {
+   "term": "claude skills",
    "seed": "claude",
    "rank": 10,
-   "url": "https://www.youtube.com/results?search_query=claude+duet"
+   "url": "https://www.youtube.com/results?search_query=claude+skills"
+  },
+  {
+   "term": "chatgpt free subscription",
+   "seed": "chatgpt",
+   "rank": 10,
+   "url": "https://www.youtube.com/results?search_query=chatgpt+free+subscription"
+  },
+  {
+   "term": "ai agents tamil",
+   "seed": "ai agent",
+   "rank": 10,
+   "url": "https://www.youtube.com/results?search_query=ai+agents+tamil"
   }
  ],
- "rising_trends": [],
+ "rising_trends": [
+  {
+   "term": "jensen huang",
+   "geo": "US",
+   "traffic": 200,
+   "url": "https://www.nytimes.com/2026/10/29/us/politics/nvidia-china-jensen-huang-trump.html",
+   "news": "Nvidia Chief Seen as Target of Chinese Spy Plot · Nvidia CEO seen as target of Chinese spy plot · US Officials See Nvidia’s Huang as Target…"
+  },
+  {
+   "term": "cat stock",
+   "geo": "US",
+   "traffic": 200,
+   "url": "https://finance.yahoo.com/technology/ai/articles/caterpillar-tops-estimates-ai-power-103357692.html",
+   "news": "Caterpillar Tops Estimates as AI Power Demand Fuels Growth · Caterpillar Reports Second-Quarter 2026 Results · Dear Caterpillar Stock Fans,…"
+  }
+ ],
  "per_source": {
   "yt_rss": [
    {
-    "title": "Deepseek crushed everyone",
-    "url": "https://www.youtube.com/watch?v=DDZ-a6bAn3Y",
-    "metric": "3.2k views/h (19.1× Matthew Berman's usual), 7.7k views",
+    "title": "Google \"Carbon\" just won everything...",
+    "url": "https://www.youtube.com/watch?v=zhnJo7s91ls",
+    "metric": "6.1k views/h (39.7× Matthew Berman's usual), 70k views",
     "by": "Matthew Berman"
    },
    {
-    "title": "why EVERYONE is copying this",
-    "url": "https://www.youtube.com/watch?v=Ck7wB7pdebQ",
-    "metric": "12k views/h (13.7× NetworkChuck's usual), 275k views",
-    "by": "NetworkChuck"
+    "title": "Microsoft’s exit offer: My Honest advice for Tech Workers",
+    "url": "https://www.youtube.com/watch?v=TfMwWWmwz4g",
+    "metric": "4.5k views/h (36.3× codebasics's usual), 92k views",
+    "by": "codebasics"
    },
    {
-    "title": "Introducing Genie 4",
-    "url": "https://www.youtube.com/watch?v=LOP8ul3KqQI",
-    "metric": "920 views/h (11.7× Google for Developers's usual), 29k views",
+    "title": "Gemini 4 Carbon: The New Frontier",
+    "url": "https://www.youtube.com/watch?v=kMpTBy3g1N0",
+    "metric": "10k views/h (33.4× Prompt Engineering's usual), 175k views",
+    "by": "Prompt Engineering"
+   },
+   {
+    "title": "I Tested The Viral Reverse Engineering Repo",
+    "url": "https://www.youtube.com/watch?v=KlZDeqvD52A",
+    "metric": "2.2k views/h (21.4× Tech With Tim's usual), 48k views",
+    "by": "Tech With Tim"
+   },
+   {
+    "title": "Building real-time vision & edge navigation with Gemini Live",
+    "url": "https://www.youtube.com/watch?v=ID6vEy94j7c",
+    "metric": "1.3k views/h (21.1× Google for Developers's usual), 19k views",
     "by": "Google for Developers"
-   },
-   {
-    "title": "Stop Giving Your Agent Tools. Give It a Sandbox - Mikyo King, Arize AI",
-    "url": "https://www.youtube.com/watch?v=dAoOYFx7ZYw",
-    "metric": "1.4k views/h (9.8× AI Engineer's usual), 15k views",
-    "by": "AI Engineer"
-   },
-   {
-    "title": "This Free Repo Lets Claude Code Build Any Mac App",
-    "url": "https://www.youtube.com/watch?v=gN6wl-OX8-Q",
-    "metric": "1.0k views/h (8.6× Dave Ebbelaar's usual), 34k views",
-    "by": "Dave Ebbelaar"
    }
   ],
   "yt_search": [
    {
-    "title": "Deepseek crushed everyone",
-    "url": "https://www.youtube.com/watch?v=DDZ-a6bAn3Y",
-    "metric": "2.8k views/h (16.9× Matthew Berman's usual), 7.9k views",
-    "by": "Matthew Berman"
+    "title": "Building real-time vision & edge navigation with Gemini Live",
+    "url": "https://www.youtube.com/watch?v=ID6vEy94j7c",
+    "metric": "1.6k views/h (26.4× Google for Developers's usual), 19k views",
+    "by": "Google for Developers"
    },
    {
-    "title": "Sell These 4 Claude Systems for $3700+ Right Now (as a beginner)",
-    "url": "https://www.youtube.com/watch?v=BQJRLZ2q_Ns",
-    "metric": "1.4k views/h (6.0× Nate Herk / AI Automation's usual), 34k views",
-    "by": "Nate Herk | AI Automation"
+    "title": "Functional smart devices using Gemini 4 Argon and Google Antigravity",
+    "url": "https://www.youtube.com/watch?v=pQ_Dnr9Q4k8",
+    "metric": "1.2k views/h (19.3× Google for Developers's usual), 14k views",
+    "by": "Google for Developers"
    },
    {
-    "title": "DeepSeek in Claude Code (and the Engine They Gave Away)",
-    "url": "https://www.youtube.com/watch?v=iN5fscBeTDE",
-    "metric": "112 views/h (5.7× Mervin Praison's usual), 491 views",
-    "by": "Mervin Praison"
+    "title": "DeepSeek's New AI Is An Absolute Monster",
+    "url": "https://www.youtube.com/watch?v=pryCaGv8wuo",
+    "metric": "8.5k views/h (5.3× Two Minute Papers's usual), 102k views",
+    "by": "Two Minute Papers"
    },
    {
-    "title": "OpenAI just found the Universe's cheat code...",
-    "url": "https://www.youtube.com/watch?v=lskEzJ7ixw0",
-    "metric": "3.3k views/h (3.5× Wes Roth's usual), 219k views",
-    "by": "Wes Roth"
+    "title": "The 4 Components of Every Successful AI Second Brain (Build These Now)",
+    "url": "https://www.youtube.com/watch?v=qIWB1yMsqRo",
+    "metric": "447 views/h (3.1× Cole Medin's usual), 5.4k views",
+    "by": "Cole Medin"
    },
    {
-    "title": "Pros Try AI-Cloned Engineering Tools",
-    "url": "https://www.youtube.com/watch?v=DZSYaQmxBLM",
-    "metric": "17k views/h, 870k views",
-    "by": "Linus Tech Tips"
+    "title": "$100M ARR Founder: The Next Big AI Opportunity",
+    "url": "https://www.youtube.com/watch?v=st61aKW8P5A",
+    "metric": "2.4k views/h (2.5× Greg Isenberg's usual), 29k views",
+    "by": "Greg Isenberg"
    }
   ],
   "yt_suggest": [
    {
-    "title": "ai agent tutorial",
-    "url": "https://www.youtube.com/results?search_query=ai+agent+tutorial",
-    "metric": "autocomplete rank 4 for 'ai agent' · new",
+    "title": "mcpro24fps best settings",
+    "url": "https://www.youtube.com/results?search_query=mcpro24fps+best+settings",
+    "metric": "autocomplete rank 2 for 'mcp' · new",
     "by": ""
    },
    {
-    "title": "mcpe texture pack",
-    "url": "https://www.youtube.com/results?search_query=mcpe+texture+pack",
-    "metric": "autocomplete rank 8 for 'mcp' · new",
+    "title": "chatgpt prompt",
+    "url": "https://www.youtube.com/results?search_query=chatgpt+prompt",
+    "metric": "autocomplete rank 3 for 'chatgpt' · new",
     "by": ""
    },
    {
-    "title": "ai agents",
-    "url": "https://www.youtube.com/results?search_query=ai+agents",
-    "metric": "autocomplete rank 1 for 'ai agent'",
+    "title": "ai agents tutorial",
+    "url": "https://www.youtube.com/results?search_query=ai+agents+tutorial",
+    "metric": "autocomplete rank 3 for 'ai agent' · new",
     "by": ""
    },
    {
-    "title": "cursor ai",
-    "url": "https://www.youtube.com/results?search_query=cursor+ai",
-    "metric": "autocomplete rank 1 for 'cursor'",
+    "title": "deepseek vs chatgpt",
+    "url": "https://www.youtube.com/results?search_query=deepseek+vs+chatgpt",
+    "metric": "autocomplete rank 3 for 'deepseek' · new",
     "by": ""
    },
    {
-    "title": "mcpro24fps",
-    "url": "https://www.youtube.com/results?search_query=mcpro24fps",
-    "metric": "autocomplete rank 1 for 'mcp'",
+    "title": "cursor not showing on laptop",
+    "url": "https://www.youtube.com/results?search_query=cursor+not+showing+on+laptop",
+    "metric": "autocomplete rank 4 for 'cursor' · new",
     "by": ""
    }
   ],
   "github": [
    {
-    "title": "Nutlope/hallmark",
-    "url": "https://github.com/Nutlope/hallmark",
-    "metric": "2.8k★ today (67/h), 39k★",
-    "by": "CSS"
+    "title": "pbakaus/impeccable",
+    "url": "https://github.com/pbakaus/impeccable",
+    "metric": "2.9k★ today (119/h), 94k★",
+    "by": "Rust"
    },
    {
-    "title": "affaan-m/ECC",
-    "url": "https://github.com/affaan-m/ECC",
-    "metric": "1.2k★ today (59/h), 291k★",
-    "by": "JavaScript"
+    "title": "vectorize-io/hindsight",
+    "url": "https://github.com/vectorize-io/hindsight",
+    "metric": "1.4k★ today (56/h), 56k★",
+    "by": "Python"
+   },
+   {
+    "title": "milind-soni/OpenMausBot",
+    "url": "https://github.com/milind-soni/OpenMausBot",
+    "metric": "1.2k★ today (50/h), 7.0k★",
+    "by": "TypeScript"
    },
    {
     "title": "elayadesign/ai-design-skills",
     "url": "https://github.com/elayadesign/ai-design-skills",
-    "metric": "1.4k★ today (52/h), 9.8k★",
+    "metric": "1.2k★ today (49/h), 12k★",
     "by": ""
    },
    {
-    "title": "debpalash/VoiceStudio",
-    "url": "https://github.com/debpalash/VoiceStudio",
-    "metric": "2.6k★ today (52/h), 92k★",
-    "by": "Python"
-   },
-   {
-    "title": "makecindy/cindy",
-    "url": "https://github.com/makecindy/cindy",
-    "metric": "1.5k★ today (45/h), 7.6k★",
-    "by": "TypeScript"
+    "title": "obra/superpowers",
+    "url": "https://github.com/obra/superpowers",
+    "metric": "1.0k★ today (41/h), 308k★",
+    "by": "Shell"
    }
   ],
   "hn": [
    {
-    "title": "Raspberry Pi Zero 3W and Pi 4 Model A spotted in device trees",
-    "url": "https://news.ycombinator.com/item?id=50265594",
-    "metric": "130 pts (15/h), 59 comments",
+    "title": "Claude Code regularly sends each background agent’s transcript to its model",
+    "url": "https://news.ycombinator.com/item?id=50284255",
+    "metric": "429 pts (50/h), 161 comments",
     "by": ""
    },
    {
-    "title": "Survival LLM: AI assistant and emergency library that runs on your own computer",
-    "url": "https://news.ycombinator.com/item?id=50264853",
-    "metric": "262 pts (7.4/h), 120 comments",
+    "title": "Gemini 4 Carbon",
+    "url": "https://news.ycombinator.com/item?id=50276792",
+    "metric": "955 pts (50/h), 763 comments",
     "by": ""
    },
    {
-    "title": "Police are using AI to pull over drivers for 'suspicious' behavior",
-    "url": "https://news.ycombinator.com/item?id=50261819",
-    "metric": "365 pts (7.4/h), 279 comments",
+    "title": "Leak Exposes 41,000 Homeland Security Workers–Including Undercover ICE Agents",
+    "url": "https://news.ycombinator.com/item?id=50280864",
+    "metric": "323 pts (22/h), 184 comments",
     "by": ""
    },
    {
-    "title": "Anthropic trained Claude on illegally obtained Stanford professors' books",
-    "url": "https://news.ycombinator.com/item?id=50260814",
-    "metric": "498 pts (7.4/h), 269 comments",
+    "title": "Kentucky man becomes the first humanist granted religious exemption from AI",
+    "url": "https://news.ycombinator.com/item?id=50273396",
+    "metric": "468 pts (21/h), 504 comments",
     "by": ""
    },
    {
-    "title": "Python's experimental JIT to be removed",
-    "url": "https://news.ycombinator.com/item?id=50257419",
-    "metric": "471 pts (0/h), 253 comments",
+    "title": "Dayjob: Tax – evaluating AI agents on 50 professional tax assignments",
+    "url": "https://news.ycombinator.com/item?id=50275626",
+    "metric": "244 pts (12/h), 154 comments",
     "by": ""
    }
   ],
@@ -809,63 +894,76 @@
    {
     "title": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
     "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
-    "metric": "trending 955, 3.4k likes (+7.4/h)",
+    "metric": "trending 884, 3.7k likes (+8.5/h)",
     "by": ""
    },
    {
     "title": "ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF",
     "url": "https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF",
-    "metric": "trending 384, 407 likes",
+    "metric": "trending 410, 461 likes (+1.9/h)",
     "by": ""
    },
    {
     "title": "Qwen/Qwen3.8-27B",
     "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
-    "metric": "trending 325, 19k likes",
+    "metric": "trending 316, 19k likes (+3.2/h)",
+    "by": ""
+   },
+   {
+    "title": "nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
+    "metric": "trending 316, 325 likes",
     "by": ""
    },
    {
     "title": "orcarouter/DeepSeek-V4.1-Flash-1017-abliterated-GGUF",
     "url": "https://huggingface.co/orcarouter/DeepSeek-V4.1-Flash-1017-abliterated-GGUF",
-    "metric": "trending 238, 285 likes",
-    "by": ""
-   },
-   {
-    "title": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
-    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
-    "metric": "trending 187, 195 likes",
+    "metric": "trending 271, 329 likes (+1.6/h)",
     "by": ""
    }
   ],
-  "gtrends": [],
+  "gtrends": [
+   {
+    "title": "jensen huang",
+    "url": "https://trends.google.com/trending?geo=US",
+    "metric": "200+ searches (US)",
+    "by": ""
+   },
+   {
+    "title": "cat stock",
+    "url": "https://trends.google.com/trending?geo=US",
+    "metric": "200+ searches (US)",
+    "by": ""
+   }
+  ],
   "ph": [
    {
-    "title": "OpenRadView",
-    "url": "https://www.producthunt.com/products/openradview",
+    "title": "Kin",
+    "url": "https://www.producthunt.com/products/kin-6",
     "metric": "launched on Product Hunt",
     "by": ""
    },
    {
-    "title": "Paddock",
-    "url": "https://www.producthunt.com/products/paddock-2",
+    "title": "Floot in ChatGPT",
+    "url": "https://www.producthunt.com/products/floot",
     "metric": "launched on Product Hunt",
     "by": ""
    },
    {
-    "title": "Off Grid AI",
-    "url": "https://www.producthunt.com/products/off-grid-ai",
+    "title": "Voxel51 Multimodal",
+    "url": "https://www.producthunt.com/products/voxel51",
     "metric": "launched on Product Hunt",
     "by": ""
    },
    {
-    "title": "PulseDev",
-    "url": "https://www.producthunt.com/products/pulsedev",
+    "title": "Radar",
+    "url": "https://www.producthunt.com/products/radar-7",
     "metric": "launched on Product Hunt",
     "by": ""
    },
    {
-    "title": "Nuvio 5.0",
-    "url": "https://www.producthunt.com/products/nuvio",
+    "title": "Smart Jelly",
+    "url": "https://www.producthunt.com/products/smart-jelly",
     "metric": "launched on Product Hunt",
     "by": ""
    }
@@ -874,58 +972,58 @@
  "status": {
   "yt_rss": {
    "ok": true,
-   "n": 42,
-   "at": "2026-10-28T10:59:11+05:30",
-   "secs": 264.3,
-   "note": "53 channels (0 via RSS, 53 via the Videos tab because RSS answered 404), 42 uploads in 48 h; Shorts are not in the Videos tab, so the fallback misses them"
+   "n": 83,
+   "at": "2026-10-29T17:30:48+05:30",
+   "secs": 91.0,
+   "note": "53 channels (53 via RSS), 83 uploads in 48 h"
   },
   "yt_search": {
    "ok": true,
-   "n": 244,
-   "at": "2026-10-28T11:03:35+05:30",
-   "secs": 77.1,
+   "n": 212,
+   "at": "2026-10-29T17:32:19+05:30",
+   "secs": 73.9,
    "note": "18 queries, uploaded today"
   },
   "yt_suggest": {
    "ok": true,
    "n": 93,
-   "at": "2026-10-28T11:04:53+05:30",
-   "secs": 13.7,
+   "at": "2026-10-29T17:33:33+05:30",
+   "secs": 12.9,
    "note": "10 seeds"
   },
   "github": {
    "ok": true,
-   "n": 39,
-   "at": "2026-10-28T11:05:06+05:30",
+   "n": 31,
+   "at": "2026-10-29T17:33:46+05:30",
    "secs": 9.1,
    "note": "3 trending pages"
   },
   "hn": {
    "ok": true,
-   "n": 58,
-   "at": "2026-10-28T11:05:15+05:30",
-   "secs": 4.6,
+   "n": 61,
+   "at": "2026-10-29T17:33:55+05:30",
+   "secs": 3.8,
    "note": "front page + stories > 50 points in 24 h"
   },
   "hf": {
    "ok": true,
    "n": 60,
-   "at": "2026-10-28T11:05:20+05:30",
-   "secs": 2.9,
+   "at": "2026-10-29T17:33:59+05:30",
+   "secs": 2.8,
    "note": "40 models + 20 spaces"
   },
   "gtrends": {
    "ok": true,
-   "n": 0,
-   "at": "2026-10-28T11:05:23+05:30",
-   "secs": 4.1,
-   "note": "20 trending searches, 0 tech/AI"
+   "n": 2,
+   "at": "2026-10-29T17:34:02+05:30",
+   "secs": 3.7,
+   "note": "20 trending searches, 2 tech/AI"
   },
   "ph": {
    "ok": true,
-   "n": 11,
-   "at": "2026-10-28T11:05:27+05:30",
-   "secs": 1.4,
+   "n": 29,
+   "at": "2026-10-29T17:34:06+05:30",
+   "secs": 1.2,
    "note": "public Atom feed (no votes: a launch mention, no velocity)"
   },
   "instagram": {
@@ -940,6 +1038,7 @@
   }
  },
  "briefs": [
-  "2026-10-28"
+  "2026-10-28",
+  "2026-10-29"
  ]
 }

@@ -37,7 +37,7 @@ for step in "${steps[@]}"; do
     clips)    "$PY" "$STUDIO/tools/build_clips.py" "$SLUG" ;;
     assemble) "$PY" "$STUDIO/tools/assemble.py" "$SLUG" ;;
     check)    grep -q '"engine": *"remotion"' "$P/scenes.json" && { echo "engine remotion: no HyperFrames check (use remotion + RM=1 qa watch)"; continue; }
-              out=$(cd "$P/hf" && npx --yes "$HFV" check 2>&1 | grep -v "npm warn"); echo "$out" | tail -25
+              out=$(cd "$P/hf" && npx --yes "$HFV" check 2>&1 | grep -v "npm warn") || true; { echo "$out" | grep "✗" || true; } | head -20; echo "$out" | tail -8
               echo "$out" | grep -q "Check passed" || { echo "✗ HyperFrames check failed: fix before rendering"; exit 1; } ;;
     payoffs)  grep -q '"engine": *"remotion"' "$P/scenes.json" && { echo "engine remotion: no DOM to check (image-mode payoffs come with qa RM=1)"; continue; }
               node "$STUDIO/tools/payoffs.mjs" "$SLUG" ;;

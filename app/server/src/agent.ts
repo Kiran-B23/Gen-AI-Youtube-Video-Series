@@ -1,6 +1,7 @@
 // Agent sessions over the Claude Agent SDK, under the owner's Claude Code login (no API key: the session is refused if
 // the CLI reports one). query() runs with cwd = the repo and settingSources ["project"], so .claude/skills,
-// .claude/agents and CLAUDE.md load; the model is Claude Code's default. Every tool call that needs permission becomes
+// .claude/agents and CLAUDE.md load; the model is pinned to Claude Opus 5.5 (options.model). Every tool call that needs permission goes
+// through policy.ts first: free, in-folder work runs on its own (logged as an 'auto' approval row); the rest becomes
 // an approval card (canUseTool → SSE → POST), denied by default after 10 minutes. Every SDK message is normalised into
 // the messages table, so the timeline survives reloads; a follow-up message resumes the same SDK session (`resume`).
 //
@@ -8,10 +9,13 @@
 // the model and on the owner's approvals, and a waiting session must not stall a render. Idle sessions (turn finished,
 // waiting for a reply) hold no lock.
 import crypto from "node:crypto";
+import path from "node:path";
 import { EventEmitter } from "node:events";
 import { query, type PermissionResult, type SDKMessage } from "@anthropic-ai/claude-agent-sdk";
 import { FOLDER_RE, PIPELINE_PATH, REPO } from "./config.js";
 import { db, now } from "./db.js";
+import * as policy from "./policy.js";
+import { studioServer } from "./studio-tools.js";
 
 db.exec(`
 CREATE TABLE IF NOT EXISTS packages (
@@ -28,15 +32,19 @@ CREATE TABLE IF NOT EXISTS approvals (
   id TEXT PRIMARY KEY, session_id INTEGER NOT NULL, tool TEXT NOT NULL, summary TEXT NOT NULL, input TEXT NOT NULL,
   status TEXT NOT NULL, created_at TEXT NOT NULL, decided_at TEXT, decided_by TEXT);
 `);
+// the owner's one checkpoint (2026-10-29): the script. run_step is refused until this is set.
+try { db.exec("ALTER TABLE packages ADD COLUMN script_approved_at TEXT"); } catch { /* already there */ }
+try { db.exec("ALTER TABLE sessions ADD COLUMN next TEXT"); } catch { /* already there */ } // the owner's message for after this turn
 // a restart ends the SDK process: the turn that was running is interrupted (a reply resumes it); open approvals die
 db.prepare("UPDATE sessions SET status='interrupted', finished_at=? WHERE status='running'").run(now());
 db.prepare("UPDATE approvals SET status='expired', decided_at=?, decided_by='restart' WHERE status='pending'").run(now());
 
 export type SessionStatus = "queued" | "running" | "idle" | "stopped" | "failed" | "interrupted";
-export interface Pkg { id: number; kind: "package" | "ask"; topic: string; format: string; notes: string; folder: string | null; created_at: string }
+export interface Pkg { id: number; kind: "package" | "ask"; topic: string; format: string; notes: string; folder: string | null; created_at: string; script_approved_at: string | null }
 export interface Session { id: number; package_id: number; sdk_session_id: string | null; status: SessionStatus; pending: string | null;
   queued_at: string | null; started_at: string | null; finished_at: string | null; turns: number; cost_usd: number | null;
-  model: string | null; api_key_source: string | null; error: string | null; created_at: string }
+  model: string | null; api_key_source: string | null; error: string | null; created_at: string;
+  /** the owner's message written while the agent was working: sent as the next turn when this one ends */ next: string | null }
 export interface Msg { seq: number; kind: string; data: any; t: number }
 
 const q = {
@@ -50,6 +58,8 @@ const q = {
   sessionOf: db.prepare("SELECT * FROM sessions WHERE package_id=?"),
   next: db.prepare("SELECT * FROM sessions WHERE status='queued' ORDER BY queued_at, id LIMIT 1"),
   queue: db.prepare("UPDATE sessions SET status='queued', pending=?, queued_at=?, error=NULL WHERE id=?"),
+  setNext: db.prepare("UPDATE sessions SET next=? WHERE id=?"),
+  pkgByFolder: db.prepare("SELECT * FROM packages WHERE folder=? AND kind='package' ORDER BY id DESC LIMIT 1"),
   start: db.prepare("UPDATE sessions SET status='running', pending=NULL, started_at=?, finished_at=NULL WHERE id=?"),
   end: db.prepare("UPDATE sessions SET status=?, finished_at=?, error=? WHERE id=?"),
   meta: db.prepare("UPDATE sessions SET sdk_session_id=COALESCE(?, sdk_session_id), model=COALESCE(?, model), api_key_source=COALESCE(?, api_key_source) WHERE id=?"),
@@ -69,18 +79,37 @@ events.setMaxListeners(100);
 export const getPkg = (id: number) => q.pkg.get(id) as Pkg | undefined;
 export const getSession = (id: number) => q.session.get(id) as Session | undefined;
 export const sessionOf = (pkgId: number) => q.sessionOf.get(pkgId) as Session | undefined;
+/** the agent's last n text messages, newest last (what the simple Video page shows) */
+export const lastTexts = (sid: number, n: number): { text: string; t: number }[] =>
+  (db.prepare("SELECT data, t FROM messages WHERE session_id=? AND kind='text' ORDER BY seq DESC LIMIT ?").all(sid, n) as { data: string; t: number }[])
+    .map((r) => ({ text: String(JSON.parse(r.data).text ?? ""), t: r.t })).reverse();
 export const messagesAfter = (sid: number, seq: number): Msg[] =>
   (q.msgs.all(sid, seq) as { seq: number; kind: string; data: string; t: number }[]).map((m) => ({ ...m, data: JSON.parse(m.data) }));
 export const pendingApprovals = () => q.pendingApprovals.all();
 
 // ---------- the agent's prompt ----------
+/** autopilot (owner, 2026-10-28): the gates are the reviewers, the owner is asked only where policy.ts asks */
+export const AUTOPILOT = [
+  "You are running inside the studio app on autopilot. The owner approves once, at the script; everything else runs without them.",
+  "1. /video-scripter up to the script: research (the research tool for YouTube), brief, content plan, script, hooks, and the script gates (content-plan, script-comprehension, script-review) until they pass. Make the skill's other choices yourself with the defaults; write each one and one line why into the package.",
+  "2. SCRIPT CHECKPOINT. When the script passes its gates, stop your turn and show the owner, in this order: the chosen hook, the read-aloud script, the core message and the running example (from the content plan), and anything you were unsure about. Ask them to press \"Approve script\" or reply with the changes they want. Do not continue before they answer; the build tools are refused until they approve. If they ask for changes, make them, re-run the script gates, and show the script again.",
+  "3. After the approval: finish the package (art direction, animation plan, visual-plan and structure-check gates, storyboard, lint_package.py), then /video-studio: run_step new, write scenes.json and the stage, then run_step validate, voice, clips, assemble, check, payoffs, render, qa, watch, review. No more approvals: voice runs on its own.",
+  `4. When a step fails, read its log and review.md, fix the cause in the package or project, and re-run; at most 3 fix rounds for voice and render (the quick checks get more; assemble is free). If it still fails, stop and report what is wrong. Never loosen a gate (no pace.accept, no fallback, no check:none) to make it pass.`,
+  "5. Stop after review: deliver is the owner's, after watching and listening on a phone. Tick 'Watched end to end' only after reading every watch sheet of the current render; never tick 'Listened on a phone with sound' (the owner's). review.md rows are findings only (no notes about passes or tooling). Finish with: the gates passed, any fix-list rows still open, and what the owner should watch and listen for.",
+  "Your tools: the shell runs in a sandbox with no approvals. It can write only inside productions/ and studio/projects/, cannot read .env files, and reaches only a few free sites (GitHub, Hugging Face, HN, arXiv, npm, PyPI): run lint_package.py there. YouTube research goes through the research tool (mcp__studio__research), never yt_research.py in the shell; read web pages with WebFetch. Every run.sh step goes through run_step (mcp__studio__run_step), never the shell. Write and Edit work in the same folders. Anything else is refused with a reason: say what you needed in your final message instead of working around it.",
+].join("\n");
 export const FORMATS = ["reel"] as const;
 export function promptFor(p: Pkg): string {
   if (p.kind === "ask") return p.topic + (p.notes ? `\n\n${p.notes}` : "");
-  return `/video-scripter ${p.topic}\n\nFormat: ${p.format}.${p.notes ? `\nNotes from the owner: ${p.notes}` : ""}\n\n` +
-    "You are running inside the studio app (an approval card is shown for every tool that needs permission). " +
-    "Stop and ask in words wherever the skill asks the owner to approve something (the hook, the content plan, the animation plan); " +
-    "the owner answers in the next message.";
+  return `/video-scripter ${p.topic}\n\nFormat: ${p.format}.${p.notes ? `\nNotes from the owner: ${p.notes}` : ""}\n\nRun on autopilot (see the system prompt).`;
+}
+
+/** the owner's script approval: unlocks run_step; an idle session continues on its own */
+export function approveScript(pkgId: number): Session | null {
+  db.prepare("UPDATE packages SET script_approved_at=? WHERE id=? AND script_approved_at IS NULL").run(now(), pkgId);
+  const s = sessionOf(pkgId);
+  if (!s || !s.sdk_session_id || !["idle", "interrupted", "stopped", "failed"].includes(s.status)) return s ?? null;
+  return reply(s.id, "The owner approved the script. Continue on autopilot to the end (step 3 onwards): no more approvals.");
 }
 
 export function createPackage(kind: Pkg["kind"], topic: string, format: string, notes: string, folder: string | null) {
@@ -157,6 +186,32 @@ function blockText(c: any): string {
 
 // ---------- approvals ----------
 const TIMEOUT_MS = 10 * 60 * 1000;
+const ctxs = new Map<number, policy.Ctx>(); // per session: how often each run_step ran (the fix-round cap)
+function logAuto(sid: number, tool: string, input: Record<string, unknown>, status: "auto" | "refused", reason: string) {
+  db.prepare("INSERT INTO approvals (id, session_id, tool, summary, input, status, created_at, decided_at, decided_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+    .run(crypto.randomUUID(), sid, tool, summarize(tool, input), cut(JSON.stringify(input), 20000), status, now(), now(), `policy: ${reason}`);
+}
+async function gate(sid: number, tool: string, input: Record<string, unknown>, opts: Parameters<typeof askOwner>[3]): Promise<PermissionResult> {
+  const ctx = ctxs.get(sid) ?? { runs: new Map() };
+  ctxs.set(sid, ctx);
+  const pkg = getPkg(getSession(sid)?.package_id ?? -1);
+  const v: policy.Verdict = tool === "mcp__studio__run_step" && pkg?.kind === "package" && !pkg.script_approved_at
+    ? { decision: "deny", reason: "the owner hasn't approved the script yet. Stop now: show the hook, the read-aloud script and the plan, and ask them to press Approve script or reply with changes" }
+    : policy.decide(tool, input, ctx);
+  if (v.decision === "deny") {
+    logAuto(sid, tool, input, "refused", v.reason);
+    addMsg(sid, "system", { text: `refused ${tool}: ${v.reason}` });
+    return { behavior: "deny", message: `Refused on autopilot: ${v.reason}.` };
+  }
+  if (v.decision === "ask") {
+    const r = await askOwner(sid, tool, input, { ...opts, decisionReason: v.reason });
+    if (r.behavior === "allow") policy.counted(tool, input, ctx);
+    return r;
+  }
+  logAuto(sid, tool, input, "auto", v.reason);
+  policy.counted(tool, input, ctx);
+  return { behavior: "allow", updatedInput: input };
+}
 const waiters = new Map<string, { resolve: (r: PermissionResult) => void; timer: NodeJS.Timeout; sid: number; input: Record<string, unknown> }>();
 
 function askOwner(sid: number, tool: string, input: Record<string, unknown>, opts: { signal: AbortSignal; title?: string; description?: string;
@@ -214,11 +269,21 @@ export function reply(sid: number, text: string): Session {
   if (!s) throw new AgentError(404, "no such session");
   const t = text.trim();
   if (!t) throw new AgentError(400, "empty message");
-  if (s.status === "running") throw new AgentError(409, "the agent is still working: wait for its turn to end (or stop it), then reply");
-  if (s.status === "queued") throw new AgentError(409, "this session is already queued");
+  if (s.status === "running" || s.status === "queued") {
+    // the agent is busy: keep the message and send it as the next turn (several messages join, in order)
+    q.setNext.run(s.next ? `${s.next}\n\n${t}` : t, sid); emitStatus(sid);
+    return getSession(sid)!;
+  }
+  ctxs.delete(sid); // the owner replied: a fix loop that hit its cap gets a fresh set of rounds
   if (!s.sdk_session_id) throw new AgentError(409, "the session has not started yet: press Start");
   q.queue.run(t, now(), sid); emitStatus(sid); setImmediate(pump);
   return getSession(sid)!;
+}
+
+/** the package session that built a studio project (scenes.json "package": "productions/<folder>") */
+export function sessionForFolder(folder: string): { pkg: Pkg; session: Session | null } | null {
+  const pkg = q.pkgByFolder.get(folder) as Pkg | undefined;
+  return pkg ? { pkg, session: sessionOf(pkg.id) ?? null } : null;
 }
 
 export function stop(sid: number): boolean {
@@ -240,6 +305,8 @@ function agentEnv(): Record<string, string> {
   const env: Record<string, string> = {};
   for (const [k, v] of Object.entries(process.env)) if (v !== undefined) env[k] = v;
   for (const k of ["ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "CLAUDE_CODE_USE_BEDROCK", "CLAUDE_CODE_USE_VERTEX", "APP_PASSWORD"]) delete env[k];
+  for (const k of Object.keys(env)) if (/(API_KEY|_TOKEN|SECRET|PASSWORD)$/i.test(k)) delete env[k]; // no keys at all: paid steps run in the app
+  env.ENABLE_CLAUDEAI_MCP_SERVERS = "false"; // no claude.ai connectors on autopilot
   env.PATH = PIPELINE_PATH;
   return env;
 }
@@ -261,13 +328,26 @@ async function run(s: Session) {
       prompt,
       options: {
         cwd: REPO,
+        // pinned (owner, 2026-10-30): the gate agents in .claude/agents name no model, so they inherit this one too
+        model: "claude-opus-5-5",
         settingSources: ["project"],     // .claude/settings.json, .claude/skills, .claude/agents, CLAUDE.md
-        permissionMode: "default",        // manual approvals through canUseTool (not auto mode's classifier)
+        permissionMode: "default",        // tool calls that need permission go to canUseTool → policy.ts
+        // The boundary: Bash always runs in a bubblewrap sandbox, with no way out, and needs no approval there. It can
+        // write only inside productions/ and studio/projects/, can't read secrets, and reaches only the research sites.
+        // Pipeline steps go through the studio MCP tool (run_step → the app's build queue, outside the sandbox).
+        sandbox: {
+          enabled: true, failIfUnavailable: true, autoAllowBashIfSandboxed: true, allowUnsandboxedCommands: false,
+          filesystem: { denyWrite: policy.sandboxDenyWrite(), denyRead: policy.sandboxDenyRead() },
+          network: { allowedDomains: policy.RESEARCH_DOMAINS },
+        },
+        mcpServers: { studio: studioServer },
+        strictMcpConfig: true,            // only the studio tools: no connectors from the owner's own config
+        systemPrompt: { type: "preset", preset: "claude_code", append: AUTOPILOT }, // resumed sessions get it too
         resume: s.sdk_session_id ?? undefined,
         abortController: abort,
         env: agentEnv(),
         disallowedTools: ["AskUserQuestion"], // the agent asks in words; the owner answers in the composer
-        canUseTool: (tool, input, opts) => askOwner(s.id, tool, input, opts),
+        canUseTool: (tool, input, opts) => gate(s.id, tool, input, opts),
         stderr: (d: string) => { if (/error/i.test(d)) addMsg(s.id, "stderr", { text: cut(d.trim(), 2000) }); },
       },
     });
@@ -281,7 +361,10 @@ async function run(s: Session) {
     for (const [id, w] of waiters) if (w.sid === s.id) decide(id, "aborted", "turn ended");
     const now_ = getSession(s.id)!;
     if (failed) { q.end.run("failed", now(), failed, s.id); addMsg(s.id, "error", { text: failed }); }
-    else if (now_.status !== "stopped") q.end.run("idle", now(), null, s.id);
+    else if (now_.status !== "stopped") {
+      q.end.run("idle", now(), null, s.id);
+      if (now_.next) { q.setNext.run(null, s.id); ctxs.delete(s.id); q.queue.run(now_.next, now(), s.id); } // the owner's queued follow-up
+    }
     else addMsg(s.id, "system", { text: "stopped by the owner" });
     active = null;
     emitStatus(s.id);

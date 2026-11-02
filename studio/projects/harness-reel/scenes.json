@@ -1,0 +1,956 @@
+{
+  "slug": "harness-reel",
+  "package": "productions/2026-10-19-harness-engineering-reel",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/fresh-focus",
+  "flat": true,
+  "padSeconds": 0.3,
+  "names": [
+    "LangChain",
+    "agents dot M D"
+  ],
+  "keywords": [
+    "Done",
+    "harness",
+    "guides",
+    "checks",
+    "hook",
+    "Green",
+    "same",
+    "mistake"
+  ],
+  "voice": {
+    "engine": "gemini",
+    "model": "gemini-2.5-flash-preview-tts",
+    "name": "Puck",
+    "style": "You are a senior engineer showing a curious developer friend a trick that fixes their coding agent: curious and delighted, warm, clear global English. Calm pace, about 2.3 words per second, never rushed; a real pause at every full stop and a short breath at every comma. Open with gentle irony: 'Your coding agent says, Done.' then a beat, 'The test says it isn't.' Slow down on 'The fix might not be a smarter model.' Brisk and light on the failure: 'writes the code, re-reads it, decides it looks fine, and stops.' Land 'The test? Never even ran.' dry and quiet. The line 'a short file it reads first, named agents dot M D.' must end with all three words 'dot', 'M', 'D' spoken separately and clearly, like spelling a file name: 'agents... dot... M... D.' Never skip or shorten them. Say 'LangChain' as Lang-Chain. Slow and clear on the numbers: 'fifty-two point eight percent', then a beat, 'Now? Sixty-six point five.' Matter-of-fact on 'That's their own agent, measured by them.' Take a breath before 'One catch' and say it calmly, never alarmed. Practical and warm on the habit and the recap. Smile on the last line. Read every word exactly as written. Never hyped, never robotic.",
+    "minPause": {
+      "sentence": 0.75,
+      "comma": 0.3
+    },
+    "respell": {
+      "dot M D": "dot, em, dee"
+    }
+  },
+  "stage": {
+    "kit": "reference-flat",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "type": "stage",
+      "section": "light",
+      "say": "Your coding agent says, \"Done.\" The test says it isn't. The fix might not be a smarter model.",
+      "beats": [
+        {
+          "word": "Done",
+          "target": "done",
+          "check": "motion",
+          "sfx": "stamp"
+        },
+        {
+          "word": "test",
+          "target": "xm",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "isn't",
+          "target": "red",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "fix",
+          "target": "slot",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "smarter",
+          "target": "pill",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "model",
+          "target": "smart",
+          "check": "motion",
+          "sfx": "none"
+        }
+      ],
+      "beat": 1,
+      "source": "S5",
+      "pad": 0.65
+    },
+    {
+      "id": "s02",
+      "type": "stage",
+      "section": "dark",
+      "say": "The task? A password-reset button.",
+      "beats": [
+        {
+          "word": "task",
+          "target": "title",
+          "check": "motion",
+          "sfx": "key"
+        },
+        {
+          "word": "A",
+          "target": "tag",
+          "check": "reveal",
+          "sfx": "pop",
+          "offset": 0.1
+        }
+      ],
+      "beat": 2
+    },
+    {
+      "id": "s03",
+      "type": "stage",
+      "section": "dark",
+      "say": "The agent writes the code, re-reads it, decides it looks fine, and stops.",
+      "beats": [
+        {
+          "word": "agent",
+          "target": "caret",
+          "check": "reveal",
+          "sfx": "blip"
+        },
+        {
+          "word": "writes",
+          "target": "code",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "re-reads",
+          "target": "scan",
+          "check": "motion",
+          "sfx": "tick",
+          "cam": [
+            400,
+            470,
+            1.3
+          ],
+          "camDur": 0.7
+        },
+        {
+          "word": "fine",
+          "target": "fine",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            840,
+            1
+          ],
+          "camDur": 0.6
+        },
+        {
+          "word": "stops",
+          "target": "stops",
+          "check": "motion",
+          "sfx": "stamp"
+        },
+        {
+          "word": "stops",
+          "target": "row",
+          "check": "reveal",
+          "sfx": "none",
+          "offset": 0.25
+        }
+      ],
+      "beat": 3,
+      "source": "S5"
+    },
+    {
+      "id": "s04",
+      "type": "stage",
+      "section": "dark",
+      "say": "The test? Never even ran.",
+      "beats": [
+        {
+          "word": "test",
+          "target": "test",
+          "check": "motion",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "Never",
+          "target": "never",
+          "check": "motion",
+          "sfx": "tick",
+          "cam": [
+            540,
+            960,
+            1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "ran",
+          "target": "ran",
+          "check": "reveal",
+          "sfx": "stamp"
+        }
+      ],
+      "beat": 4,
+      "source": "S5",
+      "pad": 0.65
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "section": "blue",
+      "say": "Agent equals model plus harness.",
+      "beats": [
+        {
+          "word": "Agent",
+          "target": "legA",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "model",
+          "target": "ring",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "harness",
+          "target": "outline",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            505,
+            840,
+            1.1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "harness",
+          "target": "legH",
+          "check": "reveal",
+          "sfx": "none",
+          "offset": 0.3
+        }
+      ],
+      "beat": 5,
+      "source": "S6"
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "section": "blue",
+      "say": "The harness is everything around the model: what it reads first, what checks its work after.",
+      "beats": [
+        {
+          "word": "everything",
+          "target": "dash",
+          "check": "reveal",
+          "sfx": "tick",
+          "cam": [
+            540,
+            800,
+            1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "reads",
+          "target": "lb",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "first",
+          "target": "ain",
+          "check": "reveal",
+          "sfx": "blip"
+        },
+        {
+          "word": "checks",
+          "target": "la",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "after",
+          "target": "aout",
+          "check": "reveal",
+          "sfx": "blip",
+          "cam": [
+            540,
+            840,
+            1
+          ],
+          "camDur": 1.5
+        }
+      ],
+      "beat": 6,
+      "source": "S3",
+      "pad": 0.65,
+      "pauseAfter": [
+        "harness"
+      ]
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "section": "yellow",
+      "say": "First, the guides: a short file it reads first, named agents dot M D.",
+      "beats": [
+        {
+          "word": "guides",
+          "target": "tg",
+          "check": "visible",
+          "sfx": "pop"
+        },
+        {
+          "word": "file",
+          "target": "doc",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            505,
+            840,
+            1.1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "reads",
+          "target": "adoc",
+          "check": "motion",
+          "sfx": "blip"
+        },
+        {
+          "word": "agents",
+          "target": "fn",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "dot",
+          "target": "md",
+          "check": "reveal",
+          "sfx": "key"
+        }
+      ],
+      "beat": 7,
+      "source": "S2"
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "section": "yellow",
+      "say": "A map, not a manual. Add one line: run the tests before you say done.",
+      "beats": [
+        {
+          "word": "map",
+          "target": "toc",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "manual",
+          "target": "stack",
+          "check": "motion",
+          "sfx": "whoosh",
+          "cam": [
+            560,
+            820,
+            1.1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "line",
+          "target": "nl",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "before",
+          "target": "mk",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "done",
+          "target": "home",
+          "check": "none",
+          "sfx": "none"
+        }
+      ],
+      "beat": 8,
+      "source": "S2",
+      "pad": 0.65
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "section": "light",
+      "say": "But nobody checks that rule. Second: the checks.",
+      "beats": [
+        {
+          "word": "nobody",
+          "target": "c1",
+          "check": "reveal",
+          "sfx": "tick",
+          "cam": [
+            540,
+            920,
+            1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "rule",
+          "target": "q",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "Second",
+          "target": "tc",
+          "check": "reveal",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "checks",
+          "target": "tct",
+          "check": "reveal",
+          "sfx": "pop",
+          "nth": 1
+        }
+      ],
+      "beat": 9,
+      "source": "S3"
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "section": "light",
+      "say": "Add a hook: a command your agent tool runs on its own. Now the test runs every time it says done.",
+      "beats": [
+        {
+          "word": "hook",
+          "target": "hook",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            505,
+            840,
+            1.1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "command",
+          "target": "htxt",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "tool",
+          "target": "play",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "own",
+          "target": "spin",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "test",
+          "target": "c2",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "every",
+          "target": "gh",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "done",
+          "target": "fire",
+          "check": "motion",
+          "sfx": "stamp",
+          "cam": [
+            540,
+            840,
+            1
+          ],
+          "camDur": 1.5
+        }
+      ],
+      "beat": 10,
+      "source": "S7",
+      "pauseAfter": [
+        "command",
+        "time"
+      ]
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "section": "light",
+      "say": "Red. The error, with a fix hint, goes straight back to the agent.",
+      "beats": [
+        {
+          "word": "Red",
+          "target": "red",
+          "check": "motion",
+          "sfx": "pop",
+          "cam": [
+            510,
+            860,
+            1.1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "error",
+          "target": "err",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "hint",
+          "target": "hint",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "back",
+          "target": "back",
+          "check": "motion",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "agent",
+          "target": "ring",
+          "check": "motion",
+          "sfx": "blip"
+        }
+      ],
+      "beat": 11,
+      "source": "S3",
+      "pauseAfter": [
+        "back",
+        "error"
+      ]
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "section": "light",
+      "say": "The agent fixes the code and re-runs. Green.",
+      "beats": [
+        {
+          "word": "fixes",
+          "target": "fix",
+          "check": "motion",
+          "sfx": "key"
+        },
+        {
+          "word": "re-runs",
+          "target": "rerun",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "Green",
+          "target": "ok",
+          "check": "reveal",
+          "sfx": "ding",
+          "cam": [
+            540,
+            840,
+            1
+          ],
+          "camDur": 1.5
+        }
+      ],
+      "beat": 12,
+      "source": "S5"
+    },
+    {
+      "id": "s13",
+      "type": "stage",
+      "section": "light",
+      "say": "Now the test passes, so \"Done\" means something.",
+      "beats": [
+        {
+          "word": "Now",
+          "target": "now",
+          "check": "motion",
+          "sfx": "none"
+        },
+        {
+          "word": "passes",
+          "target": "pass",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "Done",
+          "target": "done",
+          "check": "motion",
+          "sfx": "stamp",
+          "cam": [
+            540,
+            780,
+            1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "means",
+          "target": "glow",
+          "check": "motion",
+          "sfx": "none"
+        }
+      ],
+      "beat": 13,
+      "source": "S3",
+      "pad": 0.65,
+      "pauseAfter": [
+        "Now"
+      ]
+    },
+    {
+      "id": "s14",
+      "type": "stage",
+      "section": "dark",
+      "say": "Does it matter? The team behind LangChain, an agent framework, kept the same model, and changed only the harness.",
+      "beats": [
+        {
+          "word": "Does",
+          "target": "dock",
+          "check": "motion",
+          "sfx": "whoosh"
+        },
+        {
+          "word": "matter",
+          "target": "pr",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "LangChain",
+          "target": "lc",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "framework",
+          "target": "lcf",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "same",
+          "target": "same",
+          "check": "reveal",
+          "sfx": "stamp",
+          "cam": [
+            500,
+            900,
+            1.08
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "changed",
+          "target": "old",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "harness",
+          "target": "newh",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "beat": 14,
+      "source": "S5"
+    },
+    {
+      "id": "s15",
+      "type": "stage",
+      "section": "dark",
+      "say": "They say their agent used to solve fifty-two point eight percent of a benchmark's tasks.",
+      "beats": [
+        {
+          "word": "They",
+          "target": "leg",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "used",
+          "target": "used",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "solve",
+          "target": "n1",
+          "check": "reveal",
+          "sfx": "tick",
+          "offset": 1.03
+        },
+        {
+          "word": "of",
+          "target": "n1l",
+          "check": "motion",
+          "sfx": "ding",
+          "offset": -0.44
+        },
+        {
+          "word": "tasks",
+          "target": "ts",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            500,
+            960,
+            1.08
+          ],
+          "camDur": 1.5
+        }
+      ],
+      "beat": 15,
+      "source": "S5",
+      "pauseAfter": [
+        "solve"
+      ]
+    },
+    {
+      "id": "s16",
+      "type": "stage",
+      "section": "dark",
+      "say": "Now? Sixty-six point five. That's their own agent, measured by them.",
+      "beats": [
+        {
+          "word": "Now",
+          "target": "n2",
+          "check": "reveal",
+          "sfx": "tick",
+          "offset": 1.23
+        },
+        {
+          "word": "That's",
+          "target": "n2l",
+          "check": "motion",
+          "sfx": "ding",
+          "offset": -0.75
+        },
+        {
+          "word": "own",
+          "target": "own",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "measured",
+          "target": "home",
+          "check": "none",
+          "sfx": "none",
+          "cam": [
+            540,
+            840,
+            1
+          ],
+          "camDur": 1.5
+        }
+      ],
+      "beat": 15,
+      "source": "S5",
+      "pad": 0.65
+    },
+    {
+      "id": "s17",
+      "type": "stage",
+      "section": "blue",
+      "say": "The habit: every mistake becomes a rule it reads, or a check it must pass.",
+      "beats": [
+        {
+          "word": "mistake",
+          "target": "mc",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "rule",
+          "target": "nr",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "check",
+          "target": "nc",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "pass",
+          "target": "thick",
+          "check": "motion",
+          "sfx": "tick"
+        }
+      ],
+      "beat": 16,
+      "source": "S1",
+      "pauseAfter": [
+        "mistake",
+        "reads"
+      ]
+    },
+    {
+      "id": "s18",
+      "type": "stage",
+      "section": "blue",
+      "say": "One catch. Green only means your checks passed. So write or review the test yourself.",
+      "beats": [
+        {
+          "word": "catch",
+          "target": "crow",
+          "check": "motion",
+          "sfx": "whoosh",
+          "cam": [
+            510,
+            840,
+            1.15
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "only",
+          "target": "eq",
+          "check": "reveal",
+          "sfx": "key"
+        },
+        {
+          "word": "passed",
+          "target": "verd",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "word": "write",
+          "target": "pen",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "review",
+          "target": "mk",
+          "check": "motion",
+          "sfx": "tick"
+        },
+        {
+          "word": "yourself",
+          "target": "ul",
+          "check": "motion",
+          "sfx": "tick",
+          "cam": [
+            540,
+            840,
+            1
+          ],
+          "camDur": 1.5
+        }
+      ],
+      "beat": 17,
+      "source": "S3",
+      "pad": 0.65
+    },
+    {
+      "id": "s19",
+      "type": "stage",
+      "section": "yellow",
+      "say": "A map before. A check after. Every mistake, a new rule.",
+      "beats": [
+        {
+          "word": "map",
+          "target": "r1",
+          "check": "visible",
+          "sfx": "pop"
+        },
+        {
+          "word": "check",
+          "target": "r2",
+          "check": "reveal",
+          "sfx": "pop",
+          "cam": [
+            540,
+            900,
+            1
+          ],
+          "camDur": 1.5
+        },
+        {
+          "word": "mistake",
+          "target": "r3m",
+          "check": "reveal",
+          "sfx": "tick"
+        },
+        {
+          "word": "rule",
+          "target": "r3",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "beat": 18,
+      "pad": 0.65
+    },
+    {
+      "id": "s20",
+      "type": "stage",
+      "section": "dark",
+      "say": "What should I explain next? Tell me below.",
+      "beats": [
+        {
+          "word": "What",
+          "target": "q1",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "next",
+          "target": "q2",
+          "check": "reveal",
+          "sfx": "pop"
+        },
+        {
+          "word": "below",
+          "target": "fol",
+          "check": "reveal",
+          "sfx": "pop"
+        }
+      ],
+      "beat": 19,
+      "pauseAfter": [
+        "explain"
+      ]
+    }
+  ]
+}

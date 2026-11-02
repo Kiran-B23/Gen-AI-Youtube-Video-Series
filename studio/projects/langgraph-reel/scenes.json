@@ -1,800 +1,825 @@
 {
- "slug": "langgraph-reel",
- "format": "reel",
- "size": [
-  1080,
-  1920
- ],
- "music": "cc0/inventing-flight",
- "padSeconds": 0.45,
- "names": [
-  "LangGraph",
-  "LangChain",
-  "checkpointer",
-  "interrupt"
- ],
- "keywords": [
-  "LangGraph",
-  "nodes",
-  "edges",
-  "checkpoints",
-  "state",
-  "interrupt",
-  "approve",
-  "twice"
- ],
- "voice": {
-  "engine": "gemini",
-  "model": "gemini-2.5-flash-preview-tts",
-  "name": "Sadaltager",
-  "style": "You are a friendly senior engineer showing a curious developer how a magic trick is really done: what LangGraph adds to an AI agent. Talk, don't read: calm, clear teaching delivery with real pitch movement, about two and a half words per second, short natural pauses between steps. Open with real urgency on 'Your AI agent just refunded a customer', then a beat, and land 'Nobody approved it' flatly, like bad news. Read the customer's email, 'I was charged twice', like quoting a real message. Keep 'Step one, step two, step three' crisp and brisk. Slow down on the reveal: 'the whole graph stops' and 'It waits until someone answers' should feel like a held breath. Smile on 'Approved by you.' Take a short breath before 'Now, here's the catch' and say the catch calmly and seriously, never scary. Warm on the recap. Say LangGraph as 'Lang Graph' and LangChain as 'Lang Chain'. Clear, global English. Never hyped, never robotic. Read every word exactly as written."
- },
- "sections": {
-  "dark": {
-   "bg": "#0B1020",
-   "bg2": "#0B1020",
-   "text": "#FFFFFF",
-   "dim": "rgba(255,255,255,0.62)",
-   "accent": "#FFD23F",
-   "accent2": "#7B8CFF",
-   "card": "rgba(255,255,255,0.08)",
-   "line": "rgba(255,255,255,0.22)",
-   "danger": "#FF4D5E",
-   "ok": "#2ED3A0"
+  "slug": "langgraph-reel",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/inventing-flight",
+  "padSeconds": 0.45,
+  "names": [
+    "LangGraph",
+    "LangChain",
+    "checkpointer",
+    "interrupt"
+  ],
+  "keywords": [
+    "LangGraph",
+    "nodes",
+    "edges",
+    "checkpoints",
+    "state",
+    "interrupt",
+    "approve",
+    "twice"
+  ],
+  "voice": {
+    "engine": "gemini",
+    "model": "gemini-2.5-flash-preview-tts",
+    "name": "Sadaltager",
+    "style": "You are a friendly senior engineer showing a curious developer how a magic trick is really done: what LangGraph adds to an AI agent. Talk, don't read: calm, clear teaching delivery with real pitch movement, about two and a half words per second, short natural pauses between steps. Open with real urgency on 'Your AI agent just refunded a customer', then a beat, and land 'Nobody approved it' flatly, like bad news. Read the customer's email, 'I was charged twice', like quoting a real message. Keep 'Step one, step two, step three' crisp and brisk. Slow down on the reveal: 'the whole graph stops' and 'It waits until someone answers' should feel like a held breath. Smile on 'Approved by you.' Take a short breath before 'Now, here's the catch' and say the catch calmly and seriously, never scary. Warm on the recap. Say LangGraph as 'Lang Graph' and LangChain as 'Lang Chain'. Clear, global English. Never hyped, never robotic. Read every word exactly as written."
   },
-  "blue": {
-   "bg": "#2B3BE0",
-   "bg2": "#2B3BE0",
-   "text": "#FFFFFF",
-   "dim": "rgba(255,255,255,0.70)",
-   "accent": "#FFD23F",
-   "accent2": "#C9D0FF",
-   "card": "rgba(255,255,255,0.12)",
-   "line": "rgba(255,255,255,0.35)",
-   "danger": "#FF4D5E",
-   "ok": "#2ED3A0"
-  },
-  "light": {
-   "bg": "#EEF1F6",
-   "bg2": "#EEF1F6",
-   "text": "#0B1020",
-   "dim": "rgba(11,16,32,0.55)",
-   "accent": "#2B3BE0",
-   "accent2": "#2B3BE0",
-   "card": "#FFFFFF",
-   "line": "rgba(11,16,32,0.85)",
-   "danger": "#E5364A",
-   "ok": "#14B87A"
-  },
-  "yellow": {
-   "bg": "#FFD23F",
-   "bg2": "#FFD23F",
-   "text": "#0B1020",
-   "dim": "rgba(11,16,32,0.62)",
-   "accent": "#2B3BE0",
-   "accent2": "#0B1020",
-   "card": "#FFFFFF",
-   "line": "rgba(11,16,32,0.85)",
-   "danger": "#E5364A",
-   "ok": "#0B1020"
-  }
- },
- "flat": true,
- "stage": {
-  "kit": "reference-flat",
-  "html": "stage/stage.html",
-  "css": "stage/stage.css",
-  "js": "stage/stage.js"
- },
- "scenes": [
-  {
-   "id": "s01",
-   "type": "stage",
-   "section": "dark",
-   "say": "Your AI agent just refunded a customer. Nobody approved it.",
-   "beats": [
-    {
-     "target": "refund",
-     "word": "refunded",
-     "offset": -0.05,
-     "sfx": "pop"
+  "sections": {
+    "dark": {
+      "bg": "#0B1020",
+      "bg2": "#0B1020",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.62)",
+      "accent": "#FFD23F",
+      "accent2": "#7B8CFF",
+      "card": "rgba(255,255,255,0.08)",
+      "line": "rgba(255,255,255,0.22)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
     },
-    {
-     "target": "nobody",
-     "word": "Nobody",
-     "offset": -0.1,
-     "sfx": "stamp"
+    "blue": {
+      "bg": "#2B3BE0",
+      "bg2": "#2B3BE0",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.70)",
+      "accent": "#FFD23F",
+      "accent2": "#C9D0FF",
+      "card": "rgba(255,255,255,0.12)",
+      "line": "rgba(255,255,255,0.35)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
     },
-    {
-     "target": "approved",
-     "word": "approved"
+    "light": {
+      "bg": "#EEF1F6",
+      "bg2": "#EEF1F6",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.55)",
+      "accent": "#2B3BE0",
+      "accent2": "#2B3BE0",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#14B87A"
+    },
+    "yellow": {
+      "bg": "#FFD23F",
+      "bg2": "#FFD23F",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.62)",
+      "accent": "#2B3BE0",
+      "accent2": "#0B1020",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#0B1020"
     }
-   ],
-   "source": "S5",
-   "pad": 0.65
   },
-  {
-   "id": "s02",
-   "type": "stage",
-   "section": "blue",
-   "say": "Here's the email it got. I was charged twice.",
-   "beats": [
-    {
-     "target": "email",
-     "word": "email",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "charged",
-     "word": "charged"
-    },
-    {
-     "target": "twice",
-     "word": "twice"
-    }
-   ]
+  "flat": true,
+  "stage": {
+    "kit": "reference-flat",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
   },
-  {
-   "id": "s03",
-   "type": "stage",
-   "section": "blue",
-   "say": "Most agents are a loop. The model picks a tool, reads the result, and goes again until it's done.",
-   "beats": [
+  "scenes": [
     {
-     "target": "loop",
-     "word": "loop",
-     "offset": -0.05,
-     "sfx": "tick"
+      "id": "s01",
+      "type": "stage",
+      "section": "dark",
+      "say": "Your AI agent just refunded a customer. Nobody approved it.",
+      "beats": [
+        {
+          "target": "refund",
+          "word": "refunded",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "nobody",
+          "word": "Nobody",
+          "offset": -0.1,
+          "sfx": "stamp"
+        },
+        {
+          "target": "approved",
+          "word": "approved"
+        },
+        {
+          "word": "AI",
+          "target": "w2",
+          "check": "reveal",
+          "sfx": "none"
+        },
+        {
+          "word": "agent",
+          "target": "w3",
+          "check": "reveal",
+          "sfx": "none"
+        },
+        {
+          "word": "just",
+          "target": "w4",
+          "check": "reveal",
+          "sfx": "none"
+        },
+        {
+          "word": "customer",
+          "target": "w6",
+          "check": "reveal",
+          "sfx": "none"
+        }
+      ],
+      "source": "S5",
+      "pad": 0.65,
+      "captions": false
     },
     {
-     "target": "picks",
-     "word": "picks",
-     "sfx": "tick"
+      "id": "s02",
+      "type": "stage",
+      "section": "blue",
+      "say": "Here's the email it got. I was charged twice.",
+      "beats": [
+        {
+          "target": "email",
+          "word": "email",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "charged",
+          "word": "charged"
+        },
+        {
+          "target": "twice",
+          "word": "twice"
+        }
+      ]
     },
     {
-     "target": "reads",
-     "word": "reads",
-     "sfx": "tick"
+      "id": "s03",
+      "type": "stage",
+      "section": "blue",
+      "say": "Most agents are a loop. The model picks a tool, reads the result, and goes again until it's done.",
+      "beats": [
+        {
+          "target": "loop",
+          "word": "loop",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "picks",
+          "word": "picks",
+          "sfx": "tick"
+        },
+        {
+          "target": "reads",
+          "word": "reads",
+          "sfx": "tick"
+        },
+        {
+          "target": "again",
+          "word": "again"
+        },
+        {
+          "target": "done",
+          "word": "done",
+          "sfx": "ding"
+        }
+      ]
     },
     {
-     "target": "again",
-     "word": "again"
+      "id": "s04",
+      "type": "stage",
+      "section": "blue",
+      "say": "That loop keeps its progress in memory. Pausing for hours, or carrying on after a restart? That's code you'd write yourself.",
+      "beats": [
+        {
+          "target": "memory",
+          "word": "memory",
+          "offset": -0.1
+        },
+        {
+          "target": "pausing",
+          "word": "Pausing",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "restart",
+          "word": "restart",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "yourself",
+          "word": "yourself"
+        }
+      ],
+      "pad": 0.65
     },
     {
-     "target": "done",
-     "word": "done",
-     "sfx": "ding"
+      "id": "s05",
+      "type": "stage",
+      "section": "dark",
+      "say": "LangGraph is an open-source framework for building that same agent as a graph. And that graph can stop, and pick up again.",
+      "beats": [
+        {
+          "target": "lg",
+          "word": "LangGraph",
+          "offset": -0.1,
+          "sfx": "stamp"
+        },
+        {
+          "target": "graph",
+          "word": "graph"
+        },
+        {
+          "target": "stop",
+          "word": "stop",
+          "offset": -0.05
+        },
+        {
+          "target": "again",
+          "word": "again",
+          "sfx": "whoosh"
+        }
+      ],
+      "source": "S1"
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "section": "dark",
+      "say": "Three pieces. Nodes, edges, and checkpoints. Let's run the email through.",
+      "beats": [
+        {
+          "target": "nodes",
+          "word": "Nodes",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "edges",
+          "word": "edges",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "checkpoints",
+          "word": "checkpoints",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "email",
+          "word": "email"
+        }
+      ],
+      "pad": 0.65
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "section": "light",
+      "say": "Step one, the nodes. Each node does one job, like read, classify, or draft.",
+      "beats": [
+        {
+          "target": "one",
+          "word": "one",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "read",
+          "word": "read",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "classify",
+          "word": "classify",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "draft",
+          "word": "draft",
+          "offset": -0.05,
+          "sfx": "tick"
+        }
+      ],
+      "source": "S2"
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "section": "light",
+      "say": "They all share one state, a card that travels with the email.",
+      "beats": [
+        {
+          "target": "state",
+          "word": "state",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "card",
+          "word": "card"
+        },
+        {
+          "target": "email",
+          "word": "email"
+        }
+      ],
+      "source": "S2"
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "section": "light",
+      "say": "Read fills in the email. Classify writes refund. Draft writes the reply.",
+      "beats": [
+        {
+          "target": "email",
+          "word": "email",
+          "offset": -0.1,
+          "sfx": "tick"
+        },
+        {
+          "target": "refund",
+          "word": "refund",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "reply",
+          "word": "reply",
+          "offset": -0.05,
+          "sfx": "tick"
+        }
+      ],
+      "source": "S2"
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "section": "light",
+      "say": "Each node reads the card, and writes back only its part.",
+      "beats": [
+        {
+          "target": "reads",
+          "word": "reads",
+          "offset": -0.05
+        },
+        {
+          "target": "only",
+          "word": "only",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "part",
+          "word": "part"
+        }
+      ],
+      "source": "S2",
+      "pad": 0.65
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Step two, the edges. Edges decide what runs next.",
+      "beats": [
+        {
+          "target": "two",
+          "word": "two",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "edges",
+          "word": "Edges"
+        },
+        {
+          "target": "next",
+          "word": "next"
+        }
+      ],
+      "source": "S2"
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "section": "yellow",
+      "say": "A conditional edge reads the card. Intent is refund, so the email takes the refund path.",
+      "beats": [
+        {
+          "target": "cond",
+          "word": "conditional",
+          "offset": -0.05
+        },
+        {
+          "target": "reads",
+          "word": "reads"
+        },
+        {
+          "target": "refund",
+          "word": "refund",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "path",
+          "word": "path"
+        }
+      ],
+      "source": "S3"
+    },
+    {
+      "id": "s13",
+      "type": "stage",
+      "section": "yellow",
+      "say": "And edges can loop back. The check finds no amount in the draft.",
+      "beats": [
+        {
+          "target": "loop",
+          "word": "loop",
+          "offset": -0.05
+        },
+        {
+          "target": "check",
+          "word": "check"
+        },
+        {
+          "target": "amount",
+          "word": "amount",
+          "offset": -0.05,
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S3"
+    },
+    {
+      "id": "s14",
+      "type": "stage",
+      "section": "yellow",
+      "say": "So the email goes back to draft, gets fixed, and passes.",
+      "beats": [
+        {
+          "target": "back",
+          "word": "back",
+          "offset": -0.05,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "fixed",
+          "word": "fixed"
+        },
+        {
+          "target": "passes",
+          "word": "passes",
+          "offset": -0.05,
+          "sfx": "ding"
+        }
+      ],
+      "pad": 0.65
+    },
+    {
+      "id": "s15",
+      "type": "stage",
+      "section": "blue",
+      "say": "Step three, the checkpoints. Give it a checkpointer, and after every step, it saves where it is.",
+      "beats": [
+        {
+          "target": "three",
+          "word": "three",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "checkpointer",
+          "word": "checkpointer"
+        },
+        {
+          "target": "every",
+          "word": "every"
+        },
+        {
+          "target": "saves",
+          "word": "saves"
+        }
+      ],
+      "source": "S4"
+    },
+    {
+      "id": "s16",
+      "type": "stage",
+      "section": "blue",
+      "say": "Now the email reaches approve. The approve node calls interrupt, and the whole graph stops.",
+      "beats": [
+        {
+          "target": "approve",
+          "word": "approve",
+          "offset": -0.05
+        },
+        {
+          "target": "interrupt",
+          "word": "interrupt",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "stops",
+          "word": "stops",
+          "offset": -0.05,
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S5",
+      "pad": 0.6
+    },
+    {
+      "id": "s17",
+      "type": "stage",
+      "section": "blue",
+      "say": "Everything's saved under a thread ID, one per email. It waits until someone answers.",
+      "beats": [
+        {
+          "target": "saved",
+          "word": "saved",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "thread",
+          "word": "thread"
+        },
+        {
+          "target": "waits",
+          "word": "waits"
+        },
+        {
+          "target": "answers",
+          "word": "answers"
+        }
+      ],
+      "source": "S5"
+    },
+    {
+      "id": "s18",
+      "type": "stage",
+      "section": "blue",
+      "say": "You tap approve. It resumes from that step, with the same card.",
+      "beats": [
+        {
+          "target": "tap",
+          "word": "tap",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "resumes",
+          "word": "resumes",
+          "offset": -0.05,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "same",
+          "word": "same"
+        }
+      ],
+      "source": "S5"
+    },
+    {
+      "id": "s19",
+      "type": "stage",
+      "section": "blue",
+      "say": "Then the refund goes out. Approved by you.",
+      "beats": [
+        {
+          "target": "refund",
+          "word": "refund",
+          "offset": -0.05,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "approved",
+          "word": "Approved",
+          "offset": -0.05
+        },
+        {
+          "target": "you",
+          "word": "you",
+          "offset": -0.05,
+          "sfx": "ding"
+        }
+      ],
+      "pad": 0.65
+    },
+    {
+      "id": "s20",
+      "type": "stage",
+      "section": "dark",
+      "say": "Now, here's the catch. On resume, the paused step runs again from its top.",
+      "beats": [
+        {
+          "target": "catch",
+          "word": "catch",
+          "offset": -0.1
+        },
+        {
+          "target": "resume",
+          "word": "resume"
+        },
+        {
+          "target": "again",
+          "word": "again",
+          "offset": -0.05
+        },
+        {
+          "target": "top",
+          "word": "top",
+          "offset": -0.05,
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s21",
+      "type": "stage",
+      "section": "dark",
+      "say": "So if it emailed the customer before the pause, that email could go out twice.",
+      "beats": [
+        {
+          "target": "emailed",
+          "word": "emailed",
+          "offset": -0.05
+        },
+        {
+          "target": "before",
+          "word": "before"
+        },
+        {
+          "target": "twice",
+          "word": "twice",
+          "offset": -0.05,
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s22",
+      "type": "stage",
+      "section": "dark",
+      "say": "Put actions after the approval, or in their own node.",
+      "beats": [
+        {
+          "target": "after",
+          "word": "after",
+          "offset": -0.05,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "own",
+          "word": "own",
+          "offset": -0.05
+        },
+        {
+          "target": "node",
+          "word": "node",
+          "sfx": "ding"
+        }
+      ],
+      "source": "S12",
+      "pad": 0.65
+    },
+    {
+      "id": "s23",
+      "type": "stage",
+      "section": "light",
+      "say": "You don't need LangChain to use it. LangChain's own agents are built on top of LangGraph.",
+      "beats": [
+        {
+          "target": "need",
+          "word": "need",
+          "offset": -0.05
+        },
+        {
+          "target": "agents",
+          "word": "agents",
+          "offset": -0.05
+        },
+        {
+          "target": "top",
+          "word": "top",
+          "offset": -0.05,
+          "sfx": "pop"
+        }
+      ],
+      "source": "S13"
+    },
+    {
+      "id": "s24",
+      "type": "stage",
+      "section": "light",
+      "say": "For a simple agent, start with those. Need your own branches, loops and approval steps? That's when you reach for LangGraph.",
+      "beats": [
+        {
+          "target": "simple",
+          "word": "simple",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "branches",
+          "word": "branches",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "loops",
+          "word": "loops",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "approval",
+          "word": "approval",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "lg",
+          "word": "LangGraph",
+          "offset": -0.05
+        }
+      ],
+      "source": "S13",
+      "pad": 0.65
+    },
+    {
+      "id": "s25",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Nodes. Edges. Checkpoints. It saves after every step, so it can wait for your OK.",
+      "beats": [
+        {
+          "target": "nodes",
+          "word": "Nodes",
+          "offset": -0.1,
+          "sfx": "tick"
+        },
+        {
+          "target": "edges",
+          "word": "Edges",
+          "offset": -0.1,
+          "sfx": "tick"
+        },
+        {
+          "target": "checkpoints",
+          "word": "Checkpoints",
+          "offset": -0.1,
+          "sfx": "tick"
+        },
+        {
+          "target": "every",
+          "word": "every"
+        },
+        {
+          "target": "wait",
+          "word": "wait",
+          "offset": -0.05,
+          "sfx": "stamp"
+        }
+      ],
+      "pad": 0.65
+    },
+    {
+      "id": "s26",
+      "type": "stage",
+      "section": "dark",
+      "say": "What should I explain next? Tell me below.",
+      "beats": [
+        {
+          "target": "what",
+          "word": "What"
+        },
+        {
+          "target": "tell",
+          "word": "Tell",
+          "offset": -0.05,
+          "sfx": "pop"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "s04",
-   "type": "stage",
-   "section": "blue",
-   "say": "That loop keeps its progress in memory. Pausing for hours, or carrying on after a restart? That's code you'd write yourself.",
-   "beats": [
-    {
-     "target": "memory",
-     "word": "memory",
-     "offset": -0.1
-    },
-    {
-     "target": "pausing",
-     "word": "Pausing",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "restart",
-     "word": "restart",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "yourself",
-     "word": "yourself"
-    }
-   ],
-   "pad": 0.65
-  },
-  {
-   "id": "s05",
-   "type": "stage",
-   "section": "dark",
-   "say": "LangGraph is an open-source framework for building that same agent as a graph. And that graph can stop, and pick up again.",
-   "beats": [
-    {
-     "target": "lg",
-     "word": "LangGraph",
-     "offset": -0.1,
-     "sfx": "stamp"
-    },
-    {
-     "target": "graph",
-     "word": "graph"
-    },
-    {
-     "target": "stop",
-     "word": "stop",
-     "offset": -0.05
-    },
-    {
-     "target": "again",
-     "word": "again",
-     "sfx": "whoosh"
-    }
-   ],
-   "source": "S1"
-  },
-  {
-   "id": "s06",
-   "type": "stage",
-   "section": "dark",
-   "say": "Three pieces. Nodes, edges, and checkpoints. Let's run the email through.",
-   "beats": [
-    {
-     "target": "nodes",
-     "word": "Nodes",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "edges",
-     "word": "edges",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "checkpoints",
-     "word": "checkpoints",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "email",
-     "word": "email"
-    }
-   ],
-   "pad": 0.65
-  },
-  {
-   "id": "s07",
-   "type": "stage",
-   "section": "light",
-   "say": "Step one, the nodes. Each node does one job, like read, classify, or draft.",
-   "beats": [
-    {
-     "target": "one",
-     "word": "one",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "read",
-     "word": "read",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "classify",
-     "word": "classify",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "draft",
-     "word": "draft",
-     "offset": -0.05,
-     "sfx": "tick"
-    }
-   ],
-   "source": "S2"
-  },
-  {
-   "id": "s08",
-   "type": "stage",
-   "section": "light",
-   "say": "They all share one state, a card that travels with the email.",
-   "beats": [
-    {
-     "target": "state",
-     "word": "state",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "card",
-     "word": "card"
-    },
-    {
-     "target": "email",
-     "word": "email"
-    }
-   ],
-   "source": "S2"
-  },
-  {
-   "id": "s09",
-   "type": "stage",
-   "section": "light",
-   "say": "Read fills in the email. Classify writes refund. Draft writes the reply.",
-   "beats": [
-    {
-     "target": "email",
-     "word": "email",
-     "offset": -0.1,
-     "sfx": "tick"
-    },
-    {
-     "target": "refund",
-     "word": "refund",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "reply",
-     "word": "reply",
-     "offset": -0.05,
-     "sfx": "tick"
-    }
-   ],
-   "source": "S2"
-  },
-  {
-   "id": "s10",
-   "type": "stage",
-   "section": "light",
-   "say": "Each node reads the card, and writes back only its part.",
-   "beats": [
-    {
-     "target": "reads",
-     "word": "reads",
-     "offset": -0.05
-    },
-    {
-     "target": "only",
-     "word": "only",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "part",
-     "word": "part"
-    }
-   ],
-   "source": "S2",
-   "pad": 0.65
-  },
-  {
-   "id": "s11",
-   "type": "stage",
-   "section": "yellow",
-   "say": "Step two, the edges. Edges decide what runs next.",
-   "beats": [
-    {
-     "target": "two",
-     "word": "two",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "edges",
-     "word": "Edges"
-    },
-    {
-     "target": "next",
-     "word": "next"
-    }
-   ],
-   "source": "S2"
-  },
-  {
-   "id": "s12",
-   "type": "stage",
-   "section": "yellow",
-   "say": "A conditional edge reads the card. Intent is refund, so the email takes the refund path.",
-   "beats": [
-    {
-     "target": "cond",
-     "word": "conditional",
-     "offset": -0.05
-    },
-    {
-     "target": "reads",
-     "word": "reads"
-    },
-    {
-     "target": "refund",
-     "word": "refund",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "path",
-     "word": "path"
-    }
-   ],
-   "source": "S3"
-  },
-  {
-   "id": "s13",
-   "type": "stage",
-   "section": "yellow",
-   "say": "And edges can loop back. The check finds no amount in the draft.",
-   "beats": [
-    {
-     "target": "loop",
-     "word": "loop",
-     "offset": -0.05
-    },
-    {
-     "target": "check",
-     "word": "check"
-    },
-    {
-     "target": "amount",
-     "word": "amount",
-     "offset": -0.05,
-     "sfx": "stamp"
-    }
-   ],
-   "source": "S3"
-  },
-  {
-   "id": "s14",
-   "type": "stage",
-   "section": "yellow",
-   "say": "So the email goes back to draft, gets fixed, and passes.",
-   "beats": [
-    {
-     "target": "back",
-     "word": "back",
-     "offset": -0.05,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "fixed",
-     "word": "fixed"
-    },
-    {
-     "target": "passes",
-     "word": "passes",
-     "offset": -0.05,
-     "sfx": "ding"
-    }
-   ],
-   "pad": 0.65
-  },
-  {
-   "id": "s15",
-   "type": "stage",
-   "section": "blue",
-   "say": "Step three, the checkpoints. Give it a checkpointer, and after every step, it saves where it is.",
-   "beats": [
-    {
-     "target": "three",
-     "word": "three",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "checkpointer",
-     "word": "checkpointer"
-    },
-    {
-     "target": "every",
-     "word": "every"
-    },
-    {
-     "target": "saves",
-     "word": "saves"
-    }
-   ],
-   "source": "S4"
-  },
-  {
-   "id": "s16",
-   "type": "stage",
-   "section": "blue",
-   "say": "Now the email reaches approve. The approve node calls interrupt, and the whole graph stops.",
-   "beats": [
-    {
-     "target": "approve",
-     "word": "approve",
-     "offset": -0.05
-    },
-    {
-     "target": "interrupt",
-     "word": "interrupt",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "stops",
-     "word": "stops",
-     "offset": -0.05,
-     "sfx": "stamp"
-    }
-   ],
-   "source": "S5",
-   "pad": 0.6
-  },
-  {
-   "id": "s17",
-   "type": "stage",
-   "section": "blue",
-   "say": "Everything's saved under a thread ID, one per email. It waits until someone answers.",
-   "beats": [
-    {
-     "target": "saved",
-     "word": "saved",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "thread",
-     "word": "thread"
-    },
-    {
-     "target": "waits",
-     "word": "waits"
-    },
-    {
-     "target": "answers",
-     "word": "answers"
-    }
-   ],
-   "source": "S5"
-  },
-  {
-   "id": "s18",
-   "type": "stage",
-   "section": "blue",
-   "say": "You tap approve. It resumes from that step, with the same card.",
-   "beats": [
-    {
-     "target": "tap",
-     "word": "tap",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "resumes",
-     "word": "resumes",
-     "offset": -0.05,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "same",
-     "word": "same"
-    }
-   ],
-   "source": "S5"
-  },
-  {
-   "id": "s19",
-   "type": "stage",
-   "section": "blue",
-   "say": "Then the refund goes out. Approved by you.",
-   "beats": [
-    {
-     "target": "refund",
-     "word": "refund",
-     "offset": -0.05,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "approved",
-     "word": "Approved",
-     "offset": -0.05
-    },
-    {
-     "target": "you",
-     "word": "you",
-     "offset": -0.05,
-     "sfx": "ding"
-    }
-   ],
-   "pad": 0.65
-  },
-  {
-   "id": "s20",
-   "type": "stage",
-   "section": "dark",
-   "say": "Now, here's the catch. On resume, the paused step runs again from its top.",
-   "beats": [
-    {
-     "target": "catch",
-     "word": "catch",
-     "offset": -0.1
-    },
-    {
-     "target": "resume",
-     "word": "resume"
-    },
-    {
-     "target": "again",
-     "word": "again",
-     "offset": -0.05
-    },
-    {
-     "target": "top",
-     "word": "top",
-     "offset": -0.05,
-     "sfx": "stamp"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s21",
-   "type": "stage",
-   "section": "dark",
-   "say": "So if it emailed the customer before the pause, that email could go out twice.",
-   "beats": [
-    {
-     "target": "emailed",
-     "word": "emailed",
-     "offset": -0.05
-    },
-    {
-     "target": "before",
-     "word": "before"
-    },
-    {
-     "target": "twice",
-     "word": "twice",
-     "offset": -0.05,
-     "sfx": "stamp"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s22",
-   "type": "stage",
-   "section": "dark",
-   "say": "Put actions after the approval, or in their own node.",
-   "beats": [
-    {
-     "target": "after",
-     "word": "after",
-     "offset": -0.05,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "own",
-     "word": "own",
-     "offset": -0.05
-    },
-    {
-     "target": "node",
-     "word": "node",
-     "sfx": "ding"
-    }
-   ],
-   "source": "S12",
-   "pad": 0.65
-  },
-  {
-   "id": "s23",
-   "type": "stage",
-   "section": "light",
-   "say": "You don't need LangChain to use it. LangChain's own agents are built on top of LangGraph.",
-   "beats": [
-    {
-     "target": "need",
-     "word": "need",
-     "offset": -0.05
-    },
-    {
-     "target": "agents",
-     "word": "agents",
-     "offset": -0.05
-    },
-    {
-     "target": "top",
-     "word": "top",
-     "offset": -0.05,
-     "sfx": "pop"
-    }
-   ],
-   "source": "S13"
-  },
-  {
-   "id": "s24",
-   "type": "stage",
-   "section": "light",
-   "say": "For a simple agent, start with those. Need your own branches, loops and approval steps? That's when you reach for LangGraph.",
-   "beats": [
-    {
-     "target": "simple",
-     "word": "simple",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "branches",
-     "word": "branches",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "loops",
-     "word": "loops",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "approval",
-     "word": "approval",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "lg",
-     "word": "LangGraph",
-     "offset": -0.05
-    }
-   ],
-   "source": "S13",
-   "pad": 0.65
-  },
-  {
-   "id": "s25",
-   "type": "stage",
-   "section": "yellow",
-   "say": "Nodes. Edges. Checkpoints. It saves after every step, so it can wait for your OK.",
-   "beats": [
-    {
-     "target": "nodes",
-     "word": "Nodes",
-     "offset": -0.1,
-     "sfx": "tick"
-    },
-    {
-     "target": "edges",
-     "word": "Edges",
-     "offset": -0.1,
-     "sfx": "tick"
-    },
-    {
-     "target": "checkpoints",
-     "word": "Checkpoints",
-     "offset": -0.1,
-     "sfx": "tick"
-    },
-    {
-     "target": "every",
-     "word": "every"
-    },
-    {
-     "target": "wait",
-     "word": "wait",
-     "offset": -0.05,
-     "sfx": "stamp"
-    }
-   ],
-   "pad": 0.65
-  },
-  {
-   "id": "s26",
-   "type": "stage",
-   "section": "dark",
-   "say": "What should I explain next? Tell me below.",
-   "beats": [
-    {
-     "target": "what",
-     "word": "What"
-    },
-    {
-     "target": "tell",
-     "word": "Tell",
-     "offset": -0.05,
-     "sfx": "pop"
-    }
-   ]
-  }
- ]
+  ]
 }

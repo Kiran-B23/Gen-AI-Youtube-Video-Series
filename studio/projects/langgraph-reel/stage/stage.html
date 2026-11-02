@@ -4,15 +4,17 @@
 <!-- progress: 3 mechanism steps (structure-check PASS 2026-10-13), lit s07-s19 only -->
 <div id="prog" class="prog"><i id="p1" class="seg"></i><i id="p2" class="seg"></i><i id="p3" class="seg"></i><span class="proglab">/ 03</span></div>
 
-<!-- s01 hook (dark): the refund card, on screen from frame 0 -->
+<!-- s01 hook (dark), built on the voice (openings rule, 2026-10-30): the spoken line grows word by word at the top
+     (s01 has "captions": false), the refund card under it fills on "refunded"; on "Nobody" the line becomes the verdict -->
 <div class="g" id="g01">
+  <div id="l-say" class="hl l-say"><span id="l-w1">YOUR</span> <span id="l-w2" data-beat="s01/w2">AI</span> <span id="l-w3" data-beat="s01/w3">AGENT</span> <span id="l-w4" data-beat="s01/w4">JUST</span> <span id="l-w5">REFUNDED</span> <span id="l-w6" data-beat="s01/w6">A CUSTOMER.</span></div>
   <div id="rc0" class="card l-rcard">
     <div class="kick l-k">AGENT ACTION</div>
-    <div class="l-rt">Refund sent · $49 <b class="l-ok">✓</b></div>
-    <div class="l-rby">approved by: <span id="slot" class="l-slot"></span></div>
+    <div id="rt0" class="l-rt">Refund sent · $49 <b class="l-ok">✓</b></div>
+    <div id="rby0" class="l-rby">approved by: <span id="slot" class="l-slot"></span></div>
   </div>
   <div id="hh" class="hl l-hook"><span class="l-u">NOBODY</span><br>APPROVED IT.</div>
-  <div class="illus">illustrative</div>
+  <div id="il0" class="illus">illustrative</div>
 </div>
 
 <!-- s02-s04 the email meets a plain loop (blue) -->

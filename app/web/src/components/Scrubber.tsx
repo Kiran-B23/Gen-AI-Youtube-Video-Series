@@ -29,32 +29,32 @@ export function Scrubber({ tl, t, onSeek, beats, onScrub }: { tl: Timeline; t: n
   return (
     <div className="select-none">
       <div ref={bar} role="slider" aria-label="scrub" aria-valuemin={0} aria-valuemax={total} aria-valuenow={t} tabIndex={0}
-        className="relative h-11 cursor-pointer touch-none rounded-md border border-line bg-panel-2"
+        className="relative h-11 cursor-pointer touch-none border-2 border-ink bg-paper-2"
         onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); setDrag(true); onScrub?.(true); onSeek(at(e.clientX)); }}
         onPointerMove={(e) => { const x = at(e.clientX); setHover(x); if (drag) onSeek(x); }}
         onPointerUp={(e) => { e.currentTarget.releasePointerCapture(e.pointerId); setDrag(false); onScrub?.(false); }}
         onPointerLeave={() => setHover(null)}>
         {/* scenes: one block per scene, its section colour */}
-        <div className="absolute inset-x-0 top-0 h-7 overflow-hidden rounded-t-md">
+        <div className="absolute inset-x-0 top-0 h-7 overflow-hidden">
           {tl.scenes.map((s) => (
-            <div key={s.id} title={`${s.id} · ${s.section ?? ""} · ${s.start.toFixed(1)}–${(s.start + s.duration).toFixed(1)} s`}
-              className="absolute top-0 h-full border-r border-black/25 text-[10px] font-semibold leading-7"
-              style={{ left: pct(s.start), width: pct(s.duration), background: s.color ?? "var(--line)", color: s.ink ?? "var(--ink)" }}>
+            <div key={s.id} title={`${s.id}${s.section ? `, ${s.section}` : ""}: ${s.start.toFixed(1)} to ${(s.start + s.duration).toFixed(1)} s`}
+              className="absolute top-0 h-full border-r border-plate/30 text-xs font-extrabold leading-7"
+              style={{ left: pct(s.start), width: pct(s.duration), background: s.color ?? "var(--color-rule)", color: s.ink ?? "var(--color-ink)" }}>
               {(s.duration / total) * width >= 26 && <span className="block overflow-hidden whitespace-nowrap px-1 opacity-90">{s.id}</span>}
             </div>))}
         </div>
         {/* beat ticks */}
         <div className="absolute inset-x-0 bottom-0 h-4">
           {marks.map((b, i) => (
-            <span key={i} className={`absolute bottom-0.5 h-3 w-px ${b.ok === false ? "bg-bad" : "bg-muted/70"}`} style={{ left: pct(b.at) }} />))}
+            <span key={i} className={`absolute bottom-0.5 h-3 ${b.ok === false ? "w-0.5 bg-bad" : "w-px bg-muted"}`} style={{ left: pct(b.at) }} />))}
         </div>
-        <span className="pointer-events-none absolute -top-0.5 -bottom-0.5 w-0.5 rounded bg-accent shadow-[0_0_0_1px_var(--panel)]" style={{ left: pct(t) }} />
+        <span className="pointer-events-none absolute -top-0.5 -bottom-0.5 w-0.5 bg-accent shadow-[0_0_0_1px_var(--color-paper)]" style={{ left: pct(t) }} />
         {hover !== null && (
           <span className="pointer-events-none absolute -top-0.5 -bottom-0.5 w-px bg-ink/40" style={{ left: pct(hover) }} />)}
         {hover !== null && (
-          <div className="pointer-events-none absolute bottom-full z-20 mb-1.5 -translate-x-1/2 whitespace-nowrap rounded-md border border-line bg-panel px-2 py-1 text-[11px] shadow-lg"
+          <div className="pointer-events-none absolute bottom-full z-20 mb-1.5 -translate-x-1/2 whitespace-nowrap border-2 border-ink bg-paper-3 px-2 py-1 text-xs shadow-card"
             style={{ left: `clamp(60px, ${pct(hover)}, calc(100% - 60px))` }}>
-            <span className="font-mono">{fmt(hover)}</span>{hs && <> · {hs.id}</>}{hb && <> · “{hb.word}” → {hb.target}{hb.ok === false ? " ✗" : ""}</>}
+            <b className="font-extrabold">{fmt(hover)}</b>{hs && <>, {hs.id}</>}{hb && <>, “{hb.word}” shows {hb.target}{hb.ok === false ? <span className="text-bad"> (failed)</span> : ""}</>}
           </div>)}
       </div>
     </div>

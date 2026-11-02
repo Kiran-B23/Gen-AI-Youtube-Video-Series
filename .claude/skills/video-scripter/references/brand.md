@@ -9,10 +9,10 @@ concept decides the running object, metaphor and motion; the house style decides
 | **Aesthetic** | **The reference reel's look** (house style `reference-flat`): flat colour blocks per chapter (electric blue, yellow, off-white, navy), giant Anton/Inter type, mono chips, white cards with ink borders, clean geometry. Modern and confident, never cartoon, pastel, hand-drawn or kids-style; not dark-and-moody throughout (no glow/vignette/grain) |
 | Type | **Anton** for display and headlines · **Inter** 600–900 for body and captions · **JetBrains Mono** for code, tokens and numbers-as-data |
 | Captions | sentence captions (≤ 9 words, 1–2 lines), **no box**, low on the screen at **81–90%** of the height, left-aligned to the grid; words light up as spoken; section text colour with a halo in the section background; keywords in the section accent |
-| Progress | section cards + colour change for every video; numbered "STEP 1 OF 4" cards and the step bar only for Tutorial / Concept mechanisms (structure-check agent) |
+| Progress | the hook question pinned at the top + a section title that slides in under it, on one background for the whole reel (2026-10-30); numbered "STEP 1 OF 4" cards and the step bar only for Tutorial / Concept mechanisms (structure-check agent) |
 | Recap | a numbered chain card before the CTA for every explanation |
 | End card | a **channel-generic** question ("What should I explain next?"), never one that narrows the channel to a niche (e.g. "which word"), + "Follow for more AI breakdowns" pill |
-| Sound | brisk, warm, enthusiastic voice (Gemini, ~3 words/s); CC0 music bed ducked under speech; whoosh on section wipes, pop on reveals, ding on numbers, stamp on verdicts |
+| Sound | brisk, warm, enthusiastic voice (Gemini, ~3 words/s); CC0 music bed ducked under speech; whoosh on section titles, pop on reveals, ding on numbers, stamp on verdicts |
 | Safe zones | right 12% and bottom 20% clear of content (captions excepted) |
 | Sources | **never on screen.** The full list goes in the description / pinned comment. "illustrative" stays only inside mock UIs |
 | Layout grid | tracker top-left · visual zone centred on the frame (x 40–1040, y 220–1260) · captions bottom-left zone · the same positions in every scene |

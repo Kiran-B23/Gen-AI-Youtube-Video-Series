@@ -1,735 +1,749 @@
 {
- "slug": "mcp-reel",
- "format": "reel",
- "size": [
-  1080,
-  1920
- ],
- "music": "cc0/inventing-flight",
- "padSeconds": 0.3,
- "names": [
-  "MCP",
-  "Model Context Protocol",
-  "get_forecast",
-  "Tokyo",
-  "ChatGPT",
-  "Gemini",
-  "Copilot",
-  "VS Code",
-  "Anthropic"
- ],
- "keywords": [
-  "MCP",
-  "menu",
-  "note",
-  "call",
-  "never",
-  "description",
-  "trust",
-  "umbrella"
- ],
- "voice": {
-  "engine": "gemini",
-  "model": "gemini-2.5-flash-preview-tts",
-  "name": "Sadaltager",
-  "style": "You are a friendly senior engineer showing a curious developer how a magic trick is really done: how MCP works. Talk, don't read: calm, clear teaching delivery with real pitch movement, about two and a half words per second, short natural pauses between steps. Let the opening question sound like a genuine puzzle. Lean in and slow down on the twist, 'The model never calls the weather service itself. Not once.' Keep 'Step one, step two, step three' crisp and brisk. Say the JSON-like note, 'Get forecast, Tokyo, tomorrow', slowly like reading a slip of paper. Smile on 'Yes, pack an umbrella.' Take a short breath before 'Now, here's the catch' and say the catch calmly and seriously, never scary. Warm on the recap. Say MCP as the letters M, C, P. Clear, global English. Never hyped, never robotic. Read every word exactly as written."
- },
- "sections": {
-  "dark": {
-   "bg": "#0B1020",
-   "bg2": "#0B1020",
-   "text": "#FFFFFF",
-   "dim": "rgba(255,255,255,0.62)",
-   "accent": "#FFD23F",
-   "accent2": "#7B8CFF",
-   "card": "rgba(255,255,255,0.08)",
-   "line": "rgba(255,255,255,0.22)",
-   "danger": "#FF4D5E",
-   "ok": "#2ED3A0"
+  "slug": "mcp-reel",
+  "format": "reel",
+  "size": [
+    1080,
+    1920
+  ],
+  "music": "cc0/inventing-flight",
+  "padSeconds": 0.3,
+  "names": [
+    "MCP",
+    "Model Context Protocol",
+    "get_forecast",
+    "Tokyo",
+    "ChatGPT",
+    "Gemini",
+    "Copilot",
+    "VS Code",
+    "Anthropic"
+  ],
+  "keywords": [
+    "MCP",
+    "menu",
+    "note",
+    "call",
+    "never",
+    "description",
+    "trust",
+    "umbrella"
+  ],
+  "voice": {
+    "engine": "gemini",
+    "model": "gemini-2.5-flash-preview-tts",
+    "name": "Sadaltager",
+    "style": "You are a friendly senior engineer showing a curious developer how a magic trick is really done: how MCP works. Talk, don't read: calm, clear teaching delivery with real pitch movement, about two and a half words per second, short natural pauses between steps. Let the opening question sound like a genuine puzzle. Lean in and slow down on the twist, 'The model never calls the weather service itself. Not once.' Keep 'Step one, step two, step three' crisp and brisk. Say the JSON-like note, 'Get forecast, Tokyo, tomorrow', slowly like reading a slip of paper. Smile on 'Yes, pack an umbrella.' Take a short breath before 'Now, here's the catch' and say the catch calmly and seriously, never scary. Warm on the recap. Say MCP as the letters M, C, P. Clear, global English. Never hyped, never robotic. Read every word exactly as written."
   },
-  "blue": {
-   "bg": "#2B3BE0",
-   "bg2": "#2B3BE0",
-   "text": "#FFFFFF",
-   "dim": "rgba(255,255,255,0.70)",
-   "accent": "#FFD23F",
-   "accent2": "#C9D0FF",
-   "card": "rgba(255,255,255,0.12)",
-   "line": "rgba(255,255,255,0.35)",
-   "danger": "#FF4D5E",
-   "ok": "#2ED3A0"
-  },
-  "light": {
-   "bg": "#EEF1F6",
-   "bg2": "#EEF1F6",
-   "text": "#0B1020",
-   "dim": "rgba(11,16,32,0.55)",
-   "accent": "#2B3BE0",
-   "accent2": "#2B3BE0",
-   "card": "#FFFFFF",
-   "line": "rgba(11,16,32,0.85)",
-   "danger": "#E5364A",
-   "ok": "#14B87A"
-  },
-  "yellow": {
-   "bg": "#FFD23F",
-   "bg2": "#FFD23F",
-   "text": "#0B1020",
-   "dim": "rgba(11,16,32,0.62)",
-   "accent": "#2B3BE0",
-   "accent2": "#0B1020",
-   "card": "#FFFFFF",
-   "line": "rgba(11,16,32,0.85)",
-   "danger": "#E5364A",
-   "ok": "#0B1020"
-  }
- },
- "flat": true,
- "stage": {
-  "kit": "reference-flat",
-  "html": "stage/stage.html",
-  "css": "stage/stage.css",
-  "js": "stage/stage.js"
- },
- "scenes": [
-  {
-   "id": "s01",
-   "type": "stage",
-   "section": "dark",
-   "say": "An AI model can't check the weather. So how did it just tell you it's going to rain?",
-   "beats": [
-    {
-     "target": "weather",
-     "word": "weather",
-     "offset": -0.1,
-     "sfx": "stamp"
+  "sections": {
+    "dark": {
+      "bg": "#0B1020",
+      "bg2": "#0B1020",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.62)",
+      "accent": "#FFD23F",
+      "accent2": "#7B8CFF",
+      "card": "rgba(255,255,255,0.08)",
+      "line": "rgba(255,255,255,0.22)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
     },
-    {
-     "target": "how",
-     "word": "how",
-     "offset": -0.05,
-     "sfx": "pop"
+    "blue": {
+      "bg": "#2B3BE0",
+      "bg2": "#2B3BE0",
+      "text": "#FFFFFF",
+      "dim": "rgba(255,255,255,0.70)",
+      "accent": "#FFD23F",
+      "accent2": "#C9D0FF",
+      "card": "rgba(255,255,255,0.12)",
+      "line": "rgba(255,255,255,0.35)",
+      "danger": "#FF4D5E",
+      "ok": "#2ED3A0"
     },
-    {
-     "target": "rain",
-     "word": "rain"
+    "light": {
+      "bg": "#EEF1F6",
+      "bg2": "#EEF1F6",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.55)",
+      "accent": "#2B3BE0",
+      "accent2": "#2B3BE0",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#14B87A"
+    },
+    "yellow": {
+      "bg": "#FFD23F",
+      "bg2": "#FFD23F",
+      "text": "#0B1020",
+      "dim": "rgba(11,16,32,0.62)",
+      "accent": "#2B3BE0",
+      "accent2": "#0B1020",
+      "card": "#FFFFFF",
+      "line": "rgba(11,16,32,0.85)",
+      "danger": "#E5364A",
+      "ok": "#0B1020"
     }
-   ],
-   "source": "S6",
-   "pad": 0.65
   },
-  {
-   "id": "s02",
-   "type": "stage",
-   "section": "blue",
-   "say": "Here's the question. Will it rain in Tokyo tomorrow?",
-   "beats": [
-    {
-     "target": "q",
-     "word": "question",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "tokyo",
-     "word": "Tokyo"
-    },
-    {
-     "target": "tom",
-     "word": "tomorrow"
-    }
-   ]
+  "flat": true,
+  "stage": {
+    "kit": "reference-flat",
+    "html": "stage/stage.html",
+    "css": "stage/stage.css",
+    "js": "stage/stage.js"
   },
-  {
-   "id": "s03",
-   "type": "stage",
-   "section": "blue",
-   "say": "On its own, a model has no live data. It can't see tomorrow.",
-   "beats": [
+  "scenes": [
     {
-     "target": "own",
-     "word": "own",
-     "offset": -0.1,
-     "sfx": "pop"
+      "id": "s01",
+      "type": "stage",
+      "section": "dark",
+      "say": "An AI model can't check the weather. So how did it just tell you it's going to rain?",
+      "beats": [
+        {
+          "target": "cant",
+          "word": "can't",
+          "check": "reveal",
+          "sfx": "stamp"
+        },
+        {
+          "target": "check",
+          "word": "check",
+          "check": "reveal",
+          "sfx": "none"
+        },
+        {
+          "target": "weather",
+          "word": "weather",
+          "offset": -0.1,
+          "sfx": "none",
+          "check": "reveal"
+        },
+        {
+          "target": "how",
+          "word": "how",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "rain",
+          "word": "rain"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65,
+      "captions": false
     },
     {
-     "target": "live",
-     "word": "live",
-     "offset": -0.05
+      "id": "s02",
+      "type": "stage",
+      "section": "blue",
+      "say": "Here's the question. Will it rain in Tokyo tomorrow?",
+      "beats": [
+        {
+          "target": "q",
+          "word": "question",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "tokyo",
+          "word": "Tokyo"
+        },
+        {
+          "target": "tom",
+          "word": "tomorrow"
+        }
+      ]
     },
     {
-     "target": "tom",
-     "word": "tomorrow",
-     "offset": -0.1,
-     "sfx": "tick"
+      "id": "s03",
+      "type": "stage",
+      "section": "blue",
+      "say": "On its own, a model has no live data. It can't see tomorrow.",
+      "beats": [
+        {
+          "target": "own",
+          "word": "own",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "live",
+          "word": "live",
+          "offset": -0.05
+        },
+        {
+          "target": "tom",
+          "word": "tomorrow",
+          "offset": -0.1,
+          "sfx": "tick"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65
+    },
+    {
+      "id": "s04",
+      "type": "stage",
+      "section": "dark",
+      "say": "And here's the twist. The model never calls the weather service itself. Not once.",
+      "beats": [
+        {
+          "target": "twist",
+          "word": "twist",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "never",
+          "word": "never",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "once",
+          "word": "once"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65
+    },
+    {
+      "id": "s05",
+      "type": "stage",
+      "section": "blue",
+      "say": "The app makes that call, using MCP. The Model Context Protocol.",
+      "beats": [
+        {
+          "target": "app",
+          "word": "app",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "mcp",
+          "word": "MCP",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "proto",
+          "word": "Protocol",
+          "offset": -0.1
+        }
+      ],
+      "source": "S1 S2 S6"
+    },
+    {
+      "id": "s06",
+      "type": "stage",
+      "section": "blue",
+      "say": "Three players. The app you type into. The model inside it. And an MCP server, a program that wraps a real tool.",
+      "beats": [
+        {
+          "target": "app",
+          "word": "app",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "model",
+          "word": "model",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "server",
+          "word": "server",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "tool",
+          "word": "tool",
+          "offset": -0.05,
+          "sfx": "pop"
+        }
+      ],
+      "source": "S2",
+      "pad": 0.65
+    },
+    {
+      "id": "s07",
+      "type": "stage",
+      "section": "light",
+      "say": "Step one, the menu. The app asks the server: what can you do?",
+      "beats": [
+        {
+          "target": "menu",
+          "word": "menu"
+        },
+        {
+          "target": "asks",
+          "word": "asks",
+          "offset": -0.05,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "do",
+          "word": "do"
+        }
+      ],
+      "source": "S5"
+    },
+    {
+      "id": "s08",
+      "type": "stage",
+      "section": "light",
+      "say": "The server sends back its tools, each with a description. Get forecast, which gets the weather for a city. It needs a city and a date.",
+      "beats": [
+        {
+          "target": "tools",
+          "word": "tools",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "desc",
+          "word": "description",
+          "offset": -0.1
+        },
+        {
+          "target": "fc",
+          "word": "forecast",
+          "offset": -0.1
+        },
+        {
+          "target": "city",
+          "word": "city",
+          "offset": -0.05,
+          "sfx": "tick",
+          "nth": 1
+        },
+        {
+          "target": "date",
+          "word": "date",
+          "offset": -0.05,
+          "sfx": "tick"
+        }
+      ],
+      "source": "S5 S13"
+    },
+    {
+      "id": "s09",
+      "type": "stage",
+      "section": "light",
+      "say": "The app slides that menu in front of the model, right next to your question.",
+      "beats": [
+        {
+          "target": "slides",
+          "word": "slides",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "model",
+          "word": "model"
+        },
+        {
+          "target": "question",
+          "word": "question"
+        }
+      ],
+      "source": "S5",
+      "pad": 0.65
+    },
+    {
+      "id": "s10",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Step two, the note. The model reads the menu and picks the forecast tool.",
+      "beats": [
+        {
+          "target": "note",
+          "word": "note"
+        },
+        {
+          "target": "reads",
+          "word": "reads",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "picks",
+          "word": "picks",
+          "offset": -0.05,
+          "sfx": "pop"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s11",
+      "type": "stage",
+      "section": "yellow",
+      "say": "But it doesn't run it. It just writes a note. Get forecast, Tokyo, tomorrow.",
+      "beats": [
+        {
+          "target": "run",
+          "word": "run",
+          "offset": -0.1,
+          "sfx": "stamp"
+        },
+        {
+          "target": "note",
+          "word": "note",
+          "offset": -0.05
+        },
+        {
+          "target": "tokyo",
+          "word": "Tokyo"
+        },
+        {
+          "target": "tom",
+          "word": "tomorrow"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65
+    },
+    {
+      "id": "s12",
+      "type": "stage",
+      "section": "blue",
+      "say": "Step three, the call. The app takes that note and sends it to the server.",
+      "beats": [
+        {
+          "target": "call",
+          "word": "call"
+        },
+        {
+          "target": "note",
+          "word": "note",
+          "offset": -0.05,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "server",
+          "word": "server",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s13",
+      "type": "stage",
+      "section": "blue",
+      "say": "The server asks the real weather service, then sends the result back.",
+      "beats": [
+        {
+          "target": "asks",
+          "word": "asks",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "weather",
+          "word": "weather"
+        },
+        {
+          "target": "back",
+          "word": "back",
+          "offset": -0.15,
+          "sfx": "whoosh"
+        }
+      ],
+      "source": "S6"
+    },
+    {
+      "id": "s14",
+      "type": "stage",
+      "section": "blue",
+      "say": "The app hands it to the model, and the model finally answers you. Yes, pack an umbrella.",
+      "beats": [
+        {
+          "target": "hands",
+          "word": "hands",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "answers",
+          "word": "answers",
+          "offset": -0.05
+        },
+        {
+          "target": "umbrella",
+          "word": "umbrella",
+          "offset": -0.2,
+          "sfx": "ding"
+        }
+      ],
+      "source": "S6",
+      "pad": 0.65
+    },
+    {
+      "id": "s15",
+      "type": "stage",
+      "section": "light",
+      "say": "So why a standard? Before MCP, every app needed custom code for every tool.",
+      "beats": [
+        {
+          "target": "std",
+          "word": "standard",
+          "offset": -0.1
+        },
+        {
+          "target": "before",
+          "word": "Before",
+          "offset": -0.05
+        },
+        {
+          "target": "every1",
+          "word": "every",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "every2",
+          "word": "every",
+          "offset": -0.05,
+          "nth": 1
+        }
+      ],
+      "source": "S9"
+    },
+    {
+      "id": "s16",
+      "type": "stage",
+      "section": "light",
+      "say": "Now each tool needs one MCP server, and apps that speak MCP can plug it in.",
+      "beats": [
+        {
+          "target": "now",
+          "word": "Now",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "one",
+          "word": "one",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "plug",
+          "word": "plug",
+          "offset": -0.05,
+          "sfx": "tick"
+        }
+      ],
+      "source": "S9 S10"
+    },
+    {
+      "id": "s17",
+      "type": "stage",
+      "section": "light",
+      "say": "Anthropic says ChatGPT, Gemini, Copilot and VS Code use it. The same post counted over 10,000 public MCP servers.",
+      "beats": [
+        {
+          "target": "chatgpt",
+          "word": "ChatGPT",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "use",
+          "word": "use",
+          "offset": -0.05
+        },
+        {
+          "target": "num",
+          "word": "over",
+          "offset": 0.05,
+          "sfx": "ding"
+        }
+      ],
+      "source": "S10",
+      "pad": 0.65
+    },
+    {
+      "id": "s18",
+      "type": "stage",
+      "section": "dark",
+      "say": "Now, here's the catch. The model believes the menu.",
+      "beats": [
+        {
+          "target": "catch",
+          "word": "catch",
+          "offset": -0.1,
+          "sfx": "whoosh"
+        },
+        {
+          "target": "believes",
+          "word": "believes",
+          "offset": -0.05,
+          "sfx": "stamp"
+        },
+        {
+          "target": "menu",
+          "word": "menu"
+        }
+      ],
+      "source": "S11"
+    },
+    {
+      "id": "s19",
+      "type": "stage",
+      "section": "dark",
+      "say": "A bad server can hide instructions in a tool's description. You might not see them.",
+      "beats": [
+        {
+          "target": "bad",
+          "word": "bad",
+          "offset": -0.05
+        },
+        {
+          "target": "hide",
+          "word": "hide",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "see",
+          "word": "see",
+          "offset": -0.1
+        }
+      ],
+      "source": "S11 S12"
+    },
+    {
+      "id": "s20",
+      "type": "stage",
+      "section": "dark",
+      "say": "But the model reads them, and it may follow them.",
+      "beats": [
+        {
+          "target": "reads",
+          "word": "reads",
+          "offset": -0.05,
+          "sfx": "tick"
+        },
+        {
+          "target": "follow",
+          "word": "follow",
+          "offset": -0.1,
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S11",
+      "pad": 0.65
+    },
+    {
+      "id": "s21",
+      "type": "stage",
+      "section": "dark",
+      "say": "So install only servers you trust. And check what a tool will send before you approve it.",
+      "beats": [
+        {
+          "target": "trust",
+          "word": "trust",
+          "offset": -0.1,
+          "sfx": "pop"
+        },
+        {
+          "target": "check",
+          "word": "check",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "approve",
+          "word": "approve",
+          "offset": -0.05,
+          "sfx": "tick"
+        }
+      ],
+      "source": "S7 S11"
+    },
+    {
+      "id": "s22",
+      "type": "stage",
+      "section": "dark",
+      "say": "And never auto-approve every tool.",
+      "beats": [
+        {
+          "target": "never",
+          "word": "never",
+          "offset": -0.05
+        },
+        {
+          "target": "every",
+          "word": "every",
+          "offset": -0.05,
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S12 S7",
+      "pad": 0.65
+    },
+    {
+      "id": "s23",
+      "type": "stage",
+      "section": "yellow",
+      "say": "Menu. Note. Call. The model decides, and the app does.",
+      "beats": [
+        {
+          "target": "menu",
+          "word": "Menu",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "note",
+          "word": "Note",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "call",
+          "word": "Call",
+          "offset": -0.05,
+          "sfx": "pop"
+        },
+        {
+          "target": "decides",
+          "word": "decides",
+          "offset": -0.05
+        },
+        {
+          "target": "does",
+          "word": "does",
+          "offset": -0.05,
+          "sfx": "stamp"
+        }
+      ],
+      "source": "S5 S6",
+      "pad": 0.65
+    },
+    {
+      "id": "s24",
+      "type": "stage",
+      "section": "dark",
+      "say": "What should I explain next? Tell me below.",
+      "beats": [
+        {
+          "target": "q",
+          "word": "What"
+        },
+        {
+          "target": "tell",
+          "word": "Tell",
+          "offset": -0.05,
+          "sfx": "pop"
+        }
+      ]
     }
-   ],
-   "source": "S6",
-   "pad": 0.65
-  },
-  {
-   "id": "s04",
-   "type": "stage",
-   "section": "dark",
-   "say": "And here's the twist. The model never calls the weather service itself. Not once.",
-   "beats": [
-    {
-     "target": "twist",
-     "word": "twist",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "never",
-     "word": "never",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "once",
-     "word": "once"
-    }
-   ],
-   "source": "S6",
-   "pad": 0.65
-  },
-  {
-   "id": "s05",
-   "type": "stage",
-   "section": "blue",
-   "say": "The app makes that call, using MCP. The Model Context Protocol.",
-   "beats": [
-    {
-     "target": "app",
-     "word": "app",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "mcp",
-     "word": "MCP",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "proto",
-     "word": "Protocol",
-     "offset": -0.1
-    }
-   ],
-   "source": "S1 S2 S6"
-  },
-  {
-   "id": "s06",
-   "type": "stage",
-   "section": "blue",
-   "say": "Three players. The app you type into. The model inside it. And an MCP server, a program that wraps a real tool.",
-   "beats": [
-    {
-     "target": "app",
-     "word": "app",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "model",
-     "word": "model",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "server",
-     "word": "server",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "tool",
-     "word": "tool",
-     "offset": -0.05,
-     "sfx": "pop"
-    }
-   ],
-   "source": "S2",
-   "pad": 0.65
-  },
-  {
-   "id": "s07",
-   "type": "stage",
-   "section": "light",
-   "say": "Step one, the menu. The app asks the server: what can you do?",
-   "beats": [
-    {
-     "target": "menu",
-     "word": "menu"
-    },
-    {
-     "target": "asks",
-     "word": "asks",
-     "offset": -0.05,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "do",
-     "word": "do"
-    }
-   ],
-   "source": "S5"
-  },
-  {
-   "id": "s08",
-   "type": "stage",
-   "section": "light",
-   "say": "The server sends back its tools, each with a description. Get forecast, which gets the weather for a city. It needs a city and a date.",
-   "beats": [
-    {
-     "target": "tools",
-     "word": "tools",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "desc",
-     "word": "description",
-     "offset": -0.1
-    },
-    {
-     "target": "fc",
-     "word": "forecast",
-     "offset": -0.1
-    },
-    {
-     "target": "city",
-     "word": "city",
-     "offset": -0.05,
-     "sfx": "tick",
-     "nth": 1
-    },
-    {
-     "target": "date",
-     "word": "date",
-     "offset": -0.05,
-     "sfx": "tick"
-    }
-   ],
-   "source": "S5 S13"
-  },
-  {
-   "id": "s09",
-   "type": "stage",
-   "section": "light",
-   "say": "The app slides that menu in front of the model, right next to your question.",
-   "beats": [
-    {
-     "target": "slides",
-     "word": "slides",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "model",
-     "word": "model"
-    },
-    {
-     "target": "question",
-     "word": "question"
-    }
-   ],
-   "source": "S5",
-   "pad": 0.65
-  },
-  {
-   "id": "s10",
-   "type": "stage",
-   "section": "yellow",
-   "say": "Step two, the note. The model reads the menu and picks the forecast tool.",
-   "beats": [
-    {
-     "target": "note",
-     "word": "note"
-    },
-    {
-     "target": "reads",
-     "word": "reads",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "picks",
-     "word": "picks",
-     "offset": -0.05,
-     "sfx": "pop"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s11",
-   "type": "stage",
-   "section": "yellow",
-   "say": "But it doesn't run it. It just writes a note. Get forecast, Tokyo, tomorrow.",
-   "beats": [
-    {
-     "target": "run",
-     "word": "run",
-     "offset": -0.1,
-     "sfx": "stamp"
-    },
-    {
-     "target": "note",
-     "word": "note",
-     "offset": -0.05
-    },
-    {
-     "target": "tokyo",
-     "word": "Tokyo"
-    },
-    {
-     "target": "tom",
-     "word": "tomorrow"
-    }
-   ],
-   "source": "S6",
-   "pad": 0.65
-  },
-  {
-   "id": "s12",
-   "type": "stage",
-   "section": "blue",
-   "say": "Step three, the call. The app takes that note and sends it to the server.",
-   "beats": [
-    {
-     "target": "call",
-     "word": "call"
-    },
-    {
-     "target": "note",
-     "word": "note",
-     "offset": -0.05,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "server",
-     "word": "server",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s13",
-   "type": "stage",
-   "section": "blue",
-   "say": "The server asks the real weather service, then sends the result back.",
-   "beats": [
-    {
-     "target": "asks",
-     "word": "asks",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "weather",
-     "word": "weather"
-    },
-    {
-     "target": "back",
-     "word": "back",
-     "offset": -0.15,
-     "sfx": "whoosh"
-    }
-   ],
-   "source": "S6"
-  },
-  {
-   "id": "s14",
-   "type": "stage",
-   "section": "blue",
-   "say": "The app hands it to the model, and the model finally answers you. Yes, pack an umbrella.",
-   "beats": [
-    {
-     "target": "hands",
-     "word": "hands",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "answers",
-     "word": "answers",
-     "offset": -0.05
-    },
-    {
-     "target": "umbrella",
-     "word": "umbrella",
-     "offset": -0.2,
-     "sfx": "ding"
-    }
-   ],
-   "source": "S6",
-   "pad": 0.65
-  },
-  {
-   "id": "s15",
-   "type": "stage",
-   "section": "light",
-   "say": "So why a standard? Before MCP, every app needed custom code for every tool.",
-   "beats": [
-    {
-     "target": "std",
-     "word": "standard",
-     "offset": -0.1
-    },
-    {
-     "target": "before",
-     "word": "Before",
-     "offset": -0.05
-    },
-    {
-     "target": "every1",
-     "word": "every",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "every2",
-     "word": "every",
-     "offset": -0.05,
-     "nth": 1
-    }
-   ],
-   "source": "S9"
-  },
-  {
-   "id": "s16",
-   "type": "stage",
-   "section": "light",
-   "say": "Now each tool needs one MCP server, and apps that speak MCP can plug it in.",
-   "beats": [
-    {
-     "target": "now",
-     "word": "Now",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "one",
-     "word": "one",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "plug",
-     "word": "plug",
-     "offset": -0.05,
-     "sfx": "tick"
-    }
-   ],
-   "source": "S9 S10"
-  },
-  {
-   "id": "s17",
-   "type": "stage",
-   "section": "light",
-   "say": "Anthropic says ChatGPT, Gemini, Copilot and VS Code use it. The same post counted over 10,000 public MCP servers.",
-   "beats": [
-    {
-     "target": "chatgpt",
-     "word": "ChatGPT",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "use",
-     "word": "use",
-     "offset": -0.05
-    },
-    {
-     "target": "num",
-     "word": "over",
-     "offset": 0.05,
-     "sfx": "ding"
-    }
-   ],
-   "source": "S10",
-   "pad": 0.65
-  },
-  {
-   "id": "s18",
-   "type": "stage",
-   "section": "dark",
-   "say": "Now, here's the catch. The model believes the menu.",
-   "beats": [
-    {
-     "target": "catch",
-     "word": "catch",
-     "offset": -0.1,
-     "sfx": "whoosh"
-    },
-    {
-     "target": "believes",
-     "word": "believes",
-     "offset": -0.05,
-     "sfx": "stamp"
-    },
-    {
-     "target": "menu",
-     "word": "menu"
-    }
-   ],
-   "source": "S11"
-  },
-  {
-   "id": "s19",
-   "type": "stage",
-   "section": "dark",
-   "say": "A bad server can hide instructions in a tool's description. You might not see them.",
-   "beats": [
-    {
-     "target": "bad",
-     "word": "bad",
-     "offset": -0.05
-    },
-    {
-     "target": "hide",
-     "word": "hide",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "see",
-     "word": "see",
-     "offset": -0.1
-    }
-   ],
-   "source": "S11 S12"
-  },
-  {
-   "id": "s20",
-   "type": "stage",
-   "section": "dark",
-   "say": "But the model reads them, and it may follow them.",
-   "beats": [
-    {
-     "target": "reads",
-     "word": "reads",
-     "offset": -0.05,
-     "sfx": "tick"
-    },
-    {
-     "target": "follow",
-     "word": "follow",
-     "offset": -0.1,
-     "sfx": "stamp"
-    }
-   ],
-   "source": "S11",
-   "pad": 0.65
-  },
-  {
-   "id": "s21",
-   "type": "stage",
-   "section": "dark",
-   "say": "So install only servers you trust. And check what a tool will send before you approve it.",
-   "beats": [
-    {
-     "target": "trust",
-     "word": "trust",
-     "offset": -0.1,
-     "sfx": "pop"
-    },
-    {
-     "target": "check",
-     "word": "check",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "approve",
-     "word": "approve",
-     "offset": -0.05,
-     "sfx": "tick"
-    }
-   ],
-   "source": "S7 S11"
-  },
-  {
-   "id": "s22",
-   "type": "stage",
-   "section": "dark",
-   "say": "And never auto-approve every tool.",
-   "beats": [
-    {
-     "target": "never",
-     "word": "never",
-     "offset": -0.05
-    },
-    {
-     "target": "every",
-     "word": "every",
-     "offset": -0.05,
-     "sfx": "stamp"
-    }
-   ],
-   "source": "S12 S7",
-   "pad": 0.65
-  },
-  {
-   "id": "s23",
-   "type": "stage",
-   "section": "yellow",
-   "say": "Menu. Note. Call. The model decides, and the app does.",
-   "beats": [
-    {
-     "target": "menu",
-     "word": "Menu",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "note",
-     "word": "Note",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "call",
-     "word": "Call",
-     "offset": -0.05,
-     "sfx": "pop"
-    },
-    {
-     "target": "decides",
-     "word": "decides",
-     "offset": -0.05
-    },
-    {
-     "target": "does",
-     "word": "does",
-     "offset": -0.05,
-     "sfx": "stamp"
-    }
-   ],
-   "source": "S5 S6",
-   "pad": 0.65
-  },
-  {
-   "id": "s24",
-   "type": "stage",
-   "section": "dark",
-   "say": "What should I explain next? Tell me below.",
-   "beats": [
-    {
-     "target": "q",
-     "word": "What"
-    },
-    {
-     "target": "tell",
-     "word": "Tell",
-     "offset": -0.05,
-     "sfx": "pop"
-    }
-   ]
-  }
- ]
+  ]
 }

@@ -24,19 +24,24 @@
   tl.set('#needle', { x: 270 }, 0);
   const sgn = v => (v > 0.5 ? '+' : v < -0.5 ? '−' : '') + Math.abs(Math.round(v));
 
-  // ---------- s01-s02 hook (dark): the sealed file + the full counter from frame 0 ----------
+  // ---------- s01-s02 hook (dark), built on the voice (openings rule, 2026-10-30) ----------
+  // 0 s: the sealed game.exe card alone (its label + the caption). "source code" slams and is struck on its words,
+  // the file opens (hex streams in) and "1996" lands on "1996"; the counter and its grid arrive on "matched" (s02).
   group('g01', 0, S.s03);
   tl.set(['#hex0'], { opacity: 1 }, 0);
+  tl.set(['#hex0i', '#cnt0', '#grid0'], { opacity: 0 }, 0);
+  tl.fromTo('#hex0', { scale: 0.96, backgroundColor: '#24305A' }, { scale: 1, duration: 0.5, ease: 'power2.out' }, 0);   // sealed: a lit slab
+  tl.to('#hex0', { backgroundColor: '#0B1020', duration: 0.4 }, at('s01/hex'));                                      // opened: the bytes show
   tl.fromTo('#hex0it', { y: 0 }, { y: -420, duration: S.s03, ease: 'none' }, 0);
-  tl.set('#cnt0', { opacity: 1 }, 0);
-  tl.fromTo('#cnt0', { scale: 1 }, { scale: 1.04, duration: 0.6, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 0.2);
   slam('srcc', at('s01/src'), -2);
   tl.to('#srcx', { scaleX: 1, duration: 0.3, ease: 'power3.out' }, at('s01/code'));
-  pop('y96', at('s01/file') + 0.25, { y: 20 });
   pulse('hex0', at('s01/file'), 1.03);
+  tl.to('#hex0i', { opacity: 1, duration: 0.4 }, at('s01/hex'));
+  pop('y96', at('s01/hex'), { y: 20 });
   pop('agent0', at('s02/agent'), { x: 60, y: 0 });
   tl.fromTo('#fn0', { opacity: 0, x: -120, y: -380, scale: 0.4 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.55, ease: 'power3.out' }, at('s02/funcs'));
-  pulse('cnt0', at('s02/matched'), 1.08);
+  tl.fromTo('#cnt0', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power3.out', immediateRender: false }, at('s02/matched'));
+  tl.to('#grid0', { opacity: 1, duration: 0.25 }, at('s02/matched'));
   slam('one0', at('s02/matched') + 0.15, -3);
   tl.to(Array.from({ length: 40 }, (_, i) => '#g0c' + i), { backgroundColor: '#2ED3A0', duration: 0.12, stagger: Math.max(0.01, (at('s02/tests') + 0.4 - at('s02/matched')) / 40) }, at('s02/matched'));
   pulse('fn0', at('s02/tests'), 1.03);

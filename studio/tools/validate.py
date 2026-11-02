@@ -43,7 +43,10 @@ for sc in spec["scenes"]:
         for side in ("left", "right"):
             if not isinstance(sc.get("props", {}).get(side, {}).get("value"), (int, float)): err.append(f"{sc.get('id')}: duel {side} needs a numeric value")
 secs = [sc.get("section", spec.get("section", "dark")) for sc in spec["scenes"]]
-if len(set(secs)) == 1 and len(secs) > 6: warn.append("every scene uses the same section colour: colour-block the sections (pattern breaks)")
+# one background for the whole reel (2026-10-30: the top explainer shorts keep one background and grow one diagram;
+# a section change is a title under the pinned hook question, not a colour wipe). reference-flat/design.md
+_chg = sum(1 for a, b in zip(secs, secs[1:]) if a != b)
+if _chg: warn.append(f"{len(set(secs))} background colours, {_chg} colour change(s) between scenes: set \"section\" once at the top and leave it off the scenes (one background; a section is a title under the pinned question)")
 if spec.get("music", "upbeat-synth") not in MUSIC:
     m = spec["music"]; hint = ""
     if m.startswith("cc0/"):

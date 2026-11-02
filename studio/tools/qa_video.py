@@ -95,15 +95,41 @@ if _names:
     _heard = " ".join(_plain).lower()
     _miss = [n for n in _names if n.lower() not in _heard]
     if _miss: warn("names", f"heard differently without the names prompt (listen; respell if wrong): {', '.join(_miss)}")
-NUMW = {w: str(i) for i, w in enumerate("zero one two three four five six seven eight nine ten eleven twelve".split())}
-toks = lambda t: [NUMW.get(x, x) for x in (re.sub(r"[^a-z0-9]", "", w.lower()) for w in t.split()) if x]
+# both sides spoken out the same way before comparing, so Whisper's spelling isn't counted as a skipped word:
+# digits → words ("52.8%" = "fifty two point eight percent"), "AGENTS.md" = "agents dot m d", hyphens split,
+# and a run of single letters joins ("m d" = "md", "a p i" = "api")
+_ONES = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split()
+_TENS = "_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()
+def _say_int(n):
+    if n < 20: return _ONES[n]
+    if n < 100: return _TENS[n // 10] + ("" if n % 10 == 0 else " " + _ONES[n % 10])
+    if n < 1000: return _ONES[n // 100] + " hundred" + ("" if n % 100 == 0 else " " + _say_int(n % 100))
+    if n < 10000 and n % 1000 and 1100 <= n < 2100 and n % 100: return _say_int(n // 100) + " " + _say_int(n % 100)   # years: 2026
+    if n < 1000000: return _say_int(n // 1000) + " thousand" + ("" if n % 1000 == 0 else " " + _say_int(n % 1000))
+    return " ".join(_ONES[int(d)] for d in str(n))
+def _say_num(m):
+    a, b = m.group(1).replace(",", ""), m.group(2)
+    return " " + _say_int(int(a)) + ("" if not b else " point " + " ".join(_ONES[int(d)] for d in b)) + " "
+def _spoken(t):
+    t = t.lower().replace("%", " percent ").replace("&", " and ")
+    t = re.sub(r"(\d[\d,]*)(?:\.(\d+))?", _say_num, t)                 # numbers first: 52.8 is a decimal, not a file name
+    t = re.sub(r"([a-z])\.([a-z])", r"\1 dot \2", t)                    # file names: agents.md
+    out, single = [], False
+    for x in re.sub(r"[^a-z0-9]+", " ", t).split():                      # a run of single letters joins: m d → md
+        one = len(x) == 1 and x not in ("a", "i")
+        if one and single: out[-1] += x
+        else: out.append(x)
+        single = one
+    return out
+toks = lambda t: _spoken(t)
 heard, script = toks(" ".join(sg.text for sg in segs)), toks(" ".join(s.get("say", "") for s in spec["scenes"]))
 sm = difflib.SequenceMatcher(None, script, heard, autojunk=False)
 diffs = [f"{' '.join(script[a:b])}→{' '.join(heard[c:d])}" for t, a, b, c, d in sm.get_opcodes() if t != "equal"]
 check("audio = script", sm.ratio() >= 0.95 and not any(t == "delete" for t, *_ in sm.get_opcodes()),
       f"{sm.ratio():.0%} match" + (f" · differs: {'; '.join(diffs)[:120]}" if diffs else ""))
 
-# motion: no stretch longer than 2.5 s where nothing moves in the main band (captions excluded), per scene
+# motion: no frozen frame, i.e. no stretch longer than 5 s where nothing moves in the main band (captions excluded), per
+# scene. Holds of 2.5-5 s are fine: the top explainer shorts (2026-10-30, references/web-shorts-2026-10-30.md) hold to read.
 raw = subprocess.run(["ffmpeg", "-v", "error", "-i", f, "-vf", "fps=4,scale=108:-2,format=gray", "-f", "rawvideo", "-"], capture_output=True).stdout
 fh_ = int(108 * H / W); nfr = len(raw) // (108 * fh_)
 fr = np.frombuffer(raw[: nfr * 108 * fh_], dtype=np.uint8).reshape(nfr, fh_, 108).astype(np.int16)[:, int(fh_ * 0.10):int(fh_ * 0.76)]   # the stage zone (y 190-1460), captions excluded
@@ -114,7 +140,7 @@ for k, sc in enumerate(lay[:-1]):                                        # the l
     a, b = int(sc["start"] * 4), int((sc["start"] + sc["duration"]) * 4)
     run = best = 0
     for m in moving[a:b]: run = 0 if m else run + 1; best = max(best, run)
-    if best / 4 > 2.5: worst.append(f"{sc['id']} {best / 4:.1f}s")
+    if best / 4 > 5.0: worst.append(f"{sc['id']} {best / 4:.1f}s")
 # openings: 0.15 s after each scene starts, the main band must already show content (a blank first frame after a wipe is a defect)
 blank = []
 for sc in lay:
@@ -123,23 +149,24 @@ for sc in lay:
         band = fr[k]
         if band.std() < 6: blank.append(sc["id"])
 check("scene openings", not blank, "content visible 0.15 s into every scene" if not blank else "blank opening: " + ", ".join(blank))
-check("motion", not worst, "every scene moves at least every 2.5 s" if not worst else "static: " + ", ".join(worst))
+check("motion", not worst, "no frozen frame (nothing still > 5 s)" if not worst else "frozen > 5 s: " + ", ".join(worst))
 
-# still-%: share of 0.25 s steps where the stage zone did not change (references/benchmark.json: the reference reel 48 %, the
-# Instagram references 0-10 %; tools/benchmark.py compares a render with all of them)
+# still-%: share of 0.25 s steps where the stage zone did not change. Reported, not a target: it does not predict reach
+# (the top explainer shorts measured on 2026-10-30 run 0-94 %; references/web-shorts-2026-10-30.md).
 still_pct = round(100 * (1 - moving.mean()), 1) if len(moving) else 0.0
 try: _bm = json.load(open(os.path.join(os.path.dirname(STUDIO), "references", "benchmark.json")))["files"]["tokenization-reel"]["still_pct"]
 except (OSError, KeyError, ValueError): _bm = None
-if still_pct > 20: warn("still", f"{still_pct}% of the reel sits still in the stage zone (target ≤ 10 %, the Instagram references 0-10 %" + (f", the reference reel {_bm} %" if _bm else "") + ")")
+print(f"  · still share {still_pct}% (reported only; reference reel {_bm} %)" if _bm else f"  · still share {still_pct}% (reported only)")
 
 # plan vs render: out/payoffs.json from tools/payoffs.mjs must exist for THIS composition (sha1 of hf/index.html) and be clean
 _pp = os.path.join(P, "out", "payoffs.json"); _ix = os.path.join(P, "hf", "index.html")
 if os.path.exists(_pp) and os.path.exists(_ix):
     _po = json.load(open(_pp)); _sm = _po.get("summary", {})
     stale = _po.get("index_sha1") != hashlib.sha1(open(_ix, "rb").read()).hexdigest()
-    check("payoffs", not stale and not _sm.get("failed") and not _sm.get("caption_overflow") and not _sm.get("still_scenes") and not _sm.get("edge_crops"),
+    check("payoffs", not stale and not _sm.get("failed") and not _sm.get("caption_overflow") and not _sm.get("still_scenes") and not _sm.get("edge_crops") and _po.get("hook", {"ok": True})["ok"] and _sm.get("opening_ok", True),
           "stale: re-run tools/run.sh <slug> payoffs (index.html changed)" if stale else
-          f"{_sm.get('passed')}/{_sm.get('checked')} beats on screen on their word · {_sm.get('caption_overflow', 0)} caption overflow · {_sm.get('still_scenes', 0)} still scene(s) · {_sm.get('edge_crops', 0)} edge crop(s)")
+          f"{_sm.get('passed')}/{_sm.get('checked')} beats on screen on their word · {_sm.get('caption_overflow', 0)} caption overflow · {_sm.get('still_scenes', 0)} still scene(s) · {_sm.get("edge_crops", 0)} edge crop(s)" + (f" · hook frame {round(_sm['hook_fill'] * 100)}% (need ≥ 45%)" if "hook_fill" in _sm else "")
+          + "".join(f" · opening {o['units']} things / {o['words']} words at {o['at']}s (max {o['max_units']} / {o['max_words']})" for o in _po.get("opening", []) if not o["ok"]))
 elif spec.get("engine") != "remotion": check("payoffs", False, "no out/payoffs.json: run tools/run.sh <slug> payoffs before render")
 
 # captions: no card shown for less than 0.9 s
